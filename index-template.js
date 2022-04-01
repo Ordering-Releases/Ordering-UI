@@ -67,7 +67,7 @@ import rightArrow from './template/assets/right-arrow.svg'
 
 Sentry.init({
   environment: window?.location?.hostname === 'localhost' ? 'development' : process.env.NODE_ENV,
-  dsn: 'https://ab508d2c6990411c8da375c997f9f3d6@o460529.ingest.sentry.io/5496646',
+  dsn: "https://28d1f7ef8d764235902101e569102521@o460529.ingest.sentry.io/6302953",
   release: process.env.npm_package_version ? 'ordering-ui@' + process.env.npm_package_version : 'ordering-ui@' + '0.0.3',
   integrations: [
     new Integrations.BrowserTracing()
