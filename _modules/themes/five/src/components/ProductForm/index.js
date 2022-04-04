@@ -340,6 +340,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
   }), !loading && !error && product && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperImage, null, /*#__PURE__*/_react.default.createElement(_styles.SwiperWrapper, null, /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
     spaceBetween: 10,
     navigation: true,
+    watchOverflow: true,
     thumbs: {
       swiper: thumbsSwiper
     },
@@ -379,7 +380,8 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     },
     freeMode: true,
     watchSlidesProgress: true,
-    className: "product-thumb"
+    className: "product-thumb",
+    watchOverflow: true
   }, gallery.map(function (img, i) {
     return /*#__PURE__*/_react.default.createElement(_react2.SwiperSlide, {
       key: i
