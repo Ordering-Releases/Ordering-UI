@@ -65,7 +65,8 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
       option = props.option,
       suboption = props.suboption,
       toggleSelect = props.toggleSelect,
-      changePosition = props.changePosition;
+      changePosition = props.changePosition,
+      isSoldOut = props.isSoldOut;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
