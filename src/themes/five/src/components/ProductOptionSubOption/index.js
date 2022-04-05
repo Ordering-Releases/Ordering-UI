@@ -34,7 +34,8 @@ const ProductOptionSubOptionUI = (props) => {
     option,
     suboption,
     toggleSelect,
-    changePosition
+    changePosition,
+    isSoldOut
   } = props
 
   const [, t] = useLanguage()
