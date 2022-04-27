@@ -22,6 +22,7 @@ import BsArrowRight from '@meronex/icons/bs/BsArrowRight'
 import { TextArea } from '../../styles/Inputs'
 import { Button } from '../../styles/Buttons'
 import { Alert } from '../Confirm'
+import { reviewCommentList } from '../../utils'
 
 const SingleProductReview = (props) => {
   const {
@@ -35,14 +36,9 @@ const SingleProductReview = (props) => {
   const [isExtraComment, setIsExtraComment] = useState(false)
   const [comments, setComments] = useState([])
   const [extraComment, setExtraComment] = useState('')
+  const [currentValue, setCurrentValue] = useState(5)
 
-  const commentsList = [
-    { key: 0, content: t('IT_WASNT_TASTY', "It wasn't tasty") },
-    { key: 1, content: t('SMALL_PORTION', 'Small portion') },
-    { key: 2, content: t('WET_OR_LEAKY', 'Wet or leaky') },
-    { key: 3, content: t('SLOPPY_PRESENTATION', 'Sloppy presentation') },
-    { key: 4, content: t('COLD_OR_MELTED', 'Cold or melted') }
-  ]
+  const commentsList = reviewCommentList('product')
 
   const handleChangeComment = (commentItem) => {
     const found = comments.find((comment) => comment?.key === commentItem.key)
@@ -60,6 +56,9 @@ const SingleProductReview = (props) => {
   }
 
   useEffect(() => {
+    const value = isLike ? 5 : 1
+    setCurrentValue(value)
+    if (value !== currentValue) setComments([])
     if (comments?.length === 0 && !extraComment && formState.changes?.length === 0 && isLike) return
     let _comments = ''
     if (comments.length > 0) {
@@ -103,7 +102,7 @@ const SingleProductReview = (props) => {
       </HandReviewWrapper>
       <CommentsList>
         {
-          commentsList?.map((commentItem, i) => (
+          commentsList[isLike ? 'like' : 'dislike']?.map((commentItem, i) => (
             <ButtonCustomized
               key={i}
               type='button'

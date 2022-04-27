@@ -22,25 +22,29 @@ const WalletsUI = (props) => {
   const {
     walletList,
     transactionsList,
-    setWalletSelected
+    setWalletSelected,
+    isWalletCashEnabled,
+    isWalletPointsEnabled
   } = props
 
   const [, t] = useLanguage()
-  const [{ parsePrice, parseDate }] = useUtils()
+  const [{ parsePrice }] = useUtils()
   const [{ configs }] = useConfig()
 
-  const [tabSelected, setTabSelected] = useState('cash')
+  const [tabSelected, setTabSelected] = useState(isWalletCashEnabled ? 'cash' : 'credit_point')
 
   const currentWalletSelected = (walletList.wallets?.length > 0 && walletList.wallets?.find(w => w.type === tabSelected)) ?? null
 
   const walletName = {
     cash: {
       name: t('CASH_WALLET', 'Cash Wallet'),
-      value: 0
+      value: 0,
+      isActive: isWalletCashEnabled
     },
     credit_point: {
       name: t('CREDITS_POINTS_WALLET', 'Credit Points Wallet'),
-      value: 1
+      value: 1,
+      isActive: isWalletPointsEnabled
     }
   }
 
@@ -57,7 +61,7 @@ const WalletsUI = (props) => {
       (
         <>
           <Tabs variant='primary'>
-            {walletList.wallets?.map(wallet =>(
+            {walletList.wallets?.map(wallet => walletName[wallet.type]?.isActive && (
               <Tab
                 key={wallet.id}
                 active={tabSelected === wallet.type}
@@ -158,9 +162,16 @@ const WalletsUI = (props) => {
 }
 
 export const Wallets = (props) => {
+  const [{ configs }] = useConfig()
+
+  const isWalletCashEnabled = configs?.wallet_cash_enabled?.value === '1'
+  const isWalletPointsEnabled = configs?.wallet_credit_point_enabled?.value === '1'
+
   const walletsProps = {
     ...props,
-    UIComponent: WalletsUI
+    UIComponent: WalletsUI,
+    isWalletCashEnabled,
+    isWalletPointsEnabled
   }
   return (
     <WalletList {...walletsProps} />

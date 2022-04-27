@@ -86,7 +86,7 @@ const SignUpFormUI = (props) => {
   const [passwordSee, setPasswordSee] = useState(false)
   const [fieldNumber, setFieldNumber] = useState(1)
 
-  const showInputPhoneNumber = validationFields?.fields?.checkout?.cellphone?.enabled ?? false
+  const showInputPhoneNumber = (validationFields?.fields?.checkout?.cellphone?.enabled ?? false) || configs?.verification_phone_required?.value === '1'
 
   const initParams = {
     client_id: configs?.google_login_client_id?.value,
@@ -139,8 +139,9 @@ const SignUpFormUI = (props) => {
   const onSubmit = () => {
     const isPhoneNumberValid = userPhoneNumber ? isValidPhoneNumber : true
     if (!userPhoneNumber &&
-      validationFields?.fields?.checkout?.cellphone?.enabled &&
-      validationFields?.fields?.checkout?.cellphone?.required
+      ((validationFields?.fields?.checkout?.cellphone?.enabled &&
+      validationFields?.fields?.checkout?.cellphone?.required) ||
+      configs?.verification_phone_required?.value === '1')
     ) {
       setAlertState({
         open: true,

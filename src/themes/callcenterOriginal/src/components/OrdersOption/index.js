@@ -3,8 +3,8 @@ import Skeleton from 'react-loading-skeleton'
 import { OrderList, useLanguage, useOrder } from 'ordering-components'
 
 import { HorizontalOrdersLayout } from '../HorizontalOrdersLayout'
-import { VerticalOrdersLayout } from '../VerticalOrdersLayout'
-import { NotFoundSource } from '../../../../../components/NotFoundSource'
+import { VerticalOrdersLayout } from '../../../../../components/VerticalOrdersLayout'
+import { NotFoundSource } from '../NotFoundSource'
 
 import { useTheme } from 'styled-components'
 
@@ -13,7 +13,6 @@ import {
   OrdersContainer,
   SkeletonOrder,
   SkeletonCard,
-  SkeletonMap,
   SkeletonContent,
   SkeletonText,
   SkeletonInformation,
@@ -32,7 +31,11 @@ const OrdersOptionUI = (props) => {
     titleContent,
     customArray,
     onRedirectPage,
-    businessesIds
+    businessesIds,
+    orderStatus,
+    isCustomLayout,
+    isBusinessesLoading,
+    pastOrders
   } = props
 
   const [, t] = useLanguage()
@@ -44,13 +47,13 @@ const OrdersOptionUI = (props) => {
     ? theme.images?.general?.emptyActiveOrders
     : theme.images?.general?.emptyPastOrders
 
-  const orders = customArray || values
+  const orders = customArray || values || []
   const isShowTitles = businessesIds
     ? orders && orders.length > 0 && !orders.map(order => businessesIds && businessesIds.includes(order.business_id)).every(i => !i)
     : orders.length > 0
 
-  const [ordersSorted, setOrdersSorted] = useState([])
   const [reorderLoading, setReorderLoading] = useState(false)
+  const [loadingOrders, setLoadingOrders] = useState(true)
 
   const handleReorder = async (orderId) => {
     setReorderLoading(true)
@@ -101,14 +104,16 @@ const OrdersOptionUI = (props) => {
   }
 
   useEffect(() => {
-    const ordersSorted = orders.sort((a, b) => {
-      if (activeOrders) {
-        return new Date(b.created_at) - new Date(a.created_at)
-      }
-      return new Date(a.created_at) - new Date(b.created_at)
-    })
-    setOrdersSorted(ordersSorted)
-  }, [orders])
+    let timeout
+    if (isCustomLayout) {
+      timeout = setTimeout(() => {
+        setLoadingOrders(false)
+      }, 2000)
+    }
+    return () => {
+      typeof timeout === 'number' && clearTimeout(timeout)
+    }
+  }, [])
 
   return (
     <>
@@ -118,16 +123,16 @@ const OrdersOptionUI = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
-      {(isShowTitles || !isBusinessesPage) && (
+      {(isCustomLayout ? ((isShowTitles || !isBusinessesPage) && !loadingOrders && !loading && !isBusinessesLoading) : (isShowTitles || !isBusinessesPage)) && (
         <>
           <OptionTitle isBusinessesPage={isBusinessesPage}>
             <h1>
               {titleContent || (activeOrders
-                ? t('ACTIVE_ORDERS', 'Active Orders')
-                : t('PREVIOUS_ORDERS', 'Previous Orders'))}
+                ? t('ACTIVE', 'Active')
+                : (pastOrders ? t('PAST', 'Past') : t('PREORDERS', 'Preorders')))}
             </h1>
           </OptionTitle>
-          {!loading && ordersSorted.length === 0 && (
+          {!loading && orders.length === 0 && (
             <NotFoundSource
               image={imageFails}
               content={t('NO_RESULTS_FOUND', 'Sorry, no results found')}
@@ -137,7 +142,7 @@ const OrdersOptionUI = (props) => {
         </>
       )}
 
-      {loading && (
+      {(isCustomLayout ? (loadingOrders || loading || isBusinessesLoading) : loading) && (
         <OrdersContainer
           isSkeleton
           activeOrders={horizontal}
@@ -147,9 +152,6 @@ const OrdersOptionUI = (props) => {
             <SkeletonOrder activeOrders={horizontal} isBusinessesPage={isBusinessesPage}>
               {[...Array(3)].map((item, i) => (
                 <SkeletonCard key={i}>
-                  <SkeletonMap>
-                    <Skeleton />
-                  </SkeletonMap>
                   <SkeletonContent activeOrders={horizontal}>
                     <div>
                       <Skeleton width={70} height={70} />
@@ -191,24 +193,28 @@ const OrdersOptionUI = (props) => {
         </OrdersContainer>
       )}
 
-      {!loading && !error && orders.length > 0 && (
+      {(isCustomLayout ? !loadingOrders && !loading && !error && orders.length > 0 && !isBusinessesLoading : !loading && !error && orders.length > 0) && (
         horizontal ? (
-          <HorizontalOrdersLayout
-            businessesIds={businessesIds}
-            orders={ordersSorted}
-            pagination={pagination}
-            onRedirectPage={onRedirectPage}
-            loadMoreOrders={loadMoreOrders}
-            isBusinessesPage={isBusinessesPage}
-            reorderLoading={reorderLoading}
-            customArray={customArray}
-            getOrderStatus={getOrderStatus}
-            handleReorder={handleReorder}
-          />
+          <>
+            <HorizontalOrdersLayout
+              businessesIds={businessesIds}
+              orders={orders.filter(order => orderStatus.includes(order.status))}
+              pagination={pagination}
+              onRedirectPage={onRedirectPage}
+              loadMoreOrders={loadMoreOrders}
+              isBusinessesPage={isBusinessesPage}
+              reorderLoading={reorderLoading}
+              customArray={customArray}
+              getOrderStatus={getOrderStatus}
+              handleReorder={handleReorder}
+              activeOrders={activeOrders}
+              pastOrders={pastOrders}
+            />
+          </>
         ) : (
           <VerticalOrdersLayout
             reorderLoading={reorderLoading}
-            orders={ordersSorted}
+            orders={orders.filter(order => orderStatus.includes(order.status))}
             pagination={pagination}
             loadMoreOrders={loadMoreOrders}
             onRedirectPage={onRedirectPage}
@@ -231,7 +237,9 @@ export const OrdersOption = (props) => {
   const orderListProps = {
     ...props,
     UIComponent: OrdersOptionUI,
-    orderStatus: props.activeOrders ? [0, 3, 4, 7, 8, 9] : [1, 2, 5, 6, 10, 11, 12],
+    orderStatus: props.activeOrders
+      ? [0, 3, 4, 7, 8, 9, 13, 14, 15, 18, 19, 20, 21, 22, 23]
+      : [1, 2, 5, 6, 10, 11, 12, 16, 17],
     useDefualtSessionManager: true,
     paginationSettings: {
       initialPage: 1,

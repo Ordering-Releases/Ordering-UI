@@ -264,24 +264,30 @@ const CartUI = (props) => {
                         </tr>
                       ))
                     }
-                    <tr>
+                    {/* <tr>
                       <td>
                         <Divider />
                       </td>
                       <td>
                         <Divider />
                       </td>
-                    </tr>
-                    {cart?.subtotal_with_discount > 0 && cart?.discount > 0 && cart?.total >= 0 && (
-                      <tr>
-                        <td>{t('SUBTOTAL_WITH_DISCOUNT', 'Subtotal with discount')}</td>
-                        {cart?.business?.tax_type === 1 ? (
-                          <td>{parsePrice(cart?.subtotal_with_discount + getIncludedTaxesDiscounts() ?? 0)}</td>
-                        ) : (
-                          <td>{parsePrice(cart?.subtotal_with_discount ?? 0)}</td>
-                        )}
-                      </tr>
-                    )}
+                    </tr> */}
+                    {
+                      cart?.offers?.filter(offer => offer?.target === 1)?.length > 0 &&
+                      cart?.subtotal_with_discount > 0 &&
+                      cart?.discount > 0 &&
+                      cart?.total >= 0 &&
+                      (
+                        <tr>
+                          <td>{t('SUBTOTAL_WITH_DISCOUNT', 'Subtotal with discount')}</td>
+                          {cart?.business?.tax_type === 1 ? (
+                            <td>{parsePrice(cart?.subtotal_with_discount + getIncludedTaxesDiscounts() ?? 0)}</td>
+                          ) : (
+                            <td>{parsePrice(cart?.subtotal_with_discount ?? 0)}</td>
+                          )}
+                        </tr>
+                      )
+                    }
                     {
                       cart?.taxes?.length > 0 && cart?.taxes?.filter(tax => tax?.type === 2 && tax?.rate !== 0).map(tax => (
                         <tr key={tax?.id}>
@@ -301,7 +307,7 @@ const CartUI = (props) => {
                         <tr key={fee.id}>
                           <td className='icon'>
                             {fee.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business')}
-                            ({parsePrice(fee?.fixed)} + {fee.percentage}%)
+                            ({fee?.fixed > 0 && `${parsePrice(fee?.fixed)} + `}{fee.percentage}%)
                             <Exclamation onClick={() => setOpenTaxModal({ open: true, data: fee, type: 'fee' })}>
                               <BsInfoCircle size='20' color={theme.colors.primary} />
                             </Exclamation>
@@ -433,7 +439,7 @@ const CartUI = (props) => {
                           {walletName[cart?.wallets?.find(wallet => wallet.id === event.wallet_id)?.type]?.name}
                         </span>
                         <span>
-                          -{parsePrice(event.amount)}
+                          -{parsePrice(event.amount, { isTruncable: true })}
                         </span>
                       </div>
                     ))}

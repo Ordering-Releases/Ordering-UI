@@ -35,7 +35,12 @@ const OrdersOptionUI = (props) => {
     orderStatus,
     isCustomLayout,
     isBusinessesLoading,
-    pastOrders
+    pastOrders,
+    preOrders,
+    selectItem,
+    setIsEmptyPast,
+    setIsEmptyActive,
+    setIsEmptyPreorder
   } = props
 
   const [, t] = useLanguage()
@@ -93,7 +98,9 @@ const OrdersOptionUI = (props) => {
       { key: 18, value: t('ORDER_DRIVER_ALMOST_ARRIVED_BUSINESS', theme?.defaultLanguages?.ORDER_DRIVER_ALMOST_ARRIVED_BUSINESS || 'Driver almost arrived to business') },
       { key: 19, value: t('ORDER_DRIVER_ALMOST_ARRIVED_CUSTOMER', theme?.defaultLanguages?.ORDER_DRIVER_ALMOST_ARRIVED_CUSTOMER || 'Driver almost arrived to customer') },
       { key: 20, value: t('ORDER_CUSTOMER_ALMOST_ARRIVED_BUSINESS', theme?.defaultLanguages?.ORDER_CUSTOMER_ALMOST_ARRIVED_BUSINESS || 'Customer almost arrived to business') },
-      { key: 21, value: t('ORDER_CUSTOMER_ARRIVED_BUSINESS', theme?.defaultLanguages?.ORDER_CUSTOMER_ARRIVED_BUSINESS || 'Customer arrived to business') }
+      { key: 21, value: t('ORDER_CUSTOMER_ARRIVED_BUSINESS', theme?.defaultLanguages?.ORDER_CUSTOMER_ARRIVED_BUSINESS || 'Customer arrived to business') },
+      { key: 22, value: t('ORDER_LOOKING_FOR_DRIVER', theme?.defaultLanguages?.ORDER_LOOKING_FOR_DRIVER || 'Looking for driver') },
+      { key: 23, value: t('ORDER_DRIVER_ON_WAY', theme?.defaultLanguages?.ORDER_DRIVER_ON_WAY || 'Driver on way') }
     ]
 
     const objectStatus = orderStatus.find((o) => o.key === status)
@@ -113,6 +120,16 @@ const OrdersOptionUI = (props) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (loading) return
+
+    if (orders.length === 0) {
+      activeOrders && setIsEmptyActive && setIsEmptyActive(true)
+      pastOrders && setIsEmptyPast && setIsEmptyPast(true)
+      preOrders && setIsEmptyPreorder && setIsEmptyPreorder(true)
+    }
+  }, [orders, activeOrders, pastOrders, preOrders])
+
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -123,14 +140,16 @@ const OrdersOptionUI = (props) => {
         <BeforeComponent key={i} {...props} />))}
       {(isCustomLayout ? ((isShowTitles || !isBusinessesPage) && !loadingOrders && !loading && !isBusinessesLoading) : (isShowTitles || !isBusinessesPage)) && (
         <>
-          <OptionTitle isBusinessesPage={isBusinessesPage}>
-            <h1>
-              {titleContent || (activeOrders
-                ? t('ACTIVE', 'Active')
-                : (pastOrders ? t('PAST', 'Past') : t('UPCOMING', 'Upcoming')))}
-            </h1>
-          </OptionTitle>
-          {!loading && orders.length === 0 && (
+          {orders.length > 0 && (
+            <OptionTitle isBusinessesPage={isBusinessesPage}>
+              <h1>
+                {titleContent || (activeOrders
+                  ? t('ACTIVE', 'Active')
+                  : (pastOrders ? t('PAST', 'Past') : t('UPCOMING', 'Upcoming')))}
+              </h1>
+            </OptionTitle>
+          )}
+          {!loading && orders.length === 0 && selectItem !== 'all' && (
             <NotFoundSource
               image={imageFails}
               content={t('NO_RESULTS_FOUND', 'Sorry, no results found')}
@@ -236,7 +255,7 @@ export const OrdersOption = (props) => {
     ...props,
     UIComponent: OrdersOptionUI,
     orderStatus: props.activeOrders
-      ? [0, 3, 4, 7, 8, 9, 14, 15, 18, 19, 20, 21]
+      ? [0, 3, 4, 7, 8, 9, 14, 15, 18, 19, 20, 21, 22, 23]
       : (props.pastOrders ? [1, 2, 5, 6, 10, 11, 12, 16, 17] : [13]),
     useDefualtSessionManager: true,
     paginationSettings: {

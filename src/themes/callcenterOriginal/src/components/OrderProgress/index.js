@@ -71,18 +71,18 @@ const OrderProgressUI = (props) => {
     const deliveryTime = lastOrder?.delivery_datetime_utc
       ? parseDate(lastOrder?.delivery_datetime_utc, { outputFormat: 'YYYY-MM-DD hh:mm A' })
       : parseDate(lastOrder?.delivery_datetime, { utc: false, outputFormat: 'YYYY-MM-DD hh:mm A' })
-    const hour = time?.split(':')[0]
-    const minute = time?.split(':')[1]
+    const [hour, minute] = time.split(':')
     const result = time ? (parseInt(hour, 10) * 60) + parseInt(minute, 10) : 0
     const returnedDate = moment(new Date(deliveryTime)).add(result, 'minutes').format('hh:mm A')
     return returnedDate
   }
 
-  const handleGoToPage = (index) => {
-    events.emit('go_to_page', { page: index })
+  const handleGoToPage = () => {
+    events.emit('go_to_page', { page: 'order_detail', params: { orderId: lastOrder?.uuid } })
   }
 
   useEffect(() => {
+    console.log(orderList)
     if (orderList?.orders.length > 0) {
       const sortedOrders = orderList.orders.sort((a, b) => a.id > b.id ? -1 : 1)
       setLastOrder(sortedOrders[0])
@@ -104,7 +104,7 @@ const OrderProgressUI = (props) => {
                 naked
                 onClick={() => handleGoToPage('orders')}
               >
-                {t('GO_TO_MY_ORDERS', 'Go to my orders')}
+                {t('GO_TO_THE_ORDER', 'Go to the order')}
                 <BsArrowRight />
               </Button>
             </ProgressDescriptionWrapper>

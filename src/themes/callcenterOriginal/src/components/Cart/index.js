@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils, useValidationFields, useConfig } from 'ordering-components'
-import { useTheme } from 'styled-components'
 import { Button } from '../../styles/Buttons'
 import { ProductItemAccordion } from '../ProductItemAccordion'
 import { BusinessItemAccordion } from '../BusinessItemAccordion'
+import { useTheme } from 'styled-components'
 import { Confirm } from '../Confirm'
 import { Modal } from '../Modal'
-import { CouponControl } from '../CouponControl'
+import { CouponControl } from '../../../../../components/CouponControl'
 import { ProductForm } from '../ProductForm'
 import { UpsellingPage } from '../UpsellingPage'
-import { useWindowSize } from '../../hooks/useWindowSize'
+import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { TaxInformation } from '../TaxInformation'
+import { TextArea } from '../../styles/Inputs'
+import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
 import {
   CartContainer,
   OrderBill,
   CheckoutAction,
   CouponContainer,
   CartSticky,
-  IconContainer,
+  Divider,
+  Exclamation,
   Spinner,
   CommentContainer,
-  Divider,
+  IconContainer,
   SavedContainer
 } from './styles'
-import { verifyDecimals } from '../../utils'
-import BsInfoCircle from '@meronex/icons/bs/BsInfoCircle'
-import { TextArea } from '../../styles/Inputs'
-import { SpinnerLoader } from '../SpinnerLoader'
+import { verifyDecimals } from '../../../../../utils'
 import MdCloseCircle from '@meronex/icons/ios/MdCloseCircle'
+import BsInfoCircle from '@meronex/icons/bs/BsInfoCircle'
 
 const CartUI = (props) => {
   const {
@@ -46,9 +47,11 @@ const CartUI = (props) => {
     isForceOpenCart,
     isCartOnProductsList,
     handleCartOpen,
+    isCustomMode,
+    isStore,
     handleChangeComment,
-    handleRemoveOfferClick,
-    commentState
+    commentState,
+    handleRemoveOfferClick
   } = props
 
   const theme = useTheme()
@@ -58,14 +61,16 @@ const CartUI = (props) => {
   const [{ parsePrice, parseNumber, parseDate }] = useUtils()
   const [validationFields] = useValidationFields()
   const [{ configs }] = useConfig()
+  const windowSize = useWindowSize()
 
-  const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null, id: null, title: null })
+  const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
   const [openProduct, setModalIsOpen] = useState(false)
   const [curProduct, setCurProduct] = useState({})
   const [openUpselling, setOpenUpselling] = useState(false)
   const [canOpenUpselling, setCanOpenUpselling] = useState(false)
-  const [openTaxModal, setOpenTaxModal] = useState({ open: false, data: null, type: '' })
-  const windowSize = useWindowSize()
+  const [openTaxModal, setOpenTaxModal] = useState({ open: false, tax: null, type: '' })
+  const [isUpselling, setIsUpselling] = useState(false)
+
   const isCouponEnabled = validationFields?.fields?.checkout?.coupon?.enabled
 
   const momentFormatted = !orderState?.option?.moment
@@ -76,7 +81,6 @@ const CartUI = (props) => {
     setConfirm({
       open: true,
       content: t('QUESTION_DELETE_PRODUCT', 'Are you sure that you want to delete the product?'),
-      title: null,
       handleOnAccept: () => {
         removeProduct(product, cart)
         setConfirm({ ...confirm, open: false })
@@ -119,7 +123,6 @@ const CartUI = (props) => {
     setConfirm({
       open: true,
       content: t('QUESTION_DELETE_PRODUCTS', 'Are you sure that you want to delete all products?'),
-      title: null,
       handleOnAccept: () => {
         clearCart(cart?.uuid)
         setConfirm({ ...confirm, open: false })
@@ -130,6 +133,10 @@ const CartUI = (props) => {
   const handleUpsellingPage = () => {
     setOpenUpselling(false)
     setCanOpenUpselling(false)
+    handleClickCheckout()
+  }
+
+  const checkOutBtnClick = () => {
     handleClickCheckout()
   }
 
@@ -159,6 +166,10 @@ const CartUI = (props) => {
     })
   }
 
+  useEffect(() => {
+    if (isCustomMode) setIsUpselling(true)
+  }, [isCustomMode])
+
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -185,6 +196,7 @@ const CartUI = (props) => {
             handleClearProducts={handleClearProducts}
             handleStoreRedirect={handleStoreRedirect}
             handleCartOpen={handleCartOpen}
+            isStore={isStore}
           >
             {cart?.products?.length > 0 && cart?.products.map(product => (
               <ProductItemAccordion
@@ -192,6 +204,7 @@ const CartUI = (props) => {
                 isCartPending={isCartPending}
                 isCartProduct
                 product={product}
+                isCheckout={isCheckout}
                 changeQuantity={changeQuantity}
                 getProductMax={getProductMax}
                 offsetDisabled={offsetDisabled}
@@ -200,8 +213,8 @@ const CartUI = (props) => {
               />
             ))}
             {cart?.valid_products && (
-              <OrderBill>
-                <table>
+              <OrderBill isCheckout={isCheckout}>
+                <table className='order-info'>
                   <tbody>
                     <tr>
                       <td>{t('SUBTOTAL', 'Subtotal')}</td>
@@ -223,16 +236,14 @@ const CartUI = (props) => {
                     {
                       cart?.offers?.length > 0 && cart?.offers?.filter(offer => offer?.target === 1)?.map(offer => (
                         <tr key={offer.id}>
-                          <td>
+                          <td className='icon'>
                             {offer.name}
                             {offer.rate_type === 1 && (
                               <span>{`(${verifyDecimals(offer?.rate, parsePrice)}%)`}</span>
                             )}
-                            <IconContainer onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_1' })}>
-                              <BsInfoCircle size='20' color={theme.colors.primary} />
-                            </IconContainer>
-                            <IconContainer top='5px' onClick={() => onRemoveOffer(offer?.id)}>
-                              <MdCloseCircle size='24' color={theme.colors.primary} />
+                            <IconContainer>
+                              <BsInfoCircle size='20' color={theme.colors.primary} onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_1' })} />
+                              <MdCloseCircle size='24' color={theme.colors.primary} onClick={() => onRemoveOffer(offer?.id)} />
                             </IconContainer>
                           </td>
                           <td>
@@ -268,12 +279,12 @@ const CartUI = (props) => {
                     {
                       cart?.taxes?.length > 0 && cart?.taxes?.filter(tax => tax?.type === 2 && tax?.rate !== 0).map(tax => (
                         <tr key={tax?.id}>
-                          <td>
+                          <td className='icon'>
                             {tax.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business')}
                             <span>{`(${verifyDecimals(tax?.rate, parseNumber)}%)`}</span>
-                            <IconContainer onClick={() => setOpenTaxModal({ open: true, data: tax, type: 'tax' })}>
+                            <Exclamation onClick={() => setOpenTaxModal({ open: true, data: tax, type: 'tax' })}>
                               <BsInfoCircle size='20' color={theme.colors.primary} />
-                            </IconContainer>
+                            </Exclamation>
                           </td>
                           <td>{parsePrice(tax?.summary?.tax_after_discount ?? tax?.summary?.tax ?? 0)}</td>
                         </tr>
@@ -282,12 +293,12 @@ const CartUI = (props) => {
                     {
                       cart?.fees?.length > 0 && cart?.fees?.filter(fee => !(fee.fixed === 0 && fee.percentage === 0)).map(fee => (
                         <tr key={fee.id}>
-                          <td>
+                          <td className='icon'>
                             {fee.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business')}
                             ({fee?.fixed > 0 && `${parsePrice(fee?.fixed)} + `}{fee.percentage}%)
-                            <IconContainer onClick={() => setOpenTaxModal({ open: true, data: fee, type: 'fee' })}>
+                            <Exclamation onClick={() => setOpenTaxModal({ open: true, data: fee, type: 'fee' })}>
                               <BsInfoCircle size='20' color={theme.colors.primary} />
-                            </IconContainer>
+                            </Exclamation>
                           </td>
                           <td>{parsePrice(fee?.summary?.fixed + (fee?.summary?.percentage_after_discount ?? fee?.summary?.percentage) ?? 0)}</td>
                         </tr>
@@ -296,16 +307,14 @@ const CartUI = (props) => {
                     {
                       cart?.offers?.length > 0 && cart?.offers?.filter(offer => offer?.target === 3)?.map(offer => (
                         <tr key={offer.id}>
-                          <td>
+                          <td className='icon'>
                             {offer.name}
                             {offer?.rate_type === 1 && (
                               <span>{`(${verifyDecimals(offer?.rate, parsePrice)}%)`}</span>
                             )}
-                            <IconContainer onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_3' })}>
-                              <BsInfoCircle size='20' color={theme.colors.primary} />
-                            </IconContainer>
-                            <IconContainer top='5px' onClick={() => onRemoveOffer(offer?.id)}>
-                              <MdCloseCircle size='24' color={theme.colors.primary} />
+                            <IconContainer>
+                              <BsInfoCircle size='20' color={theme.colors.primary} onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_3' })} />
+                              <MdCloseCircle size='24' color={theme.colors.primary} onClick={() => onRemoveOffer(offer?.id)} />
                             </IconContainer>
                           </td>
                           <td>
@@ -323,16 +332,14 @@ const CartUI = (props) => {
                     {
                       cart?.offers?.length > 0 && cart?.offers?.filter(offer => offer?.target === 2)?.map(offer => (
                         <tr key={offer.id}>
-                          <td>
+                          <td className='icon'>
                             {offer.name}
                             {offer?.rate_type === 1 && (
                               <span>{`(${verifyDecimals(offer?.rate, parsePrice)}%)`}</span>
                             )}
-                            <IconContainer onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_2' })}>
-                              <BsInfoCircle size='20' color={theme.colors.primary} />
-                            </IconContainer>
-                            <IconContainer top='5px' onClick={() => onRemoveOffer(offer?.id)}>
-                              <MdCloseCircle size='24' color={theme.colors.primary} />
+                            <IconContainer>
+                              <BsInfoCircle size='20' color={theme.colors.primary} onClick={() => setOpenTaxModal({ open: true, data: offer, type: 'offer_target_2' })} />
+                              <MdCloseCircle size='24' color={theme.colors.primary} onClick={() => onRemoveOffer(offer?.id)} />
                             </IconContainer>
                           </td>
                           <td>
@@ -373,11 +380,6 @@ const CartUI = (props) => {
                     </tr>
                   </tbody>
                 </table>
-                {cart?.discount > 0 && (
-                  <SavedContainer>
-                    {t('YOU_HAVE_SAVED_MONEY', 'You have saving _discount_').replace('_discount_', parsePrice(cart?.discount))}
-                  </SavedContainer>
-                )}
                 {cart?.status !== 2 && (
                   <table className='comments'>
                     <tbody>
@@ -405,12 +407,11 @@ const CartUI = (props) => {
                 )}
               </OrderBill>
             )}
-
             {(onClickCheckout || isForceOpenCart) && !isCheckout && cart?.valid_products && (
               <CheckoutAction>
                 <Button
                   color={(!cart?.valid_maximum || (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) || !cart?.valid_address) ? 'secundary' : 'primary'}
-                  onClick={() => setOpenUpselling(true)}
+                  onClick={checkOutBtnClick}
                   disabled={(openUpselling && !canOpenUpselling) || !cart?.valid_maximum || (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) || !cart?.valid_address}
                 >
                   {!cart?.valid_address ? (
@@ -419,23 +420,24 @@ const CartUI = (props) => {
                     `${t('MAXIMUM_SUBTOTAL_ORDER', 'Maximum subtotal order')}: ${parsePrice(cart?.maximum)}`
                   ) : (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) ? (
                     `${t('MINIMUN_SUBTOTAL_ORDER', 'Minimum subtotal order:')} ${parsePrice(cart?.minimum)}`
-                  ) : !openUpselling !== canOpenUpselling ? t('CHECKOUT', 'Checkout') : t('LOADING', 'Loading')}
+                  ) : !openUpselling ^ canOpenUpselling ? t('CHECKOUT', 'Checkout') : t('LOADING', 'Loading')}
                 </Button>
               </CheckoutAction>
             )}
           </BusinessItemAccordion>
+          {!isStore && <Divider />}
           <Confirm
-            title={confirm?.title ?? t('PRODUCT', 'Product')}
+            title={t('PRODUCT', 'Product')}
             content={confirm.content}
             acceptText={t('ACCEPT', 'Accept')}
             open={confirm.open}
-            onClose={() => setConfirm({ ...confirm, open: false, title: null })}
-            onCancel={() => setConfirm({ ...confirm, open: false, title: null })}
+            onClose={() => setConfirm({ ...confirm, open: false })}
+            onCancel={() => setConfirm({ ...confirm, open: false })}
             onAccept={confirm.handleOnAccept}
             closeOnBackdrop={false}
           />
           <Modal
-            width='70%'
+            width='40%'
             open={openProduct}
             padding='0'
             closeOnBackdrop
@@ -467,9 +469,10 @@ const CartUI = (props) => {
               products={cart.products}
             />
           </Modal>
-          {openUpselling && (
+          {(openUpselling || isUpselling) && (
             <UpsellingPage
               businessId={cart.business_id}
+              isCustomMode={isCustomMode}
               cartProducts={cart.products}
               business={cart.business}
               handleUpsellingPage={handleUpsellingPage}

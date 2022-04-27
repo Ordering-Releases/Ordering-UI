@@ -5,6 +5,7 @@ import {
   PaymentOptionWallet as PaymentOptionWalletController,
   useLanguage,
   useUtils,
+  useConfig
 } from 'ordering-components'
 
 import {
@@ -26,18 +27,24 @@ const PaymentOptionWalletUI = (props) => {
 
   const theme = useTheme()
   const [, t] = useLanguage()
+  const [{ configs }] = useConfig()
   const [{ parsePrice }] = useUtils()
 
   const [checkedState, setCheckedState] = useState(
     new Array(walletsState.result?.length).fill(false)
   );
 
+  const isWalletCashEnabled = configs?.wallet_cash_enabled?.value === '1'
+  const isWalletPointsEnabled = configs?.wallet_credit_point_enabled?.value === '1'
+
   const walletName = {
     cash: {
       name: t('PAY_WITH_CASH_WALLET', 'Pay with Cash Wallet'),
+      isActive: isWalletCashEnabled
     },
     credit_point: {
       name: t('PAY_WITH_CREDITS_POINTS_WALLET', 'Pay with Credit Points Wallet'),
+      isActive: isWalletPointsEnabled
     }
   }
 
@@ -72,7 +79,7 @@ const PaymentOptionWalletUI = (props) => {
         walletsState.result?.length > 0 &&
       (
         <>
-          {walletsState.result?.map((wallet, idx) => wallet.valid && wallet.balance >= 0 && (
+          {walletsState.result?.map((wallet, idx) => wallet.valid && wallet.balance >= 0 && walletName[wallet.type]?.isActive && (
             <Container
               key={wallet.id}
               isBottomBorder={idx === walletsState.result?.length - 1}
@@ -81,7 +88,7 @@ const PaymentOptionWalletUI = (props) => {
                 <Checkbox
                   name={`payment_option_${wallet.type}`}
                   id={`custom-checkbox-${idx}`}
-                  disabled={(cart?.balance === 0 && !checkedState[idx]) || wallet.balance === 0 }
+                  disabled={(cart?.balance === 0 && !checkedState[idx]) || wallet.balance === 0}
                   checked={checkedState[idx]}
                   value={`payment_option_${wallet.type}`}
                   onChange={() => handleOnChange(idx, wallet)}
@@ -106,7 +113,7 @@ const PaymentOptionWalletUI = (props) => {
                 )}
                 {wallet.type === 'credit_point' && (
                   <span>
-                    <span style={{ color: theme.colors.primary }}>{`${wallet?.balance} ${t('POINTS', 'Points')}`}</span> {wallet?.balance > 0 &&`= ${parsePrice((wallet?.balance * wallet?.redemption_rate) / 100)}`}
+                    <span style={{ color: theme.colors.primary }}>{`${wallet?.balance} ${t('POINTS', 'Points')}`}</span> {wallet?.balance > 0 && `= ${parsePrice(wallet?.balance / wallet?.redemption_rate)}`}
                   </span>
                 )}
               </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import FiMinusCircle from '@meronex/icons/fi/FiMinusCircle'
 import FiPlusCircle from '@meronex/icons/fi/FiPlusCircle'
+import MdcPlayCircleOutline from '@meronex/icons/mdc/MdcPlayCircleOutline'
 
 import {
   ProductForm as ProductOptions,
@@ -24,6 +25,7 @@ import { ForgotPasswordForm } from '../ForgotPasswordForm'
 import { AddressList } from '../AddressList'
 
 import { Modal } from '../Modal'
+import { Alert } from '../Confirm'
 import { Button } from '../../styles/Buttons'
 import { Tabs, Tab } from '../../styles/Tabs'
 
@@ -53,10 +55,11 @@ import {
   WeightUnitSwitch,
   WeightUnitItem,
   ProductTagsListContainer,
-  ProductTagWrapper
+  ProductTagWrapper,
+  VideoGalleryWrapper
 } from './styles'
 import { useTheme } from 'styled-components'
-import { TextArea } from '../../styles/Inputs'
+import { Input, TextArea } from '../../styles/Inputs'
 import { NotFoundSource } from '../NotFoundSource'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, {
@@ -77,6 +80,7 @@ const ProductOptionsUI = (props) => {
     productCart,
     increment,
     decrement,
+    handleChangeProductCartQuantity,
     showOption,
     maxProductQuantity,
     errors,
@@ -99,6 +103,7 @@ const ProductOptionsUI = (props) => {
   const [tabValue, setTabValue] = useState('all')
   const productContainerRef = useRef(null)
   const [gallery, setGallery] = useState([])
+  const [videoGallery, setVideoGallery] = useState(null)
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
   const [isHaveWeight, setIsHaveWeight] = useState(false)
   const [qtyBy, setQtyBy] = useState({
@@ -106,7 +111,7 @@ const ProductOptionsUI = (props) => {
     pieces: true
   })
   const [pricePerWeightUnit, setPricePerWeightUnit] = useState(null)
-
+  const [alertState, setAlertState] = useState({ open: false, content: [] })
   const userCustomer = JSON.parse(window.localStorage.getItem('user-customer'))
 
   const closeModal = () => {
@@ -171,11 +176,28 @@ const ProductOptionsUI = (props) => {
     setQtyBy({ [val]: true, [!val]: false })
   }
 
+  const getOverFlowImage = (url) => {
+    const keys = url.split('/')
+    const _videoId = keys[keys.length - 1]
+    const overFlowImg = 'http://img.youtube.com/vi/' + _videoId + '/0.jpg'
+    return overFlowImg
+  }
+
+  const onChangeProductCartQuantity = (quantity) => {
+    if (quantity > maxProductQuantity) {
+      setAlertState({
+        open: true,
+        content: [t('MAX_QUANTITY', 'The max quantity is _number_').replace('_number_', maxProductQuantity)]
+      })
+      return
+    }
+    handleChangeProductCartQuantity(quantity)
+  }
+
   useEffect(() => {
     if (document.getElementById(`${tabValue}`)) {
       const extraHeight = windowSize.width < 769 ? 100 : 42
       const top = (tabValue === 'all') ? 0 : document.getElementById(`${tabValue}`).offsetTop - extraHeight
-      console.log(top, 'this is top')
       let scrollElement = document.querySelector('.popup-dialog')
       if (windowSize.width >= 1200) {
         scrollElement = productContainerRef.current
@@ -189,13 +211,27 @@ const ProductOptionsUI = (props) => {
 
   useEffect(() => {
     const imageList = []
+    const videoList = []
     imageList.push(product?.images || theme.images?.dummies?.product)
     if (product?.gallery && product?.gallery?.length > 0) {
       for (const galleryItem of product?.gallery) {
-        imageList.push(galleryItem?.file)
+        if (galleryItem?.file) {
+          imageList.push(galleryItem?.file)
+        }
+        if (galleryItem?.video) {
+          const _url = galleryItem?.video.split('/')
+          let _videoId = _url[_url?.length - 1]
+          if (_videoId.includes('watch')) {
+            const __url = _videoId.split('=')[1]
+            _videoId = __url
+          }
+          const embedURL = 'https://www.youtube.com/embed/' + _videoId
+          videoList.push(embedURL)
+        }
       }
     }
     setGallery(imageList)
+    setVideoGallery(videoList)
 
     if (product?.weight && product?.weight_unit) {
       setIsHaveWeight(true)
@@ -255,6 +291,15 @@ const ProductOptionsUI = (props) => {
                       <img src={img} alt='' />
                     </SwiperSlide>
                   ))}
+                  {videoGallery && videoGallery.length > 0 && (
+                    <>
+                      {videoGallery.map((video, j) => (
+                        <SwiperSlide key={j}>
+                          <iframe style={{ border: 'none', width: '100%', height: '100%' }} src={video} />
+                        </SwiperSlide>
+                      ))}
+                    </>
+                  )}
                 </Swiper>
                 <Swiper
                   onSwiper={setThumbsSwiper}
@@ -292,6 +337,18 @@ const ProductOptionsUI = (props) => {
                       <img src={img} alt='' />
                     </SwiperSlide>
                   ))}
+                  {videoGallery && videoGallery.length > 0 && (
+                    <>
+                      {videoGallery.map((video, j) => (
+                        <SwiperSlide key={j}>
+                          <VideoGalleryWrapper>
+                            <img src={getOverFlowImage(video)} alt='' />
+                            <MdcPlayCircleOutline />
+                          </VideoGalleryWrapper>
+                        </SwiperSlide>
+                      ))}
+                    </>
+                  )}
                 </Swiper>
               </SwiperWrapper>
             </WrapperImage>
@@ -465,9 +522,22 @@ const ProductOptionsUI = (props) => {
                     <div className={isHaveWeight ? 'incdec-control show-weight-unit' : 'incdec-control'}>
                       <FiMinusCircle
                         onClick={decrement}
-                        className={`${productCart.quantity === 1 || isSoldOut ? 'disabled' : ''}`}
+                        className={`${productCart.quantity === 1 || !productCart.quantity || isSoldOut ? 'disabled' : ''}`}
                       />
-                      {qtyBy?.pieces && (<span className='qty'>{productCart.quantity}</span>)}
+                      {
+                        qtyBy?.pieces && (
+                          <Input
+                            className='qty'
+                            value={productCart?.quantity || ''}
+                            onChange={e => onChangeProductCartQuantity(parseInt(e.target.value))}
+                            onKeyPress={(e) => {
+                              if (!/^[0-9.]$/.test(e.key)) {
+                                e.preventDefault()
+                              }
+                            }}
+                          />
+                        )
+                      }
                       {qtyBy?.weight_unit && (<span className='qty'>{productCart.quantity * product?.weight}</span>)}
                       <FiPlusCircle
                         onClick={increment}
@@ -488,7 +558,7 @@ const ProductOptionsUI = (props) => {
                     className={`add ${(maxProductQuantity === 0 || Object.keys(errors).length > 0) ? 'disabled' : ''}`}
                     color='primary'
                     onClick={() => handleSaveProduct()}
-                    disabled={orderState.loading}
+                    disabled={orderState.loading || productCart?.quantity === 0}
                   >
                     {orderState.loading ? (
                       <span>{t('LOADING', theme?.defaultLanguages?.LOADING || 'Loading')}</span>
@@ -601,6 +671,15 @@ const ProductOptionsUI = (props) => {
             content={error[0]?.message || error[0]}
           />
         )}
+        <Alert
+          title={t('SEARCH', 'Search')}
+          content={alertState.content}
+          acceptText={t('ACCEPT', 'Accept')}
+          open={alertState.open}
+          onClose={() => setAlertState({ open: false, content: [] })}
+          onAccept={() => setAlertState({ open: false, content: [] })}
+          closeOnBackdrop={false}
+        />
       </ProductContainer>
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
