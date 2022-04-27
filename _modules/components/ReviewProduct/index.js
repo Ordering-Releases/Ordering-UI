@@ -29,6 +29,8 @@ var _Buttons = require("../../styles/Buttons");
 
 var _Confirm = require("../Confirm");
 
+var _utils = require("../../utils");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -64,6 +66,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SingleProductReview = function SingleProductReview(props) {
+  var _commentsList;
+
   var product = props.product,
       handleChangeFormState = props.handleChangeFormState,
       formState = props.formState;
@@ -92,22 +96,12 @@ var SingleProductReview = function SingleProductReview(props) {
       extraComment = _useState8[0],
       setExtraComment = _useState8[1];
 
-  var commentsList = [{
-    key: 0,
-    content: t('IT_WASNT_TASTY', "It wasn't tasty")
-  }, {
-    key: 1,
-    content: t('SMALL_PORTION', 'Small portion')
-  }, {
-    key: 2,
-    content: t('WET_OR_LEAKY', 'Wet or leaky')
-  }, {
-    key: 3,
-    content: t('SLOPPY_PRESENTATION', 'Sloppy presentation')
-  }, {
-    key: 4,
-    content: t('COLD_OR_MELTED', 'Cold or melted')
-  }];
+  var _useState9 = (0, _react.useState)(5),
+      _useState10 = _slicedToArray(_useState9, 2),
+      currentValue = _useState10[0],
+      setCurrentValue = _useState10[1];
+
+  var commentsList = (0, _utils.reviewCommentList)('product');
 
   var handleChangeComment = function handleChangeComment(commentItem) {
     var found = comments.find(function (comment) {
@@ -135,6 +129,9 @@ var SingleProductReview = function SingleProductReview(props) {
   (0, _react.useEffect)(function () {
     var _formState$changes;
 
+    var value = isLike ? 5 : 1;
+    setCurrentValue(value);
+    if (value !== currentValue) setComments([]);
     if ((comments === null || comments === void 0 ? void 0 : comments.length) === 0 && !extraComment && ((_formState$changes = formState.changes) === null || _formState$changes === void 0 ? void 0 : _formState$changes.length) === 0 && isLike) return;
     var _comments = '';
 
@@ -181,7 +178,7 @@ var SingleProductReview = function SingleProductReview(props) {
       return setIsLike(false);
     },
     active: !isLike
-  }, /*#__PURE__*/_react.default.createElement(_AiOutlineDislike.default, null)))), /*#__PURE__*/_react.default.createElement(_styles.CommentsList, null, commentsList === null || commentsList === void 0 ? void 0 : commentsList.map(function (commentItem, i) {
+  }, /*#__PURE__*/_react.default.createElement(_AiOutlineDislike.default, null)))), /*#__PURE__*/_react.default.createElement(_styles.CommentsList, null, (_commentsList = commentsList[isLike ? 'like' : 'dislike']) === null || _commentsList === void 0 ? void 0 : _commentsList.map(function (commentItem, i) {
     return /*#__PURE__*/_react.default.createElement(_styles.ButtonCustomized, {
       key: i,
       type: "button",
@@ -223,14 +220,14 @@ var ReviewProductUI = function ReviewProductUI(props) {
       handleSubmit = _useForm.handleSubmit,
       errors = _useForm.errors;
 
-  var _useState9 = (0, _react.useState)({
+  var _useState11 = (0, _react.useState)({
     open: false,
     content: [],
     success: false
   }),
-      _useState10 = _slicedToArray(_useState9, 2),
-      alertState = _useState10[0],
-      setAlertState = _useState10[1];
+      _useState12 = _slicedToArray(_useState11, 2),
+      alertState = _useState12[0],
+      setAlertState = _useState12[1];
 
   var onSubmit = function onSubmit(values) {
     setAlertState(_objectSpread(_objectSpread({}, alertState), {}, {

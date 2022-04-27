@@ -79,7 +79,12 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
       orderStatus = props.orderStatus,
       isCustomLayout = props.isCustomLayout,
       isBusinessesLoading = props.isBusinessesLoading,
-      pastOrders = props.pastOrders;
+      pastOrders = props.pastOrders,
+      preOrders = props.preOrders,
+      selectItem = props.selectItem,
+      setIsEmptyPast = props.setIsEmptyPast,
+      setIsEmptyActive = props.setIsEmptyActive,
+      setIsEmptyPreorder = props.setIsEmptyPreorder;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
@@ -167,7 +172,7 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
   }();
 
   var getOrderStatus = function getOrderStatus(s) {
-    var _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _theme$defaultLanguag15, _theme$defaultLanguag16, _theme$defaultLanguag17, _theme$defaultLanguag18, _theme$defaultLanguag19, _theme$defaultLanguag20, _theme$defaultLanguag21, _theme$defaultLanguag22;
+    var _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _theme$defaultLanguag15, _theme$defaultLanguag16, _theme$defaultLanguag17, _theme$defaultLanguag18, _theme$defaultLanguag19, _theme$defaultLanguag20, _theme$defaultLanguag21, _theme$defaultLanguag22, _theme$defaultLanguag23, _theme$defaultLanguag24;
 
     var status = parseInt(s);
     var orderStatus = [{
@@ -236,6 +241,12 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
     }, {
       key: 21,
       value: t('ORDER_CUSTOMER_ARRIVED_BUSINESS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag22 = theme.defaultLanguages) === null || _theme$defaultLanguag22 === void 0 ? void 0 : _theme$defaultLanguag22.ORDER_CUSTOMER_ARRIVED_BUSINESS) || 'Customer arrived to business')
+    }, {
+      key: 22,
+      value: t('ORDER_LOOKING_FOR_DRIVER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag23 = theme.defaultLanguages) === null || _theme$defaultLanguag23 === void 0 ? void 0 : _theme$defaultLanguag23.ORDER_LOOKING_FOR_DRIVER) || 'Looking for driver')
+    }, {
+      key: 23,
+      value: t('ORDER_DRIVER_ON_WAY', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag24 = theme.defaultLanguages) === null || _theme$defaultLanguag24 === void 0 ? void 0 : _theme$defaultLanguag24.ORDER_DRIVER_ON_WAY) || 'Driver on way')
     }];
     var objectStatus = orderStatus.find(function (o) {
       return o.key === status;
@@ -256,6 +267,15 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
       typeof timeout === 'number' && clearTimeout(timeout);
     };
   }, []);
+  (0, _react.useEffect)(function () {
+    if (loading) return;
+
+    if (orders.length === 0) {
+      activeOrders && setIsEmptyActive && setIsEmptyActive(true);
+      pastOrders && setIsEmptyPast && setIsEmptyPast(true);
+      preOrders && setIsEmptyPreorder && setIsEmptyPreorder(true);
+    }
+  }, [orders, activeOrders, pastOrders, preOrders]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
@@ -264,9 +284,9 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), (isCustomLayout ? (isShowTitles || !isBusinessesPage) && !loadingOrders && !loading && !isBusinessesLoading : isShowTitles || !isBusinessesPage) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.OptionTitle, {
+  }), (isCustomLayout ? (isShowTitles || !isBusinessesPage) && !loadingOrders && !loading && !isBusinessesLoading : isShowTitles || !isBusinessesPage) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, orders.length > 0 && /*#__PURE__*/_react.default.createElement(_styles.OptionTitle, {
     isBusinessesPage: isBusinessesPage
-  }, /*#__PURE__*/_react.default.createElement("h1", null, titleContent || (activeOrders ? t('ACTIVE', 'Active') : pastOrders ? t('PAST', 'Past') : t('UPCOMING', 'Upcoming')))), !loading && orders.length === 0 && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
+  }, /*#__PURE__*/_react.default.createElement("h1", null, titleContent || (activeOrders ? t('ACTIVE', 'Active') : pastOrders ? t('PAST', 'Past') : t('UPCOMING', 'Upcoming')))), !loading && orders.length === 0 && selectItem !== 'all' && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     image: imageFails,
     content: t('NO_RESULTS_FOUND', 'Sorry, no results found'),
     conditioned: true
@@ -344,7 +364,7 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
 var OrdersOption = function OrdersOption(props) {
   var orderListProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: OrdersOptionUI,
-    orderStatus: props.activeOrders ? [0, 3, 4, 7, 8, 9, 14, 15, 18, 19, 20, 21] : props.pastOrders ? [1, 2, 5, 6, 10, 11, 12, 16, 17] : [13],
+    orderStatus: props.activeOrders ? [0, 3, 4, 7, 8, 9, 14, 15, 18, 19, 20, 21, 22, 23] : props.pastOrders ? [1, 2, 5, 6, 10, 11, 12, 16, 17] : [13],
     useDefualtSessionManager: true,
     paginationSettings: {
       initialPage: 1,

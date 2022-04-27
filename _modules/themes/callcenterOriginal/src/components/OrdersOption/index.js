@@ -17,9 +17,9 @@ var _orderingComponents = require("ordering-components");
 
 var _HorizontalOrdersLayout = require("../HorizontalOrdersLayout");
 
-var _VerticalOrdersLayout = require("../VerticalOrdersLayout");
+var _VerticalOrdersLayout = require("../../../../../components/VerticalOrdersLayout");
 
-var _NotFoundSource = require("../../../../../components/NotFoundSource");
+var _NotFoundSource = require("../NotFoundSource");
 
 var _styledComponents = require("styled-components");
 
@@ -272,9 +272,7 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
     }, props));
   }), (isCustomLayout ? (isShowTitles || !isBusinessesPage) && !loadingOrders && !loading && !isBusinessesLoading : isShowTitles || !isBusinessesPage) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.OptionTitle, {
     isBusinessesPage: isBusinessesPage
-  }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: !activeOrders ? 'marginTop30' : ''
-  }, titleContent || (activeOrders ? t('ACTIVE', 'Active') : pastOrders ? t('PAST', 'Past') : t('COMPLETE', 'Complete')))), !loading && orders.length === 0 && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
+  }, /*#__PURE__*/_react.default.createElement("h1", null, titleContent || (activeOrders ? t('ACTIVE', 'Active') : pastOrders ? t('PAST', 'Past') : t('PREORDERS', 'Preorders')))), !loading && orders.length === 0 && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     image: imageFails,
     content: t('NO_RESULTS_FOUND', 'Sorry, no results found'),
     conditioned: true
@@ -326,7 +324,8 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
     customArray: customArray,
     getOrderStatus: getOrderStatus,
     handleReorder: handleReorder,
-    activeOrders: activeOrders
+    activeOrders: activeOrders,
+    pastOrders: pastOrders
   })) : /*#__PURE__*/_react.default.createElement(_VerticalOrdersLayout.VerticalOrdersLayout, {
     reorderLoading: reorderLoading,
     orders: orders.filter(function (order) {
@@ -336,8 +335,7 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
     loadMoreOrders: loadMoreOrders,
     onRedirectPage: onRedirectPage,
     getOrderStatus: getOrderStatus,
-    handleReorder: handleReorder,
-    activeOrders: activeOrders
+    handleReorder: handleReorder
   })), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i

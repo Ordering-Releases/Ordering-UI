@@ -23,13 +23,13 @@ var _BsPhone = _interopRequireDefault(require("@meronex/icons/bs/BsPhone"));
 
 var _BiMessageRounded = _interopRequireDefault(require("@meronex/icons/bi/BiMessageRounded"));
 
-var _AiOutlineExclamationCircle = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineExclamationCircle"));
-
 var _BsArrowLeft = _interopRequireDefault(require("@meronex/icons/bs/BsArrowLeft"));
 
 var _Buttons = require("../../styles/Buttons");
 
 var _NotFoundSource = require("../NotFoundSource");
+
+var _BsInfoCircle = _interopRequireDefault(require("@meronex/icons/bs/BsInfoCircle"));
 
 var _ProductItemAccordion = require("../ProductItemAccordion");
 
@@ -37,19 +37,13 @@ var _Modal = require("../Modal");
 
 var _Messages = require("../Messages");
 
-var _ReviewOrder = require("../../../../../components/ReviewOrder");
-
-var _ProductShare = require("../../../../../components/ProductShare");
+var _ProductShare = require("../ProductShare");
 
 var _styles = require("./styles");
 
 var _styledComponents = require("styled-components");
 
 var _utils = require("../../../../../utils");
-
-var _ReviewProduct = require("../../../../../components/ReviewProduct");
-
-var _ReviewDriver = require("../../../../../components/ReviewDriver");
 
 var _TaxInformation = require("../TaxInformation");
 
@@ -80,7 +74,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var OrderDetailsUI = function OrderDetailsUI(props) {
-  var _order$driver, _order$driver2, _theme$images, _theme$images$dummies, _order$business, _order$business2, _theme$images2, _theme$images2$dummie, _order$customer, _order$customer2, _theme$images3, _theme$images3$dummie, _props$beforeElements, _props$beforeComponen, _theme$defaultLanguag23, _theme$defaultLanguag24, _getOrderStatus, _getOrderStatus2, _order$business3, _order$business4, _order$business5, _order$business6, _order$customer3, _order$customer4, _order$customer5, _order$customer6, _order$customer7, _order$delivery_optio, _order$delivery_optio2, _theme$defaultLanguag25, _order$driver3, _order$driver4, _order$driver5, _order$driver6, _order$driver7, _configs$google_maps_, _order$driver8, _theme$defaultLanguag26, _theme$defaultLanguag27, _theme$defaultLanguag28, _order$products, _theme$defaultLanguag29, _order$summary2, _order$summary3, _theme$defaultLanguag30, _theme$defaultLanguag31, _order$summary4, _order$taxes2, _order$summary5, _order$fees, _order$summary6, _order$taxes3, _order$taxes4, _order$fees2, _order$fees3, _order$fees3$filter, _order$summary7, _theme$defaultLanguag32, _order$summary8, _order$summary9, _theme$defaultLanguag33, _order$summary10, _configs$driver_tip_t, _configs$driver_tip_u, _order$summary11, _theme$defaultLanguag34, _order$summary12, _configs$guest_uuid_a, _theme$defaultLanguag35, _theme$defaultLanguag36, _theme$defaultLanguag37, _theme$defaultLanguag38, _theme$defaultLanguag39, _theme$defaultLanguag40, _openTaxModal$data, _openTaxModal$data2, _openTaxModal$data3, _openTaxModal$data$fi, _openTaxModal$data4, _openTaxModal$data5, _props$afterComponent, _props$afterElements;
+  var _order$driver, _order$driver2, _theme$images, _theme$images$dummies, _order$business, _order$business2, _theme$images2, _theme$images2$dummie, _order$customer, _order$customer2, _theme$images3, _theme$images3$dummie, _props$beforeElements, _props$beforeComponen, _theme$defaultLanguag25, _configs$guest_uuid_a, _orderTypes$find, _getOrderStatus, _getOrderStatus2, _order$business3, _order$business4, _order$business5, _order$business6, _order$business7, _order$driver3, _configs$google_maps_, _order$driver4, _order$customer3, _order$customer4, _order$customer5, _order$customer6, _order$customer7, _order$customer8, _theme$defaultLanguag26, _order$driver5, _order$driver6, _order$driver7, _order$driver8, _order$driver9, _order$driver10, _order$driver11, _order$delivery_optio, _order$delivery_optio2, _theme$defaultLanguag27, _theme$defaultLanguag28, _theme$defaultLanguag29, _order$products, _theme$defaultLanguag30, _order$summary$subtot, _order$summary2, _ref, _order$summary3, _order$offers, _theme$defaultLanguag31, _theme$defaultLanguag32, _order$summary$discou, _order$summary4, _order$offers2, _order$offers3, _order$offers3$filter, _order$summary5, _order$summary6, _order$summary7, _ref2, _order$summary8, _order$summary$subtot2, _order$summary9, _order$taxes3, _order$summary$tax2, _order$summary10, _order$fees, _order$summary$servic, _order$summary11, _order$taxes4, _order$taxes5, _order$fees2, _order$fees3, _order$fees3$filter, _order$offers4, _order$offers5, _order$offers5$filter, _order$summary12, _theme$defaultLanguag33, _order$summary13, _order$offers6, _order$offers7, _order$offers7$filter, _order$summary14, _theme$defaultLanguag34, _order$summary15, _configs$driver_tip_t, _configs$driver_tip_u, _order$summary$driver, _order$summary16, _theme$defaultLanguag35, _order$summary$total, _order$summary17, _theme$defaultLanguag36, _theme$defaultLanguag37, _openTaxModal$data, _openTaxModal$data2, _openTaxModal$data3, _openTaxModal$data4, _openTaxModal$data$fi, _openTaxModal$data5, _openTaxModal$data6, _props$afterComponent, _props$afterElements;
 
   var userCustomerId = props.userCustomerId,
       handleBusinessRedirect = props.handleBusinessRedirect,
@@ -91,7 +85,8 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       messages = props.messages,
       setMessages = props.setMessages,
       readMessages = props.readMessages,
-      messagesReadList = props.messagesReadList;
+      messagesReadList = props.messagesReadList,
+      orderTypes = props.orderTypes;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
@@ -122,50 +117,22 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       openMessages = _useState2[0],
       setOpenMessages = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isOrderReviewed = _useState4[0],
-      setIsOrderReviewed = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isProductReviewed = _useState6[0],
-      setIsProductReviewed = _useState6[1];
-
-  var _useState7 = (0, _react.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isDriverReviewed = _useState8[0],
-      setIsDriverReviewed = _useState8[1];
-
-  var _useState9 = (0, _react.useState)({
+  var _useState3 = (0, _react.useState)({
     business: false,
     driver: false
   }),
-      _useState10 = _slicedToArray(_useState9, 2),
-      unreadAlert = _useState10[0],
-      setUnreadAlert = _useState10[1];
+      _useState4 = _slicedToArray(_useState3, 2),
+      unreadAlert = _useState4[0],
+      setUnreadAlert = _useState4[1];
 
-  var _useState11 = (0, _react.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      isReviewOpen = _useState12[0],
-      setIsReviewOpen = _useState12[1];
-
-  var _useState13 = (0, _react.useState)({
-    order: false,
-    product: false,
-    driver: false
-  }),
-      _useState14 = _slicedToArray(_useState13, 2),
-      reviewStatus = _useState14[0],
-      setReviewStatus = _useState14[1];
-
-  var _useState15 = (0, _react.useState)({
+  var _useState5 = (0, _react.useState)({
     open: false,
-    tax: null
+    tax: null,
+    type: ''
   }),
-      _useState16 = _slicedToArray(_useState15, 2),
-      openTaxModal = _useState16[0],
-      setOpenTaxModal = _useState16[1];
+      _useState6 = _slicedToArray(_useState5, 2),
+      openTaxModal = _useState6[0],
+      setOpenTaxModal = _useState6[1];
 
   var _props$order = props.order,
       order = _props$order.order,
@@ -174,7 +141,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       error = _props$order.error;
 
   var getOrderStatus = function getOrderStatus(s) {
-    var _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _theme$defaultLanguag15, _theme$defaultLanguag16, _theme$defaultLanguag17, _theme$defaultLanguag18, _theme$defaultLanguag19, _theme$defaultLanguag20, _theme$defaultLanguag21, _theme$defaultLanguag22;
+    var _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _theme$defaultLanguag15, _theme$defaultLanguag16, _theme$defaultLanguag17, _theme$defaultLanguag18, _theme$defaultLanguag19, _theme$defaultLanguag20, _theme$defaultLanguag21, _theme$defaultLanguag22, _theme$defaultLanguag23, _theme$defaultLanguag24;
 
     var status = parseInt(s);
     var orderStatus = [{
@@ -287,6 +254,16 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       value: t('ORDER_CUSTOMER_ARRIVED_BUSINESS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag22 = theme.defaultLanguages) === null || _theme$defaultLanguag22 === void 0 ? void 0 : _theme$defaultLanguag22.ORDER_CUSTOMER_ARRIVED_BUSINESS) || 'Customer arrived to business'),
       slug: 'ORDER_CUSTOMER_ARRIVED_BUSINESS',
       percentage: 95
+    }, {
+      key: 22,
+      value: t('ORDER_LOOKING_FOR_DRIVER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag23 = theme.defaultLanguages) === null || _theme$defaultLanguag23 === void 0 ? void 0 : _theme$defaultLanguag23.ORDER_LOOKING_FOR_DRIVER) || 'Looking for driver'),
+      slug: 'ORDER_LOOKING_FOR_DRIVER',
+      percentage: 35
+    }, {
+      key: 23,
+      value: t('ORDER_DRIVER_ON_WAY', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag24 = theme.defaultLanguages) === null || _theme$defaultLanguag24 === void 0 ? void 0 : _theme$defaultLanguag24.ORDER_DRIVER_ON_WAY) || 'Driver on way'),
+      slug: 'ORDER_DRIVER_ON_WAY',
+      percentage: 45
     }];
     var objectStatus = orderStatus.find(function (o) {
       return o.key === status;
@@ -339,58 +316,6 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
     icon: (order === null || order === void 0 ? void 0 : (_order$customer2 = order.customer) === null || _order$customer2 === void 0 ? void 0 : _order$customer2.photo) || ((_theme$images3 = theme.images) === null || _theme$images3 === void 0 ? void 0 : (_theme$images3$dummie = _theme$images3.dummies) === null || _theme$images3$dummie === void 0 ? void 0 : _theme$images3$dummie.customerPhoto)
   })];
 
-  var handleOpenReview = function handleOpenReview() {
-    if (!(order !== null && order !== void 0 && order.review) && !isOrderReviewed) setReviewStatus({
-      order: true,
-      product: false,
-      driver: false
-    });else if (!isProductReviewed) setReviewStatus({
-      order: false,
-      product: true,
-      driver: false
-    });else if (order !== null && order !== void 0 && order.driver && !(order !== null && order !== void 0 && order.user_review) && !isDriverReviewed) setReviewStatus({
-      order: false,
-      product: false,
-      driver: true
-    });else {
-      setIsReviewOpen(false);
-      return;
-    }
-    setIsReviewOpen(true);
-  };
-
-  var handleCloseReivew = function handleCloseReivew() {
-    setReviewStatus({
-      order: false,
-      product: false,
-      driver: false
-    });
-    setIsReviewOpen(false);
-  };
-
-  var closeReviewOrder = function closeReviewOrder() {
-    if (!isProductReviewed) setReviewStatus({
-      order: false,
-      product: true,
-      driver: false
-    });else if (order !== null && order !== void 0 && order.driver && !(order !== null && order !== void 0 && order.user_review) && !isDriverReviewed) setReviewStatus({
-      order: false,
-      product: false,
-      driver: true
-    });else handleCloseReivew();
-  };
-
-  var closeReviewProduct = function closeReviewProduct() {
-    if (order !== null && order !== void 0 && order.driver && !(order !== null && order !== void 0 && order.user_review) && !isDriverReviewed) setReviewStatus({
-      order: false,
-      product: false,
-      driver: true
-    });else {
-      setIsDriverReviewed(true);
-      handleCloseReivew();
-    }
-  };
-
   var getIncludedTaxes = function getIncludedTaxes() {
     var _order$taxes;
 
@@ -405,6 +330,18 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         return taxIncluded + (tax.type === 1 ? (_tax$summary = tax.summary) === null || _tax$summary === void 0 ? void 0 : _tax$summary.tax : 0);
       }, 0);
     }
+  };
+
+  var getIncludedTaxesDiscounts = function getIncludedTaxesDiscounts() {
+    var _order$taxes2, _order$taxes2$filter;
+
+    return order === null || order === void 0 ? void 0 : (_order$taxes2 = order.taxes) === null || _order$taxes2 === void 0 ? void 0 : (_order$taxes2$filter = _order$taxes2.filter(function (tax) {
+      return (tax === null || tax === void 0 ? void 0 : tax.type) === 1;
+    })) === null || _order$taxes2$filter === void 0 ? void 0 : _order$taxes2$filter.reduce(function (carry, tax) {
+      var _tax$summary$tax_afte, _tax$summary2, _tax$summary3;
+
+      return carry + ((_tax$summary$tax_afte = tax === null || tax === void 0 ? void 0 : (_tax$summary2 = tax.summary) === null || _tax$summary2 === void 0 ? void 0 : _tax$summary2.tax_after_discount) !== null && _tax$summary$tax_afte !== void 0 ? _tax$summary$tax_afte : tax === null || tax === void 0 ? void 0 : (_tax$summary3 = tax.summary) === null || _tax$summary3 === void 0 ? void 0 : _tax$summary3.tax);
+    }, 0);
   };
 
   (0, _react.useEffect)(function () {
@@ -432,27 +369,34 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), /*#__PURE__*/_react.default.createElement(_styles.Container, null, !loading && order && Object.keys(order).length > 0 && !(openMessages.driver || openMessages.business) && /*#__PURE__*/_react.default.createElement(_styles.WrapperContainer, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperLeftContainer, null, /*#__PURE__*/_react.default.createElement(_styles.OrderInfo, null, /*#__PURE__*/_react.default.createElement(_styles.TitleContainer, null, /*#__PURE__*/_react.default.createElement("h1", null, t('ORDER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag23 = theme.defaultLanguages) === null || _theme$defaultLanguag23 === void 0 ? void 0 : _theme$defaultLanguag23.ORDER) || 'Order'), " #", order === null || order === void 0 ? void 0 : order.id), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+  }), /*#__PURE__*/_react.default.createElement(_styles.Container, null, !loading && order && Object.keys(order).length > 0 && !(openMessages.driver || openMessages.business) && /*#__PURE__*/_react.default.createElement(_styles.WrapperContainer, null, /*#__PURE__*/_react.default.createElement(_styles.OrderInfo, null, /*#__PURE__*/_react.default.createElement(_styles.TitleContainer, null, /*#__PURE__*/_react.default.createElement(_styles.GoToback, null, /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     onClick: function onClick() {
       return handleGoToPage({
         page: 'search'
       });
     },
     color: "primary"
-  }, /*#__PURE__*/_react.default.createElement(_BsArrowLeft.default, null), t('GO_TO_BUSINESSLIST', 'Go to business list'))), (order === null || order === void 0 ? void 0 : order.status) !== 0 && (order === null || order === void 0 ? void 0 : order.integration_id) && /*#__PURE__*/_react.default.createElement("h1", null, t('TICKET', 'Ticket'), ": ", order === null || order === void 0 ? void 0 : order.integration_id), /*#__PURE__*/_react.default.createElement("p", {
+  }, /*#__PURE__*/_react.default.createElement(_BsArrowLeft.default, null), t('GO_TO_BUSINESSLIST', 'Go to business list'))), /*#__PURE__*/_react.default.createElement("h1", null, t('ORDER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag25 = theme.defaultLanguages) === null || _theme$defaultLanguag25 === void 0 ? void 0 : _theme$defaultLanguag25.ORDER) || 'Order'), " #", order === null || order === void 0 ? void 0 : order.id), parseInt(configs === null || configs === void 0 ? void 0 : (_configs$guest_uuid_a = configs.guest_uuid_access) === null || _configs$guest_uuid_a === void 0 ? void 0 : _configs$guest_uuid_a.value, 10) && (order === null || order === void 0 ? void 0 : order.hash_key) && /*#__PURE__*/_react.default.createElement(_styles.Content, {
+    className: "order-content"
+  }, /*#__PURE__*/_react.default.createElement(_styles.ShareOrder, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wrap"
+  }, /*#__PURE__*/_react.default.createElement(_ProductShare.ProductShare, {
+    defaultUrl: urlToShare(order === null || order === void 0 ? void 0 : order.hash_key)
+  })))), (order === null || order === void 0 ? void 0 : order.status) !== 0 && (order === null || order === void 0 ? void 0 : order.integration_id) && /*#__PURE__*/_react.default.createElement("h1", null, t('TICKET', 'Ticket'), ": ", order === null || order === void 0 ? void 0 : order.integration_id), /*#__PURE__*/_react.default.createElement("p", {
+    className: "types"
+  }, orderTypes === null || orderTypes === void 0 ? void 0 : (_orderTypes$find = orderTypes.find(function (type) {
+    return (order === null || order === void 0 ? void 0 : order.delivery_type) === (type === null || type === void 0 ? void 0 : type.value);
+  })) === null || _orderTypes$find === void 0 ? void 0 : _orderTypes$find.text), /*#__PURE__*/_react.default.createElement("p", {
     className: "date"
   }, order !== null && order !== void 0 && order.delivery_datetime_utc ? parseDate(order === null || order === void 0 ? void 0 : order.delivery_datetime_utc) : parseDate(order === null || order === void 0 ? void 0 : order.delivery_datetime, {
     utc: false
-  })), /*#__PURE__*/_react.default.createElement(_styles.ReviewOrderLink, {
-    className: "Review-order",
-    active: (parseInt(order === null || order === void 0 ? void 0 : order.status) === 1 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 2 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 5 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 6 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 10 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 11 || parseInt(order === null || order === void 0 ? void 0 : order.status) === 12) && (!(order !== null && order !== void 0 && order.review) || order.driver && !(order !== null && order !== void 0 && order.user_review)) && (!isOrderReviewed || !isProductReviewed || !isDriverReviewed)
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    onClick: handleOpenReview
-  }, t('REVIEW_ORDER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag24 = theme.defaultLanguages) === null || _theme$defaultLanguag24 === void 0 ? void 0 : _theme$defaultLanguag24.REVIEW_ORDER) || 'Review your Order'))), /*#__PURE__*/_react.default.createElement(_styles.StatusBar, {
+  }))), /*#__PURE__*/_react.default.createElement(_styles.StatusBar, {
     percentage: (_getOrderStatus = getOrderStatus(order === null || order === void 0 ? void 0 : order.status)) === null || _getOrderStatus === void 0 ? void 0 : _getOrderStatus.percentage
   }), /*#__PURE__*/_react.default.createElement("p", {
     className: "order-status"
-  }, (_getOrderStatus2 = getOrderStatus(order === null || order === void 0 ? void 0 : order.status)) === null || _getOrderStatus2 === void 0 ? void 0 : _getOrderStatus2.value)), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.OrderBusiness, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement("h2", null, t('FROM', 'From')), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business3 = order.business) === null || _order$business3 === void 0 ? void 0 : _order$business3.name), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business4 = order.business) === null || _order$business4 === void 0 ? void 0 : _order$business4.email), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business5 = order.business) === null || _order$business5 === void 0 ? void 0 : _order$business5.cellphone), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business6 = order.business) === null || _order$business6 === void 0 ? void 0 : _order$business6.address))), /*#__PURE__*/_react.default.createElement(_styles.ActionsBlock, null, order.driver && order.driver.phone && /*#__PURE__*/_react.default.createElement("span", {
+  }, (_getOrderStatus2 = getOrderStatus(order === null || order === void 0 ? void 0 : order.status)) === null || _getOrderStatus2 === void 0 ? void 0 : _getOrderStatus2.value)), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.OrderBusiness, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessWrapper, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: order === null || order === void 0 ? void 0 : (_order$business3 = order.business) === null || _order$business3 === void 0 ? void 0 : _order$business3.logo
+  }), /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessTitle, null, /*#__PURE__*/_react.default.createElement("h2", null, order === null || order === void 0 ? void 0 : (_order$business4 = order.business) === null || _order$business4 === void 0 ? void 0 : _order$business4.name), /*#__PURE__*/_react.default.createElement(_styles.ActionsBlock, null, order.driver && order.driver.phone && /*#__PURE__*/_react.default.createElement("span", {
     onClick: function onClick() {
       return window.open("tel:".concat(order.driver.phone));
     }
@@ -467,13 +411,12 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         business: true
       });
     }
-  }, (order === null || order === void 0 ? void 0 : order.unread_count) > 0 && unreadAlert.business && /*#__PURE__*/_react.default.createElement(_styles.ExclamationWrapper, null, /*#__PURE__*/_react.default.createElement(_AiFillExclamationCircle.default, null)), /*#__PURE__*/_react.default.createElement(_BiMessageRounded.default, null)))), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.OrderCustomer, null, /*#__PURE__*/_react.default.createElement("h2", null, t('TO', 'To')), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$customer3 = order.customer) === null || _order$customer3 === void 0 ? void 0 : _order$customer3.name, " ", order === null || order === void 0 ? void 0 : (_order$customer4 = order.customer) === null || _order$customer4 === void 0 ? void 0 : _order$customer4.lastname), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$customer5 = order.customer) === null || _order$customer5 === void 0 ? void 0 : _order$customer5.email), /*#__PURE__*/_react.default.createElement("p", null, (order === null || order === void 0 ? void 0 : (_order$customer6 = order.customer) === null || _order$customer6 === void 0 ? void 0 : _order$customer6.cellphone) || (order === null || order === void 0 ? void 0 : (_order$customer7 = order.customer) === null || _order$customer7 === void 0 ? void 0 : _order$customer7.phone))), (order === null || order === void 0 ? void 0 : order.delivery_type) === 1 && /*#__PURE__*/_react.default.createElement(_styles.CommentContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('DELIVERY_PREFERENCE', 'Delivery preference')), /*#__PURE__*/_react.default.createElement("span", null, order !== null && order !== void 0 && (_order$delivery_optio = order.delivery_option) !== null && _order$delivery_optio !== void 0 && _order$delivery_optio.name ? t(order === null || order === void 0 ? void 0 : (_order$delivery_optio2 = order.delivery_option) === null || _order$delivery_optio2 === void 0 ? void 0 : _order$delivery_optio2.name.toUpperCase().replace(/\s/g, '_')) : t('EITHER_WAY', 'Either way'))), (order === null || order === void 0 ? void 0 : order.comment) && /*#__PURE__*/_react.default.createElement(_styles.CommentContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('COMMENT', 'Comment')), /*#__PURE__*/_react.default.createElement("span", null, order === null || order === void 0 ? void 0 : order.comment)), (order === null || order === void 0 ? void 0 : order.driver) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.SectionTitle, null, t('DRIVER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag25 = theme.defaultLanguages) === null || _theme$defaultLanguag25 === void 0 ? void 0 : _theme$defaultLanguag25.DRIVER) || 'Driver')), /*#__PURE__*/_react.default.createElement(_styles.OrderDriver, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperDriver, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "photo"
-  }, order !== null && order !== void 0 && (_order$driver3 = order.driver) !== null && _order$driver3 !== void 0 && _order$driver3.photo ? /*#__PURE__*/_react.default.createElement(_styles.PhotoBlock, {
-    src: order === null || order === void 0 ? void 0 : (_order$driver4 = order.driver) === null || _order$driver4 === void 0 ? void 0 : _order$driver4.photo,
-    width: "48",
-    height: "48"
-  }) : /*#__PURE__*/_react.default.createElement(_RiUser2Fill.default, null)), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$driver5 = order.driver) === null || _order$driver5 === void 0 ? void 0 : _order$driver5.name, " ", order === null || order === void 0 ? void 0 : (_order$driver6 = order.driver) === null || _order$driver6 === void 0 ? void 0 : _order$driver6.lastname)), /*#__PURE__*/_react.default.createElement(_styles.ActionsBlock, null, order.driver && order.driver.phone && /*#__PURE__*/_react.default.createElement("span", {
+  }, (order === null || order === void 0 ? void 0 : order.unread_count) > 0 && unreadAlert.business && /*#__PURE__*/_react.default.createElement(_styles.ExclamationWrapper, null, /*#__PURE__*/_react.default.createElement(_AiFillExclamationCircle.default, null)), /*#__PURE__*/_react.default.createElement(_BiMessageRounded.default, null)))), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business5 = order.business) === null || _order$business5 === void 0 ? void 0 : _order$business5.email), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business6 = order.business) === null || _order$business6 === void 0 ? void 0 : _order$business6.cellphone), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$business7 = order.business) === null || _order$business7 === void 0 ? void 0 : _order$business7.address))), (order === null || order === void 0 ? void 0 : (_order$driver3 = order.driver) === null || _order$driver3 === void 0 ? void 0 : _order$driver3.location) && parseInt(order === null || order === void 0 ? void 0 : order.status) === 9 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.Map, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleMapsMap, {
+    apiKey: configs === null || configs === void 0 ? void 0 : (_configs$google_maps_ = configs.google_maps_api_key) === null || _configs$google_maps_ === void 0 ? void 0 : _configs$google_maps_.value,
+    location: order === null || order === void 0 ? void 0 : (_order$driver4 = order.driver) === null || _order$driver4 === void 0 ? void 0 : _order$driver4.location,
+    locations: locations,
+    mapControls: googleMapsControls
+  })))), /*#__PURE__*/_react.default.createElement(_styles.OrderCustomer, null, /*#__PURE__*/_react.default.createElement("h2", null, order === null || order === void 0 ? void 0 : (_order$customer3 = order.customer) === null || _order$customer3 === void 0 ? void 0 : _order$customer3.name, " ", order === null || order === void 0 ? void 0 : (_order$customer4 = order.customer) === null || _order$customer4 === void 0 ? void 0 : _order$customer4.lastname), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$customer5 = order.customer) === null || _order$customer5 === void 0 ? void 0 : _order$customer5.email), /*#__PURE__*/_react.default.createElement("p", null, (order === null || order === void 0 ? void 0 : (_order$customer6 = order.customer) === null || _order$customer6 === void 0 ? void 0 : _order$customer6.cellphone) || (order === null || order === void 0 ? void 0 : (_order$customer7 = order.customer) === null || _order$customer7 === void 0 ? void 0 : _order$customer7.phone)), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$customer8 = order.customer) === null || _order$customer8 === void 0 ? void 0 : _order$customer8.address)), (order === null || order === void 0 ? void 0 : order.driver) && /*#__PURE__*/_react.default.createElement(_styles.OrderDriver, null, /*#__PURE__*/_react.default.createElement(_styles.SectionTitle, null, /*#__PURE__*/_react.default.createElement("h2", null, t('DRIVER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag26 = theme.defaultLanguages) === null || _theme$defaultLanguag26 === void 0 ? void 0 : _theme$defaultLanguag26.DRIVER) || 'Driver')), /*#__PURE__*/_react.default.createElement(_styles.ActionsBlock, null, order.driver && order.driver.phone && /*#__PURE__*/_react.default.createElement("span", {
     onClick: function onClick() {
       return window.open("tel:".concat(order.driver.phone));
     }
@@ -484,12 +427,11 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         business: false
       });
     }
-  }, (order === null || order === void 0 ? void 0 : order.unread_count) > 0 && unreadAlert.driver && /*#__PURE__*/_react.default.createElement(_styles.ExclamationWrapper, null, /*#__PURE__*/_react.default.createElement(_AiFillExclamationCircle.default, null)), /*#__PURE__*/_react.default.createElement(_BiMessageRounded.default, null))))), (order === null || order === void 0 ? void 0 : (_order$driver7 = order.driver) === null || _order$driver7 === void 0 ? void 0 : _order$driver7.location) && parseInt(order === null || order === void 0 ? void 0 : order.status) === 9 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.Map, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleMapsMap, {
-    apiKey: configs === null || configs === void 0 ? void 0 : (_configs$google_maps_ = configs.google_maps_api_key) === null || _configs$google_maps_ === void 0 ? void 0 : _configs$google_maps_.value,
-    location: order === null || order === void 0 ? void 0 : (_order$driver8 = order.driver) === null || _order$driver8 === void 0 ? void 0 : _order$driver8.location,
-    locations: locations,
-    mapControls: googleMapsControls
-  }))))), /*#__PURE__*/_react.default.createElement(_styles.WrapperRightContainer, null, /*#__PURE__*/_react.default.createElement(_styles.HeaderInfo, null, /*#__PURE__*/_react.default.createElement("h1", null, t('ORDER_MESSAGE_RECEIVED', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag26 = theme.defaultLanguages) === null || _theme$defaultLanguag26 === void 0 ? void 0 : _theme$defaultLanguag26.ORDER_MESSAGE_RECEIVED) || 'Your order has been received')), /*#__PURE__*/_react.default.createElement("p", null, t('ORDER_MESSAGE_HEADER_TEXT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag27 = theme.defaultLanguages) === null || _theme$defaultLanguag27 === void 0 ? void 0 : _theme$defaultLanguag27.ORDER_MESSAGE_HEADER_TEXT) || 'Once business accepts your order, we will send you an email, thank you!'))), !userCustomerId && /*#__PURE__*/_react.default.createElement(_styles.MyOrderActions, null, /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+  }, (order === null || order === void 0 ? void 0 : order.unread_count) > 0 && unreadAlert.driver && /*#__PURE__*/_react.default.createElement(_styles.ExclamationWrapper, null, /*#__PURE__*/_react.default.createElement(_AiFillExclamationCircle.default, null)), /*#__PURE__*/_react.default.createElement(_BiMessageRounded.default, null)))), /*#__PURE__*/_react.default.createElement(_styles.WrapperDriver, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "photo"
+  }, order !== null && order !== void 0 && (_order$driver5 = order.driver) !== null && _order$driver5 !== void 0 && _order$driver5.photo ? /*#__PURE__*/_react.default.createElement(_styles.PhotoBlock, {
+    src: order === null || order === void 0 ? void 0 : (_order$driver6 = order.driver) === null || _order$driver6 === void 0 ? void 0 : _order$driver6.photo
+  }) : /*#__PURE__*/_react.default.createElement(_RiUser2Fill.default, null)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, order === null || order === void 0 ? void 0 : (_order$driver7 = order.driver) === null || _order$driver7 === void 0 ? void 0 : _order$driver7.name, " ", order === null || order === void 0 ? void 0 : (_order$driver8 = order.driver) === null || _order$driver8 === void 0 ? void 0 : _order$driver8.lastname), /*#__PURE__*/_react.default.createElement("p", null, order === null || order === void 0 ? void 0 : (_order$driver9 = order.driver) === null || _order$driver9 === void 0 ? void 0 : _order$driver9.email), /*#__PURE__*/_react.default.createElement("p", null, (order === null || order === void 0 ? void 0 : (_order$driver10 = order.driver) === null || _order$driver10 === void 0 ? void 0 : _order$driver10.cellphone) || (order === null || order === void 0 ? void 0 : (_order$driver11 = order.driver) === null || _order$driver11 === void 0 ? void 0 : _order$driver11.phone))))), /*#__PURE__*/_react.default.createElement(_styles.OrderPreferences, null, (order === null || order === void 0 ? void 0 : order.delivery_type) === 1 && /*#__PURE__*/_react.default.createElement(_styles.CommentContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('DELIVERY_PREFERENCE', 'Delivery preference')), /*#__PURE__*/_react.default.createElement("span", null, order !== null && order !== void 0 && (_order$delivery_optio = order.delivery_option) !== null && _order$delivery_optio !== void 0 && _order$delivery_optio.name ? t(order === null || order === void 0 ? void 0 : (_order$delivery_optio2 = order.delivery_option) === null || _order$delivery_optio2 === void 0 ? void 0 : _order$delivery_optio2.name.toUpperCase().replace(/\s/g, '_')) : t('EITHER_WAY', 'Either way'))), (order === null || order === void 0 ? void 0 : order.comment) && /*#__PURE__*/_react.default.createElement(_styles.CommentContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('COMMENT', 'Comment')), /*#__PURE__*/_react.default.createElement("span", null, order === null || order === void 0 ? void 0 : order.comment))), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.OrderProducts, null, /*#__PURE__*/_react.default.createElement(_styles.HeaderInfo, null, /*#__PURE__*/_react.default.createElement(_styles.HeaderTitle, null, /*#__PURE__*/_react.default.createElement("h1", null, t('ORDER_MESSAGE_RECEIVED', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag27 = theme.defaultLanguages) === null || _theme$defaultLanguag27 === void 0 ? void 0 : _theme$defaultLanguag27.ORDER_MESSAGE_RECEIVED) || 'Your order has been received')), !userCustomerId && /*#__PURE__*/_react.default.createElement(_styles.MyOrderActions, null, /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     color: "primary",
     outline: true,
     onClick: function onClick() {
@@ -497,15 +439,34 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         page: 'orders'
       });
     }
-  }, t('YOUR_ORDERS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag28 = theme.defaultLanguages) === null || _theme$defaultLanguag28 === void 0 ? void 0 : _theme$defaultLanguag28.YOUR_ORDERS) || 'Your Orders'))), /*#__PURE__*/_react.default.createElement(_styles.OrderProducts, null, (order === null || order === void 0 ? void 0 : (_order$products = order.products) === null || _order$products === void 0 ? void 0 : _order$products.length) && (order === null || order === void 0 ? void 0 : order.products.map(function (product) {
+  }, t('YOUR_ORDERS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag28 = theme.defaultLanguages) === null || _theme$defaultLanguag28 === void 0 ? void 0 : _theme$defaultLanguag28.YOUR_ORDERS) || 'Your Orders')))), /*#__PURE__*/_react.default.createElement("p", null, t('ORDER_MESSAGE_HEADER_TEXT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag29 = theme.defaultLanguages) === null || _theme$defaultLanguag29 === void 0 ? void 0 : _theme$defaultLanguag29.ORDER_MESSAGE_HEADER_TEXT) || 'Once business accepts your order, we will send you an email, thank you!'))), (order === null || order === void 0 ? void 0 : (_order$products = order.products) === null || _order$products === void 0 ? void 0 : _order$products.length) && (order === null || order === void 0 ? void 0 : order.products.map(function (product) {
     return /*#__PURE__*/_react.default.createElement(_ProductItemAccordion.ProductItemAccordion, {
       key: product.id,
       product: product
     });
-  }))), /*#__PURE__*/_react.default.createElement(_styles.OrderBill, null, /*#__PURE__*/_react.default.createElement("table", null, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('SUBTOTAL', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag29 = theme.defaultLanguages) === null || _theme$defaultLanguag29 === void 0 ? void 0 : _theme$defaultLanguag29.SUBTOTAL) || 'Subtotal')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice(((order === null || order === void 0 ? void 0 : (_order$summary2 = order.summary) === null || _order$summary2 === void 0 ? void 0 : _order$summary2.subtotal) || (order === null || order === void 0 ? void 0 : order.subtotal)) + getIncludedTaxes()))), ((order === null || order === void 0 ? void 0 : (_order$summary3 = order.summary) === null || _order$summary3 === void 0 ? void 0 : _order$summary3.discount) > 0 || (order === null || order === void 0 ? void 0 : order.discount) > 0) && /*#__PURE__*/_react.default.createElement("tr", null, (order === null || order === void 0 ? void 0 : order.offer_type) === 1 ? /*#__PURE__*/_react.default.createElement("td", null, t('DISCOUNT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag30 = theme.defaultLanguages) === null || _theme$defaultLanguag30 === void 0 ? void 0 : _theme$defaultLanguag30.DISCOUNT) || 'Discount'), ' ', /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.offer_rate, parsePrice), "%)"))) : /*#__PURE__*/_react.default.createElement("td", null, t('DISCOUNT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag31 = theme.defaultLanguages) === null || _theme$defaultLanguag31 === void 0 ? void 0 : _theme$defaultLanguag31.DISCOUNT) || 'Discount')), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice((order === null || order === void 0 ? void 0 : (_order$summary4 = order.summary) === null || _order$summary4 === void 0 ? void 0 : _order$summary4.discount) || (order === null || order === void 0 ? void 0 : order.discount)))), (order === null || order === void 0 ? void 0 : (_order$taxes2 = order.taxes) === null || _order$taxes2 === void 0 ? void 0 : _order$taxes2.length) === 0 && (order === null || order === void 0 ? void 0 : order.tax_type) === 2 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('TAX', 'Tax'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.tax, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary5 = order.summary) === null || _order$summary5 === void 0 ? void 0 : _order$summary5.tax) || 0))), (order === null || order === void 0 ? void 0 : (_order$fees = order.fees) === null || _order$fees === void 0 ? void 0 : _order$fees.length) === 0 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('SERVICE_FEE', 'Service fee'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.service_fee, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary6 = order.summary) === null || _order$summary6 === void 0 ? void 0 : _order$summary6.service_fee) || 0))), (order === null || order === void 0 ? void 0 : (_order$taxes3 = order.taxes) === null || _order$taxes3 === void 0 ? void 0 : _order$taxes3.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$taxes4 = order.taxes) === null || _order$taxes4 === void 0 ? void 0 : _order$taxes4.filter(function (tax) {
+  })), /*#__PURE__*/_react.default.createElement(_styles.OrderBill, null, /*#__PURE__*/_react.default.createElement("table", null, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('SUBTOTAL', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag30 = theme.defaultLanguages) === null || _theme$defaultLanguag30 === void 0 ? void 0 : _theme$defaultLanguag30.SUBTOTAL) || 'Subtotal')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice(((_order$summary$subtot = order === null || order === void 0 ? void 0 : (_order$summary2 = order.summary) === null || _order$summary2 === void 0 ? void 0 : _order$summary2.subtotal) !== null && _order$summary$subtot !== void 0 ? _order$summary$subtot : order === null || order === void 0 ? void 0 : order.subtotal) + getIncludedTaxes()))), ((_ref = (order === null || order === void 0 ? void 0 : (_order$summary3 = order.summary) === null || _order$summary3 === void 0 ? void 0 : _order$summary3.discount) > 0) !== null && _ref !== void 0 ? _ref : (order === null || order === void 0 ? void 0 : order.discount) > 0) && (order === null || order === void 0 ? void 0 : (_order$offers = order.offers) === null || _order$offers === void 0 ? void 0 : _order$offers.length) === 0 && /*#__PURE__*/_react.default.createElement("tr", null, (order === null || order === void 0 ? void 0 : order.offer_type) === 1 ? /*#__PURE__*/_react.default.createElement("td", null, t('DISCOUNT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag31 = theme.defaultLanguages) === null || _theme$defaultLanguag31 === void 0 ? void 0 : _theme$defaultLanguag31.DISCOUNT) || 'Discount'), ' ', /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.offer_rate, parsePrice), "%)"))) : /*#__PURE__*/_react.default.createElement("td", null, t('DISCOUNT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag32 = theme.defaultLanguages) === null || _theme$defaultLanguag32 === void 0 ? void 0 : _theme$defaultLanguag32.DISCOUNT) || 'Discount')), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice((_order$summary$discou = order === null || order === void 0 ? void 0 : (_order$summary4 = order.summary) === null || _order$summary4 === void 0 ? void 0 : _order$summary4.discount) !== null && _order$summary$discou !== void 0 ? _order$summary$discou : order === null || order === void 0 ? void 0 : order.discount))), (order === null || order === void 0 ? void 0 : (_order$offers2 = order.offers) === null || _order$offers2 === void 0 ? void 0 : _order$offers2.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$offers3 = order.offers) === null || _order$offers3 === void 0 ? void 0 : (_order$offers3$filter = _order$offers3.filter(function (offer) {
+    return (offer === null || offer === void 0 ? void 0 : offer.target) === 1;
+  })) === null || _order$offers3$filter === void 0 ? void 0 : _order$offers3$filter.map(function (offer) {
+    var _offer$summary;
+
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      key: offer.id
+    }, /*#__PURE__*/_react.default.createElement("td", null, offer.name, offer.rate_type === 1 && /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(offer === null || offer === void 0 ? void 0 : offer.rate, parsePrice), "%)")), /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+      onClick: function onClick() {
+        return setOpenTaxModal({
+          open: true,
+          data: offer,
+          type: 'offer_target_1'
+        });
+      }
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
+      size: "20",
+      color: theme.colors.primary
+    }))), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice(offer === null || offer === void 0 ? void 0 : (_offer$summary = offer.summary) === null || _offer$summary === void 0 ? void 0 : _offer$summary.discount)));
+  })), /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement(_styles.Divider, null)), /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement(_styles.Divider, null))), (order === null || order === void 0 ? void 0 : (_order$summary5 = order.summary) === null || _order$summary5 === void 0 ? void 0 : _order$summary5.subtotal_with_discount) > 0 && (order === null || order === void 0 ? void 0 : (_order$summary6 = order.summary) === null || _order$summary6 === void 0 ? void 0 : _order$summary6.discount) > 0 && (order === null || order === void 0 ? void 0 : (_order$summary7 = order.summary) === null || _order$summary7 === void 0 ? void 0 : _order$summary7.total) >= 0 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('SUBTOTAL_WITH_DISCOUNT', 'Subtotal with discount')), (order === null || order === void 0 ? void 0 : order.tax_type) === 1 ? /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_ref2 = (order === null || order === void 0 ? void 0 : (_order$summary8 = order.summary) === null || _order$summary8 === void 0 ? void 0 : _order$summary8.subtotal_with_discount) + getIncludedTaxesDiscounts()) !== null && _ref2 !== void 0 ? _ref2 : 0)) : /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_order$summary$subtot2 = order === null || order === void 0 ? void 0 : (_order$summary9 = order.summary) === null || _order$summary9 === void 0 ? void 0 : _order$summary9.subtotal_with_discount) !== null && _order$summary$subtot2 !== void 0 ? _order$summary$subtot2 : 0))), (order === null || order === void 0 ? void 0 : (_order$taxes3 = order.taxes) === null || _order$taxes3 === void 0 ? void 0 : _order$taxes3.length) === 0 && (order === null || order === void 0 ? void 0 : order.tax_type) === 2 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('TAX', 'Tax'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.tax, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_order$summary$tax2 = order === null || order === void 0 ? void 0 : (_order$summary10 = order.summary) === null || _order$summary10 === void 0 ? void 0 : _order$summary10.tax) !== null && _order$summary$tax2 !== void 0 ? _order$summary$tax2 : 0))), (order === null || order === void 0 ? void 0 : (_order$fees = order.fees) === null || _order$fees === void 0 ? void 0 : _order$fees.length) === 0 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('SERVICE_FEE', 'Service fee'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.service_fee, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_order$summary$servic = order === null || order === void 0 ? void 0 : (_order$summary11 = order.summary) === null || _order$summary11 === void 0 ? void 0 : _order$summary11.service_fee) !== null && _order$summary$servic !== void 0 ? _order$summary$servic : 0))), (order === null || order === void 0 ? void 0 : (_order$taxes4 = order.taxes) === null || _order$taxes4 === void 0 ? void 0 : _order$taxes4.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$taxes5 = order.taxes) === null || _order$taxes5 === void 0 ? void 0 : _order$taxes5.filter(function (tax) {
     return (tax === null || tax === void 0 ? void 0 : tax.type) === 2 && (tax === null || tax === void 0 ? void 0 : tax.rate) !== 0;
   }).map(function (tax) {
-    var _tax$summary2;
+    var _ref3, _tax$summary$tax_afte2, _tax$summary4, _tax$summary5;
 
     return /*#__PURE__*/_react.default.createElement("tr", {
       key: tax === null || tax === void 0 ? void 0 : tax.id
@@ -513,44 +474,74 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       onClick: function onClick() {
         return setOpenTaxModal({
           open: true,
-          data: tax
+          data: tax,
+          type: 'tax'
         });
       }
-    }, /*#__PURE__*/_react.default.createElement(_AiOutlineExclamationCircle.default, {
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
       size: "20",
       color: theme.colors.primary
-    }))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((tax === null || tax === void 0 ? void 0 : (_tax$summary2 = tax.summary) === null || _tax$summary2 === void 0 ? void 0 : _tax$summary2.tax) || 0)));
+    }))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_ref3 = (_tax$summary$tax_afte2 = tax === null || tax === void 0 ? void 0 : (_tax$summary4 = tax.summary) === null || _tax$summary4 === void 0 ? void 0 : _tax$summary4.tax_after_discount) !== null && _tax$summary$tax_afte2 !== void 0 ? _tax$summary$tax_afte2 : tax === null || tax === void 0 ? void 0 : (_tax$summary5 = tax.summary) === null || _tax$summary5 === void 0 ? void 0 : _tax$summary5.tax) !== null && _ref3 !== void 0 ? _ref3 : 0)));
   })), (order === null || order === void 0 ? void 0 : (_order$fees2 = order.fees) === null || _order$fees2 === void 0 ? void 0 : _order$fees2.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$fees3 = order.fees) === null || _order$fees3 === void 0 ? void 0 : (_order$fees3$filter = _order$fees3.filter(function (fee) {
     return !((fee === null || fee === void 0 ? void 0 : fee.fixed) === 0 && (fee === null || fee === void 0 ? void 0 : fee.percentage) === 0);
   })) === null || _order$fees3$filter === void 0 ? void 0 : _order$fees3$filter.map(function (fee) {
-    var _fee$summary;
+    var _ref4, _fee$summary, _fee$summary$percenta, _fee$summary2, _fee$summary3;
 
     return /*#__PURE__*/_react.default.createElement("tr", {
       key: fee.id
-    }, /*#__PURE__*/_react.default.createElement("td", null, (fee === null || fee === void 0 ? void 0 : fee.name) || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), "(", parsePrice(fee === null || fee === void 0 ? void 0 : fee.fixed), " + ", fee === null || fee === void 0 ? void 0 : fee.percentage, "%)", /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+    }, /*#__PURE__*/_react.default.createElement("td", null, (fee === null || fee === void 0 ? void 0 : fee.name) || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), "(", (fee === null || fee === void 0 ? void 0 : fee.fixed) > 0 && "".concat(parsePrice(fee === null || fee === void 0 ? void 0 : fee.fixed), " + "), fee.percentage, "%)", /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
       onClick: function onClick() {
         return setOpenTaxModal({
           open: true,
-          data: fee
+          data: fee,
+          type: 'fee'
         });
       }
-    }, /*#__PURE__*/_react.default.createElement(_AiOutlineExclamationCircle.default, {
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
       size: "20",
       color: theme.colors.primary
-    }))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((fee === null || fee === void 0 ? void 0 : fee.fixed) + (fee === null || fee === void 0 ? void 0 : (_fee$summary = fee.summary) === null || _fee$summary === void 0 ? void 0 : _fee$summary.percentage) || 0)));
-  })), ((order === null || order === void 0 ? void 0 : (_order$summary7 = order.summary) === null || _order$summary7 === void 0 ? void 0 : _order$summary7.delivery_price) > 0 || (order === null || order === void 0 ? void 0 : order.deliveryFee) > 0) && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DELIVERY_FEE', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag32 = theme.defaultLanguages) === null || _theme$defaultLanguag32 === void 0 ? void 0 : _theme$defaultLanguag32.DELIVERY_FEE) || 'Delivery Fee')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary8 = order.summary) === null || _order$summary8 === void 0 ? void 0 : _order$summary8.delivery_price) || (order === null || order === void 0 ? void 0 : order.deliveryFee)))), ((order === null || order === void 0 ? void 0 : (_order$summary9 = order.summary) === null || _order$summary9 === void 0 ? void 0 : _order$summary9.driver_tip) > 0 || (order === null || order === void 0 ? void 0 : order.driver_tip) > 0) && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DRIVER_TIP', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag33 = theme.defaultLanguages) === null || _theme$defaultLanguag33 === void 0 ? void 0 : _theme$defaultLanguag33.DRIVER_TIP) || 'Driver tip'), ' ', ((order === null || order === void 0 ? void 0 : (_order$summary10 = order.summary) === null || _order$summary10 === void 0 ? void 0 : _order$summary10.driver_tip) > 0 || (order === null || order === void 0 ? void 0 : order.driver_tip) > 0) && parseInt(configs === null || configs === void 0 ? void 0 : (_configs$driver_tip_t = configs.driver_tip_type) === null || _configs$driver_tip_t === void 0 ? void 0 : _configs$driver_tip_t.value, 10) === 2 && !parseInt(configs === null || configs === void 0 ? void 0 : (_configs$driver_tip_u = configs.driver_tip_use_custom) === null || _configs$driver_tip_u === void 0 ? void 0 : _configs$driver_tip_u.value, 10) && /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.driver_tip, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary11 = order.summary) === null || _order$summary11 === void 0 ? void 0 : _order$summary11.driver_tip) || (order === null || order === void 0 ? void 0 : order.totalDriverTip)))))), /*#__PURE__*/_react.default.createElement("table", {
+    }))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_ref4 = (fee === null || fee === void 0 ? void 0 : (_fee$summary = fee.summary) === null || _fee$summary === void 0 ? void 0 : _fee$summary.fixed) + ((_fee$summary$percenta = fee === null || fee === void 0 ? void 0 : (_fee$summary2 = fee.summary) === null || _fee$summary2 === void 0 ? void 0 : _fee$summary2.percentage_after_discount) !== null && _fee$summary$percenta !== void 0 ? _fee$summary$percenta : fee === null || fee === void 0 ? void 0 : (_fee$summary3 = fee.summary) === null || _fee$summary3 === void 0 ? void 0 : _fee$summary3.percentage)) !== null && _ref4 !== void 0 ? _ref4 : 0)));
+  })), (order === null || order === void 0 ? void 0 : (_order$offers4 = order.offers) === null || _order$offers4 === void 0 ? void 0 : _order$offers4.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$offers5 = order.offers) === null || _order$offers5 === void 0 ? void 0 : (_order$offers5$filter = _order$offers5.filter(function (offer) {
+    return (offer === null || offer === void 0 ? void 0 : offer.target) === 3;
+  })) === null || _order$offers5$filter === void 0 ? void 0 : _order$offers5$filter.map(function (offer) {
+    var _offer$summary2;
+
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      key: offer.id
+    }, /*#__PURE__*/_react.default.createElement("td", null, offer.name, offer.rate_type === 1 && /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(offer === null || offer === void 0 ? void 0 : offer.rate, parsePrice), "%)")), /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+      onClick: function onClick() {
+        return setOpenTaxModal({
+          open: true,
+          data: offer,
+          type: 'offer_target_3'
+        });
+      }
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
+      size: "20",
+      color: theme.colors.primary
+    }))), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice(offer === null || offer === void 0 ? void 0 : (_offer$summary2 = offer.summary) === null || _offer$summary2 === void 0 ? void 0 : _offer$summary2.discount)));
+  })), (order === null || order === void 0 ? void 0 : (_order$summary12 = order.summary) === null || _order$summary12 === void 0 ? void 0 : _order$summary12.delivery_price) > 0 && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DELIVERY_FEE', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag33 = theme.defaultLanguages) === null || _theme$defaultLanguag33 === void 0 ? void 0 : _theme$defaultLanguag33.DELIVERY_FEE) || 'Delivery Fee')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice(order === null || order === void 0 ? void 0 : (_order$summary13 = order.summary) === null || _order$summary13 === void 0 ? void 0 : _order$summary13.delivery_price))), (order === null || order === void 0 ? void 0 : (_order$offers6 = order.offers) === null || _order$offers6 === void 0 ? void 0 : _order$offers6.length) > 0 && (order === null || order === void 0 ? void 0 : (_order$offers7 = order.offers) === null || _order$offers7 === void 0 ? void 0 : (_order$offers7$filter = _order$offers7.filter(function (offer) {
+    return (offer === null || offer === void 0 ? void 0 : offer.target) === 2;
+  })) === null || _order$offers7$filter === void 0 ? void 0 : _order$offers7$filter.map(function (offer) {
+    var _offer$summary3;
+
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      key: offer.id
+    }, /*#__PURE__*/_react.default.createElement("td", null, offer.name, offer.rate_type === 1 && /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(offer === null || offer === void 0 ? void 0 : offer.rate, parsePrice), "%)")), /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+      onClick: function onClick() {
+        return setOpenTaxModal({
+          open: true,
+          data: offer,
+          type: 'offer_target_2'
+        });
+      }
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
+      size: "20",
+      color: theme.colors.primary
+    }))), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice(offer === null || offer === void 0 ? void 0 : (_offer$summary3 = offer.summary) === null || _offer$summary3 === void 0 ? void 0 : _offer$summary3.discount)));
+  })), ((order === null || order === void 0 ? void 0 : (_order$summary14 = order.summary) === null || _order$summary14 === void 0 ? void 0 : _order$summary14.driver_tip) > 0 || (order === null || order === void 0 ? void 0 : order.driver_tip) > 0) && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DRIVER_TIP', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag34 = theme.defaultLanguages) === null || _theme$defaultLanguag34 === void 0 ? void 0 : _theme$defaultLanguag34.DRIVER_TIP) || 'Driver tip'), ' ', ((order === null || order === void 0 ? void 0 : (_order$summary15 = order.summary) === null || _order$summary15 === void 0 ? void 0 : _order$summary15.driver_tip) > 0 || (order === null || order === void 0 ? void 0 : order.driver_tip) > 0) && parseInt(configs === null || configs === void 0 ? void 0 : (_configs$driver_tip_t = configs.driver_tip_type) === null || _configs$driver_tip_t === void 0 ? void 0 : _configs$driver_tip_t.value, 10) === 2 && !parseInt(configs === null || configs === void 0 ? void 0 : (_configs$driver_tip_u = configs.driver_tip_use_custom) === null || _configs$driver_tip_u === void 0 ? void 0 : _configs$driver_tip_u.value, 10) && /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(order === null || order === void 0 ? void 0 : order.driver_tip, parseNumber), "%)"))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_order$summary$driver = order === null || order === void 0 ? void 0 : (_order$summary16 = order.summary) === null || _order$summary16 === void 0 ? void 0 : _order$summary16.driver_tip) !== null && _order$summary$driver !== void 0 ? _order$summary$driver : order === null || order === void 0 ? void 0 : order.totalDriverTip))))), /*#__PURE__*/_react.default.createElement("table", {
     className: "total"
-  }, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('TOTAL', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag34 = theme.defaultLanguages) === null || _theme$defaultLanguag34 === void 0 ? void 0 : _theme$defaultLanguag34.TOTAL) || 'Total')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary12 = order.summary) === null || _order$summary12 === void 0 ? void 0 : _order$summary12.total) || (order === null || order === void 0 ? void 0 : order.total))))))), /*#__PURE__*/_react.default.createElement(_styles.Content, {
-    className: "order-content"
-  }, parseInt(configs === null || configs === void 0 ? void 0 : (_configs$guest_uuid_a = configs.guest_uuid_access) === null || _configs$guest_uuid_a === void 0 ? void 0 : _configs$guest_uuid_a.value, 10) && (order === null || order === void 0 ? void 0 : order.hash_key) && /*#__PURE__*/_react.default.createElement(_styles.ShareOrder, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "text"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, t('SHARE_THIS_DELIVERY', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag35 = theme.defaultLanguages) === null || _theme$defaultLanguag35 === void 0 ? void 0 : _theme$defaultLanguag35.SHARE_THIS_DELIVERY) || 'Share this delivery')), /*#__PURE__*/_react.default.createElement("p", null, t('LET_SOMEONE_FOLLOW_ALONG', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag36 = theme.defaultLanguages) === null || _theme$defaultLanguag36 === void 0 ? void 0 : _theme$defaultLanguag36.LET_SOMEONE_FOLLOW_ALONG) || 'Let someone follow along'))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "wrap"
-  }, /*#__PURE__*/_react.default.createElement(_ProductShare.ProductShare, {
-    withBtn: true,
-    btnText: t('SHARE', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag37 = theme.defaultLanguages) === null || _theme$defaultLanguag37 === void 0 ? void 0 : _theme$defaultLanguag37.SHARE) || 'Share'),
-    defaultUrl: urlToShare(order === null || order === void 0 ? void 0 : order.hash_key)
-  })))))), (openMessages.driver || openMessages.business) && /*#__PURE__*/_react.default.createElement(_Messages.Messages, {
+  }, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('TOTAL', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag35 = theme.defaultLanguages) === null || _theme$defaultLanguag35 === void 0 ? void 0 : _theme$defaultLanguag35.TOTAL) || 'Total')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_order$summary$total = order === null || order === void 0 ? void 0 : (_order$summary17 = order.summary) === null || _order$summary17 === void 0 ? void 0 : _order$summary17.total) !== null && _order$summary$total !== void 0 ? _order$summary$total : order === null || order === void 0 ? void 0 : order.total))))))))), (openMessages.driver || openMessages.business) && /*#__PURE__*/_react.default.createElement(_Messages.Messages, {
     orderId: order === null || order === void 0 ? void 0 : order.id,
     order: order,
     business: openMessages.business,
@@ -565,112 +556,75 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         business: false
       });
     }
-  }), loading && !error && /*#__PURE__*/_react.default.createElement(_styles.SkeletonWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperLeftContainer, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlockWrapp, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlock, {
+  }), loading && !error && /*#__PURE__*/_react.default.createElement(_styles.SkeletonWrapper, null, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlockWrapp, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlock, {
     width: 90
   }, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 40,
-    width: 230
+    width: 300
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20,
-    width: 80
+    height: 15,
+    width: 120
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 15
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 20,
-    width: 210,
+    width: 900,
+    style: {
+      marginBottom: '50px'
+    }
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 60,
+    width: 900
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 200,
+    width: 900
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 20,
+    width: 900
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 20,
+    width: 900
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 20,
+    width: 900,
     style: {
       marginBottom: '50px'
     }
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 40,
-    width: 230
+    width: 900
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 20,
-    width: 180
+    width: 900
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 20,
-    width: 210
+    width: 900
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 20,
-    width: 150
+    width: 900
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 20,
-    width: 170,
+    width: 900,
     style: {
       marginBottom: '50px'
     }
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 40,
-    width: 230
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20,
-    width: 180
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20,
-    width: 210
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20,
-    width: 150
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20,
-    width: 170,
-    style: {
-      marginBottom: '50px'
-    }
-  })))), /*#__PURE__*/_react.default.createElement(_styles.WrapperRightContainer, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlockWrapp, null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlock, {
-    width: 90
-  }, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 40,
-    width: 230
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 20
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 45,
-    width: 100
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 60
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 300
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 60
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 25
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 25
-  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    height: 25
   }))))), !loading && error && (error.includes('ERROR_ACCESS_EXPIRED') ? /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     content: t(error[0], 'Sorry, the order has expired.')
   }) : /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
-    content: t('NOT_FOUND_ORDER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag38 = theme.defaultLanguages) === null || _theme$defaultLanguag38 === void 0 ? void 0 : _theme$defaultLanguag38.NOT_FOUND_ORDER) || 'Sorry, we couldn\'t find the requested order.'),
-    btnTitle: t('ORDERS_REDIRECT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag39 = theme.defaultLanguages) === null || _theme$defaultLanguag39 === void 0 ? void 0 : _theme$defaultLanguag39.ORDERS_REDIRECT) || 'Go to Orders'),
+    content: t('NOT_FOUND_ORDER', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag36 = theme.defaultLanguages) === null || _theme$defaultLanguag36 === void 0 ? void 0 : _theme$defaultLanguag36.NOT_FOUND_ORDER) || 'Sorry, we couldn\'t find the requested order.'),
+    btnTitle: t('ORDERS_REDIRECT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag37 = theme.defaultLanguages) === null || _theme$defaultLanguag37 === void 0 ? void 0 : _theme$defaultLanguag37.ORDERS_REDIRECT) || 'Go to Orders'),
     onClickButton: handleOrderRedirect
-  })), isReviewOpen && /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
-    open: isReviewOpen,
-    onClose: handleCloseReivew,
-    title: order ? reviewStatus !== null && reviewStatus !== void 0 && reviewStatus.order ? t('REVIEW_ORDER', 'Review order') : reviewStatus !== null && reviewStatus !== void 0 && reviewStatus.product ? t('REVIEW_PRODUCT', 'Review Product') : t('REVIEW_DRIVER', 'Review Driver') : t('LOADING', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag40 = theme.defaultLanguages) === null || _theme$defaultLanguag40 === void 0 ? void 0 : _theme$defaultLanguag40.LOADING) || 'Loading...')
-  }, /*#__PURE__*/_react.default.createElement(_styles.ReviewWrapper, null, reviewStatus !== null && reviewStatus !== void 0 && reviewStatus.order ? /*#__PURE__*/_react.default.createElement(_ReviewOrder.ReviewOrder, {
-    order: order,
-    closeReviewOrder: closeReviewOrder,
-    setIsReviewed: setIsOrderReviewed
-  }) : reviewStatus !== null && reviewStatus !== void 0 && reviewStatus.product ? /*#__PURE__*/_react.default.createElement(_ReviewProduct.ReviewProduct, {
-    order: order,
-    closeReviewProduct: closeReviewProduct,
-    setIsProductReviewed: setIsProductReviewed
-  }) : /*#__PURE__*/_react.default.createElement(_ReviewDriver.ReviewDriver, {
-    order: order,
-    closeReviewDriver: handleCloseReivew,
-    setIsDriverReviewed: setIsDriverReviewed
-  }))), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+  })), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
     width: "70%",
     open: openTaxModal.open,
     padding: "20px",
     closeOnBackdrop: true,
-    title: "".concat(((_openTaxModal$data = openTaxModal.data) === null || _openTaxModal$data === void 0 ? void 0 : _openTaxModal$data.name) || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), " (").concat(typeof ((_openTaxModal$data2 = openTaxModal.data) === null || _openTaxModal$data2 === void 0 ? void 0 : _openTaxModal$data2.rate) === 'number' ? "".concat((_openTaxModal$data3 = openTaxModal.data) === null || _openTaxModal$data3 === void 0 ? void 0 : _openTaxModal$data3.rate, "%") : "".concat(parsePrice((_openTaxModal$data$fi = (_openTaxModal$data4 = openTaxModal.data) === null || _openTaxModal$data4 === void 0 ? void 0 : _openTaxModal$data4.fixed) !== null && _openTaxModal$data$fi !== void 0 ? _openTaxModal$data$fi : 0), " + ").concat((_openTaxModal$data5 = openTaxModal.data) === null || _openTaxModal$data5 === void 0 ? void 0 : _openTaxModal$data5.percentage, "%"), ") "),
+    title: "".concat(((_openTaxModal$data = openTaxModal.data) === null || _openTaxModal$data === void 0 ? void 0 : _openTaxModal$data.name) || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), " ").concat(((_openTaxModal$data2 = openTaxModal.data) === null || _openTaxModal$data2 === void 0 ? void 0 : _openTaxModal$data2.rate_type) !== 2 ? "(".concat(typeof ((_openTaxModal$data3 = openTaxModal.data) === null || _openTaxModal$data3 === void 0 ? void 0 : _openTaxModal$data3.rate) === 'number' ? "".concat((_openTaxModal$data4 = openTaxModal.data) === null || _openTaxModal$data4 === void 0 ? void 0 : _openTaxModal$data4.rate, "%") : "".concat(parsePrice((_openTaxModal$data$fi = (_openTaxModal$data5 = openTaxModal.data) === null || _openTaxModal$data5 === void 0 ? void 0 : _openTaxModal$data5.fixed) !== null && _openTaxModal$data$fi !== void 0 ? _openTaxModal$data$fi : 0), " + ").concat((_openTaxModal$data6 = openTaxModal.data) === null || _openTaxModal$data6 === void 0 ? void 0 : _openTaxModal$data6.percentage, "%"), ")") : '', "  "),
     onClose: function onClose() {
       return setOpenTaxModal({
         open: false,
-        tax: null
+        tax: null,
+        type: ''
       });
     },
     modalTitleStyle: {
@@ -678,7 +632,8 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       justifyContent: 'center'
     }
   }, /*#__PURE__*/_react.default.createElement(_TaxInformation.TaxInformation, {
-    data: openTaxModal === null || openTaxModal === void 0 ? void 0 : openTaxModal.data,
+    type: openTaxModal.type,
+    data: openTaxModal.data,
     products: order === null || order === void 0 ? void 0 : order.products
   }))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
@@ -692,6 +647,10 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
 };
 
 var OrderDetails = function OrderDetails(props) {
+  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+      _useLanguage4 = _slicedToArray(_useLanguage3, 2),
+      t = _useLanguage4[1];
+
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
 
   var orderDetailsProps = _objectSpread(_objectSpread({}, props), {}, {
@@ -708,6 +667,22 @@ var OrderDetails = function OrderDetails(props) {
         mapTypeIds: ['roadmap', 'satellite']
       }
     },
+    orderTypes: props.orderTypes || [{
+      value: 1,
+      text: t('DELIVERY', 'Delivery')
+    }, {
+      value: 2,
+      text: t('PICKUP', 'Pickup')
+    }, {
+      value: 3,
+      text: t('EAT_IN', 'Eat in')
+    }, {
+      value: 4,
+      text: t('CURBSIDE', 'Curbside')
+    }, {
+      value: 5,
+      text: t('DRIVE_THRU', 'Drive thru')
+    }],
     UIComponent: OrderDetailsUI
   });
 

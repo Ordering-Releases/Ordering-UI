@@ -60,30 +60,9 @@ var optionsDefault = [{
   displayName: 'orders',
   key: 'orders'
 }];
-var extraOptions = [{
-  name: 'profile',
-  pathname: '/profile',
-  displayName: 'view account',
-  key: 'view_account'
-}, {
-  name: 'wallets',
-  pathname: '/wallets',
-  displayName: 'wallets',
-  key: 'wallets'
-}, {
-  name: 'messages',
-  pathname: '/messages',
-  displayName: 'messages',
-  key: 'messages'
-}, {
-  name: 'help',
-  pathname: '/help',
-  displayName: 'help',
-  key: 'help'
-}];
 
 var UserPopover = function UserPopover(props) {
-  var _props$beforeElements, _props$beforeComponen, _sessionState$user, _sessionState$user2, _props$afterComponent, _props$afterElements;
+  var _configs$wallet_enabl, _configs$wallet_cash_, _configs$wallet_credi, _props$beforeElements, _props$beforeComponen, _sessionState$user, _sessionState$user2, _props$afterComponent, _props$afterElements;
 
   var open = props.open,
       isHome = props.isHome,
@@ -103,9 +82,39 @@ var UserPopover = function UserPopover(props) {
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
+  var _useConfig = (0, _orderingComponents.useConfig)(),
+      _useConfig2 = _slicedToArray(_useConfig, 1),
+      configs = _useConfig2[0].configs;
+
   var referenceElement = (0, _react.useRef)();
   var popperElement = (0, _react.useRef)();
   var arrowElement = (0, _react.useRef)();
+  var isWalletEnabled = (configs === null || configs === void 0 ? void 0 : (_configs$wallet_enabl = configs.wallet_enabled) === null || _configs$wallet_enabl === void 0 ? void 0 : _configs$wallet_enabl.value) === '1' && ((configs === null || configs === void 0 ? void 0 : (_configs$wallet_cash_ = configs.wallet_cash_enabled) === null || _configs$wallet_cash_ === void 0 ? void 0 : _configs$wallet_cash_.value) === '1' || (configs === null || configs === void 0 ? void 0 : (_configs$wallet_credi = configs.wallet_credit_point_enabled) === null || _configs$wallet_credi === void 0 ? void 0 : _configs$wallet_credi.value) === '1');
+  var extraOptions = [{
+    name: 'profile',
+    pathname: '/profile',
+    displayName: 'view account',
+    key: 'view_account',
+    isActive: true
+  }, {
+    name: 'wallets',
+    pathname: '/wallets',
+    displayName: 'wallets',
+    key: 'wallets',
+    isActive: isWalletEnabled
+  }, {
+    name: 'messages',
+    pathname: '/messages',
+    displayName: 'messages',
+    key: 'messages',
+    isActive: true
+  }, {
+    name: 'help',
+    pathname: '/help',
+    displayName: 'help',
+    key: 'help',
+    isActive: true
+  }];
   var options = isCustomerMode ? optionsDefault.filter(function (option) {
     return option.name === 'profile';
   }) : optionsList || optionsDefault;
@@ -208,7 +217,7 @@ var UserPopover = function UserPopover(props) {
       }
     }, t((option.key || option.name).toUpperCase(), (0, _utils.capitalize)(option.displayName || option.name)));
   }), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.ExtraOptions, null, extraOptions && extraOptions.length > 0 && extraOptions.map(function (option, i) {
-    return /*#__PURE__*/_react.default.createElement(_styles.PopoverListLink, {
+    return option.isActive && /*#__PURE__*/_react.default.createElement(_styles.PopoverListLink, {
       key: i,
       active: window.location.pathname === option.pathname,
       onClick: function onClick() {

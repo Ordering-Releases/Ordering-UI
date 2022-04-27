@@ -15,6 +15,8 @@ var _FiMinusCircle = _interopRequireDefault(require("@meronex/icons/fi/FiMinusCi
 
 var _FiPlusCircle = _interopRequireDefault(require("@meronex/icons/fi/FiPlusCircle"));
 
+var _MdcPlayCircleOutline = _interopRequireDefault(require("@meronex/icons/mdc/MdcPlayCircleOutline"));
+
 var _orderingComponents = require("ordering-components");
 
 var _utils = require("../../../../../utils");
@@ -38,6 +40,8 @@ var _ForgotPasswordForm = require("../ForgotPasswordForm");
 var _AddressList = require("../AddressList");
 
 var _Modal = require("../Modal");
+
+var _Confirm = require("../Confirm");
 
 var _Buttons = require("../../styles/Buttons");
 
@@ -99,6 +103,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       productCart = props.productCart,
       increment = props.increment,
       decrement = props.decrement,
+      handleChangeProductCartQuantity = props.handleChangeProductCartQuantity,
       showOption = props.showOption,
       maxProductQuantity = props.maxProductQuantity,
       errors = props.errors,
@@ -158,26 +163,39 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
 
   var _useState9 = (0, _react.useState)(null),
       _useState10 = _slicedToArray(_useState9, 2),
-      thumbsSwiper = _useState10[0],
-      setThumbsSwiper = _useState10[1];
+      videoGallery = _useState10[0],
+      setVideoGallery = _useState10[1];
 
-  var _useState11 = (0, _react.useState)(false),
+  var _useState11 = (0, _react.useState)(null),
       _useState12 = _slicedToArray(_useState11, 2),
-      isHaveWeight = _useState12[0],
-      setIsHaveWeight = _useState12[1];
+      thumbsSwiper = _useState12[0],
+      setThumbsSwiper = _useState12[1];
 
-  var _useState13 = (0, _react.useState)({
+  var _useState13 = (0, _react.useState)(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      isHaveWeight = _useState14[0],
+      setIsHaveWeight = _useState14[1];
+
+  var _useState15 = (0, _react.useState)({
     weight_unit: false,
     pieces: true
   }),
-      _useState14 = _slicedToArray(_useState13, 2),
-      qtyBy = _useState14[0],
-      setQtyBy = _useState14[1];
-
-  var _useState15 = (0, _react.useState)(null),
       _useState16 = _slicedToArray(_useState15, 2),
-      pricePerWeightUnit = _useState16[0],
-      setPricePerWeightUnit = _useState16[1];
+      qtyBy = _useState16[0],
+      setQtyBy = _useState16[1];
+
+  var _useState17 = (0, _react.useState)(null),
+      _useState18 = _slicedToArray(_useState17, 2),
+      pricePerWeightUnit = _useState18[0],
+      setPricePerWeightUnit = _useState18[1];
+
+  var _useState19 = (0, _react.useState)({
+    open: false,
+    content: []
+  }),
+      _useState20 = _slicedToArray(_useState19, 2),
+      alertState = _useState20[0],
+      setAlertState = _useState20[1];
 
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
 
@@ -257,11 +275,29 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     setQtyBy((_setQtyBy = {}, _defineProperty(_setQtyBy, val, true), _defineProperty(_setQtyBy, !val, false), _setQtyBy));
   };
 
+  var getOverFlowImage = function getOverFlowImage(url) {
+    var keys = url.split('/');
+    var _videoId = keys[keys.length - 1];
+    var overFlowImg = 'http://img.youtube.com/vi/' + _videoId + '/0.jpg';
+    return overFlowImg;
+  };
+
+  var onChangeProductCartQuantity = function onChangeProductCartQuantity(quantity) {
+    if (quantity > maxProductQuantity) {
+      setAlertState({
+        open: true,
+        content: [t('MAX_QUANTITY', 'The max quantity is _number_').replace('_number_', maxProductQuantity)]
+      });
+      return;
+    }
+
+    handleChangeProductCartQuantity(quantity);
+  };
+
   (0, _react.useEffect)(function () {
     if (document.getElementById("".concat(tabValue))) {
       var extraHeight = windowSize.width < 769 ? 100 : 42;
       var top = tabValue === 'all' ? 0 : document.getElementById("".concat(tabValue)).offsetTop - extraHeight;
-      console.log(top, 'this is top');
       var scrollElement = document.querySelector('.popup-dialog');
 
       if (windowSize.width >= 1200) {
@@ -278,6 +314,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     var _theme$images, _theme$images$dummies, _product$gallery;
 
     var imageList = [];
+    var videoList = [];
     imageList.push((product === null || product === void 0 ? void 0 : product.images) || ((_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$dummies = _theme$images.dummies) === null || _theme$images$dummies === void 0 ? void 0 : _theme$images$dummies.product));
 
     if (product !== null && product !== void 0 && product.gallery && (product === null || product === void 0 ? void 0 : (_product$gallery = product.gallery) === null || _product$gallery === void 0 ? void 0 : _product$gallery.length) > 0) {
@@ -287,7 +324,25 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var galleryItem = _step.value;
-          imageList.push(galleryItem === null || galleryItem === void 0 ? void 0 : galleryItem.file);
+
+          if (galleryItem !== null && galleryItem !== void 0 && galleryItem.file) {
+            imageList.push(galleryItem === null || galleryItem === void 0 ? void 0 : galleryItem.file);
+          }
+
+          if (galleryItem !== null && galleryItem !== void 0 && galleryItem.video) {
+            var _url = galleryItem === null || galleryItem === void 0 ? void 0 : galleryItem.video.split('/');
+
+            var _videoId = _url[(_url === null || _url === void 0 ? void 0 : _url.length) - 1];
+
+            if (_videoId.includes('watch')) {
+              var __url = _videoId.split('=')[1];
+
+              _videoId = __url;
+            }
+
+            var embedURL = 'https://www.youtube.com/embed/' + _videoId;
+            videoList.push(embedURL);
+          }
         }
       } catch (err) {
         _iterator.e(err);
@@ -297,6 +352,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     }
 
     setGallery(imageList);
+    setVideoGallery(videoList);
 
     if (product !== null && product !== void 0 && product.weight && product !== null && product !== void 0 && product.weight_unit) {
       setIsHaveWeight(true);
@@ -354,7 +410,18 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       src: img,
       alt: ""
     }));
-  })), /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
+  }), videoGallery && videoGallery.length > 0 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, videoGallery.map(function (video, j) {
+    return /*#__PURE__*/_react.default.createElement(_react2.SwiperSlide, {
+      key: j
+    }, /*#__PURE__*/_react.default.createElement("iframe", {
+      style: {
+        border: 'none',
+        width: '100%',
+        height: '100%'
+      },
+      src: video
+    }));
+  }))), /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
     onSwiper: setThumbsSwiper,
     spaceBetween: 20,
     slidesPerView: 5,
@@ -391,7 +458,14 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       src: img,
       alt: ""
     }));
-  })))), /*#__PURE__*/_react.default.createElement(_styles.ProductInfo, null, /*#__PURE__*/_react.default.createElement(_styles.ProductFormTitle, null, /*#__PURE__*/_react.default.createElement(_styles.ProductName, null, /*#__PURE__*/_react.default.createElement("span", null, product === null || product === void 0 ? void 0 : product.name), (product === null || product === void 0 ? void 0 : product.calories) && /*#__PURE__*/_react.default.createElement("span", {
+  }), videoGallery && videoGallery.length > 0 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, videoGallery.map(function (video, j) {
+    return /*#__PURE__*/_react.default.createElement(_react2.SwiperSlide, {
+      key: j
+    }, /*#__PURE__*/_react.default.createElement(_styles.VideoGalleryWrapper, null, /*#__PURE__*/_react.default.createElement("img", {
+      src: getOverFlowImage(video),
+      alt: ""
+    }), /*#__PURE__*/_react.default.createElement(_MdcPlayCircleOutline.default, null)));
+  }))))), /*#__PURE__*/_react.default.createElement(_styles.ProductInfo, null, /*#__PURE__*/_react.default.createElement(_styles.ProductFormTitle, null, /*#__PURE__*/_react.default.createElement(_styles.ProductName, null, /*#__PURE__*/_react.default.createElement("span", null, product === null || product === void 0 ? void 0 : product.name), (product === null || product === void 0 ? void 0 : product.calories) && /*#__PURE__*/_react.default.createElement("span", {
     className: "calories"
   }, product === null || product === void 0 ? void 0 : product.calories, ' ', "cal")), /*#__PURE__*/_react.default.createElement(_styles.Properties, null, isHaveWeight ? /*#__PURE__*/_react.default.createElement(_styles.PriceContent, null, parsePrice(pricePerWeightUnit), " / ", product === null || product === void 0 ? void 0 : product.weight_unit) : /*#__PURE__*/_react.default.createElement(_styles.PriceContent, null, product !== null && product !== void 0 && product.price ? parsePrice(product === null || product === void 0 ? void 0 : product.price) : '', (product === null || product === void 0 ? void 0 : product.in_offer) && /*#__PURE__*/_react.default.createElement("span", {
     className: "offer-price"
@@ -492,10 +566,19 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     className: isHaveWeight ? 'incdec-control show-weight-unit' : 'incdec-control'
   }, /*#__PURE__*/_react.default.createElement(_FiMinusCircle.default, {
     onClick: decrement,
-    className: "".concat(productCart.quantity === 1 || isSoldOut ? 'disabled' : '')
-  }), (qtyBy === null || qtyBy === void 0 ? void 0 : qtyBy.pieces) && /*#__PURE__*/_react.default.createElement("span", {
-    className: "qty"
-  }, productCart.quantity), (qtyBy === null || qtyBy === void 0 ? void 0 : qtyBy.weight_unit) && /*#__PURE__*/_react.default.createElement("span", {
+    className: "".concat(productCart.quantity === 1 || !productCart.quantity || isSoldOut ? 'disabled' : '')
+  }), (qtyBy === null || qtyBy === void 0 ? void 0 : qtyBy.pieces) && /*#__PURE__*/_react.default.createElement(_Inputs.Input, {
+    className: "qty",
+    value: (productCart === null || productCart === void 0 ? void 0 : productCart.quantity) || '',
+    onChange: function onChange(e) {
+      return onChangeProductCartQuantity(parseInt(e.target.value));
+    },
+    onKeyPress: function onKeyPress(e) {
+      if (!/^[0-9.]$/.test(e.key)) {
+        e.preventDefault();
+      }
+    }
+  }), (qtyBy === null || qtyBy === void 0 ? void 0 : qtyBy.weight_unit) && /*#__PURE__*/_react.default.createElement("span", {
     className: "qty"
   }, productCart.quantity * (product === null || product === void 0 ? void 0 : product.weight)), /*#__PURE__*/_react.default.createElement(_FiPlusCircle.default, {
     onClick: increment,
@@ -516,7 +599,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     onClick: function onClick() {
       return handleSaveProduct();
     },
-    disabled: orderState.loading
+    disabled: orderState.loading || (productCart === null || productCart === void 0 ? void 0 : productCart.quantity) === 0
   }, orderState.loading ? /*#__PURE__*/_react.default.createElement("span", null, t('LOADING', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag5 = theme.defaultLanguages) === null || _theme$defaultLanguag5 === void 0 ? void 0 : _theme$defaultLanguag5.LOADING) || 'Loading')) : /*#__PURE__*/_react.default.createElement("span", null, editMode ? t('UPDATE', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag6 = theme.defaultLanguages) === null || _theme$defaultLanguag6 === void 0 ? void 0 : _theme$defaultLanguag6.UPDATE) || 'Update') : t('ADD', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag7 = theme.defaultLanguages) === null || _theme$defaultLanguag7 === void 0 ? void 0 : _theme$defaultLanguag7.ADD) || 'Add'))), auth && !((_orderState$options2 = orderState.options) !== null && _orderState$options2 !== void 0 && _orderState$options2.address_id) && (orderState.loading ? /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     className: "add",
     color: "primary",
@@ -585,6 +668,24 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     isPopup: true
   })), error && error.length > 0 && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     content: ((_error$ = error[0]) === null || _error$ === void 0 ? void 0 : _error$.message) || error[0]
+  }), /*#__PURE__*/_react.default.createElement(_Confirm.Alert, {
+    title: t('SEARCH', 'Search'),
+    content: alertState.content,
+    acceptText: t('ACCEPT', 'Accept'),
+    open: alertState.open,
+    onClose: function onClose() {
+      return setAlertState({
+        open: false,
+        content: []
+      });
+    },
+    onAccept: function onAccept() {
+      return setAlertState({
+        open: false,
+        content: []
+      });
+    },
+    closeOnBackdrop: false
   })), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
