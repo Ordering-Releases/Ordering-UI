@@ -8,7 +8,9 @@ import {
   PopoverListItem,
   PopoverListLink,
   ExtraOptions,
-  Divider
+  Divider,
+  UserImgWrapper,
+  RoundMark
 } from './styles'
 import { DropDownCircleImage } from '../../../../../components/Dropdown/style'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
@@ -16,12 +18,13 @@ import { capitalize } from '../../../../../utils'
 import AiOutlineMenu from '@meronex/icons/ai/AiOutlineMenu'
 
 const optionsDefault = [
-  { name: 'search', pathname: '/explore', displayName: 'explore' },
-  { name: 'orders', pathname: '/profile/orders', displayName: 'orders' }
+  { name: 'search', pathname: '/explore', displayName: 'explore', key: 'explore' },
+  { name: 'orders', pathname: '/profile/orders', displayName: 'orders', key: 'orders' }
 ]
 
 const extraOptions = [
-  { name: 'profile', pathname: '/profile', displayName: 'view account' }
+  { name: 'profile', pathname: '/profile', displayName: 'view account', key: 'view_account' },
+  { name: 'help', pathname: '/help', displayName: 'help', key: 'help' }
 ]
 
 export const UserPopover = (props) => {
@@ -106,13 +109,18 @@ export const UserPopover = (props) => {
         isPhoto={sessionState?.user?.photo}
         isHome={isHome}
         ref={referenceElement}
+        isOpen={open}
         onClick={props.onClick}
       >
         <AiOutlineMenu className='menu-list' />
-        <DropDownCircleImage
-          src={sessionState?.user?.photo}
-          fallback={<FaUserAlt />}
-        />
+        <UserImgWrapper>
+          <RoundMark />
+          <DropDownCircleImage
+            src={sessionState?.user?.photo}
+            fallback={<FaUserAlt />}
+          />
+        </UserImgWrapper>
+
       </HeaderItem>
       <PopoverBody ref={popperElement} style={popStyle} {...attributes.popper}>
         <PopoverList>
@@ -123,7 +131,7 @@ export const UserPopover = (props) => {
                 active={window.location.pathname === option.pathname}
                 onClick={() => handleGoToPage(option.name)}
               >
-                {t((option.displayName || option.name).toUpperCase(), capitalize(option.displayName || option.name))}
+                {t((option.key || option.name).toUpperCase(), capitalize(option.displayName || option.name))}
               </PopoverListLink>
             ))
           )}
@@ -137,7 +145,7 @@ export const UserPopover = (props) => {
                     active={window.location.pathname === option.pathname}
                     onClick={() => handleGoToPage(option.name)}
                   >
-                    {t((option.displayName || option.name).toUpperCase(), capitalize(option.displayName || option.name))}
+                    {t((option.key || option.name).toUpperCase(), capitalize(option.displayName || option.name))}
                   </PopoverListLink>
                 ))
               )

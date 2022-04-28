@@ -1,30 +1,27 @@
 import React, { useEffect, useRef } from 'react'
-import BiCart from '@meronex/icons/bi/BiCart'
-import AiOutlineClose from '@meronex/icons/ai/AiOutlineClose'
+import { Cart3 } from 'react-bootstrap-icons'
 import { usePopper } from 'react-popper'
 import {
   HeaderItem,
   PopoverBody,
-  PopoverArrow,
-  Header
+  PopoverArrow
 } from './styles'
 
-import { useOrder, useEvent, useLanguage } from 'ordering-components'
+import { useOrder, useEvent } from 'ordering-components'
 import { useTheme } from 'styled-components'
 import { CartContent } from '../CartContent'
 
 export const CartPopover = (props) => {
-  const { open, auth, location, isCustomerMode } = props
+  const { open, auth, location, isCustomerMode, setPreorderBusiness } = props
   const [orderState] = useOrder()
   const theme = useTheme()
   const [events] = useEvent()
-  const [, t] = useLanguage()
 
   const referenceElement = useRef()
   const popperElement = useRef()
   const arrowElement = useRef()
   const popper = usePopper(referenceElement.current, popperElement.current, {
-    placement: theme?.rtl ? 'bottom' : 'auto',
+    placement: theme?.rtl ? 'bottom' : 'bottom-end',
     modifiers: [
       { name: 'arrow', options: { element: arrowElement.current } },
       {
@@ -98,19 +95,18 @@ export const CartPopover = (props) => {
         <BeforeComponent key={i} {...props} />))}
       <div style={{ overflow: 'hidden' }}>
         <HeaderItem ref={referenceElement} onClick={props.onClick} name='cart-popover'>
-          <BiCart />
-          {props.carts?.length > 0 && <span>{props.carts?.length}</span>}
+          <span>
+            <Cart3 />
+            {props.carts?.length > 0 && <span>{props.carts?.length}</span>}
+          </span>
         </HeaderItem>
         <PopoverBody className='cart-popover' ref={popperElement} style={popStyle} {...attributes.popper}>
-          <Header>
-            <h2>{t('YOUR_CART', 'Your Cart')}</h2>
-            <AiOutlineClose onClick={props.onClose} />
-          </Header>
           <CartContent
             isCartPopover
             carts={props.carts}
             isOrderStateCarts={!!orderState.carts}
             onClose={props.onClose}
+            setPreorderBusiness={setPreorderBusiness}
           />
           <PopoverArrow key='arrow' ref={arrowElement} style={styles.arrow} />
         </PopoverBody>
