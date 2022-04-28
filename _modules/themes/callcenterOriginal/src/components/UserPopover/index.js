@@ -5,21 +5,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CartPopover = void 0;
+exports.UserPopover = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactBootstrapIcons = require("react-bootstrap-icons");
+var _orderingComponents = require("ordering-components");
 
 var _reactPopper = require("react-popper");
 
 var _styles = require("./styles");
 
-var _orderingComponents = require("ordering-components");
+var _style = require("../../../../../components/Dropdown/style");
 
-var _styledComponents = require("styled-components");
+var _FaUserAlt = _interopRequireDefault(require("@meronex/icons/fa/FaUserAlt"));
 
-var _CartContent = require("../CartContent");
+var _utils = require("../../../../../utils");
+
+var _AiOutlineMenu = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineMenu"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -45,19 +49,45 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var CartPopover = function CartPopover(props) {
-  var _props$beforeElements, _props$beforeComponen, _props$carts, _props$carts2, _props$afterComponent, _props$afterElements;
+var optionsDefault = [{
+  name: 'search',
+  pathname: '/explore',
+  displayName: 'explore',
+  key: 'explore'
+}, {
+  name: 'orders',
+  pathname: '/profile/orders',
+  displayName: 'orders',
+  key: 'orders'
+}];
+var extraOptions = [{
+  name: 'profile',
+  pathname: '/profile',
+  displayName: 'view account',
+  key: 'view_account'
+}, {
+  name: 'help',
+  pathname: '/help',
+  displayName: 'help',
+  key: 'help'
+}];
+
+var UserPopover = function UserPopover(props) {
+  var _props$beforeElements, _props$beforeComponen, _sessionState$user, _sessionState$user2, _props$afterComponent, _props$afterElements;
 
   var open = props.open,
-      auth = props.auth,
-      location = props.location,
+      isHome = props.isHome,
+      optionsList = props.optionsList,
+      withLogout = props.withLogout,
       isCustomerMode = props.isCustomerMode;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
-      _useOrder2 = _slicedToArray(_useOrder, 1),
-      orderState = _useOrder2[0];
+  var _useSession = (0, _orderingComponents.useSession)(),
+      _useSession2 = _slicedToArray(_useSession, 1),
+      sessionState = _useSession2[0];
 
-  var theme = (0, _styledComponents.useTheme)();
+  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+      _useLanguage2 = _slicedToArray(_useLanguage, 2),
+      t = _useLanguage2[1];
 
   var _useEvent = (0, _orderingComponents.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
@@ -66,8 +96,11 @@ var CartPopover = function CartPopover(props) {
   var referenceElement = (0, _react.useRef)();
   var popperElement = (0, _react.useRef)();
   var arrowElement = (0, _react.useRef)();
+  var options = isCustomerMode ? optionsDefault.filter(function (option) {
+    return option.name === 'profile';
+  }) : optionsList || optionsDefault;
   var popper = (0, _reactPopper.usePopper)(referenceElement.current, popperElement.current, {
-    placement: theme !== null && theme !== void 0 && theme.rtl ? 'bottom' : 'bottom-end',
+    placement: 'auto',
     modifiers: [{
       name: 'arrow',
       options: {
@@ -84,7 +117,7 @@ var CartPopover = function CartPopover(props) {
       attributes = popper.attributes,
       forceUpdate = popper.forceUpdate;
   (0, _react.useEffect)(function () {// forceUpdate && forceUpdate()
-  }, [open, orderState]);
+  }, [open, sessionState]);
 
   var handleClickOutside = function handleClickOutside(e) {
     var _popperElement$curren, _referenceElement$cur;
@@ -92,59 +125,48 @@ var CartPopover = function CartPopover(props) {
     if (!open) return;
     var outsidePopover = !((_popperElement$curren = popperElement.current) !== null && _popperElement$curren !== void 0 && _popperElement$curren.contains(e.target));
     var outsidePopoverMenu = !((_referenceElement$cur = referenceElement.current) !== null && _referenceElement$cur !== void 0 && _referenceElement$cur.contains(e.target));
-    var outsideModal = !window.document.getElementById('app-modals') || !window.document.getElementById('app-modals').contains(e.target);
 
-    if (outsidePopover && outsidePopoverMenu && outsideModal) {
-      events.emit('cart_popover_closed');
+    if (outsidePopover && outsidePopoverMenu) {
       props.onClose && props.onClose();
     }
+  };
+
+  var handleKeyDown = function handleKeyDown(e) {
+    if (e.keyCode === 27) {
+      props.onClose && props.onClose();
+    }
+  };
+
+  var handleGoToPage = function handleGoToPage(page) {
+    events.emit('go_to_page', {
+      page: page
+    });
+    props.onClick && props.onClick();
   };
 
   (0, _react.useEffect)(function () {
     window.addEventListener('mouseup', handleClickOutside);
+    window.addEventListener('keydown', handleKeyDown);
     return function () {
-      return window.removeEventListener('mouseup', handleClickOutside);
+      window.removeEventListener('mouseup', handleClickOutside);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [open]);
-  (0, _react.useEffect)(function () {
-    props.onClose();
-  }, [auth]);
-  (0, _react.useEffect)(function () {
-    if (location && location.pathname.includes('/checkout/')) {
-      props.onClose && props.onClose();
-    }
-  }, [location]);
-
-  var getScrollTop = function getScrollTop() {
-    var _document$documentEle;
-
-    if (((_document$documentEle = document.documentElement) === null || _document$documentEle === void 0 ? void 0 : _document$documentEle.scrollTop) > 80) {
-      props.onClose && props.onClose();
-    }
-  };
-
-  (0, _react.useEffect)(function () {
-    if (location && location.pathname.includes('/store/') && isCustomerMode) {
-      window.addEventListener('scroll', getScrollTop);
-    }
-
-    return function () {
-      window.removeEventListener('scroll', getScrollTop);
-    };
-  }, []);
 
   var popStyle = _objectSpread(_objectSpread({}, styles.popper), {}, {
     visibility: open ? 'visible' : 'hidden',
-    width: '450px',
-    maxHeight: '70vh',
-    overflowY: 'auto'
+    minWidth: '150px'
   });
 
   if (!open) {
     popStyle.transform = 'translate3d(0px, 0px, 0px)';
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      overflow: 'hidden'
+    }
+  }, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
     }, BeforeElement);
@@ -152,28 +174,39 @@ var CartPopover = function CartPopover(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    style: {
-      overflow: 'hidden'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_styles.HeaderItem, {
+  }), /*#__PURE__*/_react.default.createElement(_styles.HeaderItem, {
+    isPhoto: sessionState === null || sessionState === void 0 ? void 0 : (_sessionState$user = sessionState.user) === null || _sessionState$user === void 0 ? void 0 : _sessionState$user.photo,
+    isHome: isHome,
     ref: referenceElement,
-    onClick: props.onClick,
-    name: "cart-popover"
-  }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Cart3, null), ((_props$carts = props.carts) === null || _props$carts === void 0 ? void 0 : _props$carts.length) > 0 && /*#__PURE__*/_react.default.createElement("span", null, (_props$carts2 = props.carts) === null || _props$carts2 === void 0 ? void 0 : _props$carts2.length))), /*#__PURE__*/_react.default.createElement(_styles.PopoverBody, _extends({
-    className: "cart-popover",
+    isOpen: open,
+    onClick: props.onClick
+  }, /*#__PURE__*/_react.default.createElement(_AiOutlineMenu.default, {
+    className: "menu-list"
+  }), /*#__PURE__*/_react.default.createElement(_styles.UserImgWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.RoundMark, null), /*#__PURE__*/_react.default.createElement(_style.DropDownCircleImage, {
+    src: sessionState === null || sessionState === void 0 ? void 0 : (_sessionState$user2 = sessionState.user) === null || _sessionState$user2 === void 0 ? void 0 : _sessionState$user2.photo,
+    fallback: /*#__PURE__*/_react.default.createElement(_FaUserAlt.default, null)
+  }))), /*#__PURE__*/_react.default.createElement(_styles.PopoverBody, _extends({
     ref: popperElement,
     style: popStyle
-  }, attributes.popper), /*#__PURE__*/_react.default.createElement(_CartContent.CartContent, {
-    isCartPopover: true,
-    carts: props.carts,
-    isOrderStateCarts: !!orderState.carts,
+  }, attributes.popper), /*#__PURE__*/_react.default.createElement(_styles.PopoverList, null, options && options.length > 0 && options.map(function (option, i) {
+    return /*#__PURE__*/_react.default.createElement(_styles.PopoverListLink, {
+      key: i,
+      active: window.location.pathname === option.pathname,
+      onClick: function onClick() {
+        return handleGoToPage(option.name);
+      }
+    }, t((option.key || option.name).toUpperCase(), (0, _utils.capitalize)(option.displayName || option.name)));
+  }), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.ExtraOptions, null, extraOptions && extraOptions.length > 0 && extraOptions.map(function (option, i) {
+    return /*#__PURE__*/_react.default.createElement(_styles.PopoverListLink, {
+      key: i,
+      active: window.location.pathname === option.pathname,
+      onClick: function onClick() {
+        return handleGoToPage(option.name);
+      }
+    }, t((option.key || option.name).toUpperCase(), (0, _utils.capitalize)(option.displayName || option.name)));
+  }), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), withLogout && /*#__PURE__*/_react.default.createElement(PopoverListItemLogout, {
     onClose: props.onClose
-  }), /*#__PURE__*/_react.default.createElement(_styles.PopoverArrow, {
-    key: "arrow",
-    ref: arrowElement,
-    style: styles.arrow
-  }))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
+  })))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
     }, props));
@@ -184,4 +217,46 @@ var CartPopover = function CartPopover(props) {
   }));
 };
 
-exports.CartPopover = CartPopover;
+exports.UserPopover = UserPopover;
+
+var LogoutActionUI = function LogoutActionUI(props) {
+  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+      _useLanguage4 = _slicedToArray(_useLanguage3, 2),
+      t = _useLanguage4[1];
+
+  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+      _useCustomer2 = _slicedToArray(_useCustomer, 2),
+      deleteUserCustomer = _useCustomer2[1].deleteUserCustomer;
+
+  var handleClick = function handleClick() {
+    var _window, _window$gapi, _window$gapi$auth;
+
+    var GoogleAuth = (_window = window) === null || _window === void 0 ? void 0 : (_window$gapi = _window.gapi) === null || _window$gapi === void 0 ? void 0 : (_window$gapi$auth = _window$gapi.auth2) === null || _window$gapi$auth === void 0 ? void 0 : _window$gapi$auth.getAuthInstance();
+
+    if (GoogleAuth) {
+      var signedIn = GoogleAuth.isSignedIn.get();
+
+      if (signedIn) {
+        GoogleAuth.signOut().then(function () {
+          GoogleAuth.disconnect();
+        });
+      }
+    }
+
+    deleteUserCustomer(true);
+    props.handleLogoutClick();
+    props.onClose && props.onClose();
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_styles.PopoverListItem, {
+    onClick: handleClick
+  }, t('LOGOUT', 'Logout'));
+};
+
+var PopoverListItemLogout = function PopoverListItemLogout(props) {
+  var logoutActionProps = {
+    UIComponent: LogoutActionUI,
+    onClose: props.onClose
+  };
+  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LogoutAction, logoutActionProps);
+};
