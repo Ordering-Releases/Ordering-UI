@@ -45,6 +45,7 @@ import { MomentContent } from './src/components/MomentContent'
 import { MomentControl } from './src/components/MomentControl'
 import { MyOrders } from './src/components/MyOrders'
 import { NotFoundSource } from './src/components/NotFoundSource'
+import { NotNetworkConnectivity } from './src/components/NotNetworkConnectivity'
 import { Modal } from './src/components/Modal'
 import { OrderDetails } from './src/components/OrderDetails'
 import { OrdersOption } from './src/components/OrdersOption'
@@ -58,9 +59,11 @@ import { PaymentOptionWallet } from './src/components/PaymentOptionWallet'
 import { ProductForm } from './src/components/ProductForm'
 import { ProductItemAccordion } from './src/components/ProductItemAccordion'
 import { ProductIngredient } from './src/components/ProductIngredient'
+import { PhoneAutocomplete } from './src/components/PhoneAutocomplete'
 import { ProductOption } from './src/components/ProductOption'
 import { ProductOptionSubOption } from './src/components/ProductOptionSubOption'
 import { RenderProductsLayout } from './src/components/RenderProductsLayout'
+import { ResetPassword } from './src/components/ResetPassword'
 import { SearchBar } from './src/components/SearchBar'
 import { SidebarMenu } from './src/components/SidebarMenu'
 import { SignUpForm } from './src/components/SignUpForm'
@@ -129,6 +132,7 @@ export {
   MyOrders,
   Modal,
   NotFoundSource,
+  NotNetworkConnectivity,
   OrderDetails,
   OrdersOption,
   OrderTypeSelectorContent,
@@ -143,7 +147,9 @@ export {
   ProductItemAccordion,
   ProductOption,
   ProductOptionSubOption,
+  PhoneAutocomplete,
   RenderProductsLayout,
+  ResetPassword,
   SearchBar,
   SidebarMenu,
   SignUpForm,

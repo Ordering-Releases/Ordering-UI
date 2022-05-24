@@ -14,31 +14,39 @@ export const BusinessList = styled.div`
 
 export const WrapperSearch = styled.div`
   margin: 10px 20px 0px;
-
-  ${({ isCustomLayout }) => isCustomLayout && css`
+  display: flex;
+  justify-content: flex-end;
+  svg{
+    align-self: center;
+    cursor: pointer;
+    font-size: 26px;
+    color: ${props => props.theme?.colors?.primary};
+    margin-left: 10px;
+  }
+  ${({ isCustomLayout, isCustomerMode }) => isCustomLayout && css`
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin: 0 auto;
+    margin: 0;
     margin-top: 10px;
     margin-bottom: 20px;
     width: 100%; 
     padding: 0 20px;
-
+    ${isCustomerMode ? css`
+      margin-right: 20px;
+    ` : css`
+      margin: 0 auto;
+    `}
     svg {
-      font-size: 26px;
-      color: ${props => props.theme?.colors?.primary};
-      margin-left: 10px;
-      cursor: pointer;
+      align-self: auto;
     }
     
     @media(min-width: 681px){
       width: 75%;
       padding: 0;
     }
-
     @media(min-width: 1201px){
       width: 50%;
     }
@@ -61,15 +69,21 @@ export const PreviousOrders = styled.div`
 `
 
 export const BusinessesTitle = styled.h1`
-  font-size: 18px;
-  margin: 0px 20px;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    font-size: 18px;
+    margin: 0px 20px;
+  ` : css`
+    font-weight: 600;
+    font-size: 24px;
+    color: ${props => props.theme?.colors.headingColor};
+    margin: 42px 20px 5px 20px;
+  `}
 `
 
 export const BusinessHeroImgStyled = styled.div`
   margin-bottom: 30px;
   width: 100%;
   height: 230px;
-
   ${({ bgimage }) => bgimage && css`
     background-repeat: no-repeat, repeat;
     background-size: cover;
@@ -79,7 +93,6 @@ export const BusinessHeroImgStyled = styled.div`
   @media (min-width: 450px) {
     height: 370px;
   }
-
   @media (min-width: 821px) {
     height: 650px;
   }
@@ -108,4 +121,10 @@ export const Divider = styled.div`
 
 export const OrderProgressWrapper = styled.div`
   padding: 45px 20px;
+`
+
+export const SearchContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `

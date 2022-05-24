@@ -4,7 +4,6 @@ export const ProductContainer = styled.div`
   max-height: 100vh;
   position: relative;
   padding: 50px 20px 20px;
-  overflow-x: hidden;
   @media (min-width: 768px) {
     height: 100%;
   }
@@ -13,7 +12,6 @@ export const ProductContainer = styled.div`
   }
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
-    overflow-y: auto;
     max-height: 70vh;
     padding-bottom: 0;
   }
@@ -179,21 +177,36 @@ export const ProductActions = styled.div`
   width: 100%;
   background-color: #FFF;
   div.price {
-    font-weight: 600;
-    font-size: 20px;
+    padding-top: 10px;
     color: ${props => props.theme?.colors.darkTextColor};
+    h4 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 20px;
+    }
+    span {
+      font-size: 13px;
+      color: #D83520;
+      line-height: 15px;
+    }
   }
   div.incdec-control {
-    width: 50%;
+    width: 135px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: relative;
     svg {
-      width: 22px;
-      height: 22px;
+      width: 25px;
+      height: 25px;
       cursor: pointer;
     }
+  }
+  div.price-amount-block {
+    display: flex;
+    justify-content: space-between;
+    width: 80%
   }
   /* div:last-child {
     width: 100%;
@@ -250,11 +263,11 @@ export const ProductActions = styled.div`
       width: 25%;
     }
     button.add {
-      width: 30%;
+      width: 35%;
       margin-top: 0;
     }
     div.incdec-control {
-      width: 20%;
+      padding-right: 18%;
       &.show-weight-unit{
         width: 30%;
       }
@@ -293,7 +306,7 @@ export const WrapperIngredients = styled.div`
 export const ProductTabContainer = styled.div`
   border-bottom: 1px solid #E9ECEF;
   position: sticky;
-  top: 60px;
+  top: 0px;
   background: white;
   z-index: 900;
   > div {
@@ -307,12 +320,6 @@ export const ProductTabContainer = styled.div`
         `}
       }
     }
-  }
-  @media (min-width: 769px) {
-    top: 0px;
-  }
-  @media (min-width: 1200px) {
-    top: -20px;
   }
 `
 
@@ -426,6 +433,12 @@ export const WeightUnitSwitch = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
+  margin-left: 10px;
+  
+  ${props => props.theme?.rtl && css`
+    margin-right: 10px;
+    margin-left: 0;
+ `}
 `
 export const WeightUnitItem = styled.span`
   display: inline-flex;

@@ -91,9 +91,6 @@ export const DriverTipContainer = styled(PaymentMethodContainer)`
 
 export const CartContainer = styled(PaymentMethodContainer)`
   margin-bottom: 20px;
-  h1 {
-    margin: 20px 0px;
-  }
 `
 
 export const WalletPaymentOptionContainer = styled(PaymentMethodContainer)`
@@ -240,4 +237,38 @@ export const DeliveryOptionsContainer = styled.div`
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
     }
   }
+`
+
+export const CartHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+
+  h1 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  span {
+    font-size: 13px;
+    color: ${props => props.theme.colors.primary};
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  h1, span {
+    margin: 5px 0px;
+  }
+
+  @media (min-width: 300px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`
+
+export const SelectSpotContainer = styled.div`
+  
 `

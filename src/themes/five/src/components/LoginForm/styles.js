@@ -23,9 +23,10 @@ const Side = styled.div`
 export const FormSide = styled(Side)`
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   @media (min-width: 992px) {
-    width: 100%;
+    width: ${({ isCustomerMode }) => isCustomerMode ? '55%' : '100%'};
     font-size: ${({ isPopup }) => isPopup ? '12px' : '1em'};
   }
 
@@ -46,6 +47,7 @@ export const LoginWith = styled.div`
   width: ${({ isPopup }) => isPopup ? '100%' : '80%'};
   border-bottom: 1px solid #E9ECEF;
   font-size: 14px;
+  margin-bottom: 10px;
 
   @media (min-width: 425px) {
     font-size: 18px;
@@ -72,7 +74,7 @@ export const FormInput = styled.form`
   flex-direction: column;
 
   input:not(:last-child) {
-    margin: 10px 0px;
+    margin: 5px 0px;
     padding: 8px 20px;
   }
 
@@ -172,22 +174,26 @@ export const SkeletonSocialWrapper = styled.div`
 export const TogglePassword = styled.span`
   position: absolute;
   font-weight: 300;
-  padding: 10px 0;
   color: #333;
   font-size: 24px;
-  transform: translate(-150%, 13%);
+  transform: translate(-150%, 24%);
   max-height: 100%;
   ${props => props.theme?.rtl && css`
-    transform: translate(150%, 10%);
+    transform: translate(150%, 24%);
   `}
   span{
     cursor: pointer;
   }
- 
+
+  svg {
+    font-size: 16px;
+    color: ${props => props.theme.colors.lightGray};
+  }
 `
 
 export const InputWrapper = styled.div`
   position: relative;
+  margin-bottom: 5px;
   
   input{
     box-sizing: border-box;
@@ -300,4 +306,31 @@ export const DividerLine = styled.div`
   height: 1px;
   background: #E9ECEF;
   flex-grow: 1;
+`
+
+export const ValidationText = styled.div`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: ${props => props.theme.colors.danger500};
+`
+
+export const LogotypeContainer = styled.div`
+  margin-bottom: 50px;
+`
+
+export const HeroSide = styled(Side)`
+  display: none;
+
+  img{
+    width: 95%;
+    height: 80%;
+  }
+  @media (min-width: 992px) {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${props => props.theme.colors.primaryContrast};
+  }
 `

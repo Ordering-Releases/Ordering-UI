@@ -51,9 +51,9 @@ const BusinessProductsListUI = (props) => {
           </div>
           <ProductsListing>
             {
-              categoryState?.products?.map(product => (
+              categoryState?.products?.map((product, i) => (
                 <SingleProductCard
-                  key={product?.id}
+                  key={i}
                   isSoldOut={(product?.inventoried && !product?.quantity)}
                   product={product}
                   businessId={businessId}
@@ -68,12 +68,12 @@ const BusinessProductsListUI = (props) => {
       )}
 
       {
-        !category?.id && categories.filter(category => category?.id === 'featured').map((category) => {
+        !category?.id && categories.filter(category => category?.id === 'featured').map((category, i) => {
           const featProducts = business?.lazy_load_products_recommended
             ? categoriesState?.featured?.products?.some(product => product.featured) ? categoriesState?.featured?.products : []
             : categoryState?.products?.filter(product => product.featured) ?? []
           return featProducts?.length > 0 ? (
-            <WrapAllCategories key={category?.id}>
+            <WrapAllCategories key={i}>
               <div className='wrap-header'>
                 <div className='category-title'>
                   <h3>{t('FEATURED', 'Featured')}</h3>
@@ -87,9 +87,9 @@ const BusinessProductsListUI = (props) => {
                 )}
               </div>
               <ProductsListing>
-                {featProducts?.filter((p, index) => index < 9)?.map(product => product.featured && (
+                {featProducts?.filter((p, index) => index < 9)?.map((product, i) => product.featured && (
                   <SingleProductCard
-                    key={product?.id}
+                    key={i}
                     isSoldOut={(product?.inventoried && !product?.quantity)}
                     product={product}
                     businessId={businessId}
@@ -122,7 +122,7 @@ const BusinessProductsListUI = (props) => {
             ? categoryState?.products?.filter(product => product?.category_id === category?.id) ?? []
             : categoryState?.products?.filter(product => category?.children?.some(cat => cat.category_id === product?.category_id)) ?? []
           return (
-            <React.Fragment key={category?.id}>
+            <React.Fragment key={i}>
               {
                 products.length > 0 && (
                   <WrapAllCategories id='container'>
@@ -145,9 +145,9 @@ const BusinessProductsListUI = (props) => {
                     </div>
                     <ProductsListing>
                       {
-                        products.filter((p, index) => index < 9).map(product => (
+                        products.filter((p, index) => index < 9).map((product, i) => (
                           <SingleProductCard
-                            key={product?.id}
+                            key={i}
                             isSoldOut={product?.inventoried && !product?.quantity}
                             businessId={businessId}
                             product={product}

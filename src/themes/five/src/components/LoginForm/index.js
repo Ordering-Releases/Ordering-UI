@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTheme } from 'styled-components'
+import parsePhoneNumber from 'libphonenumber-js'
+import OtpInput from 'react-otp-input'
 import Skeleton from 'react-loading-skeleton'
+
 import {
   LoginForm as LoginFormController,
   useLanguage,
   useConfig,
   useSession,
-  ReCaptcha
+  ReCaptcha,
+  useApi
 } from 'ordering-components'
 import { Alert } from '../Confirm'
 import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
@@ -28,7 +32,10 @@ import {
   InputWrapper,
   LoginDivider,
   DividerLine,
-  Title
+  Title,
+  ValidationText,
+  LogotypeContainer,
+  HeroSide
 } from './styles'
 
 import { Tabs, Tab } from '../../styles/Tabs'
@@ -40,14 +47,13 @@ import { AppleLogin } from '../AppleLogin'
 import { SmsLoginButton } from '../../../../../components/SmsLogin'
 import { useCountdownTimer } from '../../../../../hooks/useCountdownTimer'
 import { formatSeconds } from '../../../../../utils'
-import parsePhoneNumber from 'libphonenumber-js'
-import OtpInput from 'react-otp-input'
 import { GoogleLoginButton } from '../GoogleLogin'
 import {
   Envelope,
   Lock,
   Eye,
-  EyeSlash
+  EyeSlash,
+  BoxArrowInRight
 } from 'react-bootstrap-icons'
 
 const LoginFormUI = (props) => {
@@ -68,21 +74,29 @@ const LoginFormUI = (props) => {
     loginTab,
     isPopup,
     credentials,
-    enableReCaptcha
+    enableReCaptcha,
+    useRootPoint,
+    isCustomerMode
   } = props
   const numOtpInputs = 4
+  const [ordering, { setOrdering }] = useApi()
   const [, t] = useLanguage()
   const theme = useTheme()
   const [{ configs }] = useConfig()
   const formMethods = useForm()
+
+  const emailInput = useRef(null)
+
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [, { login }] = useSession()
   const [passwordSee, setPasswordSee] = useState(false)
-  const emailInput = useRef(null)
   const [loginWithOtpState, setLoginWithOtpState] = useState(false)
   const [willVerifyOtpState, setWillVerifyOtpState] = useState(false)
   const [validPhoneFieldState, setValidPhoneField] = useState(false)
+  const [projectName, setProjectName] = useState(null)
+  const [submitted, setSubmitted] = useState(false)
   const [otpState, setOtpState] = useState('')
+
   const [otpLeftTime, _, resetOtpLeftTime] = useCountdownTimer(
     600, !checkPhoneCodeState?.loading && willVerifyOtpState)
 
@@ -111,6 +125,12 @@ const LoginFormUI = (props) => {
       }
       setWillVerifyOtpState(true)
     } else {
+      if (projectName) {
+        setOrdering({ ...ordering, project: projectName })
+        localStorage.setItem('project_name', projectName)
+        setSubmitted(true)
+        return
+      }
       handleButtonLoginClick()
     }
   }
@@ -175,6 +195,11 @@ const LoginFormUI = (props) => {
     formMethods.setValue('cellphone', number, '')
   }
 
+  const handleChangeProject = (e) => {
+    setSubmitted(false)
+    setProjectName(e.target.value)
+  }
+
   const handleSendOtp = () => {
     if (willVerifyOtpState) {
       const { cellphone, countryPhoneCode } = parseNumber(credentials?.cellphone)
@@ -194,33 +219,21 @@ const LoginFormUI = (props) => {
         open: true,
         content: formState.result?.result || [t('ERROR', 'Error')]
       })
+      setSubmitted(false)
     }
   }, [formState])
 
   useEffect(() => {
-    if (Object.keys(formMethods.errors).length > 0) {
-      setAlertState({
-        open: true,
-        content: Object.values(formMethods.errors).map(error => error.message)
-      })
-    }
-  }, [formMethods.errors])
-
-  useEffect(() => {
-    formMethods.register('email', {
-      required: loginTab === 'email'
-        ? t('VALIDATION_ERROR_EMAIL_REQUIRED', 'The field Email is required').replace('_attribute_', t('EMAIL', 'Email'))
-        : null,
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: t('INVALID_ERROR_EMAIL', 'Invalid email address').replace('_attribute_', t('EMAIL', 'Email'))
-      }
-    })
     formMethods.register('cellphone', {
       required: loginTab === 'cellphone'
         ? t('VALIDATION_ERROR_MOBILE_PHONE_REQUIRED', 'The field Mobile phone is required').replace('_attribute_', t('CELLPHONE', 'Cellphone'))
         : null
     })
+    if (useRootPoint) {
+      formMethods.register('project', {
+        required: t('VALIDATION_ERROR_PROJECT_REQUIRED', 'The field project is required').replace('_attribute_', t('PROJECT', 'Project'))
+      })
+    }
   }, [formMethods])
 
   useEffect(() => {
@@ -257,6 +270,15 @@ const LoginFormUI = (props) => {
     } else resetOtpLeftTime()
   }, [verifyPhoneState])
 
+  useEffect(() => {
+    formMethods.reset()
+  }, [loginTab])
+
+  useEffect(() => {
+    if (ordering.project === null || !submitted || !useRootPoint) return
+    handleButtonLoginClick()
+  }, [ordering, submitted])
+
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -266,8 +288,19 @@ const LoginFormUI = (props) => {
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
       <LoginContainer isPopup={isPopup}>
-        <FormSide isPopup={isPopup}>
-          <Title>{t('LOGIN', 'Login')}</Title>
+        {isCustomerMode && (
+          <HeroSide>
+            <img alt='Logotype' width='530px' height='620px' src={theme?.images?.general?.callcenterHero} loading='lazy' />
+          </HeroSide>
+        )}
+        <FormSide isPopup={isPopup} isCustomerMode={isCustomerMode}>
+          {isCustomerMode ? (
+            <LogotypeContainer>
+              <img alt='Logotype-callcenter' width='250px' height='105px' src={theme?.images?.logos?.logoCallcenter} loading='lazy' />
+            </LogotypeContainer>
+          ) : (
+            <Title>{t('LOGIN', 'Login')}</Title>
+          )}
 
           {(useLoginByEmail && useLoginByCellphone && !loginWithOtpState) && (
             <LoginWith isPopup={isPopup}>
@@ -309,28 +342,76 @@ const LoginFormUI = (props) => {
                 props.beforeMidComponents?.map((BeforeMidComponents, i) => (
                   <BeforeMidComponents key={i} {...props} />))
               }
-              {useLoginByEmail && loginTab === 'email' && (
+              {useRootPoint && (
                 <InputWrapper>
                   <Input
-                    type='email'
-                    name='email'
-                    aria-label='email'
-                    placeholder={t('EMAIL', 'Email')}
-                    ref={(e) => (emailInput.current = e)}
-                    onChange={handleChangeInputEmail}
+                    type='text'
+                    name='project'
+                    aria-label='project'
+                    placeholder={t('PROJECT', 'Project')}
+                    ref={formMethods.register({
+                      required: t(
+                        'VALIDATION_ERROR_REQUIRED',
+                        'Project is required'
+                      ).replace('_attribute_', t('PROJECT', 'Project'))
+                    })}
+                    onChange={(e) => handleChangeProject(e)}
                     autoComplete='off'
+                    autoCapitalize='off'
                   />
                   <InputBeforeIcon>
-                    <Envelope />
+                    <BoxArrowInRight />
                   </InputBeforeIcon>
                 </InputWrapper>
               )}
+              {useLoginByEmail && loginTab === 'email' && (
+                <>
+                  {formMethods?.errors?.email?.type === 'required' && (
+                    <ValidationText>
+                      {formMethods.errors?.email?.message} *
+                    </ValidationText>
+                  )}
+                  {formMethods.errors?.email?.type === 'pattern' && (
+                    <ValidationText>
+                      {t('INVALID_ERROR_EMAIL', 'Invalid email address').replace('_attribute_', t('EMAIL', 'Email'))}
+                    </ValidationText>
+                  )}
+                  <InputWrapper>
+                    <Input
+                      type='email'
+                      name='email'
+                      aria-label='email'
+                      placeholder={t('EMAIL', 'Email')}
+                      ref={formMethods.register({
+                        required: loginTab === 'email'
+                          ? t('VALIDATION_ERROR_EMAIL_REQUIRED', 'The field Email is required').replace('_attribute_', t('EMAIL', 'Email'))
+                          : null,
+                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+                      })}
+                      onChange={handleChangeInputEmail}
+                      autoComplete='off'
+                      isError={formMethods.errors?.email}
+                    />
+                    <InputBeforeIcon>
+                      <Envelope />
+                    </InputBeforeIcon>
+                  </InputWrapper>
+                </>
+              )}
               {(useLoginByCellphone && loginTab === 'cellphone' && !willVerifyOtpState) && (
-                <InputPhoneNumber
-                  value={credentials?.cellphone}
-                  setValue={handleChangePhoneNumber}
-                  handleIsValid={() => { }}
-                />
+                <>
+                  {formMethods.errors?.cellphone && !credentials?.cellphone && (
+                    <ValidationText>
+                      {formMethods.errors?.cellphone?.message} {formMethods?.errors?.cellphone?.type === 'required' && '*'}
+                    </ValidationText>
+                  )}
+                  <InputPhoneNumber
+                    value={credentials?.cellphone}
+                    setValue={handleChangePhoneNumber}
+                    handleIsValid={() => { }}
+                    isError={formMethods.errors?.cellphone && !credentials?.cellphone}
+                  />
+                </>
               )}
 
               {(!verifyPhoneState?.loading && willVerifyOtpState && !checkPhoneCodeState?.loading) && (
@@ -376,24 +457,32 @@ const LoginFormUI = (props) => {
               )}
 
               {!loginWithOtpState && (
-                <InputWrapper>
-                  <Input
-                    type={!passwordSee ? 'password' : 'text'}
-                    name='password'
-                    aria-label='password'
-                    placeholder={t('PASSWORD', 'Password')}
-                    ref={formMethods.register({
-                      required: t('VALIDATION_ERROR_PASSWORD_REQUIRED', 'The field Password is required').replace('_attribute_', t('PASSWORD', 'Password'))
-                    })}
-                    onChange={(e) => handleChangeInput(e)}
-                  />
-                  <TogglePassword onClick={togglePasswordView}>
-                    {!passwordSee ? <Eye /> : <EyeSlash />}
-                  </TogglePassword>
-                  <InputBeforeIcon>
-                    <Lock />
-                  </InputBeforeIcon>
-                </InputWrapper>
+                <>
+                  {formMethods.errors?.password && (
+                    <ValidationText>
+                      {formMethods.errors?.password?.message} {formMethods?.errors?.password?.type === 'required' && '*'}
+                    </ValidationText>
+                  )}
+                  <InputWrapper>
+                    <Input
+                      type={!passwordSee ? 'password' : 'text'}
+                      name='password'
+                      aria-label='password'
+                      placeholder={t('PASSWORD', 'Password')}
+                      ref={formMethods.register({
+                        required: t('VALIDATION_ERROR_PASSWORD_REQUIRED', 'The field Password is required').replace('_attribute_', t('PASSWORD', 'Password'))
+                      })}
+                      onChange={(e) => handleChangeInput(e)}
+                      isError={formMethods.errors?.password}
+                    />
+                    <TogglePassword onClick={togglePasswordView}>
+                      {!passwordSee ? <Eye /> : <EyeSlash />}
+                    </TogglePassword>
+                    <InputBeforeIcon>
+                      <Lock />
+                    </InputBeforeIcon>
+                  </InputWrapper>
+                </>
               )}
               {
                 props.afterMidElements?.map((MidElement, i) => (

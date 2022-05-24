@@ -18,10 +18,13 @@ export const Select = (props) => {
     defaultValue,
     onChange,
     notAsync,
-    notReload
+    notReload,
+    CustomArrow,
+    isHomeStyle,
+    disableOneOption
   } = props
 
-  const isHome = window.location.pathname === '/' || window.location.pathname === '/home'
+  const isHome = window.location.pathname === '/' || window.location.pathname === '/home' || isHomeStyle
   const [open, setOpen] = useState(false)
   const defaultOption = options?.find(option => option.value === defaultValue)
   const [selectedOption, setSelectedOption] = useState(defaultOption)
@@ -73,7 +76,7 @@ export const Select = (props) => {
   }
 
   return (
-    isOneOption ? (
+    isOneOption && !disableOneOption ? (
       <SelectInput isHome={isHome}>
         <Selected>
           <Header>
@@ -88,14 +91,14 @@ export const Select = (props) => {
         disabled={orderState.loading && !notReload}
         onMouseUp={handleSelectClick}
       >
-        {!selectedOption && <Selected><Header>{placeholder || ''}</Header><Chevron><BsChevronDown /></Chevron></Selected>}
+        {!selectedOption && <Selected><Header>{placeholder || ''}</Header><Chevron>{CustomArrow ? <CustomArrow id='arrow' /> : <BsChevronDown />}</Chevron></Selected>}
         {selectedOption && (
           <Selected>
             <Header>
-              {selectedOption.showOnSelected || selectedOption.content}
+              {selectedOption.showOnSelected ?? selectedOption.content}
             </Header>
             <Chevron>
-              <BsChevronDown />
+              {CustomArrow ? <CustomArrow id='arrow' /> : <BsChevronDown />}
             </Chevron>
           </Selected>
         )}

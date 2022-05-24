@@ -10,7 +10,8 @@ import {
   BusinessHeroImg,
   HightestRatedWrapper,
   Divider,
-  OrderProgressWrapper
+  OrderProgressWrapper,
+  SearchContainer
 } from './styles'
 
 import { Button } from '../../styles/Buttons'
@@ -26,7 +27,6 @@ import { BusinessTypeFilter } from '../BusinessTypeFilter'
 import { BusinessController } from '../BusinessController'
 import { OrdersOption } from '../OrdersOption'
 import { BusinessesMap } from '../../../../../components/BusinessesMap'
-
 import {
   useOrder,
   useSession,
@@ -37,7 +37,7 @@ import {
 import { HighestRated } from '../HighestRated'
 import { BusinessPreorder } from '../BusinessPreorder'
 import { OrderProgress } from '../OrderProgress'
-
+import FiFilter from '@meronex/icons/fi/FiFilter'
 const PIXELS_TO_SCROLL = 300
 
 const BusinessesListingUI = (props) => {
@@ -47,6 +47,7 @@ const BusinessesListingUI = (props) => {
     searchValue,
     getBusinesses,
     isCustomLayout,
+    isCustomerMode,
     onRedirectPage,
     handleChangeSearch,
     handleChangeBusinessType,
@@ -137,59 +138,9 @@ const BusinessesListingUI = (props) => {
     if (preorderBusiness) setIsPreorder(true)
   }, [preorderBusiness])
 
-  return (
-    <>
-      {props.beforeElements?.map((BeforeElement, i) => (
-        <React.Fragment key={i}>
-          {BeforeElement}
-        </React.Fragment>))}
-      {props.beforeComponents?.map((BeforeComponent, i) => (
-        <BeforeComponent key={i} {...props} />))}
-      <BusinessContainer>
-        <BusinessHeroImg bgimage={theme.images?.general?.businessHero} />
-        <OrderProgressWrapper>
-          <OrderProgress />
-        </OrderProgressWrapper>
-        <WrapperSearch isCustomLayout={isCustomLayout}>
-          <SearchBar
-            lazyLoad
-            search={searchValue}
-            isCustomLayout={isCustomLayout}
-            placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
-            onSearch={handleChangeSearch}
-          />
-          {isCustomLayout && (
-            <FiMap onClick={toggleMap} />
-          )}
-        </WrapperSearch>
-        {hasHighRatedBusiness && (
-          <HightestRatedWrapper>
-            <Divider />
-            <HighestRated
-              handleClickAddress={handleClickAddress}
-              setHasHighRatedBusiness={setHasHighRatedBusiness}
-              onBusinessClick={onBusinessClick}
-            />
-            <Divider />
-          </HightestRatedWrapper>
-        )}
-        {((configs && configs?.business_listing_categories !== false) || !isCustomLayout) && (
-          <BusinessTypeFilter
-            images={props.images}
-            businessTypes={props.businessTypes}
-            defaultBusinessType={props.defaultBusinessType}
-            handleChangeBusinessType={handleChangeBusinessType}
-          />
-        )}
-
-        {activeMap && (
-          <BusinessesMap
-            businessList={businessesList.businesses}
-            userLocation={orderState?.options?.address?.location}
-            setErrors={setMapErrors}
-          />
-        )}
-
+  const OrdersSection = (titleContent) => {
+    return (
+      <>
         {isCustomLayout && onRedirectPage && (
           <>
             <OrdersOption
@@ -203,6 +154,7 @@ const BusinessesListingUI = (props) => {
               }
               isCustomLayout
               isBusinessesLoading={businessesList.loading}
+              isCustomerMode={isCustomerMode}
             />
             <OrdersOption
               horizontal
@@ -212,67 +164,179 @@ const BusinessesListingUI = (props) => {
               onRedirectPage={onRedirectPage}
               userCustomerId={userCustomer?.id}
               isCustomLayout
+              titleContent={titleContent}
               isBusinessesLoading={businessesList.loading}
+              isCustomerMode={isCustomerMode}
+
             />
           </>
         )}
+      </>
+    )
+  }
 
-        {isCustomLayout && businessesList?.businesses?.length > 0 && (
-          <BusinessesTitle>
-            {t('BUSINESSES', 'Businesses')}
-          </BusinessesTitle>
+  return (
+    <>
+      {props.beforeElements?.map((BeforeElement, i) => (
+        <React.Fragment key={i}>
+          {BeforeElement}
+        </React.Fragment>))}
+      {props.beforeComponents?.map((BeforeComponent, i) => (
+        <BeforeComponent key={i} {...props} />))}
+      <BusinessContainer>
+        <BusinessHeroImg bgimage={theme.images?.general?.businessHero} />
+        <OrderProgressWrapper>
+          <OrderProgress userCustomerId={userCustomer?.id} asDashboard={isCustomerMode} isCustomerMode={isCustomerMode} />
+        </OrderProgressWrapper>
+        {isCustomerMode && (
+          <OrdersSection titleContent={t('PREVIOUS_ORDERS', 'Previous orders')} />
         )}
-
-        <BusinessList>
-          {
-            !businessesList.loading && businessesList.businesses.length === 0 && (
-              <NotFoundSource
-                content={t('NOT_FOUND_BUSINESSES', 'No businesses to delivery / pick up at this address, please change filters or change address.')}
-              >
-                <Button
-                  outline
-                  color='primary'
-                  onClick={() => handleClickAddress()}
-                  style={{ height: '44px' }}
-                >
-                  {t('CHANGE_ADDRESS', 'Select other Address')}
-                </Button>
-              </NotFoundSource>
-            )
-          }
-          {
-            businessesList.businesses?.map((business) => (
-              <BusinessController
-                key={business.id}
-                className='card'
-                business={business}
-                isBusinessOpen={business.open}
-                handleCustomClick={handleBusinessClick}
-                orderType={orderState?.options?.type}
+        {!isCustomerMode && (
+          <>
+            <WrapperSearch isCustomLayout={isCustomLayout} isCustomerMode={isCustomerMode}>
+              <SearchBar
+                lazyLoad
+                search={searchValue}
                 isCustomLayout={isCustomLayout}
-                isShowCallcenterInformation={isCustomLayout}
-                onPreorderBusiness={setPreorderBusiness}
+                placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
+                onSearch={handleChangeSearch}
               />
-            ))
-          }
-          {businessesList.loading && (
-            [...Array(paginationProps?.nextPageItems > 4 ? paginationProps.nextPageItems : 8).keys()].map(i => (
-              <BusinessController
-                key={i}
-                className='card'
-                business={{}}
-                isSkeleton
-                orderType={orderState?.options?.type}
+              {configs?.advanced_business_search_enabled?.value === '1' && (
+                <FiFilter onClick={() => onRedirectPage({ page: 'business_search' })} />
+              )}
+              {isCustomLayout && (
+                <FiMap onClick={toggleMap} />
+              )}
+            </WrapperSearch>
+            {activeMap && (
+              <BusinessesMap
+                businessList={businessesList.businesses}
+                userLocation={orderState?.options?.address?.location}
+                setErrors={setMapErrors}
               />
-            ))
+            )}
+          </>
+        )}
+        {hasHighRatedBusiness && (
+          <HightestRatedWrapper>
+            <Divider />
+            <HighestRated
+              handleClickAddress={handleClickAddress}
+              setHasHighRatedBusiness={setHasHighRatedBusiness}
+              onBusinessClick={onBusinessClick}
+              isCustomerMode={isCustomerMode}
+            />
+            <Divider />
+          </HightestRatedWrapper>
+        )}
+        {((configs && configs?.business_listing_categories !== false) || !isCustomLayout) && (
+          <BusinessTypeFilter
+            images={props.images}
+            businessTypes={props.businessTypes}
+            defaultBusinessType={props.defaultBusinessType}
+            handleChangeBusinessType={handleChangeBusinessType}
+          />
+        )}
+        {isCustomerMode && (
+          <SearchContainer>
+            {isCustomLayout && (
+              <BusinessesTitle isCustomerMode={isCustomerMode}>
+                {t('BUSINESSES', 'Businesses')}
+              </BusinessesTitle>
+            )}
+            <WrapperSearch isCustomLayout={isCustomLayout} isCustomerMode={isCustomerMode}>
+              <SearchBar
+                lazyLoad
+                search={searchValue}
+                isCustomLayout={isCustomLayout}
+                placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
+                onSearch={handleChangeSearch}
+              />
+              {configs?.advanced_business_search_enabled?.value === '1' && (
+                <FiFilter onClick={() => onRedirectPage({ page: 'business_search' })} />
+              )}
+              {isCustomLayout && (
+                <FiMap onClick={toggleMap} />
+              )}
+            </WrapperSearch>
+          </SearchContainer>
+        )}
+        {isCustomerMode && activeMap && (
+          <BusinessesMap
+            businessList={businessesList.businesses}
+            userLocation={orderState?.options?.address?.location}
+            setErrors={setMapErrors}
+          />
+        )}
+        {!isCustomerMode && (
+          <OrdersSection />
+        )}
+        <>
+          {!isCustomLayout && isCustomerMode && businessesList?.businesses?.length > 0 && (
+            <BusinessesTitle>
+              {t('BUSINESSES', 'Businesses')}
+            </BusinessesTitle>
           )}
-          {businessesList.error && businessesList.error.length > 0 && businessesList.businesses.length === 0 && (
-            businessesList.error.map((e, i) => (
-              <ErrorMessage key={i}>{t('ERROR', 'ERROR')}: [{e?.message || e}]</ErrorMessage>
-            ))
-          )}
-        </BusinessList>
 
+          <BusinessList>
+            {
+              !businessesList.loading && businessesList.businesses.length === 0 && (
+                <NotFoundSource
+                  content={t('NOT_FOUND_BUSINESSES', 'No businesses to delivery / pick up at this address, please change filters or change address.')}
+                >
+                  <Button
+                    outline
+                    color='primary'
+                    onClick={() => handleClickAddress()}
+                    style={{ height: '44px' }}
+                  >
+                    {t('CHANGE_ADDRESS', 'Select other Address')}
+                  </Button>
+                </NotFoundSource>
+              )
+            }
+            {
+              businessesList.businesses?.map((business) => (
+                <BusinessController
+                  key={business.id}
+                  className='card'
+                  business={business}
+                  isBusinessOpen={business.open}
+                  handleCustomClick={handleBusinessClick}
+                  orderType={orderState?.options?.type}
+                  isCustomLayout={isCustomLayout}
+                  isCustomerMode={isCustomerMode}
+                  onPreorderBusiness={setPreorderBusiness}
+                  businessHeader={business?.header}
+                  businessFeatured={business?.featured}
+                  businessOffers={business?.offers}
+                  businessLogo={business?.logo}
+                  businessReviews={business?.reviews?.total}
+                  businessDeliveryPrice={business?.delivery_price}
+                  businessDeliveryTime={business?.delivery_time}
+                  businessPickupTime={business?.pickup_time}
+                  businessDistance={business?.distance}
+                />
+              ))
+            }
+            {businessesList.loading && (
+              [...Array(paginationProps?.nextPageItems > 4 ? paginationProps.nextPageItems : 8).keys()].map(i => (
+                <BusinessController
+                  key={i}
+                  className='card'
+                  business={{}}
+                  isSkeleton
+                  orderType={orderState?.options?.type}
+                />
+              ))
+            )}
+            {businessesList.error && businessesList.error.length > 0 && businessesList.businesses.length === 0 && (
+              businessesList.error.map((e, i) => (
+                <ErrorMessage key={i}>{t('ERROR', 'ERROR')}: [{e?.message || e}]</ErrorMessage>
+              ))
+            )}
+          </BusinessList>
+        </>
         <Modal
           open={isPreorder}
           width='760px'
@@ -311,6 +375,7 @@ const BusinessesListingUI = (props) => {
             userId={isNaN(userCustomer?.id) ? null : userCustomer?.id}
             onCancel={() => setModals({ ...modals, listOpen: false })}
             onAccept={() => handleFindBusinesses()}
+            isCustomerMode={isCustomerMode}
           />
         </Modal>
 

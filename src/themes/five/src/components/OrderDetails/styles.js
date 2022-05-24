@@ -5,6 +5,9 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  ${({ isCustomerMode }) => isCustomerMode && css`
+    align-items: center;
+  `}
 `
 
 export const WrapperContainer = styled.div`
@@ -12,11 +15,15 @@ export const WrapperContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: auto;
-
+  position: relative;
+  ${({ isCustomerMode }) => isCustomerMode && css`
+    width: 50%;
+  `}
   @media (min-width: 769px) {
-    flex-direction: row;
+    ${({ isCustomerMode }) => !isCustomerMode && css`
+      flex-direction: row;
+    `}
   }
-
   @media (min-width: 993px) {
     min-height: calc(100vh - 337px);
     box-sizing: border-box;
@@ -24,10 +31,11 @@ export const WrapperContainer = styled.div`
 `
 
 export const SkeletonWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-
+  ${({ isCustomerMode }) => !isCustomerMode && css`
+    width: 100%;
+  `}
   @media (min-width: 768px) {
     flex-direction: row;
   }
@@ -35,12 +43,10 @@ export const SkeletonWrapper = styled.div`
 
 export const HeaderInfo = styled.div`
   margin-bottom: 20px;
-
   h1, p {
     margin: 0;
     color: ${props => props.theme.colors.darkTextColor};
   }
-
   h1 {
     margin-bottom: 22px;
   }
@@ -49,17 +55,46 @@ export const HeaderInfo = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 0px;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    position: absolute;
+    right: 0;
+  ` : css`
+    margin: 10px 0px;
+  `}
 `
 
 export const OrderBusiness = styled.div`
   display: flex;
-  margin: 20px 0 35px 0;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 7.6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px 0px #0000001F;
+  ` : css`
+    margin: 20px 0 35px 0;
+  `}
 `
 
 export const BusinessWrapper = styled.div`
-  width: 90%;
   display: flex;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 7.6px;
+      margin-right: 40px;
+    }
+  ` : css`
+    width: 90%;
+  `}
 `
 
 export const BusinessInfo = styled.div`
@@ -70,16 +105,25 @@ export const BusinessInfo = styled.div`
     color: ${props => props.theme.colors.darkTextColor};
     overflow-wrap: break-word;
   }
-
   h2 {
     font-weight: 500;
-    font-size: 20px;
-    margin-bottom: 15px;
   }
   p {
     font-size: 14px;
     margin-bottom: 5px;
   }
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    box-sizing: border-box;
+    h2{
+      font-size: 18px;
+      margin: 0px 0px 5px 0px;
+    }
+  ` : css`
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  `}
 `
 
 export const ActionsBlock = styled.div`
@@ -100,10 +144,8 @@ export const ActionsBlock = styled.div`
     cursor: pointer;
     color: #B1BCCC;
   }
-
   @media (min-width: 380px) {
     flex-direction: row;
-
     svg {
       font-size: 24px;
     }
@@ -113,6 +155,7 @@ export const ActionsBlock = styled.div`
 export const OrderInfo = styled.div`
   width: 100%;
   margin: 0px 0px 35px;
+  position: relative;
   h1, p {
     margin: 0px;
     color: ${props => props.theme.colors.darkTextColor};
@@ -128,16 +171,19 @@ export const OrderInfo = styled.div`
     overflow: hidden;
     white-space: nowrap;
   }
-
   .date {
     margin-bottom: 6px;
   }
-
+  .types {
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
   .order-status {
     font-weight: 600;
     font-size: 16px;
   }
 `
+
 export const ReviewOrderLink = styled.span`
   margin: 0;
   cursor: pointer;
@@ -159,7 +205,7 @@ const StatusBarStyled = styled.div`
   margin: 18px 0px 8px;
   background: ${props => `linear-gradient(to right, ${props.theme.colors.primary} ${props.percentage}%, ${props.theme.colors.disabled} ${props.percentage}%)`};
   ${props => props.theme?.rtl && css`
-    background: linear-gradient(to left, ${props.theme.colors.primary} ${props.percentage}%, ${props.theme.colors.disabled} ${props.percentage}%)
+    background: linear-gradient(to left, ${props.theme.colors.primary} ${props.percentage}%, ${props.theme.colors.disabled} ${props.percentage}%);
   `}
 `
 
@@ -167,7 +213,7 @@ export const StatusBar = (props) => {
   return (
     <StatusBarStyled
       {...props}
-      // style={{ background: `linear-gradient(to right, #D81212 ${props.percentage}%, #BFBFBF ${props.percentage}%)` }}
+    // style={{ background: `linear-gradient(to right, #D81212 ${props.percentage}%, #BFBFBF ${props.percentage}%)` }}
     >
       {props.children}
     </StatusBarStyled>
@@ -180,57 +226,87 @@ export const SectionTitle = styled.h1`
   font-weight: 500;
 `
 
+export const SectionTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px 0px 5px 0px;
+  }
+`
+
 export const OrderCustomer = styled(BusinessInfo)`
-  margin: 25px 0px 35px;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    display: flex;
+    flex-direction: column;
+    border-radius: 7.6px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px 0px #0000001F;
+    margin-bottom: 30px;
+  ` : css`
+    margin: 25px 0px 35px;
+  `}
 `
 
 export const PhotoBlock = styled.img`
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 10px;
-  ${props => props.theme?.rtl && css`
-    margin-left: 10px;
-    margin-right: 0;
+  ${({ isCustomerMode, theme }) => isCustomerMode ? css`
+    border-radius: 7.6px;
+    width: 100px;
+    height: 100px;
+    margin-right: 40px;
+  ` : css`
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 10px;
+    ${theme?.rtl && css`
+      margin-left: 10px;
+      margin-right: 0;
+    `}
   `}
 `
 
 export const Map = styled.div`
-  width: calc(100% + 40px);
-  height: 300px;
-  margin-left: -20px;
   margin-bottom: 10px;
-
   > div {
     position: relative !important;
     width: 100% !important;
     height: 100% !important;
   }
-
-  @media (min-width: 768px) {
-    width: calc(100% + 80px);
-    margin-left: -40px;
-  }
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    width: 100%;
+    height: 350px;
+  ` : css`
+    width: calc(100% + 40px);
+    height: 300px;
+    margin-left: -20px;
+    @media (min-width: 768px) {
+      width: calc(100% + 80px);
+      margin-left: -40px;
+    }
+  `}
 `
 
 export const OrderDriver = styled(OrderCustomer)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #E9ECEF;
+  ${({ isCustomerMode }) => !isCustomerMode && css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E9ECEF;
+  `}
 `
 
 export const WrapperDriver = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-
   div.photo {
     display: flex;
     align-items: center;
     justify-content: center;
-
     svg {
       width: 48px;
       height: 48px;
@@ -251,6 +327,9 @@ export const OrderBill = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
+  ${({ isCustomerMode }) => isCustomerMode && css`
+    margin-top: 10px;
+  `}
   table {
     width: 100%;
     font-size: 14px;
@@ -264,7 +343,6 @@ export const OrderBill = styled.div`
       `}
     }
   }
-
   table.total {
     border-top: 1px solid #BFBFBF;
     margin-top: 15px;
@@ -282,7 +360,6 @@ export const OrderBill = styled.div`
       }
     }
   }
-
   table.comments {
     margin-top: 20px;
     align-items: center;
@@ -292,7 +369,6 @@ export const OrderBill = styled.div`
       }
     }
   }
-
   @media (min-width: 678px) {
     table {
       font-size: 16px;
@@ -306,6 +382,9 @@ export const SkeletonBlock = styled.div`
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+  ${({ isCustomerMode }) => isCustomerMode && css`
+    align-items: center;
+  `}
 `
 
 export const SkeletonBlockWrapp = styled.div`
@@ -321,7 +400,6 @@ export const ShareOrder = styled.div`
   margin: 0 0 20px;
   justify-content: space-between;
   z-index: 1;
-
   div.wrap {
     & > div:first-child {
       left: 0;
@@ -335,12 +413,10 @@ export const ShareOrder = styled.div`
     font-size: 15px;
     margin: 0px;
   }
-
   p {
     font-size: 13px;
     margin: 0px;
   }
-
   button {
     display: flex;
     justify-content: center;
@@ -348,28 +424,23 @@ export const ShareOrder = styled.div`
     font-size: 14px;
     align-items: center;
     background: ${props => props.theme.colors.backgroundPage};
-
     svg {
       left: 0;
       margin-right: 6px;
       color: ${props => props.theme.colors.primary};
     }
-
     &:hover {
       svg {
         color: #FFFFFF;
       }
     }
   }
-
   div.text {
     width: 60%;
   }
-
   div.wrap {
     display: flex;
     align-items: center;
-
     & > div:first-child {
       width: 100%;
       position: relative;
@@ -380,7 +451,6 @@ export const ShareOrder = styled.div`
       }
     }
   }
-
   @media (min-width: 1201px) {
     div.wrap {
       & > div:first-child {
@@ -388,7 +458,6 @@ export const ShareOrder = styled.div`
       }
     }
   }
-
   @media (min-width: 768px) {
     div.wrap {
       width: 30%;
@@ -396,15 +465,12 @@ export const ShareOrder = styled.div`
         left: 0;
       }
     }
-
     h1 {
       font-size: 20px;
     }
-
     p {
       font-size: 18px;
     }
-
     button {
       font-size: 18px;
       width: 100%;
@@ -414,16 +480,13 @@ export const ShareOrder = styled.div`
       }
     }
   }
-
   @media (min-width: 425px) {
     div.text {
       width: 70%;
     }
-
     h1 {
       font-size: 18px;
     }
-
     p {
       font-size: 15px;
     }
@@ -446,17 +509,23 @@ export const ExclamationWrapper = styled.div`
 
 export const WrapperLeftContainer = styled.div`
   width: 100%;
-  padding: 20px;
   box-sizing: border-box;
-
+  
+  ${({ isCustomerMode }) => !isCustomerMode && css`
+    padding: 20px;
+  `}
   @media (min-width: 769px) {
-    width: 50%;
-    padding: 40px;
+    ${({ isCustomerMode }) => !isCustomerMode && css`
+      width: 50%;
+      padding: 40px;
+    `}
   }
 `
 
-export const WrapperRightContainer = styled(WrapperLeftContainer)`
-  background: #F8F9FA;
+export const WrapperRightContainer = styled(WrapperLeftContainer)`  
+  ${({ isCustomerMode }) => !isCustomerMode && css`
+    background: #F8F9FA;  
+  `}
 `
 
 export const Divider = styled.div`
@@ -464,7 +533,6 @@ export const Divider = styled.div`
   background: #F8F9FA;
   width: calc(100% + 40px);
   margin-left: -20px;
-
   @media(min-width: 769px) {
     width: calc(100% + 80px);
     margin-left: -40px;
@@ -492,4 +560,60 @@ export const CommentContainer = styled.div`
   h3 {
     margin: 0;
   }
+`
+export const NewOrder = styled.div`
+  button {
+    width: 160px;
+  }
+`
+export const OrderActions = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    justify-content: space-around;
+    min-width: 200px;
+    max-height: 53px;
+  }
+`
+
+export const ReOrder = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  button {
+    padding: 5px 16px;
+    min-width: unset;
+  }
+`
+
+export const BusinessTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const OrderPreferences = styled(OrderCustomer)``
+
+export const HeaderTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+`
+
+export const PlaceSpotSection = styled.div`
 `

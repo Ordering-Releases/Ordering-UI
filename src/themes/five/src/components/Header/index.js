@@ -3,8 +3,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSession, useLanguage, useOrder, useEvent, useConfig, useCustomer, useUtils } from 'ordering-components'
 import { useTheme } from 'styled-components'
-import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
-import MdClose from '@meronex/icons/md/MdClose'
+import AiOutlineClose from '@meronex/icons/ai/AiOutlineClose'
+import { LanguageSelector } from '../LanguageSelector'
+
 import { GeoAlt } from 'react-bootstrap-icons'
 import TiWarningOutline from '@meronex/icons/ti/TiWarningOutline'
 import { OrderTypeSelectorContent } from '../OrderTypeSelectorContent'
@@ -22,7 +23,8 @@ import {
   UserEdit,
   AddressMenu,
   MomentMenu,
-  FarAwayMessage
+  FarAwayMessage,
+  Divider
 } from './styles'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { useOnlineStatus } from '../../../../../hooks/useOnlineStatus'
@@ -37,7 +39,7 @@ import { AddressList } from '../AddressList'
 import { AddressForm } from '../AddressForm'
 import { HeaderOption } from '../HeaderOption'
 import { SidebarMenu } from '../SidebarMenu'
-import { UserDetails } from '../../../../../components/UserDetails'
+import { UserDetails } from '../UserDetails'
 import { Confirm } from '../Confirm'
 import { LoginForm } from '../LoginForm'
 import { SignUpForm } from '../SignUpForm'
@@ -70,6 +72,10 @@ export const Header = (props) => {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [modalSelected, setModalSelected] = useState(null)
   const [modalPageToShow, setModalPageToShow] = useState(null)
+  const [preorderBusiness, setPreorderBusiness] = useState(null)
+  const [isAddressFormOpen, setIsAddressFormOpen] = useState(false)
+  const [isOpenUserData, setIsOpenUserData] = useState(false)
+
   const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
   const [isFarAway, setIsFarAway] = useState(false)
 
@@ -153,8 +159,12 @@ export const Header = (props) => {
   }
 
   const handleOpenLoginSignUp = (index) => {
-    setModalPageToShow(index)
-    setAuthModalOpen(true)
+    if (isCustomerMode) {
+      events.emit('go_to_page', { page: 'home' })
+    } else {
+      setModalPageToShow(index)
+      setAuthModalOpen(true)
+    }
   }
 
   useEffect(() => {
@@ -206,37 +216,51 @@ export const Header = (props) => {
               <img alt='Isotype' width='35px' height='45px' src={isHome ? theme?.images?.logos?.isotypeInvert : theme?.images?.logos?.isotype} loading='lazy' />
             </LogoHeader>
           </LeftHeader>
-          {isShowOrderOptions && (
-            <Menu className='left-header'>
+          {isShowOrderOptions && !props.isCustomLayout && (
+            <Menu className='left-header' isCustomerMode={isCustomerMode}>
               {windowSize.width > 820 && isFarAway && (
                 <FarAwayMessage>
                   <TiWarningOutline />
                   <span>{t('YOU_ARE_FAR_FROM_ADDRESS', 'You are far from this address')}</span>
                 </FarAwayMessage>
               )}
-              {isCustomerMode && windowSize.width > 450 && (
-                <CustomerInfo
-                  onClick={(e) => handleClickUserCustomer(e)}
-                >
-                  <span>
-                    <FaUserCircle />
-                    <p>{userCustomer?.name} {userCustomer?.lastname}</p>
-                  </span>
-                  <span
-                    style={styles.headCustomer}
-                    ref={clearCustomer}
-                  >
-                    <MdClose style={styles.clearCustomer} />
-                  </span>
-                </CustomerInfo>
-              )}
-              {onlineStatus && windowSize.width > 820 && (
+              {isCustomerMode && (
                 <>
                   <AddressMenu
-                    onClick={() => openModal('address')}
+                    isCustomerMode={isCustomerMode}
+                    onClick={(e) => handleClickUserCustomer(e)}
                   >
                     <GeoAlt /> {orderState.options?.address?.address?.split(',')?.[0] || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
                   </AddressMenu>
+                  <Divider />
+                </>
+              )}
+              {isCustomerMode && windowSize.width > 450 && (
+                <>
+                  <CustomerInfo
+                    onClick={(e) => handleClickUserCustomer(e)}
+                  >
+                    <span>
+                      <p>{userCustomer?.name} {userCustomer?.lastname}</p>
+                    </span>
+                    <span
+                      ref={clearCustomer}
+                    >
+                      <AiOutlineClose />
+                    </span>
+                  </CustomerInfo>
+                  <Divider />
+                </>
+              )}
+              {onlineStatus && windowSize.width > 820 && (
+                <>
+                  {!isCustomerMode && (
+                    <AddressMenu
+                      onClick={() => openModal('address')}
+                    >
+                      <GeoAlt /> {orderState.options?.address?.address?.split(',')?.[0] || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                    </AddressMenu>
+                  )}
                   {!isCustomerMode && (isPreOrderSetting || configState?.configs?.preorder_status_enabled?.value === undefined) && (
                     <MomentMenu
                       onClick={configState?.configs?.max_days_preorder?.value === -1 || configState?.configs?.max_days_preorder?.value === 0
@@ -268,7 +292,7 @@ export const Header = (props) => {
           )}
           {onlineStatus && (
             <RightHeader>
-              <Menu>
+              <Menu isCustomerMode={isCustomerMode}>
                 {
                   !auth && windowSize.width > 920 && (
                     <>
@@ -308,6 +332,9 @@ export const Header = (props) => {
                           />
                         )
                       )}
+                      {isCustomerMode && (
+                        <LanguageSelector />
+                      )}
                       {windowSize.width > 768 && (
                         <UserPopover
                           withLogout
@@ -324,7 +351,7 @@ export const Header = (props) => {
             </RightHeader>
           )}
         </InnerHeader>
-        {onlineStatus && isShowOrderOptions && (
+        {onlineStatus && isShowOrderOptions && !props.isCustomLayout && !isCustomerMode && (
           windowSize.width > 768 && windowSize.width <= 820 ? (
             <SubMenu>
               {isFarAway && (
@@ -395,6 +422,7 @@ export const Header = (props) => {
                   userId={isNaN(userCustomer?.id) ? null : userCustomer?.id}
                   onCancel={() => setModalIsOpen(false)}
                   onAccept={() => setModalIsOpen(false)}
+                  isCustomerMode={isCustomerMode}
                 />
               ) : (
                 <AddressForm
@@ -402,6 +430,7 @@ export const Header = (props) => {
                   address={orderState?.options?.address || {}}
                   onCancel={() => setModalIsOpen(false)}
                   onSaveAddress={() => setModalIsOpen(false)}
+                  isCustomerMode={isCustomerMode}
                 />
               )
             )}
@@ -422,23 +451,35 @@ export const Header = (props) => {
         {isCustomerMode && customerModalOpen && (
           <Modal
             open={customerModalOpen}
-            width='60%'
+            width='80%'
             onClose={() => setCustomerModalOpen(false)}
+            padding='20px'
+            hideCloseDefault
           >
             <UserEdit>
               {!customerState?.loading && (
                 <>
                   <UserDetails
+                    isAddressFormOpen={isAddressFormOpen}
                     userData={customerState?.user}
                     userId={customerState?.user?.id}
+                    isOpenUserData={isOpenUserData}
                     isCustomerMode
+                    isModal
+                    setIsOpenUserData={setIsOpenUserData}
+                    onClose={() => setCustomerModalOpen(false)}
                   />
                   <AddressList
                     isModal
                     userId={customerState?.user?.id}
                     changeOrderAddressWithDefault
                     userCustomerSetup={customerState.user}
+                    isOpenUserData={isOpenUserData}
                     setCustomerModalOpen={setCustomerModalOpen}
+                    setIsOpenUserData={setIsOpenUserData}
+                    setIsAddressFormOpen={setIsAddressFormOpen}
+                    isHeader
+                    isCustomerMode={isCustomerMode}
                   />
                 </>
               )}
@@ -527,21 +568,6 @@ export const Header = (props) => {
         </React.Fragment>))}
     </>
   )
-}
-
-const styles = {
-  headCustomer: {
-    margin: 0,
-    height: 20,
-    width: 20,
-    backgroundColor: '#CCCCCC',
-    borderRadius: '100%',
-    marginLeft: 5
-  },
-  clearCustomer: {
-    margin: 0,
-    fontSize: 20
-  }
 }
 
 Header.defaultProps = {
