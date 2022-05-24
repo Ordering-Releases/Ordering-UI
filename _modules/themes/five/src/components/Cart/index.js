@@ -92,7 +92,8 @@ var CartUI = function CartUI(props) {
       isStore = props.isStore,
       handleChangeComment = props.handleChangeComment,
       commentState = props.commentState,
-      handleRemoveOfferClick = props.handleRemoveOfferClick;
+      handleRemoveOfferClick = props.handleRemoveOfferClick,
+      setPreorderBusiness = props.setPreorderBusiness;
   var theme = (0, _styledComponents.useTheme)();
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
@@ -332,7 +333,8 @@ var CartUI = function CartUI(props) {
     isStore: isStore,
     total: cart === null || cart === void 0 ? void 0 : cart.total,
     handleClickCheckout: handleClickCheckout,
-    checkoutButtonDisabled: openUpselling && !canOpenUpselling || !(cart !== null && cart !== void 0 && cart.valid_maximum) || !(cart !== null && cart !== void 0 && cart.valid_minimum) && !((cart === null || cart === void 0 ? void 0 : cart.discount_type) === 1 && (cart === null || cart === void 0 ? void 0 : cart.discount_rate) === 100) || !(cart !== null && cart !== void 0 && cart.valid_address)
+    checkoutButtonDisabled: openUpselling && !canOpenUpselling || !(cart !== null && cart !== void 0 && cart.valid_maximum) || !(cart !== null && cart !== void 0 && cart.valid_minimum) && !((cart === null || cart === void 0 ? void 0 : cart.discount_type) === 1 && (cart === null || cart === void 0 ? void 0 : cart.discount_rate) === 100) || !(cart !== null && cart !== void 0 && cart.valid_address),
+    setPreorderBusiness: setPreorderBusiness
   }, (cart === null || cart === void 0 ? void 0 : (_cart$products = cart.products) === null || _cart$products === void 0 ? void 0 : _cart$products.length) > 0 && (cart === null || cart === void 0 ? void 0 : cart.products.map(function (product) {
     return /*#__PURE__*/_react.default.createElement(_ProductItemAccordion.ProductItemAccordion, {
       key: product.code,
@@ -387,7 +389,7 @@ var CartUI = function CartUI(props) {
       key: tax === null || tax === void 0 ? void 0 : tax.id
     }, /*#__PURE__*/_react.default.createElement("td", {
       className: "icon"
-    }, tax.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(tax === null || tax === void 0 ? void 0 : tax.rate, parseNumber), "%)")), /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+    }, tax.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(tax === null || tax === void 0 ? void 0 : tax.rate, parseNumber), "%)")), /*#__PURE__*/_react.default.createElement(_styles.IconContainer, {
       onClick: function onClick() {
         return setOpenTaxModal({
           open: true,
@@ -408,7 +410,7 @@ var CartUI = function CartUI(props) {
       key: fee.id
     }, /*#__PURE__*/_react.default.createElement("td", {
       className: "icon"
-    }, fee.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), "(", (fee === null || fee === void 0 ? void 0 : fee.fixed) > 0 && "".concat(parsePrice(fee === null || fee === void 0 ? void 0 : fee.fixed), " + "), fee.percentage, "%)", /*#__PURE__*/_react.default.createElement(_styles.Exclamation, {
+    }, fee.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), "(", (fee === null || fee === void 0 ? void 0 : fee.fixed) > 0 && "".concat(parsePrice(fee === null || fee === void 0 ? void 0 : fee.fixed), " + "), fee.percentage, "%)", /*#__PURE__*/_react.default.createElement(_styles.IconContainer, {
       onClick: function onClick() {
         return setOpenTaxModal({
           open: true,

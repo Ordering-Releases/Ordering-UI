@@ -31,9 +31,17 @@ var _utils = require("../../../../../utils");
 
 var _Select = require("../../styles/Select");
 
+var _MomentContent = require("../MomentContent");
+
 var _styles = require("./styles");
 
 var _BusinessPreorder = require("../BusinessPreorder");
+
+var _dayjs = _interopRequireDefault(require("dayjs"));
+
+var _timezone = _interopRequireDefault(require("dayjs/plugin/timezone"));
+
+var _isBetween = _interopRequireDefault(require("dayjs/plugin/isBetween"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,10 +63,14 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+_dayjs.default.extend(_timezone.default);
+
+_dayjs.default.extend(_isBetween.default);
+
 var types = ['food', 'laundry', 'alcohol', 'groceries'];
 
 var BusinessBasicInformation = function BusinessBasicInformation(props) {
-  var _props$beforeElements, _props$beforeComponen, _orderState$options, _business$reviews, _business$reviews2, _categoryState$produc, _theme$defaultLanguag, _businessState$busine, _theme$images, _theme$images$dummies, _business$reviews3, _business$reviews4, _props$afterComponent, _props$afterElements;
+  var _configs$preorder_sta, _props$beforeElements, _props$beforeComponen, _orderState$options, _business$reviews, _business$reviews2, _categoryState$produc, _theme$defaultLanguag, _businessState$busine7, _theme$images, _theme$images$dummies, _business$reviews3, _business$reviews4, _props$afterComponent, _props$afterElements;
 
   var isSkeleton = props.isSkeleton,
       businessState = props.businessState,
@@ -70,7 +82,8 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
       sortByValue = props.sortByValue,
       handleChangeSortBy = props.handleChangeSortBy,
       categoryState = props.categoryState,
-      errorQuantityProducts = props.errorQuantityProducts;
+      errorQuantityProducts = props.errorQuantityProducts,
+      isCustomerMode = props.isCustomerMode;
   var business = businessState.business,
       loading = businessState.loading;
   var theme = (0, _styledComponents.useTheme)();
@@ -100,6 +113,12 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
       isPreOrder = _useState4[0],
       setIsPreOrder = _useState4[1];
 
+  var _useConfig = (0, _orderingComponents.useConfig)(),
+      _useConfig2 = _slicedToArray(_useConfig, 1),
+      configs = _useConfig2[0].configs;
+
+  var isPreOrderSetting = (configs === null || configs === void 0 ? void 0 : (_configs$preorder_sta = configs.preorder_status_enabled) === null || _configs$preorder_sta === void 0 ? void 0 : _configs$preorder_sta.value) === '1';
+
   var getBusinessType = function getBusinessType() {
     if (Object.keys(business).length <= 0) return t('GENERAL', 'General');
     var _types = [];
@@ -111,6 +130,36 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
     return _types.join(', ');
   };
 
+  (0, _react.useEffect)(function () {
+    var _businessState$busine, _businessState$busine2, _businessState$busine3;
+
+    if (businessState !== null && businessState !== void 0 && businessState.loading) return;
+    var timeout = null;
+    var currentDate = (0, _dayjs.default)().tz(businessState === null || businessState === void 0 ? void 0 : (_businessState$busine = businessState.business) === null || _businessState$busine === void 0 ? void 0 : _businessState$busine.timezone);
+    var lapse = null;
+
+    if (businessState !== null && businessState !== void 0 && (_businessState$busine2 = businessState.business) !== null && _businessState$busine2 !== void 0 && (_businessState$busine3 = _businessState$busine2.today) !== null && _businessState$busine3 !== void 0 && _businessState$busine3.enabled) {
+      var _businessState$busine4, _businessState$busine5, _businessState$busine6;
+
+      lapse = businessState === null || businessState === void 0 ? void 0 : (_businessState$busine4 = businessState.business) === null || _businessState$busine4 === void 0 ? void 0 : (_businessState$busine5 = _businessState$busine4.today) === null || _businessState$busine5 === void 0 ? void 0 : (_businessState$busine6 = _businessState$busine5.lapses) === null || _businessState$busine6 === void 0 ? void 0 : _businessState$busine6.find(function (lapse) {
+        var from = currentDate.hour(lapse.open.hour).minute(lapse.open.minute);
+        var to = currentDate.hour(lapse.close.hour).minute(lapse.close.minute);
+        return currentDate.unix() >= from.unix() && currentDate.unix() <= to.unix();
+      });
+    }
+
+    if (lapse) {
+      var to = currentDate.hour(lapse.close.hour).minute(lapse.close.minute);
+      var timeToClose = (to.unix() - currentDate.unix()) * 1000;
+      timeout = setTimeout(function () {
+        setIsPreOrder(true);
+      }, timeToClose);
+    }
+
+    return function () {
+      timeout && clearTimeout(timeout);
+    };
+  }, [businessState === null || businessState === void 0 ? void 0 : businessState.business]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
@@ -124,53 +173,53 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
   }, /*#__PURE__*/_react.default.createElement(_styles.BusinessInfoItem, null, !loading ? /*#__PURE__*/_react.default.createElement("h2", {
     className: "bold"
   }, business === null || business === void 0 ? void 0 : business.name) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 200,
-    height: 35
+    width: isCustomerMode ? 100 : 150,
+    height: isCustomerMode ? 35 : 'auto'
   }), !loading ? /*#__PURE__*/_react.default.createElement("p", {
     className: "type"
   }, getBusinessType()) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 150
+    width: isCustomerMode ? 100 : 150
   }), /*#__PURE__*/_react.default.createElement(_styles.BusinessDetail, {
     isSkeleton: loading
   }, (orderState === null || orderState === void 0 ? void 0 : orderState.options.type) === 1 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !loading ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h5", null, /*#__PURE__*/_react.default.createElement("span", null, t('DELIVERY_FEE', 'Delivery fee')), business && parsePrice((business === null || business === void 0 ? void 0 : business.delivery_price) || 0)), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
   }, "\u2022")) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 50
+    width: isCustomerMode ? 70 : 50
   })), !loading ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (orderState === null || orderState === void 0 ? void 0 : (_orderState$options = orderState.options) === null || _orderState$options === void 0 ? void 0 : _orderState$options.type) === 1 ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h5", null, (0, _utils.convertHoursToMinutes)(business === null || business === void 0 ? void 0 : business.delivery_time)), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
   }, "\u2022")) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h5", null, (0, _utils.convertHoursToMinutes)(business === null || business === void 0 ? void 0 : business.pickup_time)), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
   }, "\u2022"))) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 50
+    width: isCustomerMode ? 70 : 50
   }), !loading ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h5", null, parseDistance((business === null || business === void 0 ? void 0 : business.distance) || 0)), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
   }, "\u2022")) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 50
+    width: isCustomerMode ? 70 : 50
   }), !loading ? /*#__PURE__*/_react.default.createElement("div", {
     className: "review"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.StarFill, {
     className: "start"
   }), /*#__PURE__*/_react.default.createElement("p", null, business === null || business === void 0 ? void 0 : (_business$reviews = business.reviews) === null || _business$reviews === void 0 ? void 0 : _business$reviews.total)) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 50
+    width: isCustomerMode ? 100 : 50
   })), !loading ? /*#__PURE__*/_react.default.createElement("div", {
     className: "preorder-Reviews"
-  }, /*#__PURE__*/_react.default.createElement("span", {
+  }, isPreOrderSetting && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("span", {
     onClick: function onClick() {
       return setIsPreOrder(true);
     }
   }, t('PREORDER', 'Preorder')), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
-  }, "\u2022"), ((_business$reviews2 = business.reviews) === null || _business$reviews2 === void 0 ? void 0 : _business$reviews2.reviews) && /*#__PURE__*/_react.default.createElement("span", {
+  }, "\u2022")), ((_business$reviews2 = business.reviews) === null || _business$reviews2 === void 0 ? void 0 : _business$reviews2.reviews) && /*#__PURE__*/_react.default.createElement("span", {
     onClick: function onClick() {
       return setIsBusinessReviews(true);
     }
   }, t('REVIEWS', 'Reviews'))) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 150
+    width: isCustomerMode ? 100 : 150
   })))), ((categoryState === null || categoryState === void 0 ? void 0 : (_categoryState$produc = categoryState.products) === null || _categoryState$produc === void 0 ? void 0 : _categoryState$produc.length) !== 0 || searchValue) && !errorQuantityProducts && /*#__PURE__*/_react.default.createElement(_styles.WrapperSearch, null, /*#__PURE__*/_react.default.createElement(_SearchBar.SearchBar, {
     onSearch: handleChangeSearch,
     search: searchValue,
     placeholder: t('SEARCH_PRODUCTS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag = theme.defaultLanguages) === null || _theme$defaultLanguag === void 0 ? void 0 : _theme$defaultLanguag.SEARCH_PRODUCTS) || 'Search Products'),
-    lazyLoad: businessState === null || businessState === void 0 ? void 0 : (_businessState$busine = businessState.business) === null || _businessState$busine === void 0 ? void 0 : _businessState$busine.lazy_load_products_recommended
+    lazyLoad: businessState === null || businessState === void 0 ? void 0 : (_businessState$busine7 = businessState.business) === null || _businessState$busine7 === void 0 ? void 0 : _businessState$busine7.lazy_load_products_recommended
   }), /*#__PURE__*/_react.default.createElement(_Select.Select, {
     notAsync: true,
     notReload: true,
@@ -219,11 +268,16 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
     stars: (_business$reviews4 = business.reviews) === null || _business$reviews4 === void 0 ? void 0 : _business$reviews4.total
   })), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
     open: isPreOrder,
-    width: "760px",
+    width: isCustomerMode ? '700px' : '760px',
+    onClose: function onClose() {
+      return setIsPreOrder(false);
+    },
+    padding: isCustomerMode && '20px'
+  }, isCustomerMode ? /*#__PURE__*/_react.default.createElement(_MomentContent.MomentContent, {
     onClose: function onClose() {
       return setIsPreOrder(false);
     }
-  }, /*#__PURE__*/_react.default.createElement(_BusinessPreorder.BusinessPreorder, {
+  }) : /*#__PURE__*/_react.default.createElement(_BusinessPreorder.BusinessPreorder, {
     business: business,
     handleClick: function handleClick() {
       return setIsPreOrder(false);
