@@ -15,8 +15,6 @@ var _orderingComponents = require("ordering-components");
 
 var _styledComponents = require("styled-components");
 
-var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
-
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
 var _TiWarningOutline = _interopRequireDefault(require("@meronex/icons/ti/TiWarningOutline"));
@@ -24,6 +22,8 @@ var _TiWarningOutline = _interopRequireDefault(require("@meronex/icons/ti/TiWarn
 var _OrderTypeSelectorContent = require("../OrderTypeSelectorContent");
 
 var _LanguageSelector = require("../LanguageSelector");
+
+var _AiOutlineClose = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineClose"));
 
 var _styles = require("./styles");
 
@@ -56,6 +56,8 @@ var _UserDetails = require("../UserDetails");
 var _Confirm = require("../Confirm");
 
 var _utils = require("../../../../../utils");
+
+var _BusinessPreorder = require("../BusinessPreorder");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -173,6 +175,11 @@ var Header = function Header(props) {
       isAddressFormOpen = _useState16[0],
       setIsAddressFormOpen = _useState16[1];
 
+  var _useState17 = (0, _react.useState)(null),
+      _useState18 = _slicedToArray(_useState17, 2),
+      preorderBusiness = _useState18[0],
+      setPreorderBusiness = _useState18[1];
+
   var cartsWithProducts = (orderState === null || orderState === void 0 ? void 0 : orderState.carts) && Object.values(orderState === null || orderState === void 0 ? void 0 : orderState.carts).filter(function (cart) {
     var _cart$products;
 
@@ -240,6 +247,19 @@ var Header = function Header(props) {
   var handleOpenLoginSignUp = function handleOpenLoginSignUp(page) {
     events.emit('go_to_page', {
       page: 'home'
+    });
+  };
+
+  var handleClosePreorder = function handleClosePreorder() {
+    setPreorderBusiness(null);
+  };
+
+  var handleBusinessClick = function handleBusinessClick(business) {
+    events.emit('go_to_page', {
+      page: 'business',
+      params: {
+        store: business.slug
+      }
     });
   };
 
@@ -312,11 +332,8 @@ var Header = function Header(props) {
       return handleClickUserCustomer(e);
     }
   }, /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement("p", null, userCustomer === null || userCustomer === void 0 ? void 0 : userCustomer.name, " ", userCustomer === null || userCustomer === void 0 ? void 0 : userCustomer.lastname)), /*#__PURE__*/_react.default.createElement("span", {
-    style: styles.headCustomer,
     ref: clearCustomer
-  }, /*#__PURE__*/_react.default.createElement(_MdClose.default, {
-    style: styles.clearCustomer
-  }))), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), onlineStatus && windowSize.width > 820 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isCustomerMode && (isPreOrderSetting || (configState === null || configState === void 0 ? void 0 : (_configState$configs4 = configState.configs) === null || _configState$configs4 === void 0 ? void 0 : (_configState$configs5 = _configState$configs4.preorder_status_enabled) === null || _configState$configs5 === void 0 ? void 0 : _configState$configs5.value) === undefined) && /*#__PURE__*/_react.default.createElement(_styles.MomentMenu, {
+  }, /*#__PURE__*/_react.default.createElement(_AiOutlineClose.default, null))), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), onlineStatus && windowSize.width > 820 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isCustomerMode && (isPreOrderSetting || (configState === null || configState === void 0 ? void 0 : (_configState$configs4 = configState.configs) === null || _configState$configs4 === void 0 ? void 0 : (_configState$configs5 = _configState$configs4.preorder_status_enabled) === null || _configState$configs5 === void 0 ? void 0 : _configState$configs5.value) === undefined) && /*#__PURE__*/_react.default.createElement(_styles.MomentMenu, {
     onClick: (configState === null || configState === void 0 ? void 0 : (_configState$configs6 = configState.configs) === null || _configState$configs6 === void 0 ? void 0 : (_configState$configs7 = _configState$configs6.max_days_preorder) === null || _configState$configs7 === void 0 ? void 0 : _configState$configs7.value) === -1 || (configState === null || configState === void 0 ? void 0 : (_configState$configs8 = configState.configs) === null || _configState$configs8 === void 0 ? void 0 : (_configState$configs9 = _configState$configs8.max_days_preorder) === null || _configState$configs9 === void 0 ? void 0 : _configState$configs9.value) === 0 ? null : function () {
       return openModal('moment');
     }
@@ -361,7 +378,8 @@ var Header = function Header(props) {
     },
     auth: auth,
     location: location,
-    isCustomerMode: isCustomerMode
+    isCustomerMode: isCustomerMode,
+    setPreorderBusiness: setPreorderBusiness
   }) : /*#__PURE__*/_react.default.createElement(_HeaderOption.HeaderOption, {
     variant: "cart",
     totalCarts: cartsWithProducts === null || cartsWithProducts === void 0 ? void 0 : cartsWithProducts.length,
@@ -488,7 +506,17 @@ var Header = function Header(props) {
     },
     onAccept: confirm.handleOnAccept,
     closeOnBackdrop: false
-  })), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
+  }), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+    open: !!preorderBusiness,
+    width: "760px",
+    onClose: function onClose() {
+      return handleClosePreorder();
+    }
+  }, /*#__PURE__*/_react.default.createElement(_BusinessPreorder.BusinessPreorder, {
+    business: preorderBusiness,
+    handleClick: handleBusinessClick,
+    showButton: true
+  }))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
     }, props));
@@ -500,20 +528,6 @@ var Header = function Header(props) {
 };
 
 exports.Header = Header;
-var styles = {
-  headCustomer: {
-    margin: 0,
-    height: 20,
-    width: 20,
-    backgroundColor: '#CCCCCC',
-    borderRadius: '100%',
-    marginLeft: 5
-  },
-  clearCustomer: {
-    margin: 0,
-    fontSize: 20
-  }
-};
 Header.defaultProps = {
   isShowOrderOptions: true
 };
