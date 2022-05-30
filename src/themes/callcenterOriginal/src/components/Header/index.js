@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSession, useLanguage, useOrder, useEvent, useConfig, useCustomer, useUtils } from 'ordering-components'
 import { useTheme } from 'styled-components'
-import MdClose from '@meronex/icons/md/MdClose'
 import { GeoAlt } from 'react-bootstrap-icons'
 import TiWarningOutline from '@meronex/icons/ti/TiWarningOutline'
 import { OrderTypeSelectorContent } from '../OrderTypeSelectorContent'
 import { LanguageSelector } from '../LanguageSelector'
+import AiOutlineClose from '@meronex/icons/ai/AiOutlineClose'
 import {
   Header as HeaderContainer,
   InnerHeader,
@@ -40,6 +40,7 @@ import { SidebarMenu } from '../SidebarMenu'
 import { UserDetails } from '../UserDetails'
 import { Confirm } from '../Confirm'
 import { getDistance } from '../../../../../utils'
+import { BusinessPreorder } from '../BusinessPreorder'
 
 export const Header = (props) => {
   const {
@@ -69,6 +70,8 @@ export const Header = (props) => {
   const [isFarAway, setIsFarAway] = useState(false)
   const [isOpenUserData, setIsOpenUserData] = useState(false)
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false)
+  const [preorderBusiness, setPreorderBusiness] = useState(null)
+
   const cartsWithProducts = (orderState?.carts && Object.values(orderState?.carts).filter(cart => cart.products && cart.products?.length > 0)) || null
 
   const windowSize = useWindowSize()
@@ -127,6 +130,14 @@ export const Header = (props) => {
 
   const handleOpenLoginSignUp = (page) => {
     events.emit('go_to_page', { page: 'home' })
+  }
+
+  const handleClosePreorder = () => {
+    setPreorderBusiness(null)
+  }
+
+  const handleBusinessClick = (business) => {
+    events.emit('go_to_page', { page: 'business', params: { store: business.slug } })
   }
 
   useEffect(() => {
@@ -200,10 +211,9 @@ export const Header = (props) => {
                     <p>{userCustomer?.name} {userCustomer?.lastname}</p>
                   </span>
                   <span
-                    style={styles.headCustomer}
                     ref={clearCustomer}
                   >
-                    <MdClose style={styles.clearCustomer} />
+                    <AiOutlineClose />
                   </span>
                 </CustomerInfo>
               )}
@@ -272,6 +282,7 @@ export const Header = (props) => {
                             auth={auth}
                             location={location}
                             isCustomerMode={isCustomerMode}
+                            setPreorderBusiness={setPreorderBusiness}
                           />
                         ) : (
                           <HeaderOption
@@ -440,6 +451,17 @@ export const Header = (props) => {
           onAccept={confirm.handleOnAccept}
           closeOnBackdrop={false}
         />
+        <Modal
+          open={!!preorderBusiness}
+          width='760px'
+          onClose={() => handleClosePreorder()}
+        >
+          <BusinessPreorder
+            business={preorderBusiness}
+            handleClick={handleBusinessClick}
+            showButton
+          />
+        </Modal>
       </HeaderContainer>
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
@@ -449,21 +471,6 @@ export const Header = (props) => {
         </React.Fragment>))}
     </>
   )
-}
-
-const styles = {
-  headCustomer: {
-    margin: 0,
-    height: 20,
-    width: 20,
-    backgroundColor: '#CCCCCC',
-    borderRadius: '100%',
-    marginLeft: 5
-  },
-  clearCustomer: {
-    margin: 0,
-    fontSize: 20
-  }
 }
 
 Header.defaultProps = {
