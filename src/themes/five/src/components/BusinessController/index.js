@@ -133,7 +133,8 @@ const BusinessControllerUI = (props) => {
                       <BisStar />
                       <span>{(businessReviews ?? business?.reviews?.total)}</span>
                     </div>
-                  )) : (
+                  )
+                ) : (
                   <Skeleton width={50} />
                 )}
               </BusinessStarInfo>

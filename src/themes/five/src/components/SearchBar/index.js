@@ -42,6 +42,7 @@ export const SearchBar = (props) => {
 
   const handleClear = () => {
     onSearch('')
+    el.current.value = ''
   }
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export const SearchBar = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!search) {
+    if (!search || search === '') {
       el.current.value = ''
     }
   }, [search])

@@ -16,6 +16,7 @@ export const WrapperSearch = styled.div`
   margin: 10px 20px 0px;
   display: flex;
   justify-content: flex-end;
+
   svg{
     align-self: center;
     cursor: pointer;
