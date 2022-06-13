@@ -138,7 +138,7 @@ const BusinessesListingUI = (props) => {
     if (preorderBusiness) setIsPreorder(true)
   }, [preorderBusiness])
 
-  const OrdersSection = (titleContent) => {
+  const OrdersSection = ({ titleContent }) => {
     return (
       <>
         {isCustomLayout && onRedirectPage && (
