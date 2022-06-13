@@ -302,7 +302,6 @@ var LoginFormUI = function LoginFormUI(props) {
       }
     });
     formMethods.setValue('email', e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, ''));
-    emailInput.current.value = e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '');
   };
 
   var handleChangePhoneNumber = function handleChangePhoneNumber(number, isValid) {
@@ -624,6 +623,7 @@ var LoginFormUI = function LoginFormUI(props) {
 
 var LoginForm = function LoginForm(props) {
   var loginControllerProps = _objectSpread(_objectSpread({}, props), {}, {
+    isRecaptchaEnable: true,
     UIComponent: LoginFormUI
   });
 

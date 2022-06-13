@@ -113,7 +113,8 @@ var CheckoutUI = function CheckoutUI(props) {
       handleChangeDeliveryOption = props.handleChangeDeliveryOption,
       instructionsOptions = props.instructionsOptions,
       deliveryOptionSelected = props.deliveryOptionSelected,
-      handleStoreRedirect = props.handleStoreRedirect;
+      handleStoreRedirect = props.handleStoreRedirect,
+      onPlaceOrderClick = props.onPlaceOrderClick;
   var theme = (0, _styledComponents.useTheme)();
 
   var _useValidationFields = (0, _orderingComponents.useValidationFields)(),
@@ -455,7 +456,8 @@ var CheckoutUI = function CheckoutUI(props) {
     handleOrderRedirect: handleOrderRedirect,
     isCustomerMode: isCustomerMode,
     paySelected: paymethodSelected,
-    handlePlaceOrder: handlePlaceOrder
+    handlePlaceOrder: handlePlaceOrder,
+    onPlaceOrderClick: onPlaceOrderClick
   })), isWalletEnabled && !(businessDetails !== null && businessDetails !== void 0 && businessDetails.loading) && /*#__PURE__*/_react.default.createElement(_styles.WalletPaymentOptionContainer, null, /*#__PURE__*/_react.default.createElement(_PaymentOptionWallet.PaymentOptionWallet, {
     cart: cart,
     businessConfigs: businessDetails === null || businessDetails === void 0 ? void 0 : (_businessDetails$busi9 = businessDetails.business) === null || _businessDetails$busi9 === void 0 ? void 0 : _businessDetails$busi9.configs

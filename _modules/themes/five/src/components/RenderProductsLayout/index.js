@@ -88,7 +88,11 @@ var RenderProductsLayout = function RenderProductsLayout(props) {
       handleSearchRedirect = props.handleSearchRedirect,
       handleChangeSearch = props.handleChangeSearch,
       setOpenBusinessInformation = props.setOpenBusinessInformation,
-      handleCartOpen = props.handleCartOpen;
+      handleCartOpen = props.handleCartOpen,
+      isCustomLayout = props.isCustomLayout,
+      setSubcategoriesSelected = props.setSubcategoriesSelected,
+      subcategoriesSelected = props.subcategoriesSelected,
+      isLazy = props.isLazy;
   var theme = (0, _styledComponents.useTheme)();
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
@@ -170,6 +174,7 @@ var RenderProductsLayout = function RenderProductsLayout(props) {
     }].concat(_toConsumableArray(business === null || business === void 0 ? void 0 : business.categories.sort(function (a, b) {
       return a.rank - b.rank;
     }))),
+    isLazy: isLazy,
     category: categorySelected,
     categoryState: categoryState,
     businessId: business === null || business === void 0 ? void 0 : business.id,
@@ -182,7 +187,10 @@ var RenderProductsLayout = function RenderProductsLayout(props) {
     handleClearSearch: handleChangeSearch,
     errorQuantityProducts: errorQuantityProducts,
     business: business,
-    currentCart: currentCart
+    currentCart: currentCart,
+    setSubcategoriesSelected: setSubcategoriesSelected,
+    subcategoriesSelected: subcategoriesSelected,
+    onClickCategory: onClickCategory
   }))), /*#__PURE__*/_react.default.createElement(_styles.BusinessCartContainer, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessCartContent, null, (currentCart === null || currentCart === void 0 ? void 0 : (_currentCart$products = currentCart.products) === null || _currentCart$products === void 0 ? void 0 : _currentCart$products.length) > 0 ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.Title, null, t('YOUR_CART', 'Your cart')), /*#__PURE__*/_react.default.createElement(_Cart.Cart, {
     isStore: true,
     isCustomMode: true,

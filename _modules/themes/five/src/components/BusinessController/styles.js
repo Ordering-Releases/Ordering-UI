@@ -23,7 +23,7 @@ function _extends() { _extends = Object.assign ? Object.assign.bind() : function
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var ContainerCard = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: 1px solid #E9ECEF;\n  box-sizing: border-box;\n  border-radius: 7.6px;\n  max-height: 300px;\n  height: ", ";\n  border-radius: 10px;\n  margin: 30px 20px;\n\n  width: calc(100% - 40px);\n\n  ", "\n\n  ", "\n\n  ", "\n  \n  ", "\n\n  @media (min-width: 481px) {\n    max-height: ", ";\n  }\n\n  @media (min-width: 681px) {\n    width: calc(50% - 40px);\n  }\n\n  @media (min-width: 993px) {\n    width: calc(33% - 40px);\n  }\n\n  @media (min-width: 1200px) {\n    width: calc(25% - 40px);\n  }\n"])), function (_ref) {
+var ContainerCard = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: 1px solid #E9ECEF;\n  box-sizing: border-box;\n  border-radius: 7.6px;\n  max-height: 300px;\n  height: ", ";\n  border-radius: 10px;\n  margin: 30px 20px;\n  width: calc(100% - 40px);\n  ", "\n  ", "\n  ", "\n  \n  ", "\n  @media (min-width: 481px) {\n    max-height: ", ";\n  }\n  @media (min-width: 681px) {\n    width: calc(50% - 40px);\n  }\n  @media (min-width: 993px) {\n    width: calc(33% - 40px);\n  }\n  @media (min-width: 1200px) {\n    width: calc(25% - 40px);\n  }\n"])), function (_ref) {
   var isSkeleton = _ref.isSkeleton;
   return isSkeleton ? 'auto' : '320px';
 }, function (_ref2) {
@@ -55,11 +55,11 @@ var WrapperBusinessCard = _styledComponents.default.div(_templateObject6 || (_te
 
 exports.WrapperBusinessCard = WrapperBusinessCard;
 
-var BusinessHero = _styledComponents.default.div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border-radius: 10px;\n\n  > span {\n    display: flex;\n  }\n"])));
+var BusinessHero = _styledComponents.default.div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border-radius: 10px;\n  > span {\n    display: flex;\n  }\n"])));
 
 exports.BusinessHero = BusinessHero;
 
-var BusinessHeaderStyled = _styledComponents.default.div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  position: relative;\n  background-repeat: no-repeat, repeat;\n  background-size: cover;\n  object-fit: cover;\n  background-position: center;\n  min-height: 145px;\n  justify-content: center;\n  align-items: center;\n  border-radius: 7.6px 7.6px 0px 0px;\n\n  h1 {\n    color: #FFF;\n    opacity: 0.7;\n  }\n\n  .closed {\n    text-transform: uppercase;\n    font-weight: 600;\n    font-size: 28px;\n    line-height: 42px;\n    opacity: 1;\n    position: relative;\n    z-index: 2;\n  }\n\n  @media (min-width: 481px) {\n    min-height: 165px;\n  }\n"])));
+var BusinessHeaderStyled = _styledComponents.default.div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  position: relative;\n  background-repeat: no-repeat, repeat;\n  background-size: cover;\n  object-fit: cover;\n  background-position: center;\n  min-height: 145px;\n  justify-content: center;\n  align-items: center;\n  border-radius: 7.6px 7.6px 0px 0px;\n  h1 {\n    color: #FFF;\n    opacity: 0.7;\n  }\n  .closed {\n    text-transform: uppercase;\n    font-weight: 600;\n    font-size: 28px;\n    line-height: 42px;\n    opacity: 1;\n    position: relative;\n    z-index: 2;\n  }\n  @media (min-width: 481px) {\n    min-height: 165px;\n  }\n"])));
 
 var BusinessHeader = function BusinessHeader(props) {
   var style = {};
@@ -77,7 +77,7 @@ var BusinessHeader = function BusinessHeader(props) {
 
 exports.BusinessHeader = BusinessHeader;
 
-var BusinessTags = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  position: absolute;\n  justify-content: space-between;\n  align-items: center;\n  top: 0;\n  margin: 15px;\n  width: calc(100% - 35px);\n\n  span.crown {\n    background-color: rgba(0, 0, 0, 0.5);\n    font-size: 20px;\n    display: flex;\n    align-items: center;\n    color: #FFC917;\n  }\n\n  div {\n    display: flex;\n    align-items: center;\n    justify-content: flex-end;\n  }\n\n  span {\n    font-size: 11px;\n    padding: 3px 8px;\n    color: #748194;\n    background: #DEE2E6;\n    border-radius: 50px;\n    margin-right: 10px;\n    ", "\n    &:last-child {\n      ", "\n    }\n  }\n"])), function (props) {
+var BusinessTags = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  position: absolute;\n  justify-content: space-between;\n  align-items: center;\n  top: 0;\n  margin: 15px;\n  width: calc(100% - 35px);\n  span.crown {\n    background-color: rgba(0, 0, 0, 0.5);\n    font-size: 20px;\n    display: flex;\n    align-items: center;\n    color: #FFC917;\n  }\n  div {\n    display: flex;\n    align-items: center;\n    justify-content: flex-end;\n  }\n  span {\n    font-size: 11px;\n    padding: 3px 8px;\n    color: #748194;\n    background: #DEE2E6;\n    border-radius: 50px;\n    margin-right: 10px;\n    ", "\n    &:last-child {\n      ", "\n    }\n  }\n"])), function (props) {
   var _props$theme;
 
   return ((_props$theme = props.theme) === null || _props$theme === void 0 ? void 0 : _props$theme.rtl) && (0, _styledComponents.css)(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n      margin-left: 10px;\n      margin-right: 0;\n    "])));
@@ -89,11 +89,11 @@ var BusinessTags = _styledComponents.default.div(_templateObject9 || (_templateO
 
 exports.BusinessTags = BusinessTags;
 
-var BusinessContent = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  max-height: 135px;\n  padding: 0 20px 20px 20px;\n  height: calc(100% - 145px);\n\n  @media (min-width: 481px) {\n    height: calc(100% - 165px);\n  }\n"])));
+var BusinessContent = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  max-height: 135px;\n  padding: 0 20px 20px 20px;\n  height: calc(100% - 145px);\n  @media (min-width: 481px) {\n    height: calc(100% - 165px);\n  }\n"])));
 
 exports.BusinessContent = BusinessContent;
 
-var WrapperBusinessLogo = _styledComponents.default.div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  align-self: center;\n  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 7.6px;\n\n  ", "\n\n  ", "\n"])), function (_ref9) {
+var WrapperBusinessLogo = _styledComponents.default.div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  align-self: center;\n  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);\n  border-radius: 7.6px;\n  ", "\n  ", "\n"])), function (_ref9) {
   var isCustomerMode = _ref9.isCustomerMode;
   return isCustomerMode && (0, _styledComponents.css)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    width: 65px;\n    height: 65px;\n    min-height: 65px;\n    min-width: 65px;\n  "])));
 }, function (_ref10) {
@@ -106,7 +106,7 @@ var WrapperBusinessLogo = _styledComponents.default.div(_templateObject14 || (_t
 
 exports.WrapperBusinessLogo = WrapperBusinessLogo;
 
-var BusinessLogoStyled = _styledComponents.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 65px;\n  height: 65px;\n  box-sizing: border-box;\n  position: relative;\n  background-repeat: no-repeat, repeat;\n  background-size: cover;\n  object-fit: cover;\n  background-position: center;\n  min-height: 65px;\n  border-radius: 7.6px;\n\n  @media (min-width: 481px){\n    min-width: 75px;\n    min-height: 75px;\n    height: 75px;\n    width: 75px;\n    min-height: 75px;\n    ", "\n  }\n"])), function (_ref12) {
+var BusinessLogoStyled = _styledComponents.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 65px;\n  height: 65px;\n  box-sizing: border-box;\n  position: relative;\n  background-repeat: no-repeat, repeat;\n  background-size: cover;\n  object-fit: cover;\n  background-position: center;\n  min-height: 65px;\n  border-radius: 7.6px;\n  @media (min-width: 481px){\n    min-width: 75px;\n    min-height: 75px;\n    height: 75px;\n    width: 75px;\n    min-height: 75px;\n    ", "\n  }\n"])), function (_ref12) {
   var isCustomerMode = _ref12.isCustomerMode;
   return isCustomerMode && (0, _styledComponents.css)(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n      width: 100%;\n      height: 100%;\n    "])));
 });
@@ -129,7 +129,7 @@ var BusinessInfo = _styledComponents.default.div(_templateObject20 || (_template
 
 exports.BusinessInfo = BusinessInfo;
 
-var BusinessInfoItem = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  font-size: 12px;\n\n  div {\n    display: flex;\n    p {\n      margin-right: 5px;\n      ", "\n      text-transform: capitalize;\n      display: flex;\n      align-items: center;\n      margin: 0px;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n    }\n    p.bold {\n      font-weight: bold;\n    }\n  }\n"])), function (props) {
+var BusinessInfoItem = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  font-size: 12px;\n  div {\n    display: flex;\n    p {\n      margin-right: 5px;\n      ", "\n      text-transform: capitalize;\n      display: flex;\n      align-items: center;\n      margin: 0px;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis;\n    }\n    p.bold {\n      font-weight: bold;\n    }\n  }\n"])), function (props) {
   var _props$theme3;
 
   return ((_props$theme3 = props.theme) === null || _props$theme3 === void 0 ? void 0 : _props$theme3.rtl) && (0, _styledComponents.css)(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n        margin-left: 5px;\n        margin-right: 0;\n    "])));
@@ -143,16 +143,16 @@ var BusinessName = _styledComponents.default.h6(_templateObject23 || (_templateO
 
 exports.BusinessName = BusinessName;
 
-var Categories = _styledComponents.default.div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  font-size: 14px;\n  font-weight: 300;\n  color: #6C6C6C;\n\n  @media (min-width: 481px) {\n    font-size: 16px;\n  }\n"])));
+var Categories = _styledComponents.default.div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  font-size: 14px;\n  font-weight: 300;\n  color: #6C6C6C;\n  @media (min-width: 481px) {\n    font-size: 16px;\n  }\n"])));
 
 exports.Categories = Categories;
 
-var Medadata = _styledComponents.default.div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  margin-top: 5px;\n  display: flex;\n  font-weight: 300;\n  font-size: 12px;\n  color: #909BA9;\n  flex-wrap: wrap;\n\n  ", "\n  ", "\n  p {\n    color: #909BA9;\n    svg {\n      font-size: 7px;\n      min-width: 6px;\n      margin: 0 3px;\n    }\n\n    span {\n      margin-right: 10px;\n      ", "\n    }\n  }\n\n  @media (min-width: 481px) {\n    font-size: 14px;\n  }\n"])), function (_ref13) {
+var Medadata = _styledComponents.default.div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  margin-top: 5px;\n  display: flex;\n  font-weight: 300;\n  font-size: 12px;\n  color: #909BA9;\n  flex-wrap: wrap;\n  \n  ", "\n  ", "\n  p {\n    color: #909BA9;\n    svg {\n      font-size: 7px;\n      min-width: 6px;\n      margin: 0 3px;\n    }\n    span {\n      margin-right: 10px;\n      ", "\n    }\n  }\n  @media (min-width: 481px) {\n    font-size: 14px;\n  }\n"])), function (_ref13) {
   var isCustomerMode = _ref13.isCustomerMode;
   return isCustomerMode && (0, _styledComponents.css)(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n    > div {\n      flex-direction: column;\n    }\n  "])));
 }, function (_ref14) {
   var isSkeleton = _ref14.isSkeleton;
-  return isSkeleton && (0, _styledComponents.css)(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: space-between;\n  "])));
+  return isSkeleton && (0, _styledComponents.css)(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n  "])));
 }, function (props) {
   var _props$theme4;
 
@@ -179,7 +179,7 @@ var BusinessLogoWrapper = _styledComponents.default.div(_templateObject33 || (_t
 
 exports.BusinessLogoWrapper = BusinessLogoWrapper;
 
-var BusinessStarInfo = _styledComponents.default.div(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n\n  .reviews {\n    display: flex;\n    align-items: center;\n    svg {\n      margin-right: 3px;\n      font-size: 22px;\n      color: #414954;\n      ", "\n    }\n    span {\n      font-size: 15px;\n      color: #414954;\n    }\n  }\n"])), function (props) {
+var BusinessStarInfo = _styledComponents.default.div(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  .reviews {\n    display: flex;\n    align-items: center;\n    svg {\n      margin-right: 3px;\n      font-size: 22px;\n      color: #414954;\n      ", "\n    }\n    span {\n      font-size: 15px;\n      color: #414954;\n    }\n  }\n"])), function (props) {
   var _props$theme5;
 
   return ((_props$theme5 = props.theme) === null || _props$theme5 === void 0 ? void 0 : _props$theme5.rtl) && (0, _styledComponents.css)(_templateObject35 || (_templateObject35 = _taggedTemplateLiteral(["\n        margin-left: 3px;\n        margin-right: 0;\n    "])));
