@@ -367,7 +367,9 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       onChange: handleChangeIngredientState
     });
   })), product === null || product === void 0 ? void 0 : product.extras.map(function (extra) {
-    return extra.options.map(function (option) {
+    return extra.options.sort(function (a, b) {
+      return a.rank - b.rank;
+    }).map(function (option) {
       var currentState = productCart.options["id:".concat(option === null || option === void 0 ? void 0 : option.id)] || {};
       return /*#__PURE__*/_react.default.createElement("div", {
         key: option === null || option === void 0 ? void 0 : option.id
@@ -379,11 +381,13 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
         className: isError(option === null || option === void 0 ? void 0 : option.id)
       }, option.suboptions.filter(function (suboptions) {
         return suboptions.enabled;
+      }).sort(function (a, b) {
+        return a.rank - b.rank;
       }).map(function (suboption) {
-        var _productCart$options$, _productCart$options$2;
+        var _productCart$options, _productCart$options2;
 
-        var currentState = ((_productCart$options$ = productCart.options["id:".concat(option === null || option === void 0 ? void 0 : option.id)]) === null || _productCart$options$ === void 0 ? void 0 : _productCart$options$.suboptions["id:".concat(suboption === null || suboption === void 0 ? void 0 : suboption.id)]) || {};
-        var balance = ((_productCart$options$2 = productCart.options["id:".concat(option === null || option === void 0 ? void 0 : option.id)]) === null || _productCart$options$2 === void 0 ? void 0 : _productCart$options$2.balance) || 0;
+        var currentState = ((_productCart$options = productCart.options["id:".concat(option === null || option === void 0 ? void 0 : option.id)]) === null || _productCart$options === void 0 ? void 0 : _productCart$options.suboptions["id:".concat(suboption === null || suboption === void 0 ? void 0 : suboption.id)]) || {};
+        var balance = ((_productCart$options2 = productCart.options["id:".concat(option === null || option === void 0 ? void 0 : option.id)]) === null || _productCart$options2 === void 0 ? void 0 : _productCart$options2.balance) || 0;
         return /*#__PURE__*/_react.default.createElement(_ProductOptionSubOption.ProductOptionSubOption, {
           key: suboption === null || suboption === void 0 ? void 0 : suboption.id,
           onChange: handleChangeSuboptionState,

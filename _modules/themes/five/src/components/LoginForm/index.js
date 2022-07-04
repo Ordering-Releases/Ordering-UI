@@ -551,7 +551,8 @@ var LoginFormUI = function LoginFormUI(props) {
     }
   }, t('CANCEL', 'Cancel'))), elementLinkToSignup && !loginWithOtpState && /*#__PURE__*/_react.default.createElement(_styles.RedirectLink, {
     register: true,
-    isPopup: isPopup
+    isPopup: isPopup,
+    className: "new-account"
   }, /*#__PURE__*/_react.default.createElement("span", null, t('NEW_ON_PLATFORM', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag = theme.defaultLanguages) === null || _theme$defaultLanguag === void 0 ? void 0 : _theme$defaultLanguag.NEW_ON_PLATFORM) || 'New on Ordering?')), elementLinkToSignup), hasSocialLogin && /*#__PURE__*/_react.default.createElement(_styles.LoginDivider, {
     isPopup: isPopup
   }, /*#__PURE__*/_react.default.createElement(_styles.DividerLine, null), /*#__PURE__*/_react.default.createElement("p", null, t('OR', 'or')), /*#__PURE__*/_react.default.createElement(_styles.DividerLine, null)), !props.isDisableButtons && !loginWithOtpState && (Object.keys(configs).length > 0 ? /*#__PURE__*/_react.default.createElement(_styles.SocialButtons, {
@@ -568,7 +569,10 @@ var LoginFormUI = function LoginFormUI(props) {
   }), (configs === null || configs === void 0 ? void 0 : (_configs$apple_login_2 = configs.apple_login_client_id) === null || _configs$apple_login_2 === void 0 ? void 0 : _configs$apple_login_2.value) && /*#__PURE__*/_react.default.createElement(_AppleLogin.AppleLogin, {
     onSuccess: handleSuccessApple,
     onFailure: function onFailure(data) {
-      return console.log('onFailure', data);
+      return setAlertState({
+        open: true,
+        content: data
+      });
     }
   }), useLoginByCellphone && loginTab === 'cellphone' && configs && Object.keys(configs).length > 0 && ((configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi3 = configs.twilio_service_enabled) === null || _configs$twilio_servi3 === void 0 ? void 0 : _configs$twilio_servi3.value) === 'true' || (configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi4 = configs.twilio_service_enabled) === null || _configs$twilio_servi4 === void 0 ? void 0 : _configs$twilio_servi4.value) === '1') && /*#__PURE__*/_react.default.createElement(_SmsLogin.SmsLoginButton, {
     style: {

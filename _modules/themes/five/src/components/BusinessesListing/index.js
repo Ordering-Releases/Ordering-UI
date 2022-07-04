@@ -378,7 +378,8 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
       businessDeliveryPrice: business === null || business === void 0 ? void 0 : business.delivery_price,
       businessDeliveryTime: business === null || business === void 0 ? void 0 : business.delivery_time,
       businessPickupTime: business === null || business === void 0 ? void 0 : business.pickup_time,
-      businessDistance: business === null || business === void 0 ? void 0 : business.distance
+      businessDistance: business === null || business === void 0 ? void 0 : business.distance,
+      isShowCallcenterInformation: isCustomLayout
     });
   }), businessesList.loading && _toConsumableArray(Array((paginationProps === null || paginationProps === void 0 ? void 0 : paginationProps.nextPageItems) > 4 ? paginationProps.nextPageItems : 8).keys()).map(function (i) {
     var _orderState$options5;
