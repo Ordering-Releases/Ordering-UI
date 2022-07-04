@@ -16,6 +16,8 @@ import {
 } from 'ordering-components'
 import { UpsellingPage } from '../UpsellingPage'
 import parsePhoneNumber from 'libphonenumber-js'
+import { useHistory } from 'react-router-dom'
+import { ArrowLeft } from 'react-bootstrap-icons'
 
 import {
   Container,
@@ -94,6 +96,7 @@ const CheckoutUI = (props) => {
   const [{ configs }] = useConfig()
   const [customerState] = useCustomer()
   const [events] = useEvent()
+  const history = useHistory()
 
   const [errorCash, setErrorCash] = useState(false)
   const [userErrors, setUserErrors] = useState([])
@@ -227,6 +230,7 @@ const CheckoutUI = (props) => {
       <Container>
         <WrapperLeftContainer>
           <WrapperLeftContent>
+            <ArrowLeft className='back-arrow' onClick={() => history.goBack()} />
             {!cartState.loading && cart?.status === 2 && (
               <WarningMessage>
                 <VscWarning />
@@ -439,11 +443,12 @@ const CheckoutUI = (props) => {
                   <DriverTips
                     businessId={cart?.business_id}
                     driverTipsOptions={driverTipsOptions}
-                    isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1 || !!parseInt(configs?.driver_tip_use_custom?.value, 10)}
+                    isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
                     isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
-                    driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1 || !!parseInt(configs?.driver_tip_use_custom?.value, 10)
+                    driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
                       ? cart?.driver_tip
                       : cart?.driver_tip_rate}
+                    cart={cart}
                     useOrderContext
                   />
                 </DriverTipContainer>

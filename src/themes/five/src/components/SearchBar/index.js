@@ -55,6 +55,12 @@ export const SearchBar = (props) => {
     }
   }, [search])
 
+  useEffect(() => {
+    if (props.forceFocus) {
+      el.current.focus()
+    }
+  }, [props.forceFocus])
+
   return (
     <>
       {
@@ -79,7 +85,7 @@ export const SearchBar = (props) => {
           maxLength='500'
           style={{ backgroundImage: `url(${theme?.images?.general?.searchIcon})` }}
         />
-        <DeleteContent>
+        <DeleteContent className='clear'>
           {el.current?.value && <span onClick={handleClear}>{t('CLEAR', 'Clear')}</span>}
         </DeleteContent>
       </BusinessSearch>

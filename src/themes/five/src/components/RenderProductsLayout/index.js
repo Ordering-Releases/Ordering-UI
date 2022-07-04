@@ -76,6 +76,7 @@ export const RenderProductsLayout = (props) => {
   const businessLayout = {
     layoutOne: frontLayout === layoutOne && isUseParentCategory
   }
+  const showCartOnProductList = !theme?.layouts?.business_view?.components?.cart?.hidden
 
   const BusinessLayout = (props) => {
     const components = {
@@ -101,21 +102,24 @@ export const RenderProductsLayout = (props) => {
       {!isLoading && business?.id && (
         <WrappLayout isCartOnProductsList={isCartOnProductsList}>
           <div className='bp-list'>
-            <BusinessBasicInformation
-              businessState={businessState}
-              setOpenBusinessInformation={setOpenBusinessInformation}
-              openBusinessInformation={openBusinessInformation}
-              handleChangeSearch={handleChangeSearch}
-              searchValue={searchValue}
-              sortByOptions={sortByOptions}
-              handleChangeSortBy={handleChangeSortBy}
-              categoryState={categoryState}
-              errorQuantityProducts={errorQuantityProducts}
-              sortByValue={sortByValue}
-            />
+            {!isCustomLayout && (
+              <BusinessBasicInformation
+                {...props}
+                businessState={businessState}
+                setOpenBusinessInformation={setOpenBusinessInformation}
+                openBusinessInformation={openBusinessInformation}
+                handleChangeSearch={handleChangeSearch}
+                searchValue={searchValue}
+                sortByOptions={sortByOptions}
+                handleChangeSortBy={handleChangeSortBy}
+                categoryState={categoryState}
+                errorQuantityProducts={errorQuantityProducts}
+                sortByValue={sortByValue}
+              />
+            )}
             {!businessLayout.layoutOne && (
-              <BusinessContent>
-                <BusinessCategoryProductWrapper>
+              <BusinessContent isCustomLayout={isCustomLayout}>
+                <BusinessCategoryProductWrapper showCartOnProductList={showCartOnProductList}>
                   {!(business?.categories?.length === 0 && !categoryId) && (
                     <BusinessLayout
                       component='categories'
@@ -166,36 +170,38 @@ export const RenderProductsLayout = (props) => {
                     />
                   </WrapContent>
                 </BusinessCategoryProductWrapper>
-                <BusinessCartContainer>
-                  <BusinessCartContent>
-                    {currentCart?.products?.length > 0 ? (
-                      <>
-                        <Title>{t('YOUR_CART', 'Your cart')}</Title>
-                        <Cart
-                          isStore
-                          isCustomMode
-                          isForceOpenCart
-                          cart={currentCart}
-                          isCartPending={currentCart?.status === 2}
-                          isProducts={currentCart.products.length}
-                          isCartOnProductsList={isCartOnProductsList}
-                          handleCartOpen={handleCartOpen}
-                        />
-                      </>
-                    ) : (
-                      <EmptyCart>
-                        <div className='empty-content'>
-                          <Cart3 />
-                          <p>{t('ADD_PRODUCTS_IN_YOUR_CART', 'Add products in your cart')}</p>
-                        </div>
-                        <EmptyBtnWrapper>
-                          <span>{parsePrice(0)}</span>
-                          <Button>{t('EMPTY_CART', 'Empty cart')}</Button>
-                        </EmptyBtnWrapper>
-                      </EmptyCart>
-                    )}
-                  </BusinessCartContent>
-                </BusinessCartContainer>
+                {showCartOnProductList && (
+                  <BusinessCartContainer>
+                    <BusinessCartContent maxHeight={window.innerHeight - 100}>
+                      {currentCart?.products?.length > 0 ? (
+                        <>
+                          <Title>{t('YOUR_CART', 'Your cart')}</Title>
+                          <Cart
+                            isStore
+                            isCustomMode
+                            isForceOpenCart
+                            cart={currentCart}
+                            isCartPending={currentCart?.status === 2}
+                            isProducts={currentCart.products.length}
+                            isCartOnProductsList={isCartOnProductsList}
+                            handleCartOpen={handleCartOpen}
+                          />
+                        </>
+                      ) : (
+                        <EmptyCart>
+                          <div className='empty-content'>
+                            <Cart3 />
+                            <p>{t('ADD_PRODUCTS_IN_YOUR_CART', 'Add products in your cart')}</p>
+                          </div>
+                          <EmptyBtnWrapper>
+                            <span>{parsePrice(0)}</span>
+                            <Button>{t('EMPTY_CART', 'Empty cart')}</Button>
+                          </EmptyBtnWrapper>
+                        </EmptyCart>
+                      )}
+                    </BusinessCartContent>
+                  </BusinessCartContainer>
+                )}
               </BusinessContent>
             )}
 
@@ -255,12 +261,14 @@ export const RenderProductsLayout = (props) => {
 
       {isLoading && !isError && (
         <>
-          <BusinessBasicInformation
-            isSkeleton
-            handler={handler}
-            businessState={{ business: {}, loading: true }}
-            openBusinessInformation={openBusinessInformation}
-          />
+          {!isCustomLayout && (
+            <BusinessBasicInformation
+              isSkeleton
+              handler={handler}
+              businessState={{ business: {}, loading: true }}
+              openBusinessInformation={openBusinessInformation}
+            />
+          )}
           <BusinessProductsCategories
             isSkeleton
             categories={[]}

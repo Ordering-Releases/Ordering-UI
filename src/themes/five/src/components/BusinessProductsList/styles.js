@@ -97,19 +97,29 @@ export const DescriptionModalContainer = styled.div`
   flex-direction: column;
   img{
     border-radius: 7.6px;
-    width: 300px;
-    height: 300px;
-    min-width: 300px;
-    min-height: 300px;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
     margin-bottom: 20px;
   }
-  p{
-    white-space: pre;
-    overflow: auto;
+`
+
+export const DescriptionContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  div{
+    height: 300px;
     ::-webkit-scrollbar {
-      width: 0px;
+      width: 6px;
       height: 6px;
     }
+  }
+  p{
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
 `
 

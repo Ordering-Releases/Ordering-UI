@@ -36,10 +36,29 @@ export const WrapAllCategories = styled.div`
       width: 41px;
     }
   }
+  .category-description {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    p {
+      margin: 0;
+      color: #909BA9;
+    }
+    span {
+      color: ${props => props.theme.colors.primary};
+      text-decoration: underline;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+
   .wrap-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    button {
+      min-width: max-content;
+    }
   }
   h3 {
     font-weight: 600;
@@ -58,4 +77,55 @@ export const WrapperNotFound = styled.div`
   > div{
     height: 100%;
   }
+`
+
+export const HeaderWrapper = styled.div``
+
+export const DescriptionModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  img{
+    border-radius: 7.6px;
+    width: 300px;
+    height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    margin-bottom: 20px;
+  }
+  p{
+    white-space: pre;
+  }
+`
+
+export const RibbonBox = styled.div`
+  padding: 2px 8px;
+  box-sizing: border-box;
+  color: ${props => props.theme.colors.colorTextSignForm};
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  background-color: ${props => props.theme.colors.primary};
+  max-width: 200px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-left: 5px;
+
+  ${props => props.theme.rtl && css`
+    margin-left: 0px;
+    margin-right: 5px;
+  `}
+
+  ${({ bgColor }) => bgColor && css`
+    background-color: ${bgColor};
+  `}
+
+  ${({ isRoundRect }) => isRoundRect && css`
+    border-radius: 7.6px;
+  `}
+
+  ${({ isCapsule }) => isCapsule && css`
+    border-radius: 50px;
+  `}
 `

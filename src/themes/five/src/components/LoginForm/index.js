@@ -533,7 +533,7 @@ const LoginFormUI = (props) => {
           )}
 
           {(elementLinkToSignup && !loginWithOtpState) && (
-            <RedirectLink register isPopup={isPopup}>
+            <RedirectLink register isPopup={isPopup} className='new-account'>
               <span>{t('NEW_ON_PLATFORM', theme?.defaultLanguages?.NEW_ON_PLATFORM || 'New on Ordering?')}</span>
               {elementLinkToSignup}
             </RedirectLink>
@@ -568,7 +568,10 @@ const LoginFormUI = (props) => {
                   (
                     <AppleLogin
                       onSuccess={handleSuccessApple}
-                      onFailure={(data) => console.log('onFailure', data)}
+                      onFailure={(data) => setAlertState({
+                        open: true,
+                        content: data
+                      })}
                     />
                   )}
                 {useLoginByCellphone && loginTab === 'cellphone' &&

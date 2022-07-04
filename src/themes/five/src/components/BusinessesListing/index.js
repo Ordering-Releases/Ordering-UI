@@ -67,7 +67,6 @@ const BusinessesListingUI = (props) => {
   const [preorderBusiness, setPreorderBusiness] = useState(null)
   const [hasHighRatedBusiness, setHasHighRatedBusiness] = useState(true)
   const userCustomer = JSON.parse(window.localStorage.getItem('user-customer'))
-
   const businessesIds = isCustomLayout &&
     businessesList.businesses &&
     businessesList.businesses?.map(business => business.id)
@@ -316,6 +315,7 @@ const BusinessesListingUI = (props) => {
                   businessDeliveryTime={business?.delivery_time}
                   businessPickupTime={business?.pickup_time}
                   businessDistance={business?.distance}
+                  isShowCallcenterInformation={isCustomLayout}
                 />
               ))
             }

@@ -5,15 +5,16 @@ import { useTheme } from 'styled-components'
 
 import { Modal } from '../Modal'
 import { BusinessInformation } from '../BusinessInformation'
-import { SearchBar } from '../SearchBar'
 import { BusinessReviews } from '../BusinessReviews'
 import BsInfoCircle from '@meronex/icons/bs/BsInfoCircle'
 
 import { useUtils, useOrder, useLanguage, useConfig } from 'ordering-components'
 
-import { convertHoursToMinutes } from '../../../../../utils'
+import { convertHoursToMinutes, shape } from '../../../../../utils'
 import { Select } from '../../styles/Select'
 import { MomentContent } from '../MomentContent'
+import CgSearch from '@meronex/icons/cg/CgSearch'
+import { SearchProducts } from '../SearchProducts'
 
 import {
   BusinessContainer,
@@ -26,7 +27,10 @@ import {
   BusinessInfoContent,
   WrapperSearch,
   BusinessDetail,
-  BusinessMoreDetail
+  BusinessMoreDetail,
+  TitleWrapper,
+  RibbonBox,
+  SearchIconWrapper
 } from './styles'
 import { BusinessPreorder } from '../BusinessPreorder'
 
@@ -62,6 +66,7 @@ export const BusinessBasicInformation = (props) => {
   const [{ parsePrice, parseDistance, optimizeImage }] = useUtils()
   const [isBusinessReviews, setIsBusinessReviews] = useState(false)
   const [isPreOrder, setIsPreOrder] = useState(false)
+  const [openSearchProducts, setOpenSearchProducts] = useState(false)
   const [{ configs }] = useConfig()
   const isPreOrderSetting = configs?.preorder_status_enabled?.value === '1'
 
@@ -98,6 +103,10 @@ export const BusinessBasicInformation = (props) => {
     }
   }, [businessState?.business])
 
+  useEffect(() => {
+    document.body.style.overflowY = openSearchProducts ? 'hidden' : 'auto'
+  }, [openSearchProducts])
+
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -106,12 +115,33 @@ export const BusinessBasicInformation = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
+      {openSearchProducts && (
+        <SearchProducts
+          {...props}
+          onClose={() => {
+            handleChangeSearch('')
+            setOpenSearchProducts(false)
+          }}
+          business={businessState.business}
+        />
+      )}
       <BusinessInfoContainer>
         <BusinessInfoContent>
           <BusinessInfo className='info'>
             <BusinessInfoItem>
               {!loading ? (
-                <h2 className='bold'>{business?.name}</h2>
+                <TitleWrapper>
+                  <h2 className='bold'>{business?.name}</h2>
+                  {business?.ribbon?.enabled && (
+                    <RibbonBox
+                      bgColor={business?.ribbon?.color}
+                      isRoundRect={business?.ribbon?.shape === shape?.rectangleRound}
+                      isCapsule={business?.ribbon?.shape === shape?.capsuleShape}
+                    >
+                      {business?.ribbon?.text}
+                    </RibbonBox>
+                  )}
+                </TitleWrapper>
               ) : (
                 <Skeleton width={isCustomerMode ? 100 : 150} height={isCustomerMode ? 35 : 'auto'} />
               )}
@@ -198,12 +228,11 @@ export const BusinessBasicInformation = (props) => {
         </BusinessInfoContent>
         {(categoryState?.products?.length !== 0 || searchValue) && !errorQuantityProducts && (
           <WrapperSearch>
-            <SearchBar
-              onSearch={handleChangeSearch}
-              search={searchValue}
-              placeholder={t('SEARCH_PRODUCTS', theme?.defaultLanguages?.SEARCH_PRODUCTS || 'Search Products')}
-              lazyLoad={businessState?.business?.lazy_load_products_recommended}
-            />
+            <SearchIconWrapper
+              onClick={() => setOpenSearchProducts(true)}
+            >
+              <CgSearch />
+            </SearchIconWrapper>
             <Select
               notAsync
               notReload

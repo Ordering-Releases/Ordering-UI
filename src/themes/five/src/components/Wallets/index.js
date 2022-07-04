@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
+import { useTheme } from 'styled-components'
 import {
   WalletList,
   useLanguage,
@@ -11,7 +12,11 @@ import {
   Container,
   SectionWrapper,
   BalanceElement,
-  TransactionsWrapper
+  TransactionsWrapper,
+  WrapContent,
+  Transactions,
+  LoyaltyContent,
+  LoyaltyWrapp
 } from './styles'
 
 import { WalletTransactionItem } from '../WalletTransactionItem'
@@ -21,6 +26,7 @@ import { Tabs, Tab } from '../../styles/Tabs'
 const WalletsUI = (props) => {
   const {
     walletList,
+    userLoyaltyLevel,
     transactionsList,
     setWalletSelected,
     isWalletCashEnabled,
@@ -30,10 +36,13 @@ const WalletsUI = (props) => {
   const [, t] = useLanguage()
   const [{ parsePrice }] = useUtils()
   const [{ configs }] = useConfig()
+  const theme = useTheme()
 
   const [tabSelected, setTabSelected] = useState(isWalletCashEnabled ? 'cash' : 'credit_point')
 
   const currentWalletSelected = (walletList.wallets?.length > 0 && walletList.wallets?.find(w => w.type === tabSelected)) ?? null
+
+  const loyaltyLevel = Object.keys(userLoyaltyLevel.loyaltyLevel ?? {}).length > 0 && userLoyaltyLevel.loyaltyLevel
 
   const walletName = {
     cash: {
@@ -56,83 +65,104 @@ const WalletsUI = (props) => {
   return (
     <Container>
       {!walletList.loading &&
+        !userLoyaltyLevel.loading &&
         !walletList.error &&
         walletList.wallets?.length > 0 &&
       (
         <>
-          <Tabs variant='primary'>
+          <Tabs variant='primary' className='tabs'>
             {walletList.wallets?.map(wallet => walletName[wallet.type]?.isActive && (
               <Tab
                 key={wallet.id}
                 active={tabSelected === wallet.type}
                 onClick={() => handleChangeTab(wallet)}
                 borderBottom
+                className='tab_title'
               >
                 {walletName[wallet.type]?.name}
               </Tab>
             ))}
           </Tabs>
 
-          <div style={{ width: '70%', margin: '0 auto' }}>
-            <SectionWrapper>
-              <BalanceElement>
-                <h1>
-                  {currentWalletSelected?.type === 'cash'
-                    ? parsePrice(currentWalletSelected?.balance)
-                    : currentWalletSelected?.balance
-                  }
-                </h1>
-                <span>
-                  {currentWalletSelected?.type === 'cash'
-                    ? configs?.stripe_currency?.value
-                    : t('POINTS', 'Points')}
-                </span>
-              </BalanceElement>
-            </SectionWrapper>
+          <WrapContent>
+            <Transactions isLoyaltyLevel={!!loyaltyLevel}>
+              <SectionWrapper>
+                <BalanceElement>
+                  <h1>
+                    {
+                      currentWalletSelected?.type === 'cash'
+                        ? parsePrice(currentWalletSelected?.balance)
+                        : currentWalletSelected?.balance
+                    }
+                  </h1>
+                  <span>
+                    {currentWalletSelected?.type === 'cash'
+                      ? configs?.stripe_currency?.value
+                      : t('POINTS', 'Points')}
+                  </span>
+                </BalanceElement>
+              </SectionWrapper>
 
-            <div style={{ marginTop: 20 }}>
-              {!transactionsList?.loading && transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.length > 0 && (
-                <>
-                  <h2 style={{fontSize: 20}}>{t('TRANSACTIONS_HISTORY', 'Transactions history')}</h2>
-                  <TransactionsWrapper>
-                    {transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.map((transaction, i) =>(
-                      <WalletTransactionItem
-                        idx={i}
-                        type={currentWalletSelected?.type}
-                        key={transaction.id}
-                        item={transaction}
-                      />
+              <div className='transactions_list'>
+                {!transactionsList?.loading && transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.length > 0 && (
+                  <>
+                    <h2 style={{ fontSize: 20 }}>{t('TRANSACTIONS_HISTORY', 'Transactions history')}</h2>
+                    <TransactionsWrapper>
+                      {transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.map((transaction, i) => (
+                        <WalletTransactionItem
+                          idx={i}
+                          type={currentWalletSelected?.type}
+                          key={transaction.id}
+                          item={transaction}
+                        />
+                      ))}
+                    </TransactionsWrapper>
+                  </>
+                )}
+
+                {transactionsList?.loading && (
+                  <>
+                    {[...Array(8).keys()].map(i => (
+                      <SectionWrapper key={i} isLoading>
+                        <Skeleton height={40} />
+                      </SectionWrapper>
                     ))}
-                  </TransactionsWrapper>
-                </>
-              )}
+                  </>
+                )}
 
-              {transactionsList?.loading && (
-                <>
-                  {[...Array(8).keys()].map(i => (
-                    <SectionWrapper key={i}>
-                      <Skeleton height={40} />
-                    </SectionWrapper>
-                  ))}
-                </>
-              )}
+                {!transactionsList?.loading &&
+                  (transactionsList?.error || !transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.length) &&
+                (
+                  <NotFoundSource
+                    content={
+                      transactionsList?.error
+                        ? t('ERROR_NOT_FOUND_TRANSACTIONS', 'Sorry, an error has occurred')
+                        : t('NOT_FOUND_TRANSACTIONS', 'No transactions to show at this time.')
+                    }
+                  />
+                )}
+              </div>
+            </Transactions>
 
-              {!transactionsList?.loading &&
-                (transactionsList?.error || !transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.length) &&
-              (
-                <NotFoundSource
-                  content={transactionsList?.error
-                    ? t('ERROR_NOT_FOUND_TRANSACTIONS', 'Sorry, an error has occurred')
-                    : t('NOT_FOUND_TRANSACTIONS', 'No transactions to show at this time.')
-                  }
-                />
-              )}
-            </div>
-          </div>
+            {!!loyaltyLevel && (
+              <LoyaltyContent>
+                <LoyaltyWrapp>
+                  <span className='loyalty_title'>
+                    {t('LOYALTY_LEVEL_TITLE', 'Your level is')}:
+                  </span>
+                  <img src={loyaltyLevel.image ?? theme.images.dummies.loyaltyLevel} />
+                  <span className='loyalty_name'>
+                    {loyaltyLevel.name}
+                  </span>
+                </LoyaltyWrapp>
+              </LoyaltyContent>
+            )}
+          </WrapContent>
+
         </>
       )}
 
-      {walletList?.loading && (
+      {(walletList?.loading || userLoyaltyLevel.loading) && (
         <>
           <Tabs variant='primary'>
             <Skeleton width={200} height={40} style={{ marginRight: 10 }} />
@@ -141,7 +171,7 @@ const WalletsUI = (props) => {
           </Tabs>
           <div style={{ width: '85%', margin: '0 auto' }}>
             {[...Array(8).keys()].map(i => (
-              <SectionWrapper key={i}>
+              <SectionWrapper key={i} isLoading>
                 <Skeleton height={40} />
               </SectionWrapper>
             ))}
@@ -149,11 +179,12 @@ const WalletsUI = (props) => {
         </>
       )}
 
-      {!walletList?.loading && (walletList?.error || !walletList?.wallets?.length) && (
+      {!walletList?.loading && !userLoyaltyLevel.loading && (walletList?.error || !walletList?.wallets?.length) && (
         <NotFoundSource
-          content={walletList?.error
-            ? t('ERROR_NOT_FOUND_WALLETS', 'Sorry, an error has occurred')
-            : t('NOT_FOUND_WALLETS', 'No wallets to show at this time.')
+          content={
+            walletList?.error
+              ? t('ERROR_NOT_FOUND_WALLETS', 'Sorry, an error has occurred')
+              : t('NOT_FOUND_WALLETS', 'No wallets to show at this time.')
           }
         />
       )}

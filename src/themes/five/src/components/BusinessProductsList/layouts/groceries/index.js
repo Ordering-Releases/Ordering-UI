@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ProductsList, useLanguage, useConfig } from 'ordering-components'
 
 import { Button } from '../../../../styles/Buttons'
 import { SingleProductCard } from '../../../SingleProductCard'
 import { NotFoundSource } from '../../../NotFoundSource'
-
+import { Modal } from '../../../Modal'
+import { shape } from '../../../../../../../utils'
 import {
   ProductsContainer,
   ProductsListing,
   WrapAllCategories,
   ErrorMessage,
-  WrapperNotFound
+  WrapperNotFound,
+  HeaderWrapper,
+  DescriptionModalContainer,
+  RibbonBox
 } from './styles'
 
 const BusinessProductsListUI = (props) => {
@@ -36,19 +40,42 @@ const BusinessProductsListUI = (props) => {
   const [, t] = useLanguage()
   const [{ configs }] = useConfig()
   const isUseParentCategory = configs?.use_parent_category?.value === 'true' || configs?.use_parent_category?.value === '1'
+  const [openDescription, setOpenDescription] = useState(null)
+  const shortCategoryDescriptionSelected = category?.description?.length > 200 ? `${category?.description?.substring(0, 200)}...` : category?.description
 
   return (
     <ProductsContainer>
       {category?.id && (
         <WrapAllCategories id='container'>
-          <div className='category-title'>
-            {
-              category?.image && (
-                <img src={category.image} />
-              )
-            }
-            <h3>{category.name}</h3>
-          </div>
+          <HeaderWrapper>
+            <div className='category-title'>
+              {
+                category?.image && (
+                  <img src={category.image} />
+                )
+              }
+              <h3>{category.name}</h3>
+              {category?.ribbon?.enabled && (
+                <RibbonBox
+                  bgColor={category?.ribbon?.color}
+                  isRoundRect={category?.ribbon?.shape === shape?.rectangleRound}
+                  isCapsule={category?.ribbon?.shape === shape?.capsuleShape}
+                >
+                  {category?.ribbon?.text}
+                </RibbonBox>
+              )}
+            </div>
+            {category?.description && (
+              <div className='category-description'>
+                <p>
+                  {shortCategoryDescriptionSelected}
+                  {category?.description?.length > 200 && (
+                    <span onClick={() => setOpenDescription(category)}>{t('SEE_MORE', 'See more')}</span>
+                  )}
+                </p>
+              </div>
+            )}
+          </HeaderWrapper>
           <ProductsListing>
             {
               categoryState?.products?.map((product, i) => (
@@ -121,20 +148,44 @@ const BusinessProductsListUI = (props) => {
           const products = !isUseParentCategory
             ? categoryState?.products?.filter(product => product?.category_id === category?.id) ?? []
             : categoryState?.products?.filter(product => category?.children?.some(cat => cat.category_id === product?.category_id)) ?? []
+
+          const shortCategoryDescription = category?.description?.length > 200 ? `${category?.description?.substring(0, 200)}...` : category?.description
+
           return (
             <React.Fragment key={i}>
               {
                 products.length > 0 && (
                   <WrapAllCategories id='container'>
                     <div className='wrap-header'>
-                      <div className='category-title'>
-                        {
-                          category?.image && (
-                            <img src={category.image} />
-                          )
-                        }
-                        <h3>{category.name}</h3>
-                      </div>
+                      <HeaderWrapper>
+                        <div className='category-title'>
+                          {
+                            category?.image && (
+                              <img src={category.image} />
+                            )
+                          }
+                          <h3>{category.name}</h3>
+                          {category?.ribbon?.enabled && (
+                            <RibbonBox
+                              bgColor={category?.ribbon?.color}
+                              isRoundRect={category?.ribbon?.shape === shape?.rectangleRound}
+                              isCapsule={category?.ribbon?.shape === shape?.capsuleShape}
+                            >
+                              {category?.ribbon?.text}
+                            </RibbonBox>
+                          )}
+                        </div>
+                        {category?.description && (
+                          <div className='category-description'>
+                            <p>
+                              {shortCategoryDescription}
+                              {category?.description?.length > 200 && (
+                                <span onClick={() => setOpenDescription(category)}>{t('SEE_MORE', 'See more')}</span>
+                              )}
+                            </p>
+                          </div>
+                        )}
+                      </HeaderWrapper>
                       {products?.length > 9 && (
                         <Button
                           onClick={() => onClickCategory(category)}
@@ -216,6 +267,20 @@ const BusinessProductsListUI = (props) => {
           <ErrorMessage key={i}>ERROR: [{e}]</ErrorMessage>
         ))
       )}
+      <Modal
+        open={openDescription}
+        title={openDescription?.name}
+        onClose={() => setOpenDescription(null)}
+      >
+        <DescriptionModalContainer>
+          {
+            openDescription?.image && (
+              <img src={openDescription.image} />
+            )
+          }
+          <p>{openDescription?.description}</p>
+        </DescriptionModalContainer>
+      </Modal>
     </ProductsContainer>
   )
 }
