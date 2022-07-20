@@ -66,7 +66,10 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
       suboption = props.suboption,
       toggleSelect = props.toggleSelect,
       changePosition = props.changePosition,
-      isSoldOut = props.isSoldOut;
+      isSoldOut = props.isSoldOut,
+      setIsScrollAvailable = props.setIsScrollAvailable;
+  var disableIncrement = option !== null && option !== void 0 && option.limit_suboptions_by_max ? balance === (option === null || option === void 0 ? void 0 : option.max) || state.quantity === suboption.max : state.quantity === (suboption === null || suboption === void 0 ? void 0 : suboption.max) || !state.selected && balance === (option === null || option === void 0 ? void 0 : option.max);
+  var price = option !== null && option !== void 0 && option.with_half_option && suboption !== null && suboption !== void 0 && suboption.half_price && state.position !== 'whole' ? suboption === null || suboption === void 0 ? void 0 : suboption.half_price : suboption === null || suboption === void 0 ? void 0 : suboption.price;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
@@ -80,6 +83,11 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
       _useState2 = _slicedToArray(_useState, 2),
       showMessage = _useState2[0],
       setShowMessage = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isDirty = _useState4[0],
+      setIsDirty = _useState4[1];
 
   var handleIncrement = function handleIncrement(e) {
     e.stopPropagation();
@@ -100,8 +108,9 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
     var _option$suboptions;
 
     toggleSelect();
+    setIsDirty(true);
 
-    if (balance === (option === null || option === void 0 ? void 0 : option.max) && (option === null || option === void 0 ? void 0 : (_option$suboptions = option.suboptions) === null || _option$suboptions === void 0 ? void 0 : _option$suboptions.length) > balance && !((option === null || option === void 0 ? void 0 : option.min) === 1 && (option === null || option === void 0 ? void 0 : option.max) === 1)) {
+    if (balance === (option === null || option === void 0 ? void 0 : option.max) && (option === null || option === void 0 ? void 0 : (_option$suboptions = option.suboptions) === null || _option$suboptions === void 0 ? void 0 : _option$suboptions.length) > balance && !((option === null || option === void 0 ? void 0 : option.min) === 1 && (option === null || option === void 0 ? void 0 : option.max) === 1) && !state.selected) {
       setShowMessage(true);
     }
   };
@@ -109,12 +118,16 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
   (0, _react.useEffect)(function () {
     var _option$suboptions2;
 
-    if (!(balance === (option === null || option === void 0 ? void 0 : option.max) && (option === null || option === void 0 ? void 0 : (_option$suboptions2 = option.suboptions) === null || _option$suboptions2 === void 0 ? void 0 : _option$suboptions2.length) > balance && !((option === null || option === void 0 ? void 0 : option.min) === 1 && (option === null || option === void 0 ? void 0 : option.max) === 1))) {
+    if (!(balance === (option === null || option === void 0 ? void 0 : option.max) && (option === null || option === void 0 ? void 0 : (_option$suboptions2 = option.suboptions) === null || _option$suboptions2 === void 0 ? void 0 : _option$suboptions2.length) > balance && !((option === null || option === void 0 ? void 0 : option.min) === 1 && (option === null || option === void 0 ? void 0 : option.max) === 1) && !state.selected)) {
       setShowMessage(false);
     }
   }, [balance]);
-  var disableIncrement = option !== null && option !== void 0 && option.limit_suboptions_by_max ? balance === (option === null || option === void 0 ? void 0 : option.max) || state.quantity === suboption.max : state.quantity === (suboption === null || suboption === void 0 ? void 0 : suboption.max) || !state.selected && balance === (option === null || option === void 0 ? void 0 : option.max);
-  var price = option !== null && option !== void 0 && option.with_half_option && suboption !== null && suboption !== void 0 && suboption.half_price && state.position !== 'whole' ? suboption === null || suboption === void 0 ? void 0 : suboption.half_price : suboption === null || suboption === void 0 ? void 0 : suboption.price;
+  (0, _react.useEffect)(function () {
+    if (balance === (option === null || option === void 0 ? void 0 : option.max) && state !== null && state !== void 0 && state.selected && isDirty) {
+      setIsDirty(false);
+      setIsScrollAvailable(true);
+    }
+  }, [state === null || state === void 0 ? void 0 : state.selected]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i

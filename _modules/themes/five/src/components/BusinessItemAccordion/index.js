@@ -56,7 +56,9 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       isStore = props.isStore,
       total = props.total,
       handleClickCheckout = props.handleClickCheckout,
-      checkoutButtonDisabled = props.checkoutButtonDisabled;
+      checkoutButtonDisabled = props.checkoutButtonDisabled,
+      setPreorderBusiness = props.setPreorderBusiness,
+      handleChangeStore = props.handleChangeStore;
 
   var _useOrder = (0, _orderingComponents.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
@@ -97,11 +99,12 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
   var content = (0, _react.useRef)(null);
   var businessStore = (0, _react.useRef)(null);
   var businessDelete = (0, _react.useRef)(null);
+  var changeStore = (0, _react.useRef)(null);
 
   var toggleAccordion = function toggleAccordion(e) {
-    var _businessStore$curren, _businessDelete$curre;
+    var _businessStore$curren, _businessDelete$curre, _changeStore$current;
 
-    var isActionsClick = ((_businessStore$curren = businessStore.current) === null || _businessStore$curren === void 0 ? void 0 : _businessStore$curren.contains(e === null || e === void 0 ? void 0 : e.target)) || ((_businessDelete$curre = businessDelete.current) === null || _businessDelete$curre === void 0 ? void 0 : _businessDelete$curre.contains(e === null || e === void 0 ? void 0 : e.target));
+    var isActionsClick = ((_businessStore$curren = businessStore.current) === null || _businessStore$curren === void 0 ? void 0 : _businessStore$curren.contains(e === null || e === void 0 ? void 0 : e.target)) || ((_businessDelete$curre = businessDelete.current) === null || _businessDelete$curre === void 0 ? void 0 : _businessDelete$curre.contains(e === null || e === void 0 ? void 0 : e.target)) || ((_changeStore$current = changeStore.current) === null || _changeStore$current === void 0 ? void 0 : _changeStore$current.contains(e === null || e === void 0 ? void 0 : e.target));
     if (isClosed || !isProducts || isActionsClick) return;
     setActiveState(setActive === '' ? 'active' : '');
     setRotateState(setActive === 'active' ? 'accordion__icon' : 'accordion__icon rotate');
@@ -194,7 +197,11 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       return handleClearProducts();
     },
     className: "clear-cart"
-  }, t('CLEAR_CART', 'Clear cart')))))), isClosed && !isStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, {
+  }, t('CLEAR_CART', 'Clear cart')))), /*#__PURE__*/_react.default.createElement("span", {
+    ref: changeStore,
+    onClick: handleChangeStore,
+    className: "change-store"
+  }, t('CHANGE_STORE', 'Change store')))), isClosed && !isStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, {
     className: "closed"
   }, /*#__PURE__*/_react.default.createElement("p", null, t('CLOSED', 'Closed'), " ", moment)), !isClosed && !isProducts && !isStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, null, /*#__PURE__*/_react.default.createElement("p", null, t('NO_PRODUCTS', 'No products'))), /*#__PURE__*/_react.default.createElement(_styles.BusinessActions, null, !isClosed && !!isProducts && /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_TiArrowSortedUp.default, {
     className: "".concat(setRotate)
@@ -204,7 +211,13 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       minHeight: "".concat(setHeight),
       maxHeight: !setActive && '0px'
     }
-  }, props.children), !setActive && !isClosed && !!isProducts && !checkoutButtonDisabled && /*#__PURE__*/_react.default.createElement(_styles.PriceContainer, null, /*#__PURE__*/_react.default.createElement("h4", null, parsePrice(total)), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+  }, isCheckout && handleChangeStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement(_styles.ContentInfo, {
+    className: "info"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    ref: changeStore,
+    onClick: handleChangeStore,
+    className: "change-store"
+  }, t('CHANGE_STORE', 'Change store')))), props.children), !setActive && !isClosed && !!isProducts && !checkoutButtonDisabled && /*#__PURE__*/_react.default.createElement(_styles.PriceContainer, null, /*#__PURE__*/_react.default.createElement("h4", null, parsePrice(total)), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     onClick: handleClickCheckout,
     color: "primary"
   }, t('CHECKOUT', 'Checkout')))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {

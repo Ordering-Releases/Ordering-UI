@@ -399,7 +399,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
     if (outsideModal) {
       var _businessId = 'businessId:' + (businessData === null || businessData === void 0 ? void 0 : businessData.id);
 
-      localStorage.setItem('adjust-businessId', JSON.stringify(_businessId));
+      sessionStorage.setItem('adjust-cart-products', _businessId);
       handleBusinessRedirect(businessData === null || businessData === void 0 ? void 0 : businessData.slug);
     }
   };
@@ -456,7 +456,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
         return product.valid === true;
       });
 
-      if (available && reorderState !== null && reorderState !== void 0 && (_reorderState$result = reorderState.result) !== null && _reorderState$result !== void 0 && _reorderState$result.uuid) {
+      if (available && reorderState !== null && reorderState !== void 0 && (_reorderState$result = reorderState.result) !== null && _reorderState$result !== void 0 && _reorderState$result.uuid && (products === null || products === void 0 ? void 0 : products.length) === (order === null || order === void 0 ? void 0 : order.products.length)) {
         handleGoToPage({
           page: 'checkout',
           params: {
@@ -464,7 +464,8 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
           }
         });
       } else {
-        localStorage.setItem('adjust-businessId', JSON.stringify(_businessId));
+        sessionStorage.setItem('adjust-cart-products', _businessId);
+        (products === null || products === void 0 ? void 0 : products.length) !== (order === null || order === void 0 ? void 0 : order.products.length) && sessionStorage.setItem('already-removed', 'removed');
         handleBusinessRedirect(businessData === null || businessData === void 0 ? void 0 : businessData.slug);
       }
     }

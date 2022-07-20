@@ -11,6 +11,8 @@ var _styles = require("./styles");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
+var _reactBootstrapIcons = require("react-bootstrap-icons");
+
 var _SearchBar = require("../SearchBar");
 
 var _orderingComponents = require("ordering-components");
@@ -68,7 +70,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
-  var _businessesSearchList, _sortItems$filter, _orderState$options3, _orderState$options4, _orderState$options5, _businessesSearchList2, _businessesSearchList4;
+  var _businessesSearchList, _sortItems$filter, _brandList$brands, _brandList$brands$fil, _orderState$options3, _orderState$options4, _orderState$options5, _businessesSearchList2, _businessesSearchList4;
 
   var businessesSearchList = props.businessesSearchList,
       onBusinessClick = props.onBusinessClick,
@@ -77,7 +79,8 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       handleChangeTermValue = props.handleChangeTermValue,
       termValue = props.termValue,
       paginationProps = props.paginationProps,
-      handleSearchbusinessAndProducts = props.handleSearchbusinessAndProducts;
+      handleSearchbusinessAndProducts = props.handleSearchbusinessAndProducts,
+      brandList = props.brandList;
 
   var _useOrder = (0, _orderingComponents.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
@@ -113,7 +116,38 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
     text: t('PICKUP_TIME', 'Pickup time'),
     value: 'pickup_time'
   }];
+  var priceList = [{
+    level: '1',
+    content: '$'
+  }, {
+    level: '2',
+    content: '$$'
+  }, {
+    level: '3',
+    content: '$$$'
+  }, {
+    level: '4',
+    content: '$$$$'
+  }, {
+    level: '5',
+    content: '$$$$$'
+  }];
   var noResults = !businessesSearchList.loading && !businessesSearchList.lengthError && (businessesSearchList === null || businessesSearchList === void 0 ? void 0 : (_businessesSearchList = businessesSearchList.businesses) === null || _businessesSearchList === void 0 ? void 0 : _businessesSearchList.length) === 0;
+
+  var handleChangeBrandFilter = function handleChangeBrandFilter(brandId) {
+    var _filters$franchise_id, _filters$franchise_id2;
+
+    var franchiseIds = _toConsumableArray(filters === null || filters === void 0 ? void 0 : filters.franchise_ids);
+
+    if (filters !== null && filters !== void 0 && (_filters$franchise_id = filters.franchise_ids) !== null && _filters$franchise_id !== void 0 && _filters$franchise_id.includes(brandId)) franchiseIds = filters === null || filters === void 0 ? void 0 : (_filters$franchise_id2 = filters.franchise_ids) === null || _filters$franchise_id2 === void 0 ? void 0 : _filters$franchise_id2.filter(function (item) {
+      return item !== brandId;
+    });else franchiseIds.push(brandId);
+    handleChangeFilters && handleChangeFilters('franchise_ids', franchiseIds);
+  };
+
+  var handleChangePriceRange = function handleChangePriceRange(value) {
+    if (value === (filters === null || filters === void 0 ? void 0 : filters.price_level)) handleChangeFilters('price_level', null);else handleChangeFilters('price_level', value);
+  };
 
   var MaxSectionItem = function MaxSectionItem(_ref) {
     var _ref2;
@@ -148,7 +182,7 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
     onSearch: function onSearch(val) {
       return handleChangeTermValue(val);
     },
-    value: termValue
+    search: termValue
   }), /*#__PURE__*/_react.default.createElement(_styles.FiltersContainer, null, /*#__PURE__*/_react.default.createElement(_styles.Filters, null, /*#__PURE__*/_react.default.createElement(_styles.SortContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('SORT', 'Sort')), sortItems === null || sortItems === void 0 ? void 0 : (_sortItems$filter = sortItems.filter(function (item) {
     var _orderState$options, _orderState$options2;
 
@@ -163,7 +197,36 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       },
       active: filters === null || filters === void 0 ? void 0 : (_filters$orderBy = filters.orderBy) === null || _filters$orderBy === void 0 ? void 0 : _filters$orderBy.includes(item === null || item === void 0 ? void 0 : item.value)
     }, item === null || item === void 0 ? void 0 : item.text, "  ", (filters === null || filters === void 0 ? void 0 : (_filters$orderBy2 = filters.orderBy) === null || _filters$orderBy2 === void 0 ? void 0 : _filters$orderBy2.includes(item === null || item === void 0 ? void 0 : item.value)) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, filters !== null && filters !== void 0 && (_filters$orderBy3 = filters.orderBy) !== null && _filters$orderBy3 !== void 0 && _filters$orderBy3.includes('-') ? /*#__PURE__*/_react.default.createElement(_BisUpArrow.default, null) : /*#__PURE__*/_react.default.createElement(_BisDownArrow.default, null)));
-  })), (orderState === null || orderState === void 0 ? void 0 : (_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : _orderState$options3.type) === 1 && /*#__PURE__*/_react.default.createElement(MaxSectionItem, {
+  })), /*#__PURE__*/_react.default.createElement(_styles.BrandContainer, null, /*#__PURE__*/_react.default.createElement("h3", null, t('BRANDS', 'Brands')), /*#__PURE__*/_react.default.createElement(_styles.BrandListWrapper, null, (brandList === null || brandList === void 0 ? void 0 : brandList.loading) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, _toConsumableArray(Array(5).keys()).map(function (index) {
+    return /*#__PURE__*/_react.default.createElement(_styles.BrandItem, {
+      key: index
+    }, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+      width: 120,
+      height: 15
+    }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+      width: 16,
+      height: 16
+    }));
+  })), !(brandList !== null && brandList !== void 0 && brandList.loading) && (brandList === null || brandList === void 0 ? void 0 : brandList.brands.map(function (brand, i) {
+    var _filters$franchise_id3;
+
+    return (brand === null || brand === void 0 ? void 0 : brand.enabled) && /*#__PURE__*/_react.default.createElement(_styles.BrandItem, {
+      key: i,
+      onClick: function onClick() {
+        return handleChangeBrandFilter(brand === null || brand === void 0 ? void 0 : brand.id);
+      }
+    }, /*#__PURE__*/_react.default.createElement("span", null, brand === null || brand === void 0 ? void 0 : brand.name), (filters === null || filters === void 0 ? void 0 : (_filters$franchise_id3 = filters.franchise_ids) === null || _filters$franchise_id3 === void 0 ? void 0 : _filters$franchise_id3.includes(brand === null || brand === void 0 ? void 0 : brand.id)) && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Check2, null));
+  })), !(brandList !== null && brandList !== void 0 && brandList.loading) && (brandList === null || brandList === void 0 ? void 0 : (_brandList$brands = brandList.brands) === null || _brandList$brands === void 0 ? void 0 : (_brandList$brands$fil = _brandList$brands.filter(function (brand) {
+    return brand === null || brand === void 0 ? void 0 : brand.enabled;
+  })) === null || _brandList$brands$fil === void 0 ? void 0 : _brandList$brands$fil.length) === 0 && /*#__PURE__*/_react.default.createElement(_styles.NoResult, null, t('NO_RESULTS_FOUND', 'Sorry, no results found')))), /*#__PURE__*/_react.default.createElement(_styles.PriceFilterWrapper, null, /*#__PURE__*/_react.default.createElement("h3", null, t('PRICE_RANGE', 'Price range')), /*#__PURE__*/_react.default.createElement(_styles.PriceFilterListWrapper, null, priceList.map(function (price, i) {
+    return /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+      key: i,
+      color: (filters === null || filters === void 0 ? void 0 : filters.price_level) === (price === null || price === void 0 ? void 0 : price.level) ? 'primary' : 'lightGray',
+      onClick: function onClick() {
+        return handleChangePriceRange(price === null || price === void 0 ? void 0 : price.level);
+      }
+    }, price.content, (filters === null || filters === void 0 ? void 0 : filters.price_level) === (price === null || price === void 0 ? void 0 : price.level) && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.XLg, null));
+  }))), (orderState === null || orderState === void 0 ? void 0 : (_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : _orderState$options3.type) === 1 && /*#__PURE__*/_react.default.createElement(MaxSectionItem, {
     title: t('MAX_DELIVERY_FEE', 'Max delivery fee'),
     options: maxDeliveryFeeOptions,
     filter: "max_delivery_price"
