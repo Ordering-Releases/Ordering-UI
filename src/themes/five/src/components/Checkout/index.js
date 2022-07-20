@@ -103,7 +103,11 @@ const CheckoutUI = (props) => {
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [isUserDetailsEdit, setIsUserDetailsEdit] = useState(null)
 
-  const isWalletEnabled = configs?.wallet_enabled?.value === '1' && (configs?.wallet_cash_enabled?.value === '1' || configs?.wallet_credit_point_enabled?.value === '1')
+  const businessConfigs = businessDetails?.business?.configs ?? []
+  const isWalletCashEnabled = businessConfigs.find(config => config.key === 'wallet_cash_enabled')?.value === '1'
+  const isWalletCreditPointsEnabled = businessConfigs.find(config => config.key === 'wallet_credit_point_enabled')?.value === '1'
+  const isWalletEnabled = configs?.cash_wallet?.value && configs?.wallet_enabled?.value === '1' && (isWalletCashEnabled || isWalletCreditPointsEnabled)
+
   const placeSpotTypes = [3, 4]
   const placeSpotsEnabled = placeSpotTypes.includes(options?.type)
   const [hasBusinessPlaces, setHasBusinessPlaces] = useState(null)
@@ -115,7 +119,11 @@ const CheckoutUI = (props) => {
     loading ||
     !cart?.valid_maximum ||
     (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) ||
-    (((placeSpotTypes.includes(options?.type) && !cart?.place) && hasBusinessPlaces))
+    (((placeSpotTypes.includes(options?.type) && !cart?.place) && hasBusinessPlaces)) ||
+    (options.type === 1 &&
+      validationFields?.fields?.checkout?.driver_tip?.enabled &&
+      validationFields?.fields?.checkout?.driver_tip?.required &&
+      (Number(cart?.driver_tip) <= 0))
 
   const driverTipsOptions = typeof configs?.driver_tip_options?.value === 'string'
     ? JSON.parse(configs?.driver_tip_options?.value) || []
@@ -517,9 +525,19 @@ const CheckoutUI = (props) => {
               {t('WARNING_INVALID_PRODUCTS', 'Some products are invalid, please check them.')}
             </WarningText>
           )}
+
           {placeSpotTypes.includes(options?.type) && !cart?.place && hasBusinessPlaces && (
             <WarningText>
               {t('WARNING_PLACE_SPOT', 'Please, select your spot to place order.')}
+            </WarningText>
+          )}
+
+          {options.type === 1 &&
+          validationFields?.fields?.checkout?.driver_tip?.enabled &&
+          validationFields?.fields?.checkout?.driver_tip?.required &&
+          (Number(cart?.driver_tip) <= 0) && (
+            <WarningText>
+              {t('WARNING_INVALID_DRIVER_TIP', 'Driver Tip is required.')}
             </WarningText>
           )}
         </WrapperRightContainer>
@@ -679,7 +697,7 @@ export const Checkout = (props) => {
     ...props,
     UIComponent: CheckoutUI,
     cartState,
-    businessId: cartState.cart?.business_id,
+    uuid: cartUuid,
     isResetPaymethod,
     setIsResetPaymethod
   }

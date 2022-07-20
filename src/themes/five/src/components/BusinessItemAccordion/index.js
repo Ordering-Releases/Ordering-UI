@@ -32,7 +32,9 @@ export const BusinessItemAccordion = (props) => {
     isStore,
     total,
     handleClickCheckout,
-    checkoutButtonDisabled
+    checkoutButtonDisabled,
+    setPreorderBusiness,
+    handleChangeStore
   } = props
 
   const [orderState] = useOrder()
@@ -47,9 +49,10 @@ export const BusinessItemAccordion = (props) => {
   const content = useRef(null)
   const businessStore = useRef(null)
   const businessDelete = useRef(null)
+  const changeStore = useRef(null)
 
   const toggleAccordion = (e) => {
-    const isActionsClick = businessStore.current?.contains(e?.target) || businessDelete.current?.contains(e?.target)
+    const isActionsClick = businessStore.current?.contains(e?.target) || businessDelete.current?.contains(e?.target) || changeStore.current?.contains(e?.target)
     if (isClosed || !isProducts || isActionsClick) return
     setActiveState(setActive === '' ? 'active' : '')
     setRotateState(
@@ -149,6 +152,13 @@ export const BusinessItemAccordion = (props) => {
                       </>
                     )}
                   </div>
+                  <span
+                    ref={changeStore}
+                    onClick={handleChangeStore}
+                    className='change-store'
+                  >
+                    {t('CHANGE_STORE', 'Change store')}
+                  </span>
                 </ContentInfo>
               </BusinessInfo>
               {isClosed && !isStore && (
@@ -177,6 +187,19 @@ export const BusinessItemAccordion = (props) => {
           ref={content}
           style={{ minHeight: `${setHeight}`, maxHeight: !setActive && '0px' }}
         >
+          {isCheckout && handleChangeStore && (
+            <BusinessInfo>
+              <ContentInfo className='info'>
+                <span
+                  ref={changeStore}
+                  onClick={handleChangeStore}
+                  className='change-store'
+                >
+                  {t('CHANGE_STORE', 'Change store')}
+                </span>
+              </ContentInfo>
+            </BusinessInfo>
+          )}
           {props.children}
         </AccordionContent>
         {!setActive && !isClosed && !!isProducts && !checkoutButtonDisabled && (

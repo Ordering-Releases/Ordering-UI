@@ -80,6 +80,8 @@ const LoginFormUI = (props) => {
   const [otpLeftTime, , resetOtpLeftTime] = useCountdownTimer(
     600, !checkPhoneCodeState?.loading && willVerifyOtpState)
 
+  const googleLoginEnabled = configs?.google_login_enabled?.value === '1' || !configs?.google_login_enabled?.enabled
+
   const initParams = {
     client_id: configs?.google_login_client_id?.value,
     cookiepolicy: 'single_host_origin',
@@ -465,13 +467,13 @@ const LoginFormUI = (props) => {
                 />
               )}
                 {configs?.apple_login_client_id?.value &&
-              (
-                <AppleLogin
-                  onSuccess={handleSuccessApple}
-                  onFailure={(data) => console.log('onFailure', data)}
-                />
-              )}
-                {configs?.google_login_client_id?.value && (
+                  (
+                    <AppleLogin
+                      onSuccess={handleSuccessApple}
+                      onFailure={(data) => console.log('onFailure', data)}
+                    />
+                  )}
+                {configs?.google_login_client_id?.value && googleLoginEnabled && (
                   <GoogleIdentityButton
                     initParams={initParams}
                     handleSuccessGoogleLogin={handleSuccessGoogle}

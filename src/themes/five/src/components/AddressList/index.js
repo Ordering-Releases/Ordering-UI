@@ -27,7 +27,6 @@ import {
   AddressItem,
   AddressItemActions,
   WrappNotAddresses,
-  FormActions,
   ContinueButton,
   AddressTitle,
   AddressHalfContainer,
@@ -55,17 +54,15 @@ const AddressListUI = (props) => {
     isModal,
     isPopover,
     isProductForm,
-    onCancel,
-    onAccept,
     userId,
     userCustomerSetup,
     isEnableContinueButton,
     setCustomerModalOpen,
     isCustomerMode,
     isFromCheckout,
-    isOpenUserData,
     setIsAddressFormOpen,
-    isHeader
+    isHeader,
+    isProfile
   } = props
 
   const [, t] = useLanguage()
@@ -183,41 +180,14 @@ const AddressListUI = (props) => {
     }
   }, [])
 
-  const AddressButtons = () => {
-    return (
-      <>
-        {onCancel && onAccept && typeof orderState.options?.address === 'object' && (
-          <FormActions>
-            <Button
-              outline
-              type='button'
-              disabled={(addressList.loading || actionStatus.loading || orderState.loading)}
-              onClick={() => onCancel()}
-            >
-              {t('CANCEL', 'Cancel')}
-            </Button>
-            <Button
-              disabled={(addressList.loading || actionStatus.loading || orderState.loading)}
-              id='second-btn'
-              color='primary'
-              onClick={() => onAccept()}
-            >
-              {t('ACCEPT', 'Accept')}
-            </Button>
-          </FormActions>
-        )}
-      </>
-    )
-  }
-
   const AddressListCallcenterLayout = ({ children }) => {
     return (
       <AddressHalfContainer>
         <List halfWidth={addressOpen}>
           {children}
         </List>
-        {!isPopover && addressOpen && (
-          <AddressFormContainer isOpenUserData={isOpenUserData} isHeader={isHeader}>
+        {addressOpen && (
+          <AddressFormContainer isCustomerMode={isCustomerMode}>
             <TitleFormContainer>
               <CloseIcon>
                 <MdClose onClick={() => handleCloseAddressForm()} />
@@ -235,7 +205,6 @@ const AddressListUI = (props) => {
             />
           </AddressFormContainer>
         )}
-        <AddressButtons />
       </AddressHalfContainer>
     )
   }
@@ -349,11 +318,6 @@ const AddressListUI = (props) => {
             <Skeleton height={50} count={3} style={{ marginBottom: '10px' }} />
           </AddressListUl>
         )}
-
-        {!isCustomerMode && (
-          <AddressButtons />
-        )}
-
       </>
     )
   }

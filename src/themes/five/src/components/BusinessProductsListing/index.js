@@ -11,6 +11,7 @@ import {
   useEvent,
   useLanguage,
   useOrder,
+  useSession,
   useUtils
 } from 'ordering-components'
 
@@ -33,7 +34,7 @@ import { Button } from '../../styles/Buttons'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { RenderProductsLayout } from '../RenderProductsLayout'
 import { Cart } from '../Cart'
-
+import { Alert } from '../../../../../components/Confirm'
 const PIXELS_TO_SCROLL = 300
 
 const BusinessProductsListingUI = (props) => {
@@ -59,7 +60,10 @@ const BusinessProductsListingUI = (props) => {
     featuredProducts,
     handleChangeSortBy,
     isCartOnProductsList,
-    errorQuantityProducts
+    errorQuantityProducts,
+    multiRemoveProducts,
+    setAlertState,
+    alertState
   } = props
 
   const { business, loading, error } = businessState
@@ -76,7 +80,7 @@ const BusinessProductsListingUI = (props) => {
   // const [openUpselling, setOpenUpselling] = useState(false)
   // const [canOpenUpselling, setCanOpenUpselling] = useState(false)
   const [openBusinessInformation, setOpenBusinessInformation] = useState(false)
-  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [, setIsCartOpen] = useState(false)
   const [isCartModal, setisCartModal] = useState(false)
   const [subcategoriesSelected, setSubcategoriesSelected] = useState([])
 
@@ -145,6 +149,22 @@ const BusinessProductsListingUI = (props) => {
   const handleGoToBusinessList = () => {
     events.emit('go_to_page', { page: 'search' })
   }
+  const adjustBusiness = async (adjustBusinessId) => {
+    const _carts = carts?.[adjustBusinessId]
+    const products = carts?.[adjustBusinessId]?.products
+    const unavailableProducts = products.filter(product => product.valid !== true)
+    const alreadyRemoved = sessionStorage.getItem('already-removed')
+    sessionStorage.removeItem('already-removed')
+
+    if (unavailableProducts.length > 0) {
+      multiRemoveProducts && await multiRemoveProducts(unavailableProducts, _carts)
+      return
+    }
+
+    if (alreadyRemoved === 'removed') {
+      setAlertState({ open: true, content: [t('NOT_AVAILABLE_PRODUCT', 'This product is not available.')] })
+    }
+  }
 
   useEffect(() => {
     if (categoryId && productId && isInitialRender) {
@@ -186,6 +206,14 @@ const BusinessProductsListingUI = (props) => {
       }
     }
   }, [business?.schedule])
+
+  useEffect(() => {
+    const adjustBusinessId = sessionStorage.getItem('adjust-cart-products')
+    if (currentCart && adjustBusinessId) {
+      sessionStorage.removeItem('adjust-cart-products')
+      adjustBusiness(adjustBusinessId)
+    }
+  }, [currentCart])
 
   return (
     <>
@@ -352,7 +380,13 @@ const BusinessProductsListingUI = (props) => {
           />
         )}
       </Modal>
-
+      <Alert
+        title={t('ERROR', 'Error')}
+        open={alertState?.open}
+        content={t('NOT_AVAILABLE_PRODUCTS', 'These products are not available.')}
+        onClose={() => setAlertState({ open: false, content: [] })}
+        onAccept={() => setAlertState({ open: false, content: [] })}
+      />
       {/* {currentCart?.products && openUpselling && (
         <UpsellingPage
           businessId={currentCart?.business_id}
