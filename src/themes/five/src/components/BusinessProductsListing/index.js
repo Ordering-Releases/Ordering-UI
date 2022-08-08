@@ -11,8 +11,8 @@ import {
   useEvent,
   useLanguage,
   useOrder,
-  useSession,
-  useUtils
+  useUtils,
+  useSession
 } from 'ordering-components'
 
 import {
@@ -35,6 +35,9 @@ import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { RenderProductsLayout } from '../RenderProductsLayout'
 import { Cart } from '../Cart'
 import { Alert } from '../../../../../components/Confirm'
+import { FloatingButton } from '../../../../../components/FloatingButton'
+import { UpsellingPage } from '../../../../../components/UpsellingPage'
+import { ServiceForm } from '../ServiceForm'
 const PIXELS_TO_SCROLL = 300
 
 const BusinessProductsListingUI = (props) => {
@@ -63,7 +66,11 @@ const BusinessProductsListingUI = (props) => {
     errorQuantityProducts,
     multiRemoveProducts,
     setAlertState,
-    alertState
+    alertState,
+    onCheckoutRedirect,
+    handleUpdateProducts,
+    professionalSelected,
+    handleChangeProfessionalSelected
   } = props
 
   const { business, loading, error } = businessState
@@ -74,18 +81,20 @@ const BusinessProductsListingUI = (props) => {
   const [events] = useEvent()
   const location = useLocation()
   const windowSize = useWindowSize()
+  const [{ auth }] = useSession()
 
   const [openProduct, setModalIsOpen] = useState(false)
   const [curProduct, setCurProduct] = useState(props.product)
-  // const [openUpselling, setOpenUpselling] = useState(false)
-  // const [canOpenUpselling, setCanOpenUpselling] = useState(false)
+  const [openUpselling, setOpenUpselling] = useState(false)
+  const [canOpenUpselling, setCanOpenUpselling] = useState(false)
   const [openBusinessInformation, setOpenBusinessInformation] = useState(false)
-  const [, setIsCartOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
   const [isCartModal, setisCartModal] = useState(false)
   const [subcategoriesSelected, setSubcategoriesSelected] = useState([])
 
   const currentCart = Object.values(carts).find(cart => cart?.business?.slug === business?.slug) ?? {}
   const isLazy = businessState?.business?.lazy_load_products_recommended
+  const showViewOrderButton = !theme?.layouts?.business_view?.components?.order_view_button?.hidden
   const sortByOptions = [
     { value: null, content: t('SORT_BY', theme?.defaultLanguages?.SORT_BY || 'Sort By'), showOnSelected: t('SORT_BY', theme?.defaultLanguages?.SORT_BY || 'Sort By') },
     { value: 'rank', content: t('RANK', theme?.defaultLanguages?.RANK || 'Rank'), showOnSelected: t('RANK', theme?.defaultLanguages?.RANK || 'Rank') },
@@ -97,11 +106,13 @@ const BusinessProductsListingUI = (props) => {
   }
 
   const onProductClick = (product) => {
-    onProductRedirect({
-      slug: business?.slug,
-      product: product.id,
-      category: product.category_id
-    })
+    if (!((product?.type === 'service') && professionalSelected)) {
+      onProductRedirect({
+        slug: business?.slug,
+        product: product.id,
+        category: product.category_id
+      })
+    }
     setCurProduct(product)
     setModalIsOpen(true)
     events.emit('product_clicked', product)
@@ -140,11 +151,11 @@ const BusinessProductsListingUI = (props) => {
     }
   }
 
-  // const handleUpsellingPage = () => {
-  //   onCheckoutRedirect(currentCart?.uuid)
-  //   setOpenUpselling(false)
-  //   setCanOpenUpselling(false)
-  // }
+  const handleUpsellingPage = () => {
+    onCheckoutRedirect(currentCart?.uuid)
+    setOpenUpselling(false)
+    setCanOpenUpselling(false)
+  }
 
   const handleGoToBusinessList = () => {
     events.emit('go_to_page', { page: 'search' })
@@ -218,7 +229,9 @@ const BusinessProductsListingUI = (props) => {
   return (
     <>
       <ProductsContainer>
-        <ArrowLeft onClick={() => handleGoToBusinessList()} />
+        {!props.useKioskApp && (
+          <ArrowLeft onClick={() => handleGoToBusinessList()} />
+        )}
         <RenderProductsLayout
           errors={errors}
           isError={error}
@@ -233,6 +246,8 @@ const BusinessProductsListingUI = (props) => {
           sortByOptions={sortByOptions}
           categoryState={categoryState}
           categoriesState={props.categoriesState}
+          isCustomLayout={props.isCustomLayout}
+          useKioskApp={props.useKioskApp}
           categorySelected={categorySelected}
           openCategories={openCategories}
           openBusinessInformation={openBusinessInformation}
@@ -249,6 +264,9 @@ const BusinessProductsListingUI = (props) => {
           setOpenBusinessInformation={setOpenBusinessInformation}
           handleCartOpen={(val) => setIsCartOpen(val)}
           setSubcategoriesSelected={setSubcategoriesSelected}
+          handleUpdateProducts={handleUpdateProducts}
+          professionalSelected={professionalSelected}
+          handleChangeProfessionalSelected={handleChangeProfessionalSelected}
         />
 
         {
@@ -285,21 +303,21 @@ const BusinessProductsListingUI = (props) => {
           />
         )}
       </ProductsContainer>
-      {/* {currentCart?.products?.length > 0 && auth && !isCartOpen && (
+      {currentCart?.products?.length > 0 && auth && !isCartOpen && showViewOrderButton && (
         <FloatingButton
           btnText={
             !currentCart?.valid_maximum ? (
               `${t('MAXIMUM_SUBTOTAL_ORDER', theme?.defaultLanguages?.MAXIMUM_SUBTOTAL_ORDER || 'Maximum subtotal order')}: ${parsePrice(currentCart?.maximum)}`
             ) : (!currentCart?.valid_minimum && !(currentCart?.discount_type === 1 && currentCart?.discount_rate === 100)) ? (
               `${t('MINIMUN_SUBTOTAL_ORDER', theme?.defaultLanguages?.MINIMUN_SUBTOTAL_ORDER || 'Minimum subtotal order:')} ${parsePrice(currentCart?.minimum)}`
-            ) : !openUpselling ^ canOpenUpselling ? t('VIEW_ORDER', theme?.defaultLanguages?.VIEW_ORDER || 'View Order') : t('LOADING', theme?.defaultLanguages?.LOADING || 'Loading')
+            ) : !openUpselling !== canOpenUpselling ? t('VIEW_ORDER', theme?.defaultLanguages?.VIEW_ORDER || 'View Order') : t('LOADING', theme?.defaultLanguages?.LOADING || 'Loading')
           }
           isSecondaryBtn={!currentCart?.valid_maximum || (!currentCart?.valid_minimum && !(currentCart?.discount_type === 1 && currentCart?.discount_rate === 100))}
           btnValue={currentCart?.products?.length}
           handleClick={() => setOpenUpselling(true)}
           disabled={openUpselling || !currentCart?.valid_maximum || (!currentCart?.valid_minimum && !(currentCart?.discount_type === 1 && currentCart?.discount_rate === 100))}
         />
-      )} */}
+      )}
       {windowSize.width < 500 && currentCart?.products?.length > 0 && (
         <MobileCartViewWrapper>
           <span>{parsePrice(currentCart?.total)}</span>
@@ -343,7 +361,7 @@ const BusinessProductsListingUI = (props) => {
       </Modal>
 
       <Modal
-        width='700px'
+        width={props.useKioskApp ? '80%' : '760px'}
         open={openProduct}
         closeOnBackdrop
         onClose={() => closeModalProductForm()}
@@ -355,7 +373,7 @@ const BusinessProductsListingUI = (props) => {
         {productModal.loading && !productModal.error && (
           <ProductLoading>
             <SkeletonItem>
-              <Skeleton height={45} count={8} />
+              <Skeleton height={45} count={props.useKioskApp ? 12 : 8} />
             </SkeletonItem>
           </ProductLoading>
         )}
@@ -372,12 +390,28 @@ const BusinessProductsListingUI = (props) => {
           />
         )}
         {(productModal.product || curProduct) && (
-          <ProductForm
-            businessSlug={business?.slug}
-            product={productModal.product || curProduct}
-            businessId={business?.id}
-            onSave={handlerProductAction}
-          />
+          <>
+            {(((productModal?.product?.type === 'service') || (curProduct?.type === 'service')) && professionalSelected) ? (
+              <ServiceForm
+                businessSlug={business?.slug}
+                useKioskApp={props.useKioskApp}
+                product={productModal.product || curProduct}
+                businessId={business?.id}
+                onSave={handlerProductAction}
+                professionalList={business?.professionals}
+                professionalSelected={professionalSelected}
+                handleChangeProfessional={handleChangeProfessionalSelected}
+              />
+            ) : (
+              <ProductForm
+                businessSlug={business?.slug}
+                useKioskApp={props.useKioskApp}
+                product={productModal.product || curProduct}
+                businessId={business?.id}
+                onSave={handlerProductAction}
+              />
+            )}
+          </>
         )}
       </Modal>
       <Alert
@@ -387,7 +421,7 @@ const BusinessProductsListingUI = (props) => {
         onClose={() => setAlertState({ open: false, content: [] })}
         onAccept={() => setAlertState({ open: false, content: [] })}
       />
-      {/* {currentCart?.products && openUpselling && (
+      {currentCart?.products && openUpselling && (
         <UpsellingPage
           businessId={currentCart?.business_id}
           business={currentCart?.business}
@@ -397,7 +431,7 @@ const BusinessProductsListingUI = (props) => {
           canOpenUpselling={canOpenUpselling}
           setCanOpenUpselling={setCanOpenUpselling}
         />
-      )} */}
+      )}
     </>
   )
 }

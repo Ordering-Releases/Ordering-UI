@@ -82,6 +82,7 @@ const PaymentOptionsUI = (props) => {
     errorCash,
     isLoading,
     isDisabled,
+    useKioskApp,
     paymethodData,
     paymethodsList,
     setPaymethodData,
@@ -90,13 +91,22 @@ const PaymentOptionsUI = (props) => {
     handlePaymethodDataChange,
     isCustomerMode,
     isOpenMethod,
-    onPaymentChange
+    onPaymentChange,
+    handlePlaceOrder
   } = props
   const [, t] = useLanguage()
   const [{ token }] = useSession()
   const [alertState, setAlertState] = useState({ open: false, content: [] })
 
   const paymethodSelected = props.paySelected || props.paymethodSelected
+
+  const methodsPay = ['google_pay', 'apple_pay']
+
+  const stripeDirectMethods = ['stripe_direct', ...methodsPay]
+
+  const includeKioskPaymethods = ['cash', 'card_delivery']
+
+  const supportedMethods = paymethodsList.paymethods.filter(p => useKioskApp ? includeKioskPaymethods.includes(p.gateway) : p)
 
   const handlePaymentMethodClick = (paymethod) => {
     if (cart?.balance > 0) {
@@ -118,10 +128,10 @@ const PaymentOptionsUI = (props) => {
   }
 
   useEffect(() => {
-    if (paymethodsList.paymethods.length === 1) {
-      handlePaymethodClick && handlePaymethodClick(paymethodsList.paymethods[0])
+    if (supportedMethods.length === 1 && !paymethodSelected) {
+      handlePaymethodClick && handlePaymethodClick(supportedMethods[0])
     }
-  }, [paymethodsList.paymethods])
+  }, [supportedMethods])
 
   useEffect(() => {
     if (paymethodSelected?.gateway !== 'cash' && errorCash) {
@@ -139,6 +149,12 @@ const PaymentOptionsUI = (props) => {
     }
   }, [props.paySelected])
 
+  useEffect(() => {
+    if (methodsPay.includes(paymethodSelected?.gateway) && paymethodData?.id && paymethodSelected?.data?.card) {
+      handlePlaceOrder()
+    }
+  }, [paymethodData, paymethodSelected])
+
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -149,8 +165,8 @@ const PaymentOptionsUI = (props) => {
         <BeforeComponent key={i} {...props} />))}
       <PaymentMethodsContainer>
         <PaymentMethodsList className='payments-list'>
-          {paymethodsList.paymethods.length > 0 && (
-            paymethodsList.paymethods.sort((a, b) => a.id - b.id).map(paymethod => (
+          {supportedMethods.length > 0 && (
+            supportedMethods.sort((a, b) => a.id - b.id).map(paymethod => (
               <React.Fragment key={paymethod.id}>
                 {
                   (!isCustomerMode || (isCustomerMode && (paymethod.gateway === 'card_delivery' || paymethod.gateway === 'cash'))) && (
@@ -188,7 +204,7 @@ const PaymentOptionsUI = (props) => {
 
           {!(paymethodsList.loading || isLoading) &&
             !paymethodsList.error &&
-            (!paymethodsList?.paymethods || paymethodsList.paymethods.length === 0) &&
+            (!paymethodsList?.paymethods || supportedMethods.length === 0) &&
             (
               <p>{t('NO_PAYMENT_METHODS', 'No payment methods!')}</p>
             )}
@@ -279,19 +295,23 @@ const PaymentOptionsUI = (props) => {
           )}
         </Modal>
 
-        {/* Stripe direct */}
+        {/* Stripe direct, Google pay, Apple pay */}
         <Modal
           title={t('ADD_CARD', 'Add card')}
-          open={isOpenMethod?.paymethod?.gateway === 'stripe_direct' && !paymethodData.id}
+          open={stripeDirectMethods?.includes(isOpenMethod?.paymethod?.gateway) && !paymethodData.id}
           className='modal-info'
           onClose={() => handlePaymethodClick(null)}
         >
-          {isOpenMethod?.paymethod?.gateway === 'stripe_direct' && (
+          {stripeDirectMethods?.includes(isOpenMethod?.paymethod?.gateway) && (
             <StripeElementsForm
+              methodsPay={methodsPay}
+              paymethod={isOpenMethod?.paymethod?.gateway}
               businessId={props.businessId}
-              publicKey={isOpenMethod?.paymethod?.credentials?.publishable}
+              cart={cart}
+              publicKey={isOpenMethod?.paymethod?.credentials?.publishable || isOpenMethod?.paymethod?.credentials?.publishable_key}
               handleSource={handlePaymethodDataChange}
               onCancel={() => handlePaymethodClick(null)}
+              handlePlaceOrder={handlePlaceOrder}
             />
           )}
         </Modal>

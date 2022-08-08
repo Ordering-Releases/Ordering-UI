@@ -16,7 +16,7 @@ export const ErrorMessage = styled.div`
 export const ProductsListing = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 45px;
+  margin-bottom: ${({ isSubcategorySearch }) => isSubcategorySearch ? '0px' : '45px'};
 `
 
 export const WrapAllCategories = styled.div`
@@ -95,6 +95,7 @@ export const HeaderWrapper = styled.div``
 export const DescriptionModalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 10px;
   img{
     border-radius: 7.6px;
     width: 200px;
@@ -102,6 +103,9 @@ export const DescriptionModalContainer = styled.div`
     min-width: 200px;
     min-height: 200px;
     margin-bottom: 20px;
+  }
+  p{
+    white-space: pre;
   }
 `
 
@@ -164,4 +168,10 @@ export const ContainerButton = styled.div`
     border-radius: 50px;
     color: ${({ isSelected }) => isSelected ? '#fff' : '#414954'};
   }
+`
+
+export const SubcategorySearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
 `

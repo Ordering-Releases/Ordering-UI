@@ -57,6 +57,7 @@ const ModalUI = (props) => {
       padding={props.padding}
       isTransparent={isTransparent}
       disableOverflowX={disableOverflowX}
+      style={props.customStyle}
     >
       {isProductForm && (
         <ModalBackHeader />

@@ -23,11 +23,11 @@ export const WrapAllCategories = styled.div`
     display: flex;
     align-items: center;
     margin-left: 10px;
+    width: 100%;
     ${props => props.theme?.rtl && css`
       margin-right: 10px;
       margin-left: 0;
     `}
-
     img {
       border-radius: 7.6px;
       min-width: 41px;
@@ -43,6 +43,7 @@ export const WrapAllCategories = styled.div`
     p {
       margin: 0;
       color: #909BA9;
+      white-space: pre;
     }
     span {
       color: ${props => props.theme.colors.primary};
@@ -51,11 +52,11 @@ export const WrapAllCategories = styled.div`
       cursor: pointer;
     }
   }
-
   .wrap-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     button {
       min-width: max-content;
     }
@@ -79,7 +80,9 @@ export const WrapperNotFound = styled.div`
   }
 `
 
-export const HeaderWrapper = styled.div``
+export const HeaderWrapper = styled.div`
+  width: 100%;
+`
 
 export const DescriptionModalContainer = styled.div`
   display: flex;
@@ -111,21 +114,64 @@ export const RibbonBox = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-left: 5px;
-
   ${props => props.theme.rtl && css`
     margin-left: 0px;
     margin-right: 5px;
   `}
-
   ${({ bgColor }) => bgColor && css`
     background-color: ${bgColor};
   `}
-
   ${({ isRoundRect }) => isRoundRect && css`
     border-radius: 7.6px;
   `}
-
   ${({ isCapsule }) => isCapsule && css`
     border-radius: 50px;
   `}
+`
+
+export const CategoryDescripion = styled.div`
+    margin-left: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    p {
+      margin: 0;
+      color: #909BA9;
+      max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth - 200}px` : 'initial'};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      overflow-wrap: anywhere;
+    }
+    span {
+      color: ${props => props.theme.colors.primary};
+      text-decoration: underline;
+      margin-left: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: visible;
+    }
+`
+
+export const DescriptionContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  div{
+    height: 300px;
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  p{
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+`
+
+export const HeaderTitle = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
 `
