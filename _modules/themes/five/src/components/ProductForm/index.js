@@ -96,7 +96,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 _swiper.default.use([_swiper.Navigation, _swiper.Thumbs]);
 
 var ProductOptionsUI = function ProductOptionsUI(props) {
-  var _props$beforeElements, _props$beforeComponen, _props$beforeMidEleme, _props$beforeMidCompo, _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _props$afterMidElemen, _props$afterMidCompon, _orderState$options, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _orderState$options2, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _error$, _props$afterComponent, _props$afterElements;
+  var _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4, _props$afterMidElemen, _props$afterMidCompon, _orderState$options, _theme$defaultLanguag5, _theme$defaultLanguag6, _theme$defaultLanguag7, _orderState$options2, _theme$defaultLanguag8, _theme$defaultLanguag9, _theme$defaultLanguag10, _theme$defaultLanguag11, _theme$defaultLanguag12, _theme$defaultLanguag13, _theme$defaultLanguag14, _error$;
 
   var businessSlug = props.businessSlug,
       editMode = props.editMode,
@@ -205,6 +205,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       setAlertState = _useState22[1];
 
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
+  var galleryLength = (gallery === null || gallery === void 0 ? void 0 : gallery.length) + (videoGallery === null || videoGallery === void 0 ? void 0 : videoGallery.length);
 
   var closeModal = function closeModal() {
     setModalIsOpen(false);
@@ -312,10 +313,12 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
 
     var productContainer = document.getElementsByClassName('popup-dialog')[0];
     var unselectedFirstSubOption = (_document$getElements = document.getElementsByClassName('error')) === null || _document$getElements === void 0 ? void 0 : _document$getElements[0];
-    unselectedFirstSubOption && unselectedFirstSubOption.scrollIntoView(true);
 
     if (unselectedFirstSubOption) {
       productContainer.scrollTop -= 90;
+      unselectedFirstSubOption.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -402,17 +405,10 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       setPricePerWeightUnit((product === null || product === void 0 ? void 0 : product.price) / (product === null || product === void 0 ? void 0 : product.weight));
     }
   }, [product]);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
-      key: i
-    }, BeforeElement);
-  }), (_props$beforeComponen = props.beforeComponents) === null || _props$beforeComponen === void 0 ? void 0 : _props$beforeComponen.map(function (BeforeComponent, i) {
-    return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
-      key: i
-    }, props));
-  }), /*#__PURE__*/_react.default.createElement(_styles.ProductContainer, {
+  return /*#__PURE__*/_react.default.createElement(_styles.ProductContainer, {
     className: "product-container",
-    ref: productContainerRef
+    ref: productContainerRef,
+    useKioskApp: props.useKioskApp
   }, loading && !error && /*#__PURE__*/_react.default.createElement(_styles.SkeletonBlock, {
     width: 90
   }, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
@@ -424,19 +420,15 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
   }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     variant: "rect",
     height: 200
-  })), product && !loading && !error && /*#__PURE__*/_react.default.createElement(_styles.ProductShareWrapper, null, /*#__PURE__*/_react.default.createElement(_ProductShare.ProductShare, {
+  })), product && !loading && !error && /*#__PURE__*/_react.default.createElement(_styles.ProductShareWrapper, null, !props.useKioskApp ? /*#__PURE__*/_react.default.createElement(_ProductShare.ProductShare, {
     slug: businessSlug,
     categoryId: product === null || product === void 0 ? void 0 : product.category_id,
     productId: product === null || product === void 0 ? void 0 : product.id
-  })), (_props$beforeMidEleme = props.beforeMidElements) === null || _props$beforeMidEleme === void 0 ? void 0 : _props$beforeMidEleme.map(function (BeforeMidElements, i) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
-      key: i
-    }, BeforeMidElements);
-  }), (_props$beforeMidCompo = props.beforeMidComponents) === null || _props$beforeMidCompo === void 0 ? void 0 : _props$beforeMidCompo.map(function (BeforeMidComponents, i) {
-    return /*#__PURE__*/_react.default.createElement(BeforeMidComponents, _extends({
-      key: i
-    }, props));
-  }), !loading && !error && product && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperImage, null, /*#__PURE__*/_react.default.createElement(_styles.SwiperWrapper, {
+  }) : /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      height: 30
+    }
+  })), !loading && !error && product && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.WrapperImage, null, /*#__PURE__*/_react.default.createElement(_styles.SwiperWrapper, {
     isSoldOut: isSoldOut
   }, /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
     spaceBetween: 10,
@@ -467,7 +459,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       },
       src: video
     }));
-  }))), /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
+  }))), galleryLength > 2 && /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
     onSwiper: setThumbsSwiper,
     spaceBetween: 20,
     slidesPerView: 5,
@@ -681,7 +673,7 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
     onClose: function onClose() {
       return closeModal();
     },
-    width: "50%"
+    width: "760px"
   }, modalPageToShow === 'login' && /*#__PURE__*/_react.default.createElement(_LoginForm.LoginForm, {
     handleSuccessLogin: handleSuccessLogin,
     elementLinkToSignup: /*#__PURE__*/_react.default.createElement("a", {
@@ -701,7 +693,8 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       href: "#"
     }, t('RESET_PASSWORD', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag12 = theme.defaultLanguages) === null || _theme$defaultLanguag12 === void 0 ? void 0 : _theme$defaultLanguag12.RESET_PASSWORD) || 'Reset password')),
     useLoginByCellphone: true,
-    isPopup: true
+    isPopup: true,
+    useKioskApp: props.useKioskApp
   }), modalPageToShow === 'signup' && /*#__PURE__*/_react.default.createElement(_SignUpForm.SignUpForm, {
     elementLinkToLogin: /*#__PURE__*/_react.default.createElement("a", {
       onClick: function onClick(e) {
@@ -745,14 +738,6 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       });
     },
     closeOnBackdrop: false
-  })), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
-    return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
-      key: i
-    }, props));
-  }), (_props$afterElements = props.afterElements) === null || _props$afterElements === void 0 ? void 0 : _props$afterElements.map(function (AfterElement, i) {
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
-      key: i
-    }, AfterElement);
   }));
 };
 

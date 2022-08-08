@@ -17,6 +17,8 @@ var _styles = require("./styles");
 
 var _CardForm = require("../CardForm");
 
+var _StripeMethodForm = require("../../../../../components/StripeMethodForm");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -48,7 +50,11 @@ var StripeElementsFormUI = function StripeElementsFormUI(props) {
       requirements = props.requirements,
       onNewCard = props.onNewCard,
       toSave = props.toSave,
-      onCancel = props.onCancel;
+      onCancel = props.onCancel,
+      paymethod = props.paymethod,
+      cart = props.cart,
+      handlePlaceOrder = props.handlePlaceOrder,
+      methodsPay = props.methodsPay;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
@@ -64,13 +70,24 @@ var StripeElementsFormUI = function StripeElementsFormUI(props) {
     }, props));
   }), publicKey ? /*#__PURE__*/_react.default.createElement(_reactStripeJs.Elements, {
     stripe: (0, _pure.loadStripe)(publicKey)
-  }, /*#__PURE__*/_react.default.createElement(_CardForm.CardForm, {
+  }, methodsPay !== null && methodsPay !== void 0 && methodsPay.includes(paymethod) ? /*#__PURE__*/_react.default.createElement(_StripeMethodForm.StripeMethodForm, {
+    cart: cart,
     handleSource: handleSource,
     onNewCard: onNewCard,
     toSave: toSave,
     requirements: requirements,
     businessId: businessId,
-    handleCancel: onCancel
+    handleCancel: onCancel,
+    paymethod: paymethod,
+    handlePlaceOrder: handlePlaceOrder
+  }) : /*#__PURE__*/_react.default.createElement(_CardForm.CardForm, {
+    handleSource: handleSource,
+    onNewCard: onNewCard,
+    toSave: toSave,
+    requirements: requirements,
+    businessId: businessId,
+    handleCancel: onCancel,
+    businessIds: props.businessIds
   })) : /*#__PURE__*/_react.default.createElement(_styles.ErrorMessage, null, t('SOMETHING_WRONG', 'Something is wrong!')), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i

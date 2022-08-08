@@ -13,6 +13,10 @@ var _TiArrowSortedUp = _interopRequireDefault(require("@meronex/icons/ti/TiArrow
 
 var _orderingComponents = require("ordering-components");
 
+var _styledComponents = require("styled-components");
+
+var _FiClock = _interopRequireDefault(require("@meronex/icons/fi/FiClock"));
+
 var _styles = require("./styles");
 
 var _Buttons = require("../../styles/Buttons");
@@ -38,7 +42,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var BusinessItemAccordion = function BusinessItemAccordion(props) {
-  var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
+  var _configs$cart_change_, _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
 
   var uuid = props.uuid,
       isCartPending = props.isCartPending,
@@ -58,7 +62,8 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       handleClickCheckout = props.handleClickCheckout,
       checkoutButtonDisabled = props.checkoutButtonDisabled,
       setPreorderBusiness = props.setPreorderBusiness,
-      handleChangeStore = props.handleChangeStore;
+      handleChangeStore = props.handleChangeStore,
+      isMultiCheckout = props.isMultiCheckout;
 
   var _useOrder = (0, _orderingComponents.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
@@ -75,6 +80,12 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
   var _useUtils = (0, _orderingComponents.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
+
+  var _useConfig = (0, _orderingComponents.useConfig)(),
+      _useConfig2 = _slicedToArray(_useConfig, 1),
+      configs = _useConfig2[0].configs;
+
+  var theme = (0, _styledComponents.useTheme)();
 
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -96,6 +107,7 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       cartProductUpdated = _useState8[0],
       setCartProductUpdated = _useState8[1];
 
+  var isBusinessChangeEnabled = (configs === null || configs === void 0 ? void 0 : (_configs$cart_change_ = configs.cart_change_business_validation) === null || _configs$cart_change_ === void 0 ? void 0 : _configs$cart_change_.value) === '1';
   var content = (0, _react.useRef)(null);
   var businessStore = (0, _react.useRef)(null);
   var businessDelete = (0, _react.useRef)(null);
@@ -197,7 +209,7 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       return handleClearProducts();
     },
     className: "clear-cart"
-  }, t('CLEAR_CART', 'Clear cart')))), /*#__PURE__*/_react.default.createElement("span", {
+  }, t('CLEAR_CART', 'Clear cart')))), isBusinessChangeEnabled && handleChangeStore && /*#__PURE__*/_react.default.createElement("span", {
     ref: changeStore,
     onClick: handleChangeStore,
     className: "change-store"
@@ -211,13 +223,13 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       minHeight: "".concat(setHeight),
       maxHeight: !setActive && '0px'
     }
-  }, isCheckout && handleChangeStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement(_styles.ContentInfo, {
+  }, isBusinessChangeEnabled && isCheckout && handleChangeStore && /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement(_styles.ContentInfo, {
     className: "info"
   }, /*#__PURE__*/_react.default.createElement("span", {
     ref: changeStore,
     onClick: handleChangeStore,
     className: "change-store"
-  }, t('CHANGE_STORE', 'Change store')))), props.children), !setActive && !isClosed && !!isProducts && !checkoutButtonDisabled && /*#__PURE__*/_react.default.createElement(_styles.PriceContainer, null, /*#__PURE__*/_react.default.createElement("h4", null, parsePrice(total)), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+  }, t('CHANGE_STORE', 'Change store')))), props.children), !setActive && !isClosed && !!isProducts && !checkoutButtonDisabled && !isMultiCheckout && /*#__PURE__*/_react.default.createElement(_styles.PriceContainer, null, /*#__PURE__*/_react.default.createElement("h4", null, parsePrice(total)), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     onClick: handleClickCheckout,
     color: "primary"
   }, t('CHECKOUT', 'Checkout')))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {

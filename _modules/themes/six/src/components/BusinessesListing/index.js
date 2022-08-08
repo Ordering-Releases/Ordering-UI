@@ -15,7 +15,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _styles = require("./styles");
 
-var _Buttons = require("../../../../../../src/styles/Buttons");
+var _Buttons = require("../../../../../styles/Buttons");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
 

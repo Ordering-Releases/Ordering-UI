@@ -13,15 +13,13 @@ var _styles = require("./styles");
 
 var _styles2 = require("../OrdersOption/styles");
 
-var _styledComponents = require("styled-components");
-
 var _AutoScroll = require("../AutoScroll");
 
 var _Tabs = require("../../styles/Tabs");
 
 var _Buttons = require("../../styles/Buttons");
 
-var _BsDot = _interopRequireDefault(require("@meronex/icons/bs/BsDot"));
+var _SingleOrderCard = require("../SingleOrderCard");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42,51 +40,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var HorizontalOrdersLayout = function HorizontalOrdersLayout(props) {
   var pagination = props.pagination,
       loadMoreOrders = props.loadMoreOrders,
-      getOrderStatus = props.getOrderStatus,
       isBusinessesPage = props.isBusinessesPage,
-      handleReorder = props.handleReorder,
       customArray = props.customArray,
-      onRedirectPage = props.onRedirectPage,
       businessesIds = props.businessesIds,
       activeOrders = props.activeOrders,
       pastOrders = props.pastOrders,
-      isCustomerMode = props.isCustomerMode;
+      isCustomerMode = props.isCustomerMode,
+      isProducts = props.isProducts,
+      isBusiness = props.isBusiness;
   var orders = customArray || props.orders;
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var theme = (0, _styledComponents.useTheme)();
-
-  var _useUtils = (0, _orderingComponents.useUtils)(),
-      _useUtils2 = _slicedToArray(_useUtils, 1),
-      _useUtils2$ = _useUtils2[0],
-      parsePrice = _useUtils2$.parsePrice,
-      parseDate = _useUtils2$.parseDate,
-      optimizeImage = _useUtils2$.optimizeImage;
-
   var ordersToShow = businessesIds ? orders.filter(function (order) {
     return businessesIds === null || businessesIds === void 0 ? void 0 : businessesIds.includes(order === null || order === void 0 ? void 0 : order.business_id);
   }) : orders;
-
-  var handleClickCard = function handleClickCard(uuid) {
-    if (customArray) {
-      onRedirectPage({
-        page: 'checkout',
-        params: {
-          cartUuid: uuid
-        }
-      });
-    } else {
-      onRedirectPage({
-        page: 'order_detail',
-        params: {
-          orderId: uuid
-        }
-      });
-    }
-  };
+  var notOrders = isProducts || isBusiness;
 
   var Orders = function Orders() {
     var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
@@ -99,59 +70,13 @@ var HorizontalOrdersLayout = function HorizontalOrdersLayout(props) {
       return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
         key: i
       }, props));
-    }), orders.length > 0 && ordersToShow.map(function (order) {
-      var _order$business, _theme$images, _theme$images$dummies, _order$business2, _theme$images2, _theme$images2$dummie, _order$business3, _theme$images3, _theme$images3$dummie, _order$business4, _order$summary, _order$business5, _getOrderStatus, _order$summary2;
-
-      return /*#__PURE__*/_react.default.createElement(_styles.Card, {
-        key: order.id || order.uuid,
-        id: "order-card",
-        isBusinessesPage: isBusinessesPage,
-        isCustomerMode: isCustomerMode,
-        onClick: function onClick() {
-          return handleClickCard(order === null || order === void 0 ? void 0 : order.uuid);
-        }
-      }, !isCustomerMode && /*#__PURE__*/_react.default.createElement(_styles.BusinessLogoWrapper, {
-        bgimage: optimizeImage((order === null || order === void 0 ? void 0 : (_order$business = order.business) === null || _order$business === void 0 ? void 0 : _order$business.logo) || ((_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$dummies = _theme$images.dummies) === null || _theme$images$dummies === void 0 ? void 0 : _theme$images$dummies.businessLogo), 'h_400,c_limit')
-      }), /*#__PURE__*/_react.default.createElement(_styles.Content, {
-        isCustomerMode: isCustomerMode
-      }, isCustomerMode && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (((_order$business2 = order.business) === null || _order$business2 === void 0 ? void 0 : _order$business2.logo) || ((_theme$images2 = theme.images) === null || _theme$images2 === void 0 ? void 0 : (_theme$images2$dummie = _theme$images2.dummies) === null || _theme$images2$dummie === void 0 ? void 0 : _theme$images2$dummie.businessLogo)) && /*#__PURE__*/_react.default.createElement(_styles.Logo, null, /*#__PURE__*/_react.default.createElement("img", {
-        src: ((_order$business3 = order.business) === null || _order$business3 === void 0 ? void 0 : _order$business3.logo) || ((_theme$images3 = theme.images) === null || _theme$images3 === void 0 ? void 0 : (_theme$images3$dummie = _theme$images3.dummies) === null || _theme$images3$dummie === void 0 ? void 0 : _theme$images3$dummie.businessLogo),
-        alt: "business-logo",
-        width: "75px",
-        height: "75px"
-      }))), /*#__PURE__*/_react.default.createElement(_styles2.BusinessInformation, {
-        activeOrders: true
-      }, isCustomerMode ? /*#__PURE__*/_react.default.createElement(_styles.TitleContainer, null, /*#__PURE__*/_react.default.createElement("h2", null, (_order$business4 = order.business) === null || _order$business4 === void 0 ? void 0 : _order$business4.name), /*#__PURE__*/_react.default.createElement(_styles.Price, {
-        isBusinessesPage: isBusinessesPage,
-        isCustomerMode: isCustomerMode
-      }, /*#__PURE__*/_react.default.createElement("h2", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary = order.summary) === null || _order$summary === void 0 ? void 0 : _order$summary.total) || (order === null || order === void 0 ? void 0 : order.total))))) : /*#__PURE__*/_react.default.createElement("h2", null, (_order$business5 = order.business) === null || _order$business5 === void 0 ? void 0 : _order$business5.name), /*#__PURE__*/_react.default.createElement("div", {
-        className: "orders-detail"
-      }, (order === null || order === void 0 ? void 0 : order.id) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_BsDot.default, null), /*#__PURE__*/_react.default.createElement("p", {
-        name: "order_number"
-      }, t('ORDER_NUM', 'Order No.'), " ", order.id)), /*#__PURE__*/_react.default.createElement("p", null, order !== null && order !== void 0 && order.delivery_datetime_utc ? parseDate(order === null || order === void 0 ? void 0 : order.delivery_datetime_utc, {
-        outputFormat: 'MM/DD/YY hh:mm A'
-      }) : parseDate(order === null || order === void 0 ? void 0 : order.delivery_datetime, {
-        utc: false
-      }))), /*#__PURE__*/_react.default.createElement("p", {
-        className: "order-status"
-      }, (_getOrderStatus = getOrderStatus(order.status)) === null || _getOrderStatus === void 0 ? void 0 : _getOrderStatus.value)), !isCustomerMode && /*#__PURE__*/_react.default.createElement(_styles.Price, {
-        isBusinessesPage: isBusinessesPage
-      }, !pastOrders && /*#__PURE__*/_react.default.createElement("h2", null, parsePrice((order === null || order === void 0 ? void 0 : (_order$summary2 = order.summary) === null || _order$summary2 === void 0 ? void 0 : _order$summary2.total) || (order === null || order === void 0 ? void 0 : order.total))))), pastOrders && !isCustomerMode && /*#__PURE__*/_react.default.createElement(_styles.ButtonWrapper, null, /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
-        outline: true,
-        color: "primary",
-        onClick: function onClick() {
-          return handleClickCard(order.uuid);
-        }
-      }, t('REVIEW', 'Review')), order.cart && /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
-        color: "primary",
-        className: "reorder",
-        outline: true,
-        onClick: function onClick(ev) {
-          ev.stopPropagation();
-          handleReorder(order.id);
-        }
-      }, t('REORDER', 'Reorder'))));
-    }), (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) < (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && /*#__PURE__*/_react.default.createElement(_styles.Card, {
+    }), orders.length > 0 && !notOrders && ordersToShow.map(function (order) {
+      return /*#__PURE__*/_react.default.createElement(_SingleOrderCard.SingleOrderCard, _extends({
+        key: order.id
+      }, props, {
+        order: order
+      }));
+    }), (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && !notOrders && (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) < (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && !notOrders && /*#__PURE__*/_react.default.createElement(_styles.Card, {
       flex: true,
       nobg: true,
       isBusinessesPage: isBusinessesPage,
@@ -179,7 +104,23 @@ var HorizontalOrdersLayout = function HorizontalOrdersLayout(props) {
     isBusinessesPage: isBusinessesPage
   }, !isBusinessesPage ? /*#__PURE__*/_react.default.createElement(_Tabs.Tabs, null, /*#__PURE__*/_react.default.createElement(_AutoScroll.AutoScroll, {
     scrollId: activeOrders ? 'activeOrders' : pastOrders ? 'pastOrders' : 'prevOrders'
-  }, /*#__PURE__*/_react.default.createElement(Orders, null))) : /*#__PURE__*/_react.default.createElement(Orders, null));
+  }, orders.length > 0 && ordersToShow.map(function (order) {
+    return /*#__PURE__*/_react.default.createElement(_SingleOrderCard.SingleOrderCard, _extends({
+      key: order.id
+    }, props, {
+      order: order
+    }));
+  }), (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && (pagination === null || pagination === void 0 ? void 0 : pagination.currentPage) < (pagination === null || pagination === void 0 ? void 0 : pagination.totalPages) && /*#__PURE__*/_react.default.createElement(_styles.Card, {
+    flex: true,
+    nobg: true,
+    isBusinessesPage: isBusinessesPage,
+    isCustomerMode: isCustomerMode
+  }, /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+    className: "load-orders",
+    color: "primary",
+    outline: true,
+    onClick: loadMoreOrders
+  }, t('LOAD_MORE_ORDERS', 'Load more orders'))))) : /*#__PURE__*/_react.default.createElement(Orders, null));
 };
 
 exports.HorizontalOrdersLayout = HorizontalOrdersLayout;

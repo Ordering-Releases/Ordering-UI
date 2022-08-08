@@ -23,6 +23,8 @@ var _AutoScroll = require("../AutoScroll");
 
 var _BusinessTypeFilter = require("../BusinessTypeFilter");
 
+var _MyOrders = require("../MyOrders");
+
 var _styledComponents = require("styled-components");
 
 var _GoPrimitiveDot = _interopRequireDefault(require("@meronex/icons/go/GoPrimitiveDot"));
@@ -70,7 +72,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
-  var _businessesSearchList, _sortItems$filter, _brandList$brands, _brandList$brands$fil, _orderState$options3, _orderState$options4, _orderState$options5, _businessesSearchList2, _businessesSearchList4;
+  var _businessesSearchList, _sortItems$filter, _brandList$brands, _brandList$brands$fil, _orderState$options3, _orderState$options4, _orderState$options5, _businessesSearchList2, _businessesSearchList3, _businessesSearchList5;
 
   var businessesSearchList = props.businessesSearchList,
       onBusinessClick = props.onBusinessClick,
@@ -80,7 +82,11 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       termValue = props.termValue,
       paginationProps = props.paginationProps,
       handleSearchbusinessAndProducts = props.handleSearchbusinessAndProducts,
-      brandList = props.brandList;
+      brandList = props.brandList,
+      onRedirectPage = props.onRedirectPage,
+      onProductRedirect = props.onProductRedirect,
+      handleUpdateBusinessList = props.handleUpdateBusinessList,
+      _handleUpdateProducts = props.handleUpdateProducts;
 
   var _useOrder = (0, _orderingComponents.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
@@ -242,11 +248,16 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
     isSearchMode: true,
     filters: filters,
     handleChangeFilters: handleChangeFilters
-  }))), /*#__PURE__*/_react.default.createElement(_styles.FiltersResultContainer, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessListWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessList, {
+  }))), /*#__PURE__*/_react.default.createElement(_styles.FiltersResultContainer, null, /*#__PURE__*/_react.default.createElement(_styles.PreviouslyOrderedContainer, null, /*#__PURE__*/_react.default.createElement(_MyOrders.MyOrders, {
+    hideOrders: true,
+    businessesSearchList: businessesSearchList,
+    onRedirectPage: onRedirectPage,
+    onProductRedirect: onProductRedirect
+  })), /*#__PURE__*/_react.default.createElement(_styles.BusinessListWrapper, null, ((_businessesSearchList2 = businessesSearchList.businesses) === null || _businessesSearchList2 === void 0 ? void 0 : _businessesSearchList2.length) > 0 && /*#__PURE__*/_react.default.createElement("h2", null, t('BUSINESSES', 'Businesses')), /*#__PURE__*/_react.default.createElement(_styles.BusinessList, {
     noResults: noResults
   }, noResults && /*#__PURE__*/_react.default.createElement(_styles.NotFoundWrapper, null, /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     content: t('NOT_FOUND_BUSINESSES', 'No businesses to delivery / pick up at this address, please change filters or change address.')
-  })), ((_businessesSearchList2 = businessesSearchList.businesses) === null || _businessesSearchList2 === void 0 ? void 0 : _businessesSearchList2.length) > 0 && /*#__PURE__*/_react.default.createElement(_AutoScroll.AutoScroll, {
+  })), ((_businessesSearchList3 = businessesSearchList.businesses) === null || _businessesSearchList3 === void 0 ? void 0 : _businessesSearchList3.length) > 0 && /*#__PURE__*/_react.default.createElement(_AutoScroll.AutoScroll, {
     scrollId: "searchlist",
     isColumnMode: width <= 681
   }, businessesSearchList.businesses.map(function (business, i) {
@@ -259,6 +270,7 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       isBusinessOpen: business.open,
       handleCustomClick: onBusinessClick,
       orderType: orderState === null || orderState === void 0 ? void 0 : (_orderState$options6 = orderState.options) === null || _orderState$options6 === void 0 ? void 0 : _orderState$options6.type,
+      handleUpdateBusinessList: handleUpdateBusinessList,
       firstCard: i === 0 && width > 681
     });
   }), !businessesSearchList.loading && (paginationProps === null || paginationProps === void 0 ? void 0 : paginationProps.totalPages) && (paginationProps === null || paginationProps === void 0 ? void 0 : paginationProps.currentPage) < (paginationProps === null || paginationProps === void 0 ? void 0 : paginationProps.totalPages) && /*#__PURE__*/_react.default.createElement(_BusinessController.BusinessController, {
@@ -271,7 +283,7 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       return handleSearchbusinessAndProducts();
     }
   }, t('LOAD_MORE_BUSINESS', 'Load more business')))), businessesSearchList.loading && /*#__PURE__*/_react.default.createElement(_styles.BusinessControllerSkeleton, null, _toConsumableArray(Array(3).keys()).map(function (i) {
-    var _orderState$options7, _businessesSearchList3;
+    var _orderState$options7, _businessesSearchList4;
 
     return /*#__PURE__*/_react.default.createElement(_BusinessController.BusinessController, {
       key: i,
@@ -280,9 +292,9 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       isSkeleton: true,
       orderType: orderState === null || orderState === void 0 ? void 0 : (_orderState$options7 = orderState.options) === null || _orderState$options7 === void 0 ? void 0 : _orderState$options7.type,
       firstCard: i === 0 && width > 681,
-      minWidthEnabled: (businessesSearchList === null || businessesSearchList === void 0 ? void 0 : (_businessesSearchList3 = businessesSearchList.businesses) === null || _businessesSearchList3 === void 0 ? void 0 : _businessesSearchList3.length) > 3
+      minWidthEnabled: (businessesSearchList === null || businessesSearchList === void 0 ? void 0 : (_businessesSearchList4 = businessesSearchList.businesses) === null || _businessesSearchList4 === void 0 ? void 0 : _businessesSearchList4.length) > 3
     });
-  })))), /*#__PURE__*/_react.default.createElement(_styles.ProductsList, null, (_businessesSearchList4 = businessesSearchList.businesses) === null || _businessesSearchList4 === void 0 ? void 0 : _businessesSearchList4.filter(function (business) {
+  })))), /*#__PURE__*/_react.default.createElement(_styles.ProductsList, null, (_businessesSearchList5 = businessesSearchList.businesses) === null || _businessesSearchList5 === void 0 ? void 0 : _businessesSearchList5.filter(function (business) {
     var _business$categories;
 
     return (business === null || business === void 0 ? void 0 : (_business$categories = business.categories) === null || _business$categories === void 0 ? void 0 : _business$categories.length) > 0;
@@ -314,7 +326,10 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
           key: product === null || product === void 0 ? void 0 : product.id,
           isSoldOut: product.inventoried && !product.quantity,
           product: product,
-          businessId: business === null || business === void 0 ? void 0 : business.id
+          businessId: business === null || business === void 0 ? void 0 : business.id,
+          handleUpdateProducts: function handleUpdateProducts(productId, changes) {
+            return _handleUpdateProducts(productId, category === null || category === void 0 ? void 0 : category.id, business === null || business === void 0 ? void 0 : business.id, changes);
+          }
         });
       });
     })))));

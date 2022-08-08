@@ -171,10 +171,16 @@ Object.defineProperty(exports, "DriverTips", {
     return _DriverTips.DriverTips;
   }
 });
-Object.defineProperty(exports, "FacebookLogin", {
+Object.defineProperty(exports, "FacebookLoginButton", {
   enumerable: true,
   get: function get() {
-    return _FacebookLogin.FacebookLogin;
+    return _FacebookLogin.FacebookLoginButton;
+  }
+});
+Object.defineProperty(exports, "Favorite", {
+  enumerable: true,
+  get: function get() {
+    return _Favorite.Favorite;
   }
 });
 Object.defineProperty(exports, "Footer", {
@@ -199,6 +205,12 @@ Object.defineProperty(exports, "Header", {
   enumerable: true,
   get: function get() {
     return _Header.Header;
+  }
+});
+Object.defineProperty(exports, "HeaderKiosk", {
+  enumerable: true,
+  get: function get() {
+    return _Kiosk.Header;
   }
 });
 Object.defineProperty(exports, "HeaderOption", {
@@ -249,6 +261,12 @@ Object.defineProperty(exports, "InputPhoneNumber", {
     return _InputPhoneNumber.InputPhoneNumber;
   }
 });
+Object.defineProperty(exports, "KioskHomeHero", {
+  enumerable: true,
+  get: function get() {
+    return _KioskHomeHero.KioskHomeHero;
+  }
+});
 Object.defineProperty(exports, "LanguageSelector", {
   enumerable: true,
   get: function get() {
@@ -297,6 +315,18 @@ Object.defineProperty(exports, "MomentControl", {
     return _MomentControl.MomentControl;
   }
 });
+Object.defineProperty(exports, "MultiCheckout", {
+  enumerable: true,
+  get: function get() {
+    return _MultiCheckout.MultiCheckout;
+  }
+});
+Object.defineProperty(exports, "MultiOrdersDetails", {
+  enumerable: true,
+  get: function get() {
+    return _MultiOrdersDetails.MultiOrdersDetails;
+  }
+});
 Object.defineProperty(exports, "MyOrders", {
   enumerable: true,
   get: function get() {
@@ -319,6 +349,12 @@ Object.defineProperty(exports, "OrderDetails", {
   enumerable: true,
   get: function get() {
     return _OrderDetails.OrderDetails;
+  }
+});
+Object.defineProperty(exports, "OrderDetailsKiosk", {
+  enumerable: true,
+  get: function get() {
+    return _Kiosk2.OrderDetails;
   }
 });
 Object.defineProperty(exports, "OrderProgress", {
@@ -598,6 +634,8 @@ var _DriverTips = require("./src/components/DriverTips");
 
 var _FacebookLogin = require("./src/components/FacebookLogin");
 
+var _Favorite = require("./src/components/Favorite");
+
 var _Footer = require("./src/components/Footer");
 
 var _ForgotPasswordForm = require("./src/components/ForgotPasswordForm");
@@ -606,6 +644,8 @@ var _GoogleLogin = require("./src/components/GoogleLogin");
 
 var _Header = require("./src/components/Header");
 
+var _Kiosk = require("./src/components/Header/layouts/Kiosk");
+
 var _HeaderOption = require("./src/components/HeaderOption");
 
 var _Help = require("./src/components/Help");
@@ -613,6 +653,8 @@ var _Help = require("./src/components/Help");
 var _HelpStaticPage = require("./src/components/HelpStaticPage");
 
 var _HomeHero = require("./src/components/HomeHero");
+
+var _KioskHomeHero = require("./src/components/HomeHero/layouts/KioskHomeHero");
 
 var _HighestRated = require("./src/components/HighestRated");
 
@@ -634,6 +676,10 @@ var _MomentContent = require("./src/components/MomentContent");
 
 var _MomentControl = require("./src/components/MomentControl");
 
+var _MultiCheckout = require("./src/components/MultiCheckout");
+
+var _MultiOrdersDetails = require("./src/components/MultiOrdersDetails");
+
 var _MyOrders = require("./src/components/MyOrders");
 
 var _NotFoundSource = require("./src/components/NotFoundSource");
@@ -643,6 +689,8 @@ var _NotNetworkConnectivity = require("./src/components/NotNetworkConnectivity")
 var _Modal = require("./src/components/Modal");
 
 var _OrderDetails = require("./src/components/OrderDetails");
+
+var _Kiosk2 = require("./src/components/OrderDetails/layouts/Kiosk");
 
 var _OrdersOption = require("./src/components/OrdersOption");
 

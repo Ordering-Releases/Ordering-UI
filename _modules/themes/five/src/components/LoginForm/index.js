@@ -197,7 +197,7 @@ var LoginFormUI = function LoginFormUI(props) {
   var googleLoginEnabled = (configs === null || configs === void 0 ? void 0 : (_configs$google_login2 = configs.google_login_enabled) === null || _configs$google_login2 === void 0 ? void 0 : _configs$google_login2.value) === '1' || !(configs !== null && configs !== void 0 && (_configs$google_login3 = configs.google_login_enabled) !== null && _configs$google_login3 !== void 0 && _configs$google_login3.enabled);
   var facebookLoginEnabled = (configs === null || configs === void 0 ? void 0 : (_configs$facebook_log = configs.facebook_login_enabled) === null || _configs$facebook_log === void 0 ? void 0 : _configs$facebook_log.value) === '1' || !(configs !== null && configs !== void 0 && (_configs$facebook_log2 = configs.facebook_login_enabled) !== null && _configs$facebook_log2 !== void 0 && _configs$facebook_log2.enabled);
   var appleLoginEnabled = (configs === null || configs === void 0 ? void 0 : (_configs$apple_login_ = configs.apple_login_enabled) === null || _configs$apple_login_ === void 0 ? void 0 : _configs$apple_login_.value) === '1' || !(configs !== null && configs !== void 0 && (_configs$apple_login_2 = configs.apple_login_enabled) !== null && _configs$apple_login_2 !== void 0 && _configs$apple_login_2.enabled);
-  var hasSocialLogin = ((configs === null || configs === void 0 ? void 0 : (_configs$facebook_log3 = configs.facebook_login) === null || _configs$facebook_log3 === void 0 ? void 0 : _configs$facebook_log3.value) === 'true' || (configs === null || configs === void 0 ? void 0 : (_configs$facebook_log4 = configs.facebook_login) === null || _configs$facebook_log4 === void 0 ? void 0 : _configs$facebook_log4.value) === '1') && (configs === null || configs === void 0 ? void 0 : (_configs$facebook_id = configs.facebook_id) === null || _configs$facebook_id === void 0 ? void 0 : _configs$facebook_id.value) || (configs === null || configs === void 0 ? void 0 : (_configs$google_login4 = configs.google_login_client_id) === null || _configs$google_login4 === void 0 ? void 0 : _configs$google_login4.value) || (configs === null || configs === void 0 ? void 0 : (_configs$apple_login_3 = configs.apple_login_client_id) === null || _configs$apple_login_3 === void 0 ? void 0 : _configs$apple_login_3.value) || loginTab === 'cellphone' && ((configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi = configs.twilio_service_enabled) === null || _configs$twilio_servi === void 0 ? void 0 : _configs$twilio_servi.value) === 'true' || (configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi2 = configs.twilio_service_enabled) === null || _configs$twilio_servi2 === void 0 ? void 0 : _configs$twilio_servi2.value) === '1');
+  var hasSocialLogin = ((configs === null || configs === void 0 ? void 0 : (_configs$facebook_log3 = configs.facebook_login) === null || _configs$facebook_log3 === void 0 ? void 0 : _configs$facebook_log3.value) === 'true' || (configs === null || configs === void 0 ? void 0 : (_configs$facebook_log4 = configs.facebook_login) === null || _configs$facebook_log4 === void 0 ? void 0 : _configs$facebook_log4.value) === '1') && (configs === null || configs === void 0 ? void 0 : (_configs$facebook_id = configs.facebook_id) === null || _configs$facebook_id === void 0 ? void 0 : _configs$facebook_id.value) || (configs === null || configs === void 0 ? void 0 : (_configs$google_login4 = configs.google_login_client_id) === null || _configs$google_login4 === void 0 ? void 0 : _configs$google_login4.value) && googleLoginEnabled || (configs === null || configs === void 0 ? void 0 : (_configs$apple_login_3 = configs.apple_login_client_id) === null || _configs$apple_login_3 === void 0 ? void 0 : _configs$apple_login_3.value) && appleLoginEnabled || loginTab === 'cellphone' && ((configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi = configs.twilio_service_enabled) === null || _configs$twilio_servi === void 0 ? void 0 : _configs$twilio_servi.value) === 'true' || (configs === null || configs === void 0 ? void 0 : (_configs$twilio_servi2 = configs.twilio_service_enabled) === null || _configs$twilio_servi2 === void 0 ? void 0 : _configs$twilio_servi2.value) === '1');
   var hasSocialEnabled = googleLoginEnabled || facebookLoginEnabled || appleLoginEnabled;
 
   var onSubmit = /*#__PURE__*/function () {
@@ -608,7 +608,7 @@ var LoginFormUI = function LoginFormUI(props) {
     return /*#__PURE__*/_react.default.createElement(MidComponent, _extends({
       key: i
     }, props));
-  }), !loginWithOtpState && loginTab !== 'otp' && /*#__PURE__*/_react.default.createElement(_styles.RedirectLink, {
+  }), !loginWithOtpState && loginTab !== 'otp' && elementLinkToForgotPassword && /*#__PURE__*/_react.default.createElement(_styles.RedirectLink, {
     isPopup: isPopup
   }, /*#__PURE__*/_react.default.createElement("span", null, t('FORGOT_YOUR_PASSWORD', 'Forgot your password?')), elementLinkToForgotPassword), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.ReCaptcha, {
     handleReCaptcha: handleReCaptcha
@@ -627,7 +627,7 @@ var LoginFormUI = function LoginFormUI(props) {
     register: true,
     isPopup: isPopup,
     className: "new-account"
-  }, /*#__PURE__*/_react.default.createElement("span", null, t('NEW_ON_PLATFORM', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag = theme.defaultLanguages) === null || _theme$defaultLanguag === void 0 ? void 0 : _theme$defaultLanguag.NEW_ON_PLATFORM) || 'New on Ordering?')), elementLinkToSignup), hasSocialLogin && hasSocialEnabled && /*#__PURE__*/_react.default.createElement(_styles.LoginDivider, {
+  }, /*#__PURE__*/_react.default.createElement("span", null, t('NEW_ON_PLATFORM', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag = theme.defaultLanguages) === null || _theme$defaultLanguag === void 0 ? void 0 : _theme$defaultLanguag.NEW_ON_PLATFORM) || 'New on Ordering?')), elementLinkToSignup), !props.isDisableButtons && hasSocialLogin && hasSocialEnabled && /*#__PURE__*/_react.default.createElement(_styles.LoginDivider, {
     isPopup: isPopup
   }, /*#__PURE__*/_react.default.createElement(_styles.DividerLine, null), /*#__PURE__*/_react.default.createElement("p", null, t('OR', 'or')), /*#__PURE__*/_react.default.createElement(_styles.DividerLine, null)), !props.isDisableButtons && !loginWithOtpState && (Object.keys(configs).length > 0 ? /*#__PURE__*/_react.default.createElement(_styles.SocialButtons, {
     isPopup: isPopup
@@ -697,8 +697,14 @@ var LoginFormUI = function LoginFormUI(props) {
 };
 
 var LoginForm = function LoginForm(props) {
+  var isKioskApp = props.useKioskApp;
+
   var loginControllerProps = _objectSpread(_objectSpread({}, props), {}, {
-    isRecaptchaEnable: true,
+    isRecaptchaEnable: !isKioskApp,
+    elementLinkToForgotPassword: isKioskApp ? null : props.elementLinkToForgotPassword,
+    useLoginByCellphone: isKioskApp ? null : props.useLoginByCellphone,
+    elementLinkToSignup: isKioskApp ? null : props.elementLinkToSignup,
+    isDisableButtons: isKioskApp ? true : props.isDisableButtons,
     UIComponent: LoginFormUI
   });
 
