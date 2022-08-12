@@ -218,6 +218,7 @@ export const InputWrapper = styled.div`
 `
 
 export const OtpWrapper = styled.div`
+  width: 100%;
   .otp-container{
     display: flex;
     justify-content: space-evenly;

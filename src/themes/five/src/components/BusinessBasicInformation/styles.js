@@ -17,19 +17,15 @@ export const BusinessContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   border-radius: 7.6px;
-
   ${props => props.isSkeleton && css`
     background-color: #cccccc;
   `}
-
   ${props => props.bgimage && !props.isClosed && css`
     background-image: url(${props.bgimage});
   `}
-
   ${props => props.bgimage && props.isClosed && css`
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props.bgimage});
   `}
-
   h1 {
     color: #FFF;
     opacity: 0.5;
@@ -39,7 +35,6 @@ export const BusinessContainer = styled.div`
     margin: 0 10px;
     padding: 0;
   }
-
   @media (min-width: 490px) {
     justify-content: flex-start;
   }
@@ -50,7 +45,6 @@ export const BusinessContent = styled.div`
   margin: 10px;
   max-height: 124px;
   width: 124px;
-
   @media (min-width: 426px) {
     margin: 25px;
   }
@@ -102,13 +96,11 @@ export const BusinessInfoItem = styled.div`
     padding-left: 5px;
     padding-right: 0;
   `}
-
   .type {
     font-size: 14px;
     color: ${props => props.theme.colors.darkTextColor};
     margin: 0 0 5px 0;
   }
-
   .preorder-Reviews {
     span {
       user-select: none;
@@ -123,7 +115,6 @@ export const BusinessInfoItem = styled.div`
           margin-right: 0;
         `}
       }
-
       &.dot {
         font-size: 12px;
         text-decoration: none;
@@ -131,14 +122,20 @@ export const BusinessInfoItem = styled.div`
       }
     }
   }
+  ${({ isInfoShrunken }) => isInfoShrunken && css`
+    color: #FFFFFF;
+    span, p, h5, svg {
+      color: #FFFFFF !important;
+    }
+  `}
 `
 
 export const BusinessInfoContainer = styled.div`
-  margin-bottom: 25px;
+  padding: 10px 0px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-
   @media (min-width: 700px) {
     flex-direction: row;
   }
@@ -151,7 +148,6 @@ export const WrapperSearch = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-
   .search-bar {
     margin-right: 10px;
     ${props => props.theme?.rtl && css`
@@ -160,26 +156,21 @@ export const WrapperSearch = styled.div`
     `}
     input {
       width: 100%;
-
       @media (min-width: 500px) {
         width: 250px;
       }
     }
   }
-
   div:last-child {
     text-align: right;
-
     ${props => props.theme?.rtl && css`
       text-align: left;
     `}
   }
-
   #select-input {
     background-color: transparent !important;
     border: none;
     color: #748194 !important;
-
     #list {
       border-radius: 8px;
     }
@@ -189,7 +180,6 @@ export const WrapperSearch = styled.div`
 export const BusinessDetail = styled.div`
   display: flex;
   align-items: center;
-
   h5 {
     font-size: 14px;
     color: #909BA9;
@@ -199,7 +189,6 @@ export const BusinessDetail = styled.div`
       margin-left: 5px;
       margin-right: 0px;
     `}
-
     span {
       margin-right: 5px;
       ${props => props.theme?.rtl && css`
@@ -208,13 +197,11 @@ export const BusinessDetail = styled.div`
       `}
     }
   }
-
   .review {
     color: #909BA9;
     margin: 0;
     display: flex;
     align-items: center;
-
     svg {
       font-size: 15px;
       margin-bottom: 1px;
@@ -224,13 +211,11 @@ export const BusinessDetail = styled.div`
         margin-right: 0px;
       `}
     }
-
     p {
       font-size: 14px;
       margin: 0px;
     }
   }
-
   .dot {
     color: #909BA9;
     font-size: 12px;
@@ -240,7 +225,6 @@ export const BusinessDetail = styled.div`
       margin-right: 0px;
     `}
   }
-
   ${({ isSkeleton }) => isSkeleton && css`
     > span {
       display: flex;
@@ -264,7 +248,6 @@ export const BusinessMoreDetail = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
   svg {
     font-size: 24px;
     color: white;
@@ -275,7 +258,6 @@ export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
   h2 {
     font-weight: 600;
     font-size: 32px;
@@ -299,20 +281,16 @@ export const RibbonBox = styled.div`
   overflow: hidden;
   margin-left: 5px;
   margin-bottom: 10px;
-
   ${props => props.theme.rtl && css`
     margin-left: 0px;
     margin-right: 5px;
   `}
-
   ${({ bgColor }) => bgColor && css`
     background-color: ${bgColor};
   `}
-
   ${({ isRoundRect }) => isRoundRect && css`
     border-radius: 7.6px;
   `}
-
   ${({ isCapsule }) => isCapsule && css`
     border-radius: 50px;
   `}
@@ -326,8 +304,59 @@ export const SearchIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   svg {
     font-size: 18px;
+  }
+`
+
+export const SearchComponentContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  color: ${({ theme }) => theme.colors.white};
+  #select-input {
+    color: #FFFFFF !important;
+  }
+  svg {
+    color: #FFFFFF;
+  }
+`
+
+export const SocialList = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: -3px;
+  ${props => props.theme.rtl && css`
+    margin-right: -3px;
+    margin-left: 0px;
+  `}
+`
+
+export const IconWrapper = styled.a`
+  margin: 0px 3px 10px 3px;
+  border-radius: 3px;
+  border: 0.5px solid ${props => props.theme.colors.gray200};
+  width: 27px;
+  height: 27px;
+  min-width: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  ${({ isSkeleton }) => isSkeleton && css`
+    border: none;
+  `}
+  svg {
+    height: 18px;
+    font-size: 18px;
+    transition: all 0.2s ease-in;
+    color: ${props => props.theme.colors.headingColor};
+  }
+  &:hover {
+    background-color: ${props => props.theme.colors.gray200};
+    svg {
+      transform: scale(1.07);
+    }
   }
 `

@@ -106,11 +106,12 @@ const PaymentOptionsUI = (props) => {
 
   const includeKioskPaymethods = ['cash', 'card_delivery']
 
+  const popupMethods = ['stripe', 'stripe_direct', 'stripe_connect', 'stripe_redirect', 'paypal', 'square', 'google_pay', 'apple_pay']
   const supportedMethods = paymethodsList.paymethods.filter(p => useKioskApp ? includeKioskPaymethods.includes(p.gateway) : p)
 
   const handlePaymentMethodClick = (paymethod) => {
     if (cart?.balance > 0) {
-      const isPopupMethod = ['stripe', 'stripe_direct', 'stripe_connect', 'stripe_redirect', 'paypal', 'square', 'google_pay', 'apple_pay'].includes(paymethod?.gateway)
+      const isPopupMethod = popupMethods.includes(paymethod?.gateway)
       handlePaymethodClick(paymethod, isPopupMethod)
       return
     }
@@ -128,7 +129,7 @@ const PaymentOptionsUI = (props) => {
   }
 
   useEffect(() => {
-    if (supportedMethods.length === 1 && !paymethodSelected) {
+    if (supportedMethods.length === 1 && !paymethodSelected && !popupMethods.includes(supportedMethods[0]?.gateway)) {
       handlePaymethodClick && handlePaymethodClick(supportedMethods[0])
     }
   }, [supportedMethods])

@@ -98,6 +98,31 @@ const FavoriteListUI = (props) => {
     events.emit('go_to_page', data)
   }
 
+  const onProductClick = (product) => {
+    const slug = product?.category?.business?.slug
+    const categoryId = product?.category?.id
+    const productId = product?.id
+
+    if (!categoryId && !productId) {
+      return window.location.pathname.includes('/store/')
+        ? events.emit('go_to_page', { page: 'business', params: { store: slug }, replace: true })
+        : events.emit('go_to_page', { page: 'business_slug', params: { store: slug }, replace: true })
+    }
+    return window.location.pathname.includes('/store/')
+      ? events.emit('go_to_page', {
+        page: 'business',
+        params: { store: slug },
+        search: `?category=${categoryId}&product=${productId}`,
+        replace: true
+      })
+      : events.emit('go_to_page', {
+        page: 'business_slug',
+        params: { store: slug },
+        search: `?category=${categoryId}&product=${productId}`,
+        replace: true
+      })
+  }
+
   const closeOrderModal = (e) => {
     const outsideModal = !window.document.getElementById('app-modals') ||
       !window.document.getElementById('app-modals').contains(e.target)
@@ -121,7 +146,7 @@ const FavoriteListUI = (props) => {
       }
     }
 
-    if (!reorderState?.error && reorderState.loading === false && reorderState?.result?.business_id) {
+    if (!reorderState?.error && reorderState?.loading === false && reorderState?.result?.business_id) {
       const _businessId = 'businessId:' + reorderState?.result?.business_id
       const cartProducts = orderState?.carts?.[_businessId]?.products
       const available = cartProducts.every(product => product.valid === true)
@@ -161,7 +186,7 @@ const FavoriteListUI = (props) => {
           )
         }
         <FavoriteListWrapper isLoading={favoriteList?.loading || favoriteList?.favorites?.length === 0}>
-          <FavoriteListing isOrder={isOrder} isProduct={isProduct}>
+          <FavoriteListing isOrder={isOrder}>
             <AutoScroll scrollId='favorite'>
               {isBusiness && (
                 <>
@@ -208,8 +233,9 @@ const FavoriteListUI = (props) => {
                         key={`${product.id}_${i}`}
                         isSoldOut={product.inventoried && !product.quantity}
                         product={product}
-                        onProductClick={() => {}}
+                        onProductClick={() => onProductClick(product)}
                         handleUpdateProducts={handleUpdateFavoriteList}
+                        isFavorite
                       />
                     ))
                   }

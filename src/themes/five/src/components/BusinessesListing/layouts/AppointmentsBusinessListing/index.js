@@ -197,18 +197,20 @@ const BusinessListingUI = (props) => {
             </PreorderContent>
           </PreorderWrapper>
           <BusinessListWrapper>
-            <HightestRatedWrapper noHeight={!hasHighRatedBusiness}>
-              <HighestRated
-                handleClickAddress={handleClickAddress}
-                setHasHighRatedBusiness={setHasHighRatedBusiness}
-                onBusinessClick={onBusinessClick}
-                isCustomerMode={isCustomerMode}
-                favoriteIds={favoriteIds}
-                initialBuisnessType={businessTypeSelected}
-                initialPricelevel={priceLevelSelected}
-                setFavoriteIds={setFavoriteIds}
-              />
-            </HightestRatedWrapper>
+            {businessesList.businesses.length > 0 && !props.franchiseId && (
+              <HightestRatedWrapper noHeight={!hasHighRatedBusiness}>
+                <HighestRated
+                  handleClickAddress={handleClickAddress}
+                  setHasHighRatedBusiness={setHasHighRatedBusiness}
+                  onBusinessClick={onBusinessClick}
+                  isCustomerMode={isCustomerMode}
+                  favoriteIds={favoriteIds}
+                  initialBuisnessType={businessTypeSelected}
+                  initialPricelevel={priceLevelSelected}
+                  setFavoriteIds={setFavoriteIds}
+                />
+              </HightestRatedWrapper>
+            )}
             <h2>{t('ALL_BUSINESSES', 'All businesses')}</h2>
             <BusinessList>
               {
