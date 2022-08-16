@@ -152,7 +152,7 @@ export const RenderProductsLayout = (props) => {
               </>
             )}
             {!businessLayout.layoutOne && (
-              <BusinessContent isCustomLayout={isCustomLayout || useKioskApp}>
+              <BusinessContent isCustomLayout={isCustomLayout || useKioskApp} id='wrapper-categories'>
                 <BusinessCategoryProductWrapper showCartOnProductList={showCartOnProductList}>
                   <div style={{ position: 'relative' }}>
                     {business?.professionals?.length > 0 && (

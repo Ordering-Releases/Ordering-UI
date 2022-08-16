@@ -176,7 +176,8 @@ var RenderProductsLayout = function RenderProductsLayout(props) {
     },
     businessState: businessState
   }))), !businessLayout.layoutOne && /*#__PURE__*/_react.default.createElement(_styles.BusinessContent, {
-    isCustomLayout: isCustomLayout || useKioskApp
+    isCustomLayout: isCustomLayout || useKioskApp,
+    id: "wrapper-categories"
   }, /*#__PURE__*/_react.default.createElement(_styles.BusinessCategoryProductWrapper, {
     showCartOnProductList: showCartOnProductList
   }, /*#__PURE__*/_react.default.createElement("div", {
