@@ -56,7 +56,8 @@ import {
   OrderPreferences,
   HeaderTitle,
   PlaceSpotSection,
-  BtsOrderStatus
+  BtsOrderStatus,
+  LinkWrapper
 } from './styles'
 import { useTheme } from 'styled-components'
 import { ReviewProduct } from '../../../../../components/ReviewProduct'
@@ -64,6 +65,7 @@ import { ReviewDriver } from '../../../../../components/ReviewDriver'
 import { TaxInformation } from '../TaxInformation'
 
 import { getGoogleMapImage } from '../../../../../utils'
+import { OrderHistory } from './OrderHistory'
 
 const OrderDetailsUI = (props) => {
   const {
@@ -99,6 +101,7 @@ const OrderDetailsUI = (props) => {
   const [reviewStatus, setReviewStatus] = useState({ order: false, product: false, driver: false })
   const [openTaxModal, setOpenTaxModal] = useState({ open: false, tax: null })
   const [isService, setIsService] = useState(false)
+  const [isOrderHistory, setIsOrderHistory] = useState(false)
 
   const { order, loading, businessData, error } = props.order
   const yourSpotString = order?.delivery_type === 3 ? t('TABLE_NUMBER', 'Table number') : t('SPOT_NUMBER', 'Spot number')
@@ -414,16 +417,25 @@ const OrderDetailsUI = (props) => {
                     }}
                   >
                     <p className='order-status'>{getOrderStatus(order?.status)?.value}</p>
-                    <ReviewOrderLink
-                      className='Review-order'
-                      active={
-                        acceptedStatus.includes(parseInt(order?.status, 10)) &&
-                        (!order?.review || (order.driver && !order?.user_review)) &&
-                        (!isOrderReviewed || !isProductReviewed || !isDriverReviewed)
-                      }
-                    >
-                      <span onClick={handleOpenReview}>{t('REVIEW_ORDER', theme?.defaultLanguages?.REVIEW_ORDER || 'Review your Order')}</span>
-                    </ReviewOrderLink>
+                    <LinkWrapper>
+                      <ReviewOrderLink
+                        active
+                        isMargin
+                      >
+                        <span onClick={() => setIsOrderHistory(true)}>{t('VIEW_DETAILS', 'View details')}</span>
+                      </ReviewOrderLink>
+                      <ReviewOrderLink
+                        className='Review-order'
+                        active={
+                          acceptedStatus.includes(parseInt(order?.status, 10)) &&
+                          (!order?.review || (order.driver && !order?.user_review)) &&
+                          (!isOrderReviewed || !isProductReviewed || !isDriverReviewed)
+                        }
+                      >
+                        <span onClick={handleOpenReview}>{t('REVIEW_ORDER', theme?.defaultLanguages?.REVIEW_ORDER || 'Review your Order')}</span>
+                      </ReviewOrderLink>
+                    </LinkWrapper>
+
                   </div>
                 </>
               )}
@@ -710,6 +722,24 @@ const OrderDetailsUI = (props) => {
           type={openTaxModal.type}
           data={openTaxModal.data}
           products={order?.products}
+        />
+      </Modal>
+      <Modal
+        open={isOrderHistory}
+        width='760px'
+        onClose={() => setIsOrderHistory(false)}
+        title={t('DETAILS_OF_ORDER', 'Details of Order_NUMBER_').replace('_NUMBER_', ` # ${order?.id}`)}
+      >
+        <OrderHistory
+          messages={messages}
+          order={order}
+          handleOpenReview={handleOpenReview}
+          onClose={() => setIsOrderHistory(false)}
+          enableReview={
+            acceptedStatus.includes(parseInt(order?.status, 10)) &&
+            (!order?.review || (order.driver && !order?.user_review)) &&
+            (!isOrderReviewed || !isProductReviewed || !isDriverReviewed)
+          }
         />
       </Modal>
     </Container>

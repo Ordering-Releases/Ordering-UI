@@ -584,7 +584,7 @@ var AddressFormUI = function AddressFormUI(props) {
       mapControls: googleMapsControls,
       handleChangeAddressMap: handleChangeAddress,
       setErrors: setMapErrors,
-      maxLimitLocation: maxLimitLocation
+      maxLimitLocation: parseInt(maxLimitLocation, 10)
     }))) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: field.name
     }, field.name !== 'address_notes' ? /*#__PURE__*/_react.default.createElement(_Inputs.Input, {

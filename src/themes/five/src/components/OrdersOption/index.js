@@ -60,7 +60,8 @@ const OrdersOptionUI = (props) => {
     hideOrders,
     onProductRedirect,
     businessesSearchList,
-    handleUpdateProducts
+    handleUpdateProducts,
+    onBusinessClick
   } = props
 
   const [, t] = useLanguage()
@@ -232,6 +233,7 @@ const OrdersOptionUI = (props) => {
           products={products}
           onProductClick={onProductClick}
           handleUpdateProducts={handleUpdateProducts}
+          onBusinessClick={onBusinessClick}
         />
       )}
 
