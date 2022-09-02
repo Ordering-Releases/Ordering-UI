@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useLanguage, useConfig, useUtils } from 'ordering-components'
+import { useLanguage, useConfig, useUtils, useOrderingTheme } from 'ordering-components'
 import CgSearch from '@meronex/icons/cg/CgSearch'
 import { Cart3 } from 'react-bootstrap-icons'
 
@@ -14,7 +14,7 @@ import { BusinessProductsList } from '../BusinessProductsList'
 import { BusinessProductsCategories as CategoriesLayoutGroceries } from '../BusinessProductsCategories/layouts/groceries'
 import { BusinessProductsList as ProductListLayoutGroceries } from '../BusinessProductsList/layouts/groceries'
 import { Modal } from '../Modal'
-
+import { BusinessesListing } from '../BusinessesListing'
 import { Cart } from '../Cart'
 import { Button } from '../../styles/Buttons'
 
@@ -31,7 +31,8 @@ import {
   EmptyBtnWrapper,
   WrapperSearch,
   ProfessionalFilterWrapper,
-  WrapperSearchAbsolute
+  WrapperSearchAbsolute,
+  NearBusiness
 } from './styles'
 
 import { SearchProducts as SearchProductsOriginal } from '../../../../../themes/five/src/components/SearchProducts'
@@ -76,30 +77,32 @@ export const RenderProductsLayout = (props) => {
     isLazy,
     handleUpdateProducts,
     handleChangeProfessionalSelected,
-    professionalSelected
+    professionalSelected,
+    onBusinessClick
   } = props
 
   const theme = useTheme()
   const [, t] = useLanguage()
   const [{ configs }] = useConfig()
   const [{ parsePrice }] = useUtils()
+  const [orderingTheme] = useOrderingTheme()
   const [isCartModal, setisCartModal] = useState(false)
   const [openSearchProducts, setOpenSearchProducts] = useState(false)
 
   const isUseParentCategory = (configs?.use_parent_category?.value === 'true' || configs?.use_parent_category?.value === '1') && !useKioskApp
   const BusinessBasicInformationComponent =
-    theme?.layouts?.business_view?.components?.basic_information?.components?.layout?.type === 'red'
+    orderingTheme?.theme?.business_view?.components?.header?.components?.layout?.type === 'red'
       ? BusinessBasicInformationRed
-      : theme?.layouts?.business_view?.components?.basic_information?.components?.layout?.type === 'starbucks'
+      : orderingTheme?.theme?.business_view?.components?.header?.components?.layout?.type === 'starbucks'
         ? BusinessBasicInformationStarbucks
-        : theme?.layouts?.business_view?.components?.basic_information?.components?.layout?.type === 'old'
+        : orderingTheme?.theme?.business_view?.components?.header?.components?.layout?.type === 'old'
           ? BusinessBasicInformationOld
           : BusinessBasicInformation
 
   const SearchProductsComponent =
-    theme?.layouts?.business_view?.components?.product_search?.components?.layout?.type === 'old'
+    orderingTheme?.theme?.business_view?.components?.product_search?.components?.layout?.type === 'old'
       ? SearchProductsOld
-      : theme?.layouts?.business_view?.components?.product_search?.components?.layout?.type === 'starbucks'
+      : orderingTheme?.theme?.business_view?.components?.product_search?.components?.layout?.type === 'starbucks'
         ? SearchProductsStarbucks
         : null
 
@@ -107,7 +110,8 @@ export const RenderProductsLayout = (props) => {
   const businessLayout = {
     layoutOne: frontLayout === layoutOne && isUseParentCategory
   }
-  const showCartOnProductList = !theme?.layouts?.business_view?.components?.cart?.hidden
+  const showCartOnProductList = !orderingTheme?.theme?.business_view?.components?.cart?.components?.hidden
+  const hideBusinessNearCity = orderingTheme?.theme?.business_view?.components?.near_business?.hidden
 
   const BusinessLayoutCategories = businessLayout.layoutOne
     ? CategoriesLayoutGroceries
@@ -121,6 +125,17 @@ export const RenderProductsLayout = (props) => {
     <>
       {!isLoading && business?.id && (
         <WrappLayout isCartOnProductsList={isCartOnProductsList}>
+          {typeof hideBusinessNearCity !== 'undefined' && !hideBusinessNearCity && !useKioskApp && (
+            <NearBusiness>
+              <BusinessesListing
+                logosLayout
+                propsToFetch={['id', 'logo', 'location', 'timezone', 'schedule', 'open', 'slug']}
+                cityId={businessState?.business?.city_id}
+                onBusinessClick={onBusinessClick}
+                actualSlug={businessState?.business?.slug}
+              />
+            </NearBusiness>
+          )}
           <div className='bp-list'>
             {!isCustomLayout && !useKioskApp && (
               <BusinessBasicInformationComponent
@@ -155,15 +170,6 @@ export const RenderProductsLayout = (props) => {
               <BusinessContent isCustomLayout={isCustomLayout || useKioskApp} id='wrapper-categories'>
                 <BusinessCategoryProductWrapper showCartOnProductList={showCartOnProductList}>
                   <div style={{ position: 'relative' }}>
-                    {business?.professionals?.length > 0 && (
-                      <ProfessionalFilterWrapper>
-                        <ProfessionalFilter
-                          professionals={business?.professionals}
-                          professionalSelected={professionalSelected}
-                          handleChangeProfessionalSelected={handleChangeProfessionalSelected}
-                        />
-                      </ProfessionalFilterWrapper>
-                    )}
                     {!(business?.categories?.length === 0 && !categoryId) && (
                       <BusinessLayoutCategories
                         categories={[
@@ -219,6 +225,15 @@ export const RenderProductsLayout = (props) => {
                     </MobileCartViewWrapper>
                   )} */}
                   <WrapContent id='businessProductList'>
+                    {business?.professionals?.length > 0 && (
+                      <ProfessionalFilterWrapper>
+                        <ProfessionalFilter
+                          professionals={business?.professionals}
+                          professionalSelected={professionalSelected}
+                          handleChangeProfessionalSelected={handleChangeProfessionalSelected}
+                        />
+                      </ProfessionalFilterWrapper>
+                    )}
                     <BusinessLayoutProductsList
                       categories={[
                         { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
@@ -286,56 +301,68 @@ export const RenderProductsLayout = (props) => {
             )}
 
             {businessLayout.layoutOne && (
-              <BusinessContent>
-                <BusinessCategoriesContainer>
-                  {!(business?.categories?.length === 0 && !categoryId) && (
-                    <BusinessLayoutCategories
-                      component='categories'
-                      categories={[
-                        { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
-                        { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
-                        ...business?.categories.sort((a, b) => a.rank - b.rank)
-                      ]}
-                      categorySelected={categorySelected}
-                      onClickCategory={onClickCategory}
-                      featured={featuredProducts}
-                      openBusinessInformation={openBusinessInformation}
-                      openCategories={openCategories}
-                      business={business}
-                      currentCart={currentCart}
-                    />
-                  )}
-                </BusinessCategoriesContainer>
-                <BusinessCategoryProductWrapper>
-                  <WrapContent>
-                    <BusinessLayoutProductsList
-                      categories={[
-                        { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
-                        { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
-                        ...business?.categories.sort((a, b) => a.rank - b.rank)
-                      ]}
-                      category={categorySelected}
-                      onClickCategory={onClickCategory}
-                      categoriesState={props.categoriesState}
-                      categoryState={categoryState}
-                      businessId={business?.id}
-                      errors={errors}
-                      onProductClick={onProductClick}
-                      handleSearchRedirect={handleSearchRedirect}
-                      featured={featuredProducts}
-                      searchValue={searchValue}
-                      isCartOnProductsList={isCartOnProductsList && currentCart?.products?.length > 0}
-                      handleClearSearch={handleChangeSearch}
-                      errorQuantityProducts={errorQuantityProducts}
-                      business={business}
-                      currentCart={currentCart}
-                      handleUpdateProducts={handleUpdateProducts}
+              <>
+                {business?.professionals?.length > 0 && (
+                  <ProfessionalFilterWrapper isTop>
+                    <ProfessionalFilter
+                      professionals={business?.professionals}
                       professionalSelected={professionalSelected}
                       handleChangeProfessionalSelected={handleChangeProfessionalSelected}
                     />
-                  </WrapContent>
-                </BusinessCategoryProductWrapper>
-              </BusinessContent>
+                  </ProfessionalFilterWrapper>
+                )}
+                <BusinessContent>
+                  <BusinessCategoriesContainer>
+                    {!(business?.categories?.length === 0 && !categoryId) && (
+                      <BusinessLayoutCategories
+                        component='categories'
+                        categories={[
+                          { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
+                          { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
+                          ...business?.categories.sort((a, b) => a.rank - b.rank)
+                        ]}
+                        categorySelected={categorySelected}
+                        onClickCategory={onClickCategory}
+                        featured={featuredProducts}
+                        openBusinessInformation={openBusinessInformation}
+                        openCategories={openCategories}
+                        business={business}
+                        currentCart={currentCart}
+                      />
+                    )}
+                  </BusinessCategoriesContainer>
+                  <BusinessCategoryProductWrapper>
+                    <WrapContent>
+                      <BusinessLayoutProductsList
+                        categories={[
+                          { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
+                          { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
+                          ...business?.categories.sort((a, b) => a.rank - b.rank)
+                        ]}
+                        category={categorySelected}
+                        onClickCategory={onClickCategory}
+                        categoriesState={props.categoriesState}
+                        categoryState={categoryState}
+                        businessId={business?.id}
+                        errors={errors}
+                        onProductClick={onProductClick}
+                        handleSearchRedirect={handleSearchRedirect}
+                        featured={featuredProducts}
+                        searchValue={searchValue}
+                        isCartOnProductsList={isCartOnProductsList && currentCart?.products?.length > 0}
+                        handleClearSearch={handleChangeSearch}
+                        errorQuantityProducts={errorQuantityProducts}
+                        business={business}
+                        currentCart={currentCart}
+                        handleUpdateProducts={handleUpdateProducts}
+                        professionalSelected={professionalSelected}
+                        handleChangeProfessionalSelected={handleChangeProfessionalSelected}
+                      />
+                    </WrapContent>
+                  </BusinessCategoryProductWrapper>
+                </BusinessContent>
+              </>
+
             )}
           </div>
         </WrappLayout>

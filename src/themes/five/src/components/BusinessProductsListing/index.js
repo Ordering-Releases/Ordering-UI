@@ -13,7 +13,8 @@ import {
   useOrder,
   useUtils,
   useSession,
-  useSite
+  useSite,
+  useOrderingTheme
 } from 'ordering-components'
 
 import {
@@ -72,7 +73,8 @@ const BusinessProductsListingUI = (props) => {
     handleUpdateProducts,
     professionalSelected,
     handleChangeProfessionalSelected,
-    onChangeMetaTag
+    onChangeMetaTag,
+    onBusinessClick
   } = props
 
   const { business, loading, error } = businessState
@@ -85,7 +87,7 @@ const BusinessProductsListingUI = (props) => {
   const windowSize = useWindowSize()
   const [{ auth }] = useSession()
   const [{ site }] = useSite()
-
+  const [orderingTheme] = useOrderingTheme()
   const [openProduct, setModalIsOpen] = useState(false)
   const [curProduct, setCurProduct] = useState(props.product)
   const [openUpselling, setOpenUpselling] = useState(false)
@@ -97,7 +99,7 @@ const BusinessProductsListingUI = (props) => {
 
   const currentCart = Object.values(carts).find(cart => cart?.business?.slug === business?.slug) ?? {}
   const isLazy = businessState?.business?.lazy_load_products_recommended
-  const showViewOrderButton = !theme?.layouts?.business_view?.components?.order_view_button?.hidden
+  const showViewOrderButton = !orderingTheme?.theme?.business_view?.components?.order_view_button?.hidden
   const sortByOptions = [
     { value: null, content: t('SORT_BY', theme?.defaultLanguages?.SORT_BY || 'Sort By'), showOnSelected: t('SORT_BY', theme?.defaultLanguages?.SORT_BY || 'Sort By') },
     { value: 'rank', content: t('RANK', theme?.defaultLanguages?.RANK || 'Rank'), showOnSelected: t('RANK', theme?.defaultLanguages?.RANK || 'Rank') },
@@ -287,6 +289,7 @@ const BusinessProductsListingUI = (props) => {
           handleUpdateProducts={handleUpdateProducts}
           professionalSelected={professionalSelected}
           handleChangeProfessionalSelected={handleChangeProfessionalSelected}
+          onBusinessClick={onBusinessClick}
         />
 
         {
@@ -338,7 +341,7 @@ const BusinessProductsListingUI = (props) => {
           disabled={openUpselling || !currentCart?.valid_maximum || (!currentCart?.valid_minimum && !(currentCart?.discount_type === 1 && currentCart?.discount_rate === 100))}
         />
       )}
-      {windowSize.width < 500 && currentCart?.products?.length > 0 && (
+      {windowSize.width < 1000 && currentCart?.products?.length > 0 && (
         <MobileCartViewWrapper>
           <span>{parsePrice(currentCart?.total)}</span>
           <Button color='primary' onClick={() => setisCartModal(true)}>{t('VIEW_CART', 'View cart')}</Button>

@@ -21,7 +21,17 @@ var _reactBootstrapIcons = require("react-bootstrap-icons");
 
 var _styledComponents = require("styled-components");
 
+var _Modal = require("../Modal");
+
+var _LoginForm = require("../LoginForm");
+
+var _SignUpForm = require("../SignUpForm");
+
+var _ForgotPasswordForm = require("../ForgotPasswordForm");
+
 var _styles = require("./styles");
+
+var _Buttons = require("../../styles/Buttons");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -56,7 +66,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SingleProductCardUI = function SingleProductCardUI(props) {
-  var _product$ribbon, _product$ribbon2, _product$ribbon3, _product$ribbon4, _product$ribbon5, _theme$images, _theme$images$dummies, _product$ribbon6;
+  var _orderingTheme$theme, _orderingTheme$theme$, _orderingTheme$theme$2, _orderingTheme$theme$3, _orderingTheme$theme$4, _orderingTheme$theme$5, _product$ribbon, _product$ribbon2, _product$ribbon3, _product$ribbon4, _product$ribbon5, _product$ribbon6, _theme$defaultLanguag, _theme$defaultLanguag2, _theme$defaultLanguag3, _theme$defaultLanguag4;
 
   var product = props.product,
       isSoldOut = props.isSoldOut,
@@ -95,8 +105,28 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
+  var _useSession = (0, _orderingComponents.useSession)(),
+      _useSession2 = _slicedToArray(_useSession, 2),
+      auth = _useSession2[0].auth,
+      login = _useSession2[1].login;
+
+  var _useOrderingTheme = (0, _orderingComponents.useOrderingTheme)(),
+      _useOrderingTheme2 = _slicedToArray(_useOrderingTheme, 1),
+      orderingTheme = _useOrderingTheme2[0];
+
   var theme = (0, _styledComponents.useTheme)();
   var favoriteRef = (0, _react.useRef)(null);
+
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isModalOpen = _useState2[0],
+      setIsModalOpen = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      modalPageToShow = _useState4[0],
+      setModalPageToShow = _useState4[1];
+
   var editMode = typeof (product === null || product === void 0 ? void 0 : product.code) !== 'undefined';
   var isObservedValidation = isObserved || useKioskApp;
   var removeToBalance = editMode ? product === null || product === void 0 ? void 0 : product.quantity : 0;
@@ -108,6 +138,8 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
   }, 0);
   var totalBalance = (productBalance || 0) - removeToBalance;
   var maxCartProductConfig = (stateConfig.configs.max_product_amount ? parseInt(stateConfig.configs.max_product_amount) : 100) - totalBalance;
+  var hideAddButton = orderingTheme === null || orderingTheme === void 0 ? void 0 : (_orderingTheme$theme = orderingTheme.theme) === null || _orderingTheme$theme === void 0 ? void 0 : (_orderingTheme$theme$ = _orderingTheme$theme.business_view) === null || _orderingTheme$theme$ === void 0 ? void 0 : (_orderingTheme$theme$2 = _orderingTheme$theme$.components) === null || _orderingTheme$theme$2 === void 0 ? void 0 : (_orderingTheme$theme$3 = _orderingTheme$theme$2.products) === null || _orderingTheme$theme$3 === void 0 ? void 0 : (_orderingTheme$theme$4 = _orderingTheme$theme$3.components) === null || _orderingTheme$theme$4 === void 0 ? void 0 : (_orderingTheme$theme$5 = _orderingTheme$theme$4.add_to_cart_button) === null || _orderingTheme$theme$5 === void 0 ? void 0 : _orderingTheme$theme$5.hidden; // const productsRows = theme?.layouts?.business_view?.components?.products?.components?.layout?.rows
+
   var maxCartProductInventory = (product !== null && product !== void 0 && product.inventoried ? product === null || product === void 0 ? void 0 : product.quantity : undefined) - totalBalance;
   maxCartProductInventory = !isNaN(maxCartProductInventory) ? maxCartProductInventory : maxCartProductConfig;
   var maxProductQuantity = Math.min(maxCartProductConfig, maxCartProductInventory);
@@ -126,18 +158,51 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
   };
 
   var handleChangeFavorite = function handleChangeFavorite() {
-    handleFavoriteProduct && handleFavoriteProduct(!(product !== null && product !== void 0 && product.favorite));
+    if (auth) {
+      handleFavoriteProduct && handleFavoriteProduct(!(product !== null && product !== void 0 && product.favorite));
+    } else {
+      setModalPageToShow('login');
+      setIsModalOpen(true);
+    }
   };
 
-  return /*#__PURE__*/_react.default.createElement(_styles.CardContainer, {
+  var closeAuthModal = function closeAuthModal() {
+    setIsModalOpen(false);
+    setModalPageToShow(null);
+  };
+
+  var handleSuccessLogin = function handleSuccessLogin(user) {
+    if (user) {
+      closeAuthModal();
+    }
+  };
+
+  var handleCustomModalClick = function handleCustomModalClick(e, _ref) {
+    var page = _ref.page;
+    e.preventDefault();
+    setModalPageToShow(page);
+  };
+
+  var handleSuccessSignup = function handleSuccessSignup(user) {
+    var _user$session;
+
+    login({
+      user: user,
+      token: user === null || user === void 0 ? void 0 : (_user$session = user.session) === null || _user$session === void 0 ? void 0 : _user$session.access_token
+    });
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.CardContainer, {
     ref: $element,
     soldOut: isSoldOut || maxProductQuantity <= 0,
     onClick: handleClickProduct,
     isCartOnProductsList: isCartOnProductsList,
     style: useCustomFunctionality && customStyle,
-    className: "product-card"
-  }, isObservedValidation && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !useCustomFunctionality && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isSkeleton && productAddedToCartLength > 0 && /*#__PURE__*/_react.default.createElement(_styles.QuantityContainer, null, /*#__PURE__*/_react.default.createElement("span", null, productAddedToCartLength)), /*#__PURE__*/_react.default.createElement(_styles.CardInfo, {
-    soldOut: isSoldOut || maxProductQuantity <= 0
+    className: "product-card" // productsRows={productsRows}
+
+  }, isObservedValidation ? /*#__PURE__*/_react.default.createElement("div", null, !useCustomFunctionality && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isSkeleton && productAddedToCartLength > 0 && /*#__PURE__*/_react.default.createElement(_styles.QuantityContainer, null, /*#__PURE__*/_react.default.createElement("span", null, productAddedToCartLength)), /*#__PURE__*/_react.default.createElement(_styles.CardInfo, {
+    soldOut: isSoldOut || maxProductQuantity <= 0,
+    isBgimage: optimizeImage(product === null || product === void 0 ? void 0 : product.images, 'h_86,c_limit')
   }, /*#__PURE__*/_react.default.createElement(_styles.TitleWrapper, null, !isSkeleton ? /*#__PURE__*/_react.default.createElement("h1", null, product === null || product === void 0 ? void 0 : product.name) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     width: 100
   }), !useKioskApp && (!isSkeleton ? /*#__PURE__*/_react.default.createElement("span", {
@@ -154,14 +219,16 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
     width: 100
   }), !isSkeleton ? /*#__PURE__*/_react.default.createElement("p", null, product === null || product === void 0 ? void 0 : product.description) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     width: 100
-  })), !isSkeleton ? /*#__PURE__*/_react.default.createElement(_styles.WrapLogo, null, (product === null || product === void 0 ? void 0 : (_product$ribbon = product.ribbon) === null || _product$ribbon === void 0 ? void 0 : _product$ribbon.enabled) && /*#__PURE__*/_react.default.createElement(_styles.RibbonBox, {
+  })), !isSkeleton ? /*#__PURE__*/_react.default.createElement(_styles.WrapLogo, {
+    isBgimage: optimizeImage(product === null || product === void 0 ? void 0 : product.images, 'h_86,c_limit')
+  }, (product === null || product === void 0 ? void 0 : (_product$ribbon = product.ribbon) === null || _product$ribbon === void 0 ? void 0 : _product$ribbon.enabled) && /*#__PURE__*/_react.default.createElement(_styles.RibbonBox, {
     bgColor: product === null || product === void 0 ? void 0 : (_product$ribbon2 = product.ribbon) === null || _product$ribbon2 === void 0 ? void 0 : _product$ribbon2.color,
     isRoundRect: (product === null || product === void 0 ? void 0 : (_product$ribbon3 = product.ribbon) === null || _product$ribbon3 === void 0 ? void 0 : _product$ribbon3.shape) === (_utils.shape === null || _utils.shape === void 0 ? void 0 : _utils.shape.rectangleRound),
     isCapsule: (product === null || product === void 0 ? void 0 : (_product$ribbon4 = product.ribbon) === null || _product$ribbon4 === void 0 ? void 0 : _product$ribbon4.shape) === (_utils.shape === null || _utils.shape === void 0 ? void 0 : _utils.shape.capsuleShape)
   }, product === null || product === void 0 ? void 0 : (_product$ribbon5 = product.ribbon) === null || _product$ribbon5 === void 0 ? void 0 : _product$ribbon5.text), /*#__PURE__*/_react.default.createElement(_styles.CardLogo, {
     className: "image",
     soldOut: isSoldOut || maxProductQuantity <= 0,
-    bgimage: optimizeImage((product === null || product === void 0 ? void 0 : product.images) || ((_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$dummies = _theme$images.dummies) === null || _theme$images$dummies === void 0 ? void 0 : _theme$images$dummies.product), 'h_200,c_limit')
+    bgimage: optimizeImage(product === null || product === void 0 ? void 0 : product.images, 'h_86,c_limit')
   })) : /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
     height: 75,
     width: 75
@@ -172,7 +239,75 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
       fontSize: 16,
       fontWeight: 500
     }
-  }, customText)));
+  }, customText)) : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_styles.SkeletonCardInfo, null, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    width: 100
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    width: 100
+  }), /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    width: 100
+  })), /*#__PURE__*/_react.default.createElement(_styles.SkeletonCardLogo, null, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
+    height: 75,
+    width: 75
+  }))), !useCustomFunctionality && typeof hideAddButton !== 'undefined' && !hideAddButton && !isSkeleton && /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+    outline: true,
+    color: "primary"
+  }, t('ADD', 'Add'))), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+    open: isModalOpen,
+    onRemove: function onRemove() {
+      return closeAuthModal();
+    },
+    onClose: function onClose() {
+      return closeAuthModal();
+    },
+    width: "50%",
+    authModal: true
+  }, modalPageToShow === 'login' && /*#__PURE__*/_react.default.createElement(_LoginForm.LoginForm, {
+    handleSuccessLogin: handleSuccessLogin,
+    elementLinkToSignup: /*#__PURE__*/_react.default.createElement("a", {
+      onClick: function onClick(e) {
+        return handleCustomModalClick(e, {
+          page: 'signup'
+        });
+      },
+      href: "#"
+    }, t('CREATE_ACCOUNT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag = theme.defaultLanguages) === null || _theme$defaultLanguag === void 0 ? void 0 : _theme$defaultLanguag.CREATE_ACCOUNT) || 'Create account')),
+    elementLinkToForgotPassword: /*#__PURE__*/_react.default.createElement("a", {
+      onClick: function onClick(e) {
+        return handleCustomModalClick(e, {
+          page: 'forgotpassword'
+        });
+      },
+      href: "#"
+    }, t('RESET_PASSWORD', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag2 = theme.defaultLanguages) === null || _theme$defaultLanguag2 === void 0 ? void 0 : _theme$defaultLanguag2.RESET_PASSWORD) || 'Reset password')),
+    useLoginByCellphone: true,
+    isPopup: true
+  }), modalPageToShow === 'signup' && /*#__PURE__*/_react.default.createElement(_SignUpForm.SignUpForm, {
+    elementLinkToLogin: /*#__PURE__*/_react.default.createElement("a", {
+      onClick: function onClick(e) {
+        return handleCustomModalClick(e, {
+          page: 'login'
+        });
+      },
+      href: "#"
+    }, t('LOGIN', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag3 = theme.defaultLanguages) === null || _theme$defaultLanguag3 === void 0 ? void 0 : _theme$defaultLanguag3.LOGIN) || 'Login')),
+    useLoginByCellphone: true,
+    useChekoutFileds: true,
+    handleSuccessSignup: handleSuccessSignup,
+    isPopup: true,
+    closeModal: function closeModal() {
+      return closeAuthModal();
+    }
+  }), modalPageToShow === 'forgotpassword' && /*#__PURE__*/_react.default.createElement(_ForgotPasswordForm.ForgotPasswordForm, {
+    elementLinkToLogin: /*#__PURE__*/_react.default.createElement("a", {
+      onClick: function onClick(e) {
+        return handleCustomModalClick(e, {
+          page: 'login'
+        });
+      },
+      href: "#"
+    }, t('LOGIN', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag4 = theme.defaultLanguages) === null || _theme$defaultLanguag4 === void 0 ? void 0 : _theme$defaultLanguag4.LOGIN) || 'Login')),
+    isPopup: true
+  })));
 };
 
 var SingleProductCard = function SingleProductCard(props) {
