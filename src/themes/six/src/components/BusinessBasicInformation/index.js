@@ -4,7 +4,7 @@ import FiClock from '@meronex/icons/fi/FiClock'
 import GrLocation from '@meronex/icons/gr/GrLocation'
 import GrDeliver from '@meronex/icons/gr/GrDeliver'
 import FaStar from '@meronex/icons/fa/FaStar'
-import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
+import { useUtils, useOrder, useLanguage, useOrderingTheme } from 'ordering-components-external'
 import { convertHoursToMinutes } from '../../../../../utils'
 
 import {
@@ -23,6 +23,7 @@ export const BusinessBasicInformation = (props) => {
   const [orderState] = useOrder()
   const [, t] = useLanguage()
   const [{ parsePrice, parseDistance }] = useUtils()
+  const [orderingTheme] = useOrderingTheme()
   const getBusinessType = () => {
     if (Object.keys(business).length <= 0) return t('GENERAL', 'General')
     const _types = []
@@ -31,6 +32,12 @@ export const BusinessBasicInformation = (props) => {
     ))
     return _types.join(', ')
   }
+
+  const showDeliveryFee = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.fee?.hidden
+  const showTime = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.time?.hidden
+  const showBusinessInfo = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.business_info?.hidden
+  const showReviews = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.reviews?.hidden
+  const showDistance = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.distance?.hidden
 
   return (
     <>
@@ -58,40 +65,52 @@ export const BusinessBasicInformation = (props) => {
                   <Skeleton width={150} height={30} />
                 )}
               </div>
-              <div>
-                {!loading ? (
-                  <p className='type'>{getBusinessType()}</p>
-                ) : (
-                  <Skeleton width={100} />
-                )}
-              </div>
-              <div className='meta'>
-                {!loading ? (
-                  <>
-                    {orderState?.options?.type === 1 ? (
-                      <p>
-                        <FiClock />
-                        {convertHoursToMinutes(business?.delivery_time)}
-                      </p>
+              {
+                showBusinessInfo && (
+                  <div>
+                    {!loading ? (
+                      <p className='type'>{getBusinessType()}</p>
                     ) : (
-                      <p>
-                        <FiClock />
-                        {convertHoursToMinutes(business?.pickup_time)}
-                      </p>
+                      <Skeleton width={100} />
+                    )}
+                  </div>
+                )
+              }
+              <div className='meta'>
+                {showTime && (
+                  <>
+                    {!loading ? (
+                      <>
+                        {orderState?.options?.type === 1 ? (
+                          <p>
+                            <FiClock />
+                            {convertHoursToMinutes(business?.delivery_time)}
+                          </p>
+                        ) : (
+                          <p>
+                            <FiClock />
+                            {convertHoursToMinutes(business?.pickup_time)}
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <Skeleton width={50} />
                     )}
                   </>
-                ) : (
-                  <Skeleton width={50} />
                 )}
-                {!loading ? (
-                  <p>
-                    <GrLocation />
-                    {parseDistance(business?.distance || 0)}
-                  </p>
-                ) : (
-                  <Skeleton width={50} />
+                {showDistance && (
+                  <>
+                    {!loading ? (
+                      <p>
+                        <GrLocation />
+                        {parseDistance(business?.distance || 0)}
+                      </p>
+                    ) : (
+                      <Skeleton width={50} />
+                    )}
+                  </>
                 )}
-                {orderState?.options.type === 1 && (
+                {orderState?.options.type === 1 && showDeliveryFee && (
                   <>
                     {!loading ? (
                       <p>
@@ -103,13 +122,17 @@ export const BusinessBasicInformation = (props) => {
                     )}
                   </>
                 )}
-                {!loading ? (
-                  <p>
-                    <FaStar className='start' />
-                    {business?.reviews?.total}
-                  </p>
-                ) : (
-                  <Skeleton width={50} />
+                {showReviews && (
+                  <>
+                    {!loading ? (
+                      <p>
+                        <FaStar className='start' />
+                        {business?.reviews?.total}
+                      </p>
+                    ) : (
+                      <Skeleton width={50} />
+                    )}
+                  </>
                 )}
               </div>
             </BusinessInfoItem>

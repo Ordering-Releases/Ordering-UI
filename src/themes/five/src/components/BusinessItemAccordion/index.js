@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import TiArrowSortedUp from '@meronex/icons/ti/TiArrowSortedUp'
-import { useOrder, useLanguage, useEvent, useUtils, useConfig } from 'ordering-components-external'
+import { useOrder, useLanguage, useEvent, useUtils, useConfig, useOrderingTheme } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import FiClock from '@meronex/icons/fi/FiClock'
 import {
@@ -11,9 +11,13 @@ import {
   BusinessInfo,
   BusinessTotal,
   BusinessActions,
-  PriceContainer
+  PriceContainer,
+  WrapperBusinessLogo,
+  BusinessLogo,
+  TimeContainer
 } from './styles'
 import { Button } from '../../styles/Buttons'
+import { convertHoursToMinutes } from '../../../../../utils'
 
 export const BusinessItemAccordion = (props) => {
   const {
@@ -45,6 +49,7 @@ export const BusinessItemAccordion = (props) => {
   const [{ parsePrice }] = useUtils()
   const [{ configs }] = useConfig()
   const theme = useTheme()
+  const [orderingTheme] = useOrderingTheme()
   const [setActive, setActiveState] = useState('')
   const [setHeight, setHeightState] = useState('0px')
   const [setRotate, setRotateState] = useState('accordion__icon')
@@ -55,6 +60,10 @@ export const BusinessItemAccordion = (props) => {
   const businessStore = useRef(null)
   const businessDelete = useRef(null)
   const changeStore = useRef(null)
+
+  const viewString = isStore ? 'business_view' : 'header'
+  const showBusinessLogo = !orderingTheme?.theme?.[viewString]?.components?.cart?.components?.business?.components?.logo?.hidden
+  const showBusinessTime = !orderingTheme?.theme?.[viewString]?.components?.cart?.components?.business?.components?.time?.hidden
 
   const toggleAccordion = (e) => {
     const isActionsClick = businessStore.current?.contains(e?.target) || businessDelete.current?.contains(e?.target) || changeStore.current?.contains(e?.target)
@@ -79,6 +88,10 @@ export const BusinessItemAccordion = (props) => {
 
   const handleCartProductUpdated = (product, cart) => {
     setCartProductUpdated(cart?.uuid)
+  }
+
+  const handleOpenBusinessMenu = (business) => {
+    setPreorderBusiness && setPreorderBusiness(business)
   }
 
   useEffect(() => {
@@ -132,13 +145,33 @@ export const BusinessItemAccordion = (props) => {
               onClick={(e) => toggleAccordion(e)}
             >
               <BusinessInfo>
+                {!showBusinessLogo && (
+                  <WrapperBusinessLogo>
+                    <BusinessLogo bgimage={business?.logo || theme.images?.dummies?.businessLogo} />
+                  </WrapperBusinessLogo>
+                )}
                 <ContentInfo className='info' isStore={isStore}>
                   <h2>{business?.name}</h2>
+                  {!showBusinessTime && (
+                    <TimeContainer>
+                      {orderState?.options?.type === 1 ? (
+                        <span>
+                          <FiClock />
+                          {convertHoursToMinutes(business?.delivery_time)}
+                        </span>
+                      ) : (
+                        <span>
+                          <FiClock />
+                          {convertHoursToMinutes(business?.pickup_time)}
+                        </span>
+                      )}
+                    </TimeContainer>
+                  )}
                   <div>
                     {handleStoreRedirect && !isCartOnProductsList && !isStore && (
                       <span
                         ref={businessStore}
-                        onClick={() => handleStoreRedirect(business?.slug)}
+                        onClick={() => isClosed ? handleOpenBusinessMenu(business) : handleStoreRedirect(business?.slug)}
                         className='go-store'
                       >
                         {t('GO_TO_STORE', 'Go to store')}

@@ -15,6 +15,8 @@ var _RiRadioButtonFill = _interopRequireDefault(require("@meronex/icons/ri/RiRad
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
+var _useWindowSize2 = require("../../../../../hooks/useWindowSize");
+
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
 var _orderingComponentsExternal = require("ordering-components-external");
@@ -64,7 +66,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var AddressListUI = function AddressListUI(props) {
-  var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
+  var _orderingTheme$theme, _orderingTheme$theme$, _orderingTheme$theme$2, _orderingTheme$theme$3, _orderingTheme$theme$4, _orderingTheme$theme$5, _orderingTheme$theme2, _orderingTheme$theme3, _orderingTheme$theme4, _orderingTheme$theme5, _orderingTheme$theme6, _orderingTheme$theme7, _orderingTheme$theme8, _orderingTheme$theme9, _orderingTheme$theme10, _orderingTheme$theme11, _orderingTheme$theme12, _orderingTheme$theme13, _orderingTheme$theme14, _orderingTheme$theme15, _orderingTheme$theme16, _orderingTheme$theme17, _orderingTheme$theme18, _orderingTheme$theme19, _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
 
   var actionStatus = props.actionStatus,
       addressList = props.addressList,
@@ -81,7 +83,6 @@ var AddressListUI = function AddressListUI(props) {
       isCustomerMode = props.isCustomerMode,
       isFromCheckout = props.isFromCheckout,
       setIsAddressFormOpen = props.setIsAddressFormOpen,
-      isHeader = props.isHeader,
       isProfile = props.isProfile;
 
   var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
@@ -117,15 +118,27 @@ var AddressListUI = function AddressListUI(props) {
 
   var theme = (0, _styledComponents.useTheme)();
 
+  var _useOrderingTheme = (0, _orderingComponentsExternal.useOrderingTheme)(),
+      _useOrderingTheme2 = _slicedToArray(_useOrderingTheme, 1),
+      orderingTheme = _useOrderingTheme2[0];
+
   var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 1),
       user = _useCustomer2[0].user;
 
+  var _useWindowSize = (0, _useWindowSize2.useWindowSize)(),
+      width = _useWindowSize.width;
+
+  var isCompletedLayout = width < 769 || isProfile;
   var uniqueAddressesList = addressList.addresses && addressList.addresses.filter(function (address, i, self) {
     return i === self.findIndex(function (obj) {
       return address.address === obj.address && address.address_notes === obj.address_notes && address.zipcode === obj.zipcode && address.internal_number === obj.internal_number;
     });
   }) || [];
+  var showAddress = !(orderingTheme !== null && orderingTheme !== void 0 && (_orderingTheme$theme = orderingTheme.theme) !== null && _orderingTheme$theme !== void 0 && (_orderingTheme$theme$ = _orderingTheme$theme.profile) !== null && _orderingTheme$theme$ !== void 0 && (_orderingTheme$theme$2 = _orderingTheme$theme$.components) !== null && _orderingTheme$theme$2 !== void 0 && (_orderingTheme$theme$3 = _orderingTheme$theme$2.address_list) !== null && _orderingTheme$theme$3 !== void 0 && (_orderingTheme$theme$4 = _orderingTheme$theme$3.components) !== null && _orderingTheme$theme$4 !== void 0 && (_orderingTheme$theme$5 = _orderingTheme$theme$4.address) !== null && _orderingTheme$theme$5 !== void 0 && _orderingTheme$theme$5.hidden);
+  var showIcons = !(orderingTheme !== null && orderingTheme !== void 0 && (_orderingTheme$theme2 = orderingTheme.theme) !== null && _orderingTheme$theme2 !== void 0 && (_orderingTheme$theme3 = _orderingTheme$theme2.profile) !== null && _orderingTheme$theme3 !== void 0 && (_orderingTheme$theme4 = _orderingTheme$theme3.components) !== null && _orderingTheme$theme4 !== void 0 && (_orderingTheme$theme5 = _orderingTheme$theme4.address_list) !== null && _orderingTheme$theme5 !== void 0 && (_orderingTheme$theme6 = _orderingTheme$theme5.components) !== null && _orderingTheme$theme6 !== void 0 && (_orderingTheme$theme7 = _orderingTheme$theme6.icons) !== null && _orderingTheme$theme7 !== void 0 && _orderingTheme$theme7.hidden);
+  var showZipcode = !(orderingTheme !== null && orderingTheme !== void 0 && (_orderingTheme$theme8 = orderingTheme.theme) !== null && _orderingTheme$theme8 !== void 0 && (_orderingTheme$theme9 = _orderingTheme$theme8.profile) !== null && _orderingTheme$theme9 !== void 0 && (_orderingTheme$theme10 = _orderingTheme$theme9.components) !== null && _orderingTheme$theme10 !== void 0 && (_orderingTheme$theme11 = _orderingTheme$theme10.address_list) !== null && _orderingTheme$theme11 !== void 0 && (_orderingTheme$theme12 = _orderingTheme$theme11.components) !== null && _orderingTheme$theme12 !== void 0 && (_orderingTheme$theme13 = _orderingTheme$theme12.zipcode) !== null && _orderingTheme$theme13 !== void 0 && _orderingTheme$theme13.hidden);
+  var showInternalNumber = !(orderingTheme !== null && orderingTheme !== void 0 && (_orderingTheme$theme14 = orderingTheme.theme) !== null && _orderingTheme$theme14 !== void 0 && (_orderingTheme$theme15 = _orderingTheme$theme14.profile) !== null && _orderingTheme$theme15 !== void 0 && (_orderingTheme$theme16 = _orderingTheme$theme15.components) !== null && _orderingTheme$theme16 !== void 0 && (_orderingTheme$theme17 = _orderingTheme$theme16.address_list) !== null && _orderingTheme$theme17 !== void 0 && (_orderingTheme$theme18 = _orderingTheme$theme17.components) !== null && _orderingTheme$theme18 !== void 0 && (_orderingTheme$theme19 = _orderingTheme$theme18.internal_number) !== null && _orderingTheme$theme19 !== void 0 && _orderingTheme$theme19.hidden);
 
   var openAddress = function openAddress(address) {
     setCurAddress(address);
@@ -265,7 +278,7 @@ var AddressListUI = function AddressListUI(props) {
   var AddressListContent = function AddressListContent() {
     var _addressList$addresse, _addressList$addresse2, _orderState$options6, _addressList$addresse3, _theme$images, _theme$images$general, _addressList$error$, _orderState$options7;
 
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (!isPopover || !addressOpen) && /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (!isPopover || !addressOpen) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isCompletedLayout && /*#__PURE__*/_react.default.createElement(_styles.TitleAddress, null, t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
       className: "add",
       outline: true,
       color: isEnableContinueButton && (addressList === null || addressList === void 0 ? void 0 : (_addressList$addresse = addressList.addresses) === null || _addressList$addresse === void 0 ? void 0 : _addressList$addresse.length) > 0 ? 'secondary' : 'primary',
@@ -273,11 +286,11 @@ var AddressListUI = function AddressListUI(props) {
         return openAddress({});
       },
       disabled: (orderState === null || orderState === void 0 ? void 0 : orderState.loading) || actionStatus.loading,
-      style: !isCustomerMode ? {
+      style: isCompletedLayout ? {
         flex: 1,
         width: 'fit-content'
       } : {}
-    }, orderState !== null && orderState !== void 0 && orderState.loading || actionStatus.loading ? t('LOADING', 'Loading') : t('ADD_NEW_ADDRESS', 'Add New Address')), isPopover && addressOpen && /*#__PURE__*/_react.default.createElement(_AddressForm.AddressForm, {
+    }, orderState !== null && orderState !== void 0 && orderState.loading || actionStatus.loading ? t('LOADING', 'Loading') : t('ADD_NEW_ADDRESS', 'Add New Address'))), isPopover && addressOpen && /*#__PURE__*/_react.default.createElement(_AddressForm.AddressForm, {
       userId: userId,
       addressesList: addressList === null || addressList === void 0 ? void 0 : addressList.addresses,
       useValidationFileds: true,
@@ -301,11 +314,11 @@ var AddressListUI = function AddressListUI(props) {
         className: "radio"
       }, checkAddress(address) ? /*#__PURE__*/_react.default.createElement(_RiRadioButtonFill.default, {
         className: "address-checked"
-      }) : /*#__PURE__*/_react.default.createElement(_IosRadioButtonOff.default, null)), /*#__PURE__*/_react.default.createElement("span", {
+      }) : /*#__PURE__*/_react.default.createElement(_IosRadioButtonOff.default, null)), showIcons && /*#__PURE__*/_react.default.createElement("span", {
         className: checkAddress(address) ? 'selected-tag tag' : 'tag'
-      }, (address === null || address === void 0 ? void 0 : address.tag) === 'home' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.House, null), (address === null || address === void 0 ? void 0 : address.tag) === 'office' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Building, null), (address === null || address === void 0 ? void 0 : address.tag) === 'favorite' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Heart, null), (address === null || address === void 0 ? void 0 : address.tag) === 'other' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.PlusLg, null)), /*#__PURE__*/_react.default.createElement("div", {
+      }, (address === null || address === void 0 ? void 0 : address.tag) === 'home' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.House, null), (address === null || address === void 0 ? void 0 : address.tag) === 'office' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Building, null), (address === null || address === void 0 ? void 0 : address.tag) === 'favorite' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Heart, null), (address === null || address === void 0 ? void 0 : address.tag) === 'other' && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.PlusLg, null)), (showAddress || showInternalNumber || showZipcode) && /*#__PURE__*/_react.default.createElement("div", {
         className: "address"
-      }, /*#__PURE__*/_react.default.createElement("span", null, address.address), /*#__PURE__*/_react.default.createElement("span", null, address.internal_number, " ", address.zipcode))), /*#__PURE__*/_react.default.createElement(_styles.AddressItemActions, {
+      }, showAddress && /*#__PURE__*/_react.default.createElement("span", null, address.address), /*#__PURE__*/_react.default.createElement("span", null, showInternalNumber && address.internal_number, " ", showZipcode && address.zipcode))), /*#__PURE__*/_react.default.createElement(_styles.AddressItemActions, {
         className: "form"
       }, /*#__PURE__*/_react.default.createElement("a", {
         className: actionStatus.loading ? 'disabled' : '',
@@ -357,10 +370,10 @@ var AddressListUI = function AddressListUI(props) {
   }), /*#__PURE__*/_react.default.createElement(_styles.AddressListContainer, {
     id: "address_control",
     isLoading: (actionStatus === null || actionStatus === void 0 ? void 0 : actionStatus.loading) || (orderState === null || orderState === void 0 ? void 0 : orderState.loading),
-    isCustomerMode: isCustomerMode
-  }, isCustomerMode ? /*#__PURE__*/_react.default.createElement(AddressListCallcenterLayout, null, /*#__PURE__*/_react.default.createElement(AddressListContent, null)) : /*#__PURE__*/_react.default.createElement(AddressListContent, null), !isPopover && /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+    isCompletedLayout: isCompletedLayout
+  }, !isCompletedLayout ? /*#__PURE__*/_react.default.createElement(AddressListCallcenterLayout, null, /*#__PURE__*/_react.default.createElement(AddressListContent, null)) : /*#__PURE__*/_react.default.createElement(AddressListContent, null), !isPopover && addressOpen && /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
     title: t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?'),
-    open: !isPopover && addressOpen && !isCustomerMode,
+    open: !isPopover && addressOpen && isCompletedLayout,
     onClose: function onClose() {
       return handleCloseAddressForm();
     }

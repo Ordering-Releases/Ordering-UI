@@ -27,6 +27,7 @@ export const Price = styled.div`
     flex-direction: column;
     align-items: flex-end;
   `}
+
   h2 {
     font-size: 16px;
     margin-block-end: ${({ isBusinessesPage }) => isBusinessesPage ? '0.1em' : '1em'};
@@ -42,10 +43,12 @@ export const Price = styled.div`
     text-overflow: ellipsis;
     margin-left: 5px;
   }
+
   p[name='view-cart']{
     color: ${props => props.theme.colors.primary};
     cursor: pointer;
   }
+
   @media (min-width: 480px) {
     ${({ isCustomerMode }) => !isCustomerMode && css`
       flex-direction: row;
@@ -63,6 +66,7 @@ export const Card = styled.div`
   display: inline-block;
   text-align: left;
   transition: all 0.3s ease;
+
   ${({ isCustomerMode }) => isCustomerMode ? css`
     min-width: 300px;
     width: 300px;
@@ -73,28 +77,35 @@ export const Card = styled.div`
     height: ${({ isBusinessesPage }) => isBusinessesPage && '300px'};
     max-height: ${({ isBusinessesPage }) => isBusinessesPage ? '300px' : '220px'};
   `}
+
   &:hover {
     box-shadow: rgb(0 0 0 / 20%) 0px 8px 24px;
   }
+
   button.load-orders {
     padding: 10px 30px;
   }
+
   ${props => props.theme?.rtl && css`
     text-align: right;
   `}
+
   ${props => (props.nobg || props.isBusinessesPage) && css`
     background: transparent;
   `}
+
   ${props => props.flex && css`
     display: flex;
     align-items: center;
     justify-content: center;
   `}
+
   @media (min-width: 480px) {
     min-width: 430px;
     max-height: ${({ isBusinessesPage }) => isBusinessesPage ? '300px' : '250px'};
     width: 430px;
   }
+
   @media(min-width: 993px){
     ${({ isBusinessesPage }) => isBusinessesPage && css`
       margin: 30px 20px;
@@ -119,11 +130,14 @@ const BusinessLogoWrapperStyled = styled.div`
   align-items: center;
   border-radius: 7.6px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+
   margin-left: 8px;
+
   ${props => props.theme.rtl && css`
     margin-left: 0px;
     margin-right: 8px;
   `}
+
   @media (min-width: 576px) {
     width: 86px;
     min-width: 86px;
@@ -153,6 +167,7 @@ export const ButtonWrapper = styled.div`
   top: 4px;
   display: flex;
   align-items: center;
+
   button {
     border-radius: 50px;
     font-size: 10px;
@@ -160,6 +175,7 @@ export const ButtonWrapper = styled.div`
     padding: 4px 8px;
     border: 1px solid ${props => props.theme.colors.primaryContrast};
     margin: 5px;
+
     &.reorder {
       background: ${props => props.theme.colors.primaryContrast};
       &:hover {
@@ -174,11 +190,13 @@ export const Logo = styled.div`
   height: 55px;
   filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.1));
   border-radius: 7.6px;
+
   img {
     width: 100%;
     height: 100%;
     border-radius: 7.6px;
   }
+
   @media (min-width: 480px){
     width: 86px;
     height: 86px;

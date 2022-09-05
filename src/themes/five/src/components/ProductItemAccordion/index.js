@@ -4,9 +4,8 @@ import {
   Pencil,
   Trash
 } from 'react-bootstrap-icons'
-import { useUtils, useLanguage, useOrder } from 'ordering-components-external'
+import { useUtils, useLanguage, useOrder, useOrderingTheme } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
-
 import {
   AccordionSection,
   Accordion,
@@ -39,13 +38,15 @@ export const ProductItemAccordion = (props) => {
     offsetDisabled,
     onDeleteProduct,
     onEditProduct,
-    isCheckout
+    isCheckout,
+    isStore,
+    isConfirmationPage
   } = props
   const [, t] = useLanguage()
   const [orderState] = useOrder()
   const [{ parsePrice }] = useUtils()
   const windowSize = useWindowSize()
-
+  const [orderingTheme] = useOrderingTheme()
   const [setActive, setActiveState] = useState('')
   const [setHeight, setHeightState] = useState('0px')
   const [setRotate, setRotateState] = useState('accordion__icon')
@@ -54,6 +55,9 @@ export const ProductItemAccordion = (props) => {
   const productSelect = useRef(null)
   const productActionsEdit = useRef(null)
   const productActionsDelete = useRef(null)
+
+  const viewString = isConfirmationPage ? 'confirmation' : isStore ? 'business_view' : 'header'
+  const showProductImage = !orderingTheme?.theme?.[viewString]?.components?.cart?.components?.products?.components?.image?.hidden
 
   const productInfo = () => {
     if (isCartProduct) {
@@ -113,7 +117,7 @@ export const ProductItemAccordion = (props) => {
           onClick={(e) => toggleAccordion(e)}
         >
           <ProductInfo className='info'>
-            {product?.images && (
+            {product?.images && showProductImage && (
               <WrapperProductImage>
                 <ProductImage bgimage={product?.images} />
               </WrapperProductImage>

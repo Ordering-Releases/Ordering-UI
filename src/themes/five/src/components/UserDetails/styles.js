@@ -7,6 +7,7 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
+
   h1 {
     font-weight: 500;
     font-size: 20px;
@@ -16,13 +17,16 @@ export const Header = styled.div`
       margin: 0px 0px 0px 10px;
   `}
   }
+
   svg {
     font-size: 24px;
   }
+
   svg.cancel {
     color: #D81212;
     cursor: pointer;
   }
+
   span {
     font-size: 13px;
     color: ${props => props.theme.colors.primary};
@@ -53,6 +57,7 @@ export const UserData = styled.div`
   > * {
     margin: 5px 0;
   }
+
   p {
     font-size: 14px;
     color: ${props => props.theme?.colors.darkTextColor};
@@ -67,10 +72,12 @@ export const ModalIcon = styled.span`
   font-size: 30px;
   cursor: pointer;
   z-index: 2;
+
   svg{
     /* background: rgba(255,255,255,0.5); */
     border-radius: 50%;
   }
+
 `
 
 export const TitleContainer = styled.div`

@@ -17,6 +17,8 @@ var _BsPerson = _interopRequireDefault(require("@meronex/icons/bs/BsPerson"));
 
 var _AiOutlineUnorderedList = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineUnorderedList"));
 
+var _FaAddressBook = _interopRequireDefault(require("@meronex/icons/fa/FaAddressBook"));
+
 var _orderingComponentsExternal = require("ordering-components-external");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -38,6 +40,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var ProfileOptions = function ProfileOptions(_ref) {
+  var _orderingTheme$theme, _orderingTheme$theme$, _orderingTheme$theme$2, _orderingTheme$theme$3, _orderingTheme$theme$4, _orderingTheme$theme$5;
+
   var value = _ref.value;
 
   var _useState = (0, _react.useState)(value),
@@ -51,6 +55,12 @@ var ProfileOptions = function ProfileOptions(_ref) {
   var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
+
+  var _useOrderingTheme = (0, _orderingComponentsExternal.useOrderingTheme)(),
+      _useOrderingTheme2 = _slicedToArray(_useOrderingTheme, 1),
+      orderingTheme = _useOrderingTheme2[0];
+
+  var showAddressListTab = (orderingTheme === null || orderingTheme === void 0 ? void 0 : (_orderingTheme$theme = orderingTheme.theme) === null || _orderingTheme$theme === void 0 ? void 0 : (_orderingTheme$theme$ = _orderingTheme$theme.profile) === null || _orderingTheme$theme$ === void 0 ? void 0 : (_orderingTheme$theme$2 = _orderingTheme$theme$.components) === null || _orderingTheme$theme$2 === void 0 ? void 0 : (_orderingTheme$theme$3 = _orderingTheme$theme$2.address_list) === null || _orderingTheme$theme$3 === void 0 ? void 0 : (_orderingTheme$theme$4 = _orderingTheme$theme$3.components) === null || _orderingTheme$theme$4 === void 0 ? void 0 : (_orderingTheme$theme$5 = _orderingTheme$theme$4.layout) === null || _orderingTheme$theme$5 === void 0 ? void 0 : _orderingTheme$theme$5.position) === 'new_page';
 
   var handleGoToPage = function handleGoToPage(data) {
     events.emit('go_to_page', data);
@@ -66,7 +76,15 @@ var ProfileOptions = function ProfileOptions(_ref) {
         page: 'profile'
       });
     }
-  }, /*#__PURE__*/_react.default.createElement(_BsPerson.default, null), " ", t('MY_ACCOUNT', 'My Account'))), /*#__PURE__*/_react.default.createElement(_Tabs.Tab, {
+  }, /*#__PURE__*/_react.default.createElement(_BsPerson.default, null), " ", t('MY_ACCOUNT', 'My Account'))), showAddressListTab && /*#__PURE__*/_react.default.createElement(_Tabs.Tab, {
+    active: tabValue === 'addresses'
+  }, /*#__PURE__*/_react.default.createElement("a", {
+    onClick: function onClick() {
+      return handleGoToPage({
+        page: 'addresses'
+      });
+    }
+  }, /*#__PURE__*/_react.default.createElement(_FaAddressBook.default, null), " ", t('MY_ADDRESSES', 'My Addresses'))), /*#__PURE__*/_react.default.createElement(_Tabs.Tab, {
     active: tabValue === 'orders'
   }, /*#__PURE__*/_react.default.createElement("a", {
     onClick: function onClick() {

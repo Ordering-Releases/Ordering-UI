@@ -27,6 +27,7 @@ export const WrapAllCategories = styled.div`
       margin-right: 10px;
       margin-left: 0;
     `}
+
     img {
       border-radius: 7.6px;
       min-width: 41px;

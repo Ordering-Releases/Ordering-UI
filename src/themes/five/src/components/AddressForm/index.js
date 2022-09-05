@@ -16,7 +16,8 @@ import {
   GoogleMapsMap,
   useSession,
   useOrder,
-  useConfig
+  useConfig,
+  useOrderingTheme
 } from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { GoogleGpsButton } from '../../../../../components/GoogleGpsButton'
@@ -62,7 +63,7 @@ const AddressFormUI = (props) => {
   const [, t] = useLanguage()
   const formMethods = useForm()
   const [{ auth }] = useSession()
-
+  const [orderingTheme] = useOrderingTheme()
   const [state, setState] = useState({ selectedFromAutocomplete: true })
   const [addressTag, setAddressTag] = useState(addressState?.address?.tag)
   const [alertState, setAlertState] = useState({ open: false, content: [] })
@@ -76,10 +77,13 @@ const AddressFormUI = (props) => {
       : formState.changes?.location ?? null
   )
 
+  const isHideMap = orderingTheme?.theme?.header?.components?.address_form?.components?.map?.hidden
+  const isHideIcons = orderingTheme?.theme?.header?.components?.address_form?.components?.icons?.hidden
+
   const maxLimitLocation = configState?.configs?.meters_to_change_address?.value
   const googleMapsApiKey = configState?.configs?.google_maps_api_key?.value
   const isLocationRequired = configState.configs?.google_autocomplete_selection_required?.value === '1' ||
-                              configState.configs?.google_autocomplete_selection_required?.value === 'true'
+    configState.configs?.google_autocomplete_selection_required?.value === 'true'
 
   const mapErrors = {
     ERROR_NOT_FOUND_ADDRESS: 'Sorry, we couldn\'t find an address',
@@ -247,6 +251,10 @@ const AddressFormUI = (props) => {
     })
   }
 
+  const showFieldWithTheme = (name) => {
+    return !orderingTheme?.theme?.header?.components?.address_form?.components?.[name]?.hidden
+  }
+
   useEffect(() => {
     if (!auth) {
       setLocationChange(formState?.changes?.location ?? orderState?.options?.address?.location ?? '')
@@ -255,8 +263,8 @@ const AddressFormUI = (props) => {
         formMethods.setValue(
           field.name,
           formState?.changes[field.name] ||
-            (orderState?.options?.address && orderState?.options?.address[field.name]) ||
-            ''
+          (orderState?.options?.address && orderState?.options?.address[field.name]) ||
+          ''
         )
       )
       return
@@ -406,7 +414,7 @@ const AddressFormUI = (props) => {
                   />
                 </AddressWrap>
 
-                {locationChange && (addressState?.address?.location || formState?.changes?.location) && (
+                {!isHideMap && locationChange && (addressState?.address?.location || formState?.changes?.location) && (
                   <WrapperMap>
                     <GoogleMapsMap
                       apiKey={googleMapsApiKey}
@@ -422,51 +430,56 @@ const AddressFormUI = (props) => {
               </React.Fragment>
             ) : (
               <React.Fragment key={field.name}>
-                {field.name !== 'address_notes' ? (
-                  <Input
-                    className={field.name}
-                    placeholder={t(field.name.toUpperCase(), field.code)}
-                    value={formState.changes?.[field.name] ?? addressState.address?.[field.name] ?? ''}
-                    onChange={(e) => {
-                      formMethods.setValue(field.name, e.target.value)
-                      handleChangeInput({ target: { name: field.name, value: e.target.value } })
-                    }}
-                    autoComplete='new-field'
-                    maxLength={30}
-                  />
-                ) : (
-                  <TextArea
-                    rows={4}
-                    placeholder={t('ADDRESS_NOTES', 'Address Notes')}
-                    value={formState.changes?.address_notes ?? addressState.address.address_notes ?? ''}
-                    onChange={(e) => {
-                      formMethods.setValue('address_notes', e.target.value)
-                      handleChangeInput({ target: { name: 'address_notes', value: e.target.value } })
-                    }}
-                    autoComplete='new-field'
-                    maxLength={250}
-                  />
+                {(isRequiredField(field.name) || showFieldWithTheme(field.name)) && (
+                  <>
+                    {field.name !== 'address_notes' ? (
+                      <Input
+                        className={field.name}
+                        placeholder={t(field.name.toUpperCase(), field.code)}
+                        value={formState.changes?.[field.name] ?? addressState.address?.[field.name] ?? ''}
+                        onChange={(e) => {
+                          formMethods.setValue(field.name, e.target.value)
+                          handleChangeInput({ target: { name: field.name, value: e.target.value } })
+                        }}
+                        autoComplete='new-field'
+                        maxLength={30}
+                      />
+                    ) : (
+                      <TextArea
+                        rows={3}
+                        placeholder={t('ADDRESS_NOTES', 'Address Notes')}
+                        value={formState.changes?.address_notes ?? addressState.address.address_notes ?? ''}
+                        onChange={(e) => {
+                          formMethods.setValue('address_notes', e.target.value)
+                          handleChangeInput({ target: { name: 'address_notes', value: e.target.value } })
+                        }}
+                        autoComplete='new-field'
+                        maxLength={250}
+                      />
+                    )}
+                  </>
                 )}
               </React.Fragment>
             )
           ))}
 
           {!formState.loading && formState.error && <p style={{ color: '#c10000' }}>{formState.error}</p>}
-
-          <AddressTagSection>
-            <Button className={addressTag === 'home' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('home')}>
-              <span><House /></span>
-            </Button>
-            <Button className={addressTag === 'office' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('office')}>
-              <span><Building /></span>
-            </Button>
-            <Button className={addressTag === 'favorite' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('favorite')}>
-              <span><Heart /></span>
-            </Button>
-            <Button className={addressTag === 'other' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('other')}>
-              <span><PlusLg /></span>
-            </Button>
-          </AddressTagSection>
+          {!isHideIcons && (
+            <AddressTagSection>
+              <Button className={addressTag === 'home' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('home')}>
+                <span><House /></span>
+              </Button>
+              <Button className={addressTag === 'office' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('office')}>
+                <span><Building /></span>
+              </Button>
+              <Button className={addressTag === 'favorite' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('favorite')}>
+                <span><Heart /></span>
+              </Button>
+              <Button className={addressTag === 'other' ? 'active' : ''} bgtransparent type='button' onClick={() => handleAddressTag('other')}>
+                <span><PlusLg /></span>
+              </Button>
+            </AddressTagSection>
+          )}
           {
             props.afterMidElements?.map((MidElement, i) => (
               <React.Fragment key={i}>

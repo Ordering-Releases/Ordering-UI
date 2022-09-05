@@ -7,7 +7,9 @@ export const SignUpContainer = styled.div`
   min-height: ${({ isPopup }) => isPopup ? '500px' : 'calc(100vh - 65px)'};
   padding: 0 10px;
   box-sizing: border-box;
+
   flex-direction: column;
+
   @media (min-width: 768px) {
     flex-direction: row;
   }
@@ -21,9 +23,11 @@ export const FormSide = styled(Side)`
   flex-direction: column;
   align-items: center;
   margin: auto;
+
   @media (min-width: 992px) {
     font-size: ${({ isPopup }) => isPopup ? '12px' : '1em'};
   }
+
   @media (min-width: 1200px){
     font-size: ${({ isPopup }) => isPopup ? '0.9em' : '1em'};
   }
@@ -38,21 +42,26 @@ export const FormInput = styled.form`
     &::placeholder, .PhoneInputInput::placeholder {
       color: ${props => props.theme.colors?.lightGray} !important;
     }
+
     &:-ms-input-placeholder, .PhoneInputInput:-ms-input-placeholder {
       color: ${props => props.theme.colors?.lightGray} !important;
     }
+
     &::-ms-input-placeholder, .PhoneInputInput::-ms-input-placeholder {
       color: ${props => props.theme.colors?.lightGray} !important;
     }
   }
+
   div.phone_number {
     margin: 10px 0px;
     width: 100%;
   }
+
   input.form:not(:last-child) {
     margin: 5px 0px;
     padding: 8px 20px;
   }
+
   button {
     margin-top: 10px;
     padding: 5px;
@@ -68,14 +77,17 @@ export const RedirectLink = styled.div`
   flex-direction: column;
   margin: 0px;
   font-size: 17px;
+
   span {
     margin-right: 5px;
     color: black;
+
     ${props => props.theme?.rtl && css`
       margin-left: 5px;
       margin-right: 0px;
     `}
   }
+
   a {
     color: ${props => props.theme.colors.primary} !important;
     text-decoration: none;
@@ -86,26 +98,33 @@ export const RedirectLink = styled.div`
       text-decoration: underline !important;
     }
   }
+
   * {
     margin: 0px;
     padding: 0px;
   }
+
   ${({ register }) => register && css`
     width: calc(95% - 20px);
+
     @media (min-width: 481px) {
       width: ${({ isPopup }) => isPopup ? 'calc(100% - 20px)' : 'calc(80% - 20px)'};
     }
   `}
+
   @media (min-width: 425px) {
     flex-direction: row;
   }
+
   @media (min-width: 768px) {
     font-size: 14px;
   }
+
   @media (min-width: 992px) {
     font-size: ${({ isPopup }) => isPopup ? '13px' : '18px'};
     flex-direction: row;
   }
+
   @media (min-width: 1200px) {
     ${({ isPopup }) => isPopup && css`
       font-size: 16px;
@@ -115,14 +134,17 @@ export const RedirectLink = styled.div`
 
 export const SocialButtons = styled.div`
   width: ${({ isPopup }) => isPopup ? '100%' : '80%'};
+
   button {
     width: 100%;
     padding: 5px 30px;
     color: #000000;
     margin-bottom: 15px;
+
     img {
       width: 30px;
     }
+
     div {
       font-size: 16px;
     }
@@ -189,6 +211,7 @@ export const LoginDivider = styled.div`
   align-items: center;
   width: 80%;
   margin: 30px 0;
+
   p {
     margin: 0;
     width: 70px;
@@ -210,6 +233,7 @@ export const InputContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   margin: 5px 0px;
+
   
   @media (min-width: 800px) {
     ${({ isHalf }) => isHalf && css`
@@ -224,6 +248,7 @@ export const InputWrapper = styled.div`
   input{
     box-sizing: border-box;
     width: 100%;
+
     ${props => props.theme.rtl ? css`
       padding-right: 40px !important;
     ` : css`
@@ -239,10 +264,12 @@ export const InputBeforeIcon = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+
   ${props => props.theme?.rtl && css`
     right: 15px;
     left: initial;
   `}
+
   svg {
     font-size: 16px;
     color: #B1BCCC;
@@ -253,6 +280,7 @@ export const TermsConditionWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 0;
+
   > label {
     font-size: 14px;
     ${props => props.theme?.rtl ? css`
@@ -260,6 +288,7 @@ export const TermsConditionWrapper = styled.div`
     ` : css`
       margin-left: 7px;
     `}
+
     > span:first-child {
       font-weight: 500;
       ${props => props.theme?.rtl ? css`
@@ -268,10 +297,12 @@ export const TermsConditionWrapper = styled.div`
         margin-right: 7px;
       `}
     }
+
     > a {
       color: ${props => props.theme.colors.primary} !important;
     }
   }
+
   @media (min-width: 768px) {
     > label {
       font-size: 16px;
@@ -287,6 +318,7 @@ export const BussinessAndDriverSignUp = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+
   @media (min-width: 481px) {
     width: ${({ isPopup }) => isPopup ? 'calc(100% - 20px)' : 'calc(80% - 20px)'};
   }
@@ -294,6 +326,7 @@ export const BussinessAndDriverSignUp = styled.div`
   @media (min-width: 993px) {
     flex-direction: row;
   }
+
   button {
     width: 100%;
     margin-top: 15px;

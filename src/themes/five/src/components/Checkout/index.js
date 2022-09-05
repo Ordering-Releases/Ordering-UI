@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import VscWarning from '@meronex/icons/vsc/VscWarning'
 import Skeleton from 'react-loading-skeleton'
 import { useTheme } from 'styled-components'
+import { Modal } from '../Modal'
 import {
   Checkout as CheckoutController,
   useOrder,
@@ -106,6 +107,9 @@ const CheckoutUI = (props) => {
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [isUserDetailsEdit, setIsUserDetailsEdit] = useState(null)
   const [behalfName, setBehalfName] = useState(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [requiredFields, setRequiredFields] = useState([])
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const businessConfigs = businessDetails?.business?.configs ?? []
   const isWalletCashEnabled = businessConfigs.find(config => config.key === 'wallet_cash_enabled')?.value === '1'
@@ -140,12 +144,16 @@ const CheckoutUI = (props) => {
   })
 
   const handlePlaceOrder = () => {
-    if (!userErrors.length) {
+    if (!userErrors.length && !requiredFields?.length) {
       const body = {}
       if (behalfName) {
         body.on_behalf_of = behalfName
       }
       handlerClickPlaceOrder && handlerClickPlaceOrder(null, body)
+      return
+    }
+    if (requiredFields?.length) {
+      setIsOpen(true)
       return
     }
     setAlertState({
@@ -168,11 +176,12 @@ const CheckoutUI = (props) => {
     const errors = []
     const notFields = ['coupon', 'driver_tip', 'mobile_phone', 'address', 'zipcode', 'address_notes']
     const userSelected = isCustomerMode ? customerState.user : user
+    const _requiredFields = []
 
     Object.values(validationFields?.fields?.checkout).map(field => {
       if (field?.enabled && field?.required && !notFields.includes(field.code)) {
         if (userSelected && !userSelected[field?.code]) {
-          errors.push(t(`VALIDATION_ERROR_${field.code.toUpperCase()}_REQUIRED`, `The field ${field?.name} is required`))
+          _requiredFields.push(field?.code)
         }
       }
     })
@@ -184,8 +193,9 @@ const CheckoutUI = (props) => {
         validationFields?.fields?.checkout?.cellphone?.required) ||
         configs?.verification_phone_required?.value === '1')
     ) {
-      errors.push(t('VALIDATION_ERROR_MOBILE_PHONE_REQUIRED', 'The field Phone number is required'))
+      _requiredFields.push('cellphone')
     }
+    setRequiredFields(_requiredFields)
 
     if (userSelected && userSelected?.cellphone) {
       if (userSelected?.country_phone_code) {
@@ -289,6 +299,7 @@ const CheckoutUI = (props) => {
                       isCustomerMode={isCustomerMode}
                       userData={isCustomerMode && customerState.user}
                       userId={isCustomerMode && customerState?.user?.id}
+                      isSuccess={isSuccess}
                       isCheckout
                     />
                   )}
@@ -524,6 +535,30 @@ const CheckoutUI = (props) => {
         onAccept={() => closeAlert()}
         closeOnBackdrop={false}
       />
+      <Modal
+        open={isOpen}
+        width='760px'
+        padding='30px'
+        onClose={() => setIsOpen(false)}
+      >
+        <UserDetails
+          isUserDetailsEdit={isUserDetailsEdit}
+          cartStatus={cart?.status}
+          businessId={cart?.business_id}
+          useValidationFields
+          useDefualtSessionManager
+          useSessionUser={!isCustomerMode}
+          isCustomerMode={isCustomerMode}
+          userData={isCustomerMode && customerState.user}
+          userId={isCustomerMode && customerState?.user?.id}
+          requiredFields={requiredFields}
+          setIsSuccess={setIsSuccess}
+          isCheckout
+          isEdit
+          isModal
+          onClose={() => setIsOpen(false)}
+        />
+      </Modal>
     </Container>
   )
 }

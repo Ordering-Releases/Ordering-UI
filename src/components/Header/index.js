@@ -336,7 +336,7 @@ export const Header = (props) => {
                 )}
               </AddressWrapper>
               {!isCustomerMode && (isPreOrderSetting || configState?.configs?.preorder_status_enabled?.value === undefined) && (
-                <MomentControl 
+                <MomentControl
                   isModalBehavior
                 />
               )}

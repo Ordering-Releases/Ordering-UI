@@ -147,7 +147,7 @@ const OrderDetailsUI = (props) => {
       '_blank' // <- This is what makes it open in a new window.
     )
   }
-  
+
   useEffect(() => {
     if (driverLocation) {
       locations[0] = driverLocation

@@ -31,6 +31,7 @@ export const WrapAllCategories = styled.div`
       margin-right: 10px;
       margin-left: 0;
     `}
+
     img {
       border-radius: 7.6px;
       min-width: 41px;
@@ -43,10 +44,12 @@ export const WrapAllCategories = styled.div`
         margin-right: 0;
       `}
     }
+
     @media (min-width: 993px) {
       margin: 0px;
     }
   }
+
   h3 {
     font-weight: 600;
     font-size: 24px;
@@ -55,6 +58,7 @@ export const WrapAllCategories = styled.div`
     ${props => props.theme?.rtl && css`
       margin: 0px 10px 0px 0px;
     `}
+
     @media (min-width: 993px) {
       margin: 0px;
     }
@@ -104,9 +108,6 @@ export const DescriptionModalContainer = styled.div`
     min-height: 200px;
     margin-bottom: 20px;
   }
-  p{
-    white-space: pre;
-  }
 `
 
 export const DescriptionContainer = styled.div`
@@ -141,16 +142,20 @@ export const RibbonBox = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-left: 5px;
+
   ${props => props.theme.rtl && css`
     margin-left: 0px;
     margin-right: 5px;
   `}
+
   ${({ bgColor }) => bgColor && css`
     background-color: ${bgColor};
   `}
+
   ${({ isRoundRect }) => isRoundRect && css`
     border-radius: 7.6px;
   `}
+
   ${({ isCapsule }) => isCapsule && css`
     border-radius: 50px;
   `}

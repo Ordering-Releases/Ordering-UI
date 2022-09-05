@@ -31,7 +31,7 @@ var _SmsLogin = require("../../../../../components/SmsLogin");
 
 var _GoogleLogin = require("../../../../../components/GoogleLogin");
 
-var _inputs = require("../../styles/inputs");
+var _Inputs = require("../../styles/Inputs");
 
 var _Buttons = require("../../../../../styles/Buttons");
 
@@ -268,7 +268,10 @@ var LoginFormUI = function LoginFormUI(props) {
       }
     });
     formMethods.setValue('email', e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, ''));
-    emailInput.current.value = e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '');
+
+    if (emailInput !== null && emailInput !== void 0 && emailInput.current) {
+      emailInput.current.value = e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '');
+    }
   };
 
   var handleChangePhoneNumber = function handleChangePhoneNumber(number, isValid) {
@@ -419,7 +422,7 @@ var LoginFormUI = function LoginFormUI(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeMidComponents, _extends({
       key: i
     }, props));
-  }), useLoginByEmail && loginTab === 'email' && /*#__PURE__*/_react.default.createElement(_inputs.Input, {
+  }), useLoginByEmail && loginTab === 'email' && /*#__PURE__*/_react.default.createElement(_Inputs.Input, {
     type: "email",
     name: "email",
     "aria-label": "email",
@@ -450,7 +453,7 @@ var LoginFormUI = function LoginFormUI(props) {
     style: {
       height: 160
     }
-  }), !loginWithOtpState && /*#__PURE__*/_react.default.createElement(_styles.WrapperPassword, null, /*#__PURE__*/_react.default.createElement(_inputs.Input, {
+  }), !loginWithOtpState && /*#__PURE__*/_react.default.createElement(_styles.WrapperPassword, null, /*#__PURE__*/_react.default.createElement(_Inputs.Input, {
     type: !passwordSee ? 'password' : 'text',
     name: "password",
     "aria-label": "password",

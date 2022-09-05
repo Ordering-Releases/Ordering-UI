@@ -8,7 +8,8 @@ import {
   useConfig,
   useOrder,
   useCustomer,
-  GoogleMapsMap
+  GoogleMapsMap,
+  useOrderingTheme
 } from 'ordering-components-external'
 import RiUser2Fill from '@meronex/icons/ri/RiUser2Fill'
 
@@ -18,12 +19,15 @@ import { NotFoundSource } from '../NotFoundSource'
 import { ProductItemAccordion } from '../ProductItemAccordion'
 import { Modal } from '../Modal'
 import { Messages } from '../Messages'
-import { ReviewOrder } from '../../../../../components/ReviewOrder'
+import { ReviewOrder } from '../ReviewOrder'
+import { ReviewProduct } from '../ReviewProduct'
+import { ReviewDriver } from '../ReviewDriver'
 import { ProductShare } from '../../../../../components/ProductShare'
 import { OrderBillSection } from './OrderBillSection'
 import { ActionsSection } from './ActionsSection'
 import { OrderPreferencesSection } from './OrderPreferencesSections'
 import { PlaceSpot } from '../PlaceSpot'
+import { Confirm } from '../Confirm'
 
 import {
   Container,
@@ -57,11 +61,11 @@ import {
   HeaderTitle,
   PlaceSpotSection,
   BtsOrderStatus,
-  LinkWrapper
+  LinkWrapper,
+  MapWrapper,
+  BusinessExternalWrapper
 } from './styles'
 import { useTheme } from 'styled-components'
-import { ReviewProduct } from '../../../../../components/ReviewProduct'
-import { ReviewDriver } from '../../../../../components/ReviewDriver'
 import { TaxInformation } from '../TaxInformation'
 
 import { getGoogleMapImage } from '../../../../../utils'
@@ -82,7 +86,8 @@ const OrderDetailsUI = (props) => {
     messagesReadList,
     reorderState,
     handleReorder,
-    orderTypes
+    orderTypes,
+    handleRemoveCart
   } = props
   const [, t] = useLanguage()
   const [{ configs }] = useConfig()
@@ -91,7 +96,7 @@ const OrderDetailsUI = (props) => {
   const [{ parsePrice, parseDate }] = useUtils()
   const [, { deleteUserCustomer }] = useCustomer()
   const [{ carts }, { refreshOrderOptions }] = useOrder()
-
+  const [orderingTheme] = useOrderingTheme()
   const [openMessages, setOpenMessages] = useState({ business: false, driver: false })
   const [isOrderReviewed, setIsOrderReviewed] = useState(false)
   const [isProductReviewed, setIsProductReviewed] = useState(false)
@@ -102,32 +107,34 @@ const OrderDetailsUI = (props) => {
   const [openTaxModal, setOpenTaxModal] = useState({ open: false, tax: null })
   const [isService, setIsService] = useState(false)
   const [isOrderHistory, setIsOrderHistory] = useState(false)
+  const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
 
   const { order, loading, businessData, error } = props.order
   const yourSpotString = order?.delivery_type === 3 ? t('TABLE_NUMBER', 'Table number') : t('SPOT_NUMBER', 'Spot number')
   const acceptedStatus = [1, 2, 5, 6, 10, 11, 12]
+  const completedStatus = [1, 2, 5, 6, 10, 11, 12, 15, 16, 17]
   const placeSpotTypes = [3, 4, 5]
   const googleMapsApiKey = configs?.google_maps_api_key?.value
 
   const showOrderActions = order?.delivery_type !== 1
 
-  const isOriginalLayout = theme?.layouts?.confirmation?.components?.layout?.type === 'original'
-  const showDeliveryType = !theme?.layouts?.confirmation?.components?.delivery_type?.hidden
-  const showDeliveryDate = !theme?.layouts?.confirmation?.components?.delivery_date?.hidden
-  const showDeliveryProgress = !theme?.layouts?.confirmation?.components?.delivery_progress?.hidden
-  const showBusinessPhone = !theme?.layouts?.confirmation?.components?.business_information?.components?.phone?.hidden
-  const showBusinessMessages = !theme?.layouts?.confirmation?.components?.business_information?.components?.messages?.hidden
-  const showBusinessEmail = !theme?.layouts?.confirmation?.components?.business_information?.components?.email?.hidden
-  const showBusinessAddress = !theme?.layouts?.confirmation?.components?.business_information?.components?.address?.hidden
-  const showBusinessMap = !theme?.layouts?.confirmation?.components?.business_information?.components?.map?.hidden
-  const showDriverName = !theme?.layouts?.confirmation?.components?.driver_information?.components?.name?.hidden
-  const showDriverPhone = !theme?.layouts?.confirmation?.components?.driver_information?.components?.phone?.hidden
-  const showDriverMessages = !theme?.layouts?.confirmation?.components?.driver_information?.components?.messages?.hidden
-  const showDriverEmail = !theme?.layouts?.confirmation?.components?.driver_information?.components?.email?.hidden
-  const showDriverPhoto = !theme?.layouts?.confirmation?.components?.driver_information?.components?.photo?.hidden
-  const showCustomerPhone = !theme?.layouts?.confirmation?.components?.customer_information?.components?.phone?.hidden
-  const showCustomerAddress = !theme?.layouts?.confirmation?.components?.customer_information?.components?.address?.hidden
-  const showCustomerEmail = !theme?.layouts?.confirmation?.components?.customer_information?.components?.email?.hidden
+  const isOriginalLayout = orderingTheme?.theme?.confirmation?.components?.layout?.type === 'original'
+  const showDeliveryType = !orderingTheme?.theme?.confirmation?.components?.order?.components?.delivery_type?.hidden
+  const showDeliveryDate = !orderingTheme?.theme?.confirmation?.components?.order?.components?.date?.hidden
+  const showDeliveryProgress = !orderingTheme?.theme?.confirmation?.components?.order?.components?.progress?.hidden
+  const showBusinessPhone = !orderingTheme?.theme?.confirmation?.components?.business?.components?.phone?.hidden
+  const showBusinessMessages = !orderingTheme?.theme?.confirmation?.components?.business?.components?.messages?.hidden
+  const showBusinessEmail = !orderingTheme?.theme?.confirmation?.components?.business?.components?.email?.hidden
+  const showBusinessAddress = !orderingTheme?.theme?.confirmation?.components?.business?.components?.address?.hidden
+  const showBusinessMap = !orderingTheme?.theme?.confirmation?.components?.business?.components?.map?.hidden
+  const showDriverName = !orderingTheme?.theme?.confirmation?.components?.driver?.components?.name?.hidden
+  const showDriverPhone = !orderingTheme?.theme?.confirmation?.components?.driver?.components?.phone?.hidden
+  const showDriverMessages = !orderingTheme?.theme?.confirmation?.components?.driver?.components?.messages?.hidden
+  const showDriverEmail = !orderingTheme?.theme?.confirmation?.components?.driver?.components?.email?.hidden
+  const showDriverPhoto = !orderingTheme?.theme?.confirmation?.components?.driver?.components?.photo?.hidden
+  const showCustomerPhone = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.phone?.hidden
+  const showCustomerAddress = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.address?.hidden
+  const showCustomerEmail = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.email?.hidden
 
   const getOrderStatus = (s) => {
     const status = parseInt(s)
@@ -230,6 +237,26 @@ const OrderDetailsUI = (props) => {
     deleteUserCustomer(true)
     refreshOrderOptions()
     handleGoToPage({ page: 'home' })
+  }
+
+  const handleClickReorder = (order) => {
+    if (carts[`businessId:${order?.business_id}`] && carts[`businessId:${order?.business_id}`]?.products?.length > 0) {
+      setConfirm({
+        open: true,
+        content: t('QUESTION_DELETE_PRODUCTS_FROM_CART', 'Are you sure that you want to delete all products from cart?'),
+        handleOnAccept: async () => {
+          handleRemoveCart()
+          setConfirm({ ...confirm, open: false })
+        }
+      })
+    } else {
+      handleReorder(order.id)
+    }
+  }
+
+  const handleOriginalReorder = () => {
+    setConfirm({ ...confirm, open: false })
+    handleReorder(order.id)
   }
 
   const ActionsSectionProps = {
@@ -392,19 +419,29 @@ const OrderDetailsUI = (props) => {
                   acceptedStatus.includes(parseInt(order?.status, 10)) ||
                   !isOriginalLayout
                 ) && (
-                  <ReOrder>
-                    <Button
-                      color='primary'
-                      outline
-                      onClick={() => handleStartNewOrder(order.id)}
-                      disabled={reorderState?.loading}
-                    >
-                      {reorderState?.loading
-                        ? t('LOADING', 'Loading...')
-                        : t('ORDER_AGAIN', 'Order Again')}
-                    </Button>
-                  </ReOrder>
-                )}
+                    <ReOrder>
+                      <Button
+                        color='primary'
+                        outline
+                        onClick={() => handleStartNewOrder(order.id)}
+                        disabled={reorderState?.loading}
+                      >
+                        {t('START_NEW_ORDER', 'Start new order')}
+                      </Button>
+                      {completedStatus.includes(parseInt(order?.status, 10)) && (
+                        <Button
+                          color='primary'
+                          outline
+                          onClick={() => handleClickReorder(order)}
+                          disabled={reorderState?.loading}
+                        >
+                          {reorderState?.loading
+                            ? t('LOADING', 'Loading...')
+                            : t('REORDER', 'Reorder')}
+                        </Button>
+                      )}
+                    </ReOrder>
+                  )}
               </TitleContainer>
               {showDeliveryProgress && (
                 <>
@@ -435,22 +472,15 @@ const OrderDetailsUI = (props) => {
                         <span onClick={handleOpenReview}>{t('REVIEW_ORDER', theme?.defaultLanguages?.REVIEW_ORDER || 'Review your Order')}</span>
                       </ReviewOrderLink>
                     </LinkWrapper>
-
                   </div>
                 </>
               )}
             </OrderInfo>
             <OrderBusiness>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: '50%'
-                }}
-              >
+              <BusinessExternalWrapper>
                 <BusinessWrapper
                   w='calc(100% - 20px)'
-                  // borderBottom={showOrderActions}
+                // borderBottom={showOrderActions}
                 >
                   <img src={order?.business?.logo} />
                   <BusinessInfo>
@@ -480,7 +510,7 @@ const OrderDetailsUI = (props) => {
                   </BusinessInfo>
                 </BusinessWrapper>
 
-                {placeSpotTypes.includes(order?.delivery_type) && (
+                {showDeliveryType && placeSpotTypes.includes(order?.delivery_type) && (
                   <BusinessWrapper
                     w='calc(100% - 20px)'
                     borderTop
@@ -504,7 +534,7 @@ const OrderDetailsUI = (props) => {
                       <div>
                         <Button
                           style={{ fontSize: 14 }}
-                          color='primary'
+                          color={order?.status === 20 ? 'secundary' : 'primary'}
                           onClick={() => handleChangeOrderStatus(20)}
                           disabled={order?.status === 20}
                         >
@@ -514,7 +544,7 @@ const OrderDetailsUI = (props) => {
                       <div>
                         <Button
                           style={{ fontSize: 14 }}
-                          color='secundary'
+                          color={order?.status === 20 ? 'primary' : 'secundary'}
                           disabled={order?.status === 21}
                           onClick={() => handleChangeOrderStatus(21)}
                         >
@@ -524,15 +554,16 @@ const OrderDetailsUI = (props) => {
                     </BtsOrderStatus>
                   </BusinessWrapper>
                 )}
-
-              </div>
+              </BusinessExternalWrapper>
               {googleMapsApiKey && (
-                <OrderMapSection
-                  isMapImg
-                  validStatuses={[order?.status]}
-                  location={order?.business?.location}
-                  mapStyle={{ width: '50%' }}
-                />
+                <MapWrapper>
+                  <OrderMapSection
+                    isMapImg
+                    validStatuses={[order?.status]}
+                    location={order?.business?.location}
+                    mapStyle={{ width: '100%' }}
+                  />
+                </MapWrapper>
               )}
             </OrderBusiness>
             <OrderCustomer>
@@ -710,10 +741,10 @@ const OrderDetailsUI = (props) => {
         padding='20px'
         closeOnBackdrop
         title={`${openTaxModal.data?.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business')} ${openTaxModal.data?.rate_type !== 2
-            ? `(${typeof openTaxModal.data?.rate === 'number'
-              ? `${openTaxModal.data?.rate}%`
-              : `${parsePrice(openTaxModal.data?.fixed ?? 0)} + ${openTaxModal.data?.percentage}%`})`
-            : ''}
+          ? `(${typeof openTaxModal.data?.rate === 'number'
+            ? `${openTaxModal.data?.rate}%`
+            : `${parsePrice(openTaxModal.data?.fixed ?? 0)} + ${openTaxModal.data?.percentage}%`})`
+          : ''}
           `}
         onClose={() => setOpenTaxModal({ open: false, tax: null, type: '' })}
         modalTitleStyle={{ display: 'flex', justifyContent: 'center' }}
@@ -742,6 +773,16 @@ const OrderDetailsUI = (props) => {
           }
         />
       </Modal>
+      <Confirm
+        title={t('ORDER', 'Order')}
+        content={confirm.content}
+        acceptText={t('ACCEPT', 'Accept')}
+        open={confirm.open}
+        onClose={() => handleOriginalReorder()}
+        onCancel={() => handleOriginalReorder()}
+        onAccept={confirm.handleOnAccept}
+        closeOnBackdrop={false}
+      />
     </Container>
   )
 }

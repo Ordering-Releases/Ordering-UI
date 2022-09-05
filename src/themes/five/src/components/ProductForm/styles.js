@@ -4,12 +4,15 @@ export const ProductContainer = styled.div`
   max-height: 100vh;
   position: relative;
   padding: 50px 20px 20px;
+
   @media (min-width: 768px) {
     height: 100%;
   }
+
   @media (min-width: 769px) {
     padding: 20px;
   }
+
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
     ${props => !props.useKioskApp && css`
@@ -29,6 +32,7 @@ export const WrapperImage = styled.div`
 export const SwiperWrapper = styled.div`
   position: relative;
   width: 100%;
+
   img{
     ${props => props.isSoldOut && css`
         filter: grayscale(1);
@@ -37,30 +41,37 @@ export const SwiperWrapper = styled.div`
   .mySwiper2 {
     height: 250px;
     width: 100%;
+
     .swiper-slide-active {
       border-radius: 0px;
       img {
         border-radius: 0px;
       }
     }
+
     @media (min-width: 576px) {
       height: 320px;
     }
   }
+
+
   .swiper {
     width: 100%;
     height: 500px;
     margin-left: auto;
     margin-right: auto;
   }
+
   .swiper-slide {
     background-size: cover;
     background-position: center;
   }
+
   .product-thumb {
     box-sizing: border-box;
     padding: 30px 0px;
     margin: 0px 20px;
+
     .swiper-slide {
       display: flex;
       opacity: 0.8;
@@ -68,21 +79,25 @@ export const SwiperWrapper = styled.div`
       height: auto;
       cursor: pointer;
       overflow: hidden;
+
       img {
         border-radius: 7.6px;
         max-height: 70px;
       }
     }
+
     .swiper-slide-thumb-active {
       opacity: 1;
     }
   }
+
   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .swiper-button-next {
     background-image: url(${props => props.theme.images.general.rightArrow});
     background-color: #d1d0d04d;
@@ -93,10 +108,12 @@ export const SwiperWrapper = styled.div`
     box-shadow: rgb(0 0 0 / 7%) 0px 4px 10px;
     border-radius: 50%;
     transition: all 0.2s ease;
+
     &:hover {
       transform: scale(1.05);
     }
   }
+
   .swiper-button-prev {
     background-image: url(${props => props.theme.images.general.leftArrow});
     background-color: #d1d0d04d;
@@ -107,10 +124,12 @@ export const SwiperWrapper = styled.div`
     border-radius: 50%;
     box-shadow: rgb(0 0 0 / 7%) 0px 4px 10px;
     transition: all 0.2s ease;
+
     &:hover {
       transform: scale(1.05);
     }
   }
+
   .swiper-button-next::after, .swiper-button-prev::after {
     display: none;
   }
@@ -126,6 +145,7 @@ export const ProductInfo = styled.div`
 
 export const ProductFormTitle = styled.div`
   overflow-wrap: break-word;
+
   .price-discount {
     text-decoration: line-through;
   }
@@ -133,6 +153,7 @@ export const ProductFormTitle = styled.div`
 
 export const ProductEdition = styled.div`
   margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 export const SectionTitle = styled.h3`
@@ -150,16 +171,20 @@ export const ProductComment = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 130px;
+
   textarea {
     margin-top: 8px;
   }
+
   p {
     font-weight: 300;
     margin-bottom: 5px;
   }
+
   @media (min-width: 577px) {
     margin-bottom: 62px;
   }
+
   @media (min-width: 769px) {
     margin-bottom: 0px;
     padding-bottom: 10px;
@@ -172,12 +197,14 @@ export const ProductActions = styled.div`
   align-items: center;
   padding: 10px 0px;
   width: 100%;
-  z-index: 999;
+  z-index: 9999997;
+
   position: fixed;
   bottom: 0;
   right: 0;
   width: 100%;
   background-color: #FFF;
+
   div.price {
     padding-top: 10px;
     color: ${props => props.theme?.colors.darkTextColor};
@@ -193,41 +220,49 @@ export const ProductActions = styled.div`
       line-height: 15px;
     }
   }
+
   div.incdec-control {
     width: 135px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: relative;
+
     svg {
       width: 25px;
       height: 25px;
       cursor: pointer;
     }
   }
+
   div.price-amount-block {
     display: flex;
     justify-content: space-between;
     width: 80%
   }
+
   svg {
     color: ${props => props.theme.colors.primary};
   }
+
   svg.disabled {
     pointer-events: none;
     color: #CED4DA;
   }
+
   button:disabled,
   button.disabled {
     background: #E9ECEF;
     border: 1px solid #E9ECEF;
     color: #B1BCCC;
   }
+
   button.add {
     width: 90%;
     padding: 5px 10px;
     margin-top: 10px;
     position: relative;
+
     &.soldout {
       width: 100%;
       pointer-events: none;
@@ -244,9 +279,11 @@ export const ProductActions = styled.div`
     padding: 0;
     margin: 0 10px;
   }
+
   @media (min-width: 577px) {
     position: sticky;
   }
+
   @media (min-width: 1200px) {
     bottom: 0px;
     flex-direction: row;
@@ -256,13 +293,16 @@ export const ProductActions = styled.div`
     transform: translateX(-20px);
     padding: 10px 20px;
     box-sizing: border-box;
+
     div.price {
       width: 25%;
     }
+
     button.add {
       width: 35%;
       margin-top: 0;
     }
+
     div.incdec-control {
       padding-right: 18%;
       &.show-weight-unit{
@@ -275,6 +315,7 @@ export const SkeletonBlock = styled.div`
   width: ${({ width }) => width && `${width}%`};
   border-radius: 16px;
   margin: auto;
+
   span {
     margin-bottom: 10px;
   }
@@ -282,6 +323,7 @@ export const SkeletonBlock = styled.div`
 
 export const WrapperSubOption = styled.div`
   border-radius: 10px;
+
   &.soldout {
     pointer-events: none;
     background-color: hsl(0, 0%, 72%);
@@ -305,17 +347,25 @@ export const ProductTabContainer = styled.div`
   position: sticky;
   top: 0px;
   background: white;
-  z-index: 900;
-  > div {
-    div {
-      padding: 9px 15px;
-      &:first-child {
-        padding-left: 0px;
-        ${props => props.theme?.rtl && css`
-          padding-right: 0px;
-          padding-left: 15px;
-        `}
-      }
+  z-index: 9999996;
+  overflow: scroll hidden;
+  width: 100%;
+  ::-webkit-scrollbar {
+    height: 0px;
+  }
+
+  #optionList {
+    > div {
+      white-space: nowrap;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 10px 0px;
+      margin-right: 25px;
+      ${props => props.theme.rtl && css`
+        margin-right: 0px;
+        margin-left: 25px;
+      `}
     }
   }
 `
@@ -336,11 +386,13 @@ export const ProductShareWrapper = styled.div`
     padding-left: 20px;
     padding-right: 0;
   `}
+
   > div {
     > svg {
       margin: 0px !important;
     }
   }
+
   @media (max-width: 768px) {
     > div {
       right: 16px;
@@ -348,6 +400,7 @@ export const ProductShareWrapper = styled.div`
       left: auto;
     }
   }
+
 `
 export const ProductName = styled.h1`
   font-size: 20px;
@@ -411,12 +464,14 @@ export const ProductTagWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 5px 0;
+
   img {
     width: 32px;
     height: 32px;
     border-radius: 8px;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   }
+
   span {
     font-size: 14px;
     ${props => props.theme?.rtl ? css`
@@ -457,6 +512,7 @@ export const VideoGalleryWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+
   svg {
     position: absolute;
     fill: #fff;

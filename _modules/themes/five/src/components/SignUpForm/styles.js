@@ -17,7 +17,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var SignUpContainer = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  width: 100%;\n  height: 100%;\n  display: flex;\n  min-height: ", ";\n  padding: 0 10px;\n  box-sizing: border-box;\n  flex-direction: column;\n  @media (min-width: 768px) {\n    flex-direction: row;\n  }\n"])), function (_ref) {
+var SignUpContainer = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  width: 100%;\n  height: 100%;\n  display: flex;\n  min-height: ", ";\n  padding: 0 10px;\n  box-sizing: border-box;\n\n  flex-direction: column;\n\n  @media (min-width: 768px) {\n    flex-direction: row;\n  }\n"])), function (_ref) {
   var isPopup = _ref.isPopup;
   return isPopup ? '500px' : 'calc(100vh - 65px)';
 });
@@ -26,7 +26,7 @@ exports.SignUpContainer = SignUpContainer;
 
 var Side = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 100%;\n"])));
 
-var FormSide = (0, _styledComponents.default)(Side)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  flex-direction: column;\n  align-items: center;\n  margin: auto;\n  @media (min-width: 992px) {\n    font-size: ", ";\n  }\n  @media (min-width: 1200px){\n    font-size: ", ";\n  }\n"])), function (_ref2) {
+var FormSide = (0, _styledComponents.default)(Side)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  flex-direction: column;\n  align-items: center;\n  margin: auto;\n\n  @media (min-width: 992px) {\n    font-size: ", ";\n  }\n\n  @media (min-width: 1200px){\n    font-size: ", ";\n  }\n"])), function (_ref2) {
   var isPopup = _ref2.isPopup;
   return isPopup ? '12px' : '1em';
 }, function (_ref3) {
@@ -35,7 +35,7 @@ var FormSide = (0, _styledComponents.default)(Side)(_templateObject3 || (_templa
 });
 exports.FormSide = FormSide;
 
-var FormInput = _styledComponents.default.form(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: ", ";\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  input {\n    &::placeholder, .PhoneInputInput::placeholder {\n      color: ", " !important;\n    }\n    &:-ms-input-placeholder, .PhoneInputInput:-ms-input-placeholder {\n      color: ", " !important;\n    }\n    &::-ms-input-placeholder, .PhoneInputInput::-ms-input-placeholder {\n      color: ", " !important;\n    }\n  }\n  div.phone_number {\n    margin: 10px 0px;\n    width: 100%;\n  }\n  input.form:not(:last-child) {\n    margin: 5px 0px;\n    padding: 8px 20px;\n  }\n  button {\n    margin-top: 10px;\n    padding: 5px;\n    width: 100%;\n  }\n"])), function (_ref4) {
+var FormInput = _styledComponents.default.form(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: ", ";\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  input {\n    &::placeholder, .PhoneInputInput::placeholder {\n      color: ", " !important;\n    }\n\n    &:-ms-input-placeholder, .PhoneInputInput:-ms-input-placeholder {\n      color: ", " !important;\n    }\n\n    &::-ms-input-placeholder, .PhoneInputInput::-ms-input-placeholder {\n      color: ", " !important;\n    }\n  }\n\n  div.phone_number {\n    margin: 10px 0px;\n    width: 100%;\n  }\n\n  input.form:not(:last-child) {\n    margin: 5px 0px;\n    padding: 8px 20px;\n  }\n\n  button {\n    margin-top: 10px;\n    padding: 5px;\n    width: 100%;\n  }\n"])), function (_ref4) {
   var isPopup = _ref4.isPopup;
   return isPopup ? '100%' : '80%';
 }, function (props) {
@@ -54,7 +54,7 @@ var FormInput = _styledComponents.default.form(_templateObject4 || (_templateObj
 
 exports.FormInput = FormInput;
 
-var RedirectLink = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  margin: 0px;\n  font-size: 17px;\n  span {\n    margin-right: 5px;\n    color: black;\n    ", "\n  }\n  a {\n    color: ", " !important;\n    text-decoration: none;\n    &:link, &:visited {\n      color: ", " !important;\n    }\n    &:hover {\n      text-decoration: underline !important;\n    }\n  }\n  * {\n    margin: 0px;\n    padding: 0px;\n  }\n  ", "\n  @media (min-width: 425px) {\n    flex-direction: row;\n  }\n  @media (min-width: 768px) {\n    font-size: 14px;\n  }\n  @media (min-width: 992px) {\n    font-size: ", ";\n    flex-direction: row;\n  }\n  @media (min-width: 1200px) {\n    ", ";\n  }\n"])), function (props) {
+var RedirectLink = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 10px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  margin: 0px;\n  font-size: 17px;\n\n  span {\n    margin-right: 5px;\n    color: black;\n\n    ", "\n  }\n\n  a {\n    color: ", " !important;\n    text-decoration: none;\n    &:link, &:visited {\n      color: ", " !important;\n    }\n    &:hover {\n      text-decoration: underline !important;\n    }\n  }\n\n  * {\n    margin: 0px;\n    padding: 0px;\n  }\n\n  ", "\n\n  @media (min-width: 425px) {\n    flex-direction: row;\n  }\n\n  @media (min-width: 768px) {\n    font-size: 14px;\n  }\n\n  @media (min-width: 992px) {\n    font-size: ", ";\n    flex-direction: row;\n  }\n\n  @media (min-width: 1200px) {\n    ", ";\n  }\n"])), function (props) {
   var _props$theme;
 
   return ((_props$theme = props.theme) === null || _props$theme === void 0 ? void 0 : _props$theme.rtl) && (0, _styledComponents.css)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n      margin-left: 5px;\n      margin-right: 0px;\n    "])));
@@ -64,7 +64,7 @@ var RedirectLink = _styledComponents.default.div(_templateObject5 || (_templateO
   return props.theme.colors.primary;
 }, function (_ref5) {
   var register = _ref5.register;
-  return register && (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    width: calc(95% - 20px);\n    @media (min-width: 481px) {\n      width: ", ";\n    }\n  "])), function (_ref6) {
+  return register && (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    width: calc(95% - 20px);\n\n    @media (min-width: 481px) {\n      width: ", ";\n    }\n  "])), function (_ref6) {
     var isPopup = _ref6.isPopup;
     return isPopup ? 'calc(100% - 20px)' : 'calc(80% - 20px)';
   });
@@ -78,7 +78,7 @@ var RedirectLink = _styledComponents.default.div(_templateObject5 || (_templateO
 
 exports.RedirectLink = RedirectLink;
 
-var SocialButtons = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: ", ";\n  button {\n    width: 100%;\n    padding: 5px 30px;\n    color: #000000;\n    margin-bottom: 15px;\n    img {\n      width: 30px;\n    }\n    div {\n      font-size: 16px;\n    }\n  }\n"])), function (_ref9) {
+var SocialButtons = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: ", ";\n\n  button {\n    width: 100%;\n    padding: 5px 30px;\n    color: #000000;\n    margin-bottom: 15px;\n\n    img {\n      width: 30px;\n    }\n\n    div {\n      font-size: 16px;\n    }\n  }\n"])), function (_ref9) {
   var isPopup = _ref9.isPopup;
   return isPopup ? '100%' : '80%';
 });
@@ -118,7 +118,7 @@ var ReCaptchaWrapper = _styledComponents.default.div(_templateObject16 || (_temp
 
 exports.ReCaptchaWrapper = ReCaptchaWrapper;
 
-var LoginDivider = _styledComponents.default.div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  width: 80%;\n  margin: 30px 0;\n  p {\n    margin: 0;\n    width: 70px;\n    font-size: 14px;\n    color: #748194;\n    text-align: center;\n  }\n"])));
+var LoginDivider = _styledComponents.default.div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  width: 80%;\n  margin: 30px 0;\n\n  p {\n    margin: 0;\n    width: 70px;\n    font-size: 14px;\n    color: #748194;\n    text-align: center;\n  }\n"])));
 
 exports.LoginDivider = LoginDivider;
 
@@ -126,20 +126,20 @@ var DividerLine = _styledComponents.default.div(_templateObject18 || (_templateO
 
 exports.DividerLine = DividerLine;
 
-var InputContainer = _styledComponents.default.div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  margin: 5px 0px;\n  \n  @media (min-width: 800px) {\n    ", "\n  }\n"])), function (_ref11) {
+var InputContainer = _styledComponents.default.div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  margin: 5px 0px;\n\n  \n  @media (min-width: 800px) {\n    ", "\n  }\n"])), function (_ref11) {
   var isHalf = _ref11.isHalf;
   return isHalf && (0, _styledComponents.css)(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n      width: 48%;\n    "])));
 });
 
 exports.InputContainer = InputContainer;
 
-var InputWrapper = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  position: relative;\n  width: 100%;\n  \n  input{\n    box-sizing: border-box;\n    width: 100%;\n    ", "\n    margin: 10px 0;\n  }\n"])), function (props) {
+var InputWrapper = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  position: relative;\n  width: 100%;\n  \n  input{\n    box-sizing: border-box;\n    width: 100%;\n\n    ", "\n    margin: 10px 0;\n  }\n"])), function (props) {
   return props.theme.rtl ? (0, _styledComponents.css)(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n      padding-right: 40px !important;\n    "]))) : (0, _styledComponents.css)(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n      padding-left: 40px !important;\n    "])));
 });
 
 exports.InputWrapper = InputWrapper;
 
-var InputBeforeIcon = _styledComponents.default.div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 0px;\n  left: 15px;\n  display: flex;\n  align-items: center;\n  height: 100%;\n  ", "\n  svg {\n    font-size: 16px;\n    color: #B1BCCC;\n  }\n"])), function (props) {
+var InputBeforeIcon = _styledComponents.default.div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 0px;\n  left: 15px;\n  display: flex;\n  align-items: center;\n  height: 100%;\n\n  ", "\n\n  svg {\n    font-size: 16px;\n    color: #B1BCCC;\n  }\n"])), function (props) {
   var _props$theme3;
 
   return ((_props$theme3 = props.theme) === null || _props$theme3 === void 0 ? void 0 : _props$theme3.rtl) && (0, _styledComponents.css)(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n    right: 15px;\n    left: initial;\n  "])));
@@ -147,7 +147,7 @@ var InputBeforeIcon = _styledComponents.default.div(_templateObject24 || (_templ
 
 exports.InputBeforeIcon = InputBeforeIcon;
 
-var TermsConditionWrapper = _styledComponents.default.div(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin: 10px 0;\n  > label {\n    font-size: 14px;\n    ", "\n    > span:first-child {\n      font-weight: 500;\n      ", "\n    }\n    > a {\n      color: ", " !important;\n    }\n  }\n  @media (min-width: 768px) {\n    > label {\n      font-size: 16px;\n    }\n  }\n"])), function (props) {
+var TermsConditionWrapper = _styledComponents.default.div(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin: 10px 0;\n\n  > label {\n    font-size: 14px;\n    ", "\n\n    > span:first-child {\n      font-weight: 500;\n      ", "\n    }\n\n    > a {\n      color: ", " !important;\n    }\n  }\n\n  @media (min-width: 768px) {\n    > label {\n      font-size: 16px;\n    }\n  }\n"])), function (props) {
   var _props$theme4;
 
   return (_props$theme4 = props.theme) !== null && _props$theme4 !== void 0 && _props$theme4.rtl ? (0, _styledComponents.css)(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n      margin-right: 7px;\n    "]))) : (0, _styledComponents.css)(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n      margin-left: 7px;\n    "])));
@@ -163,7 +163,7 @@ exports.TermsConditionWrapper = TermsConditionWrapper;
 var PromotionsWrapper = (0, _styledComponents.default)(TermsConditionWrapper)(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral([""])));
 exports.PromotionsWrapper = PromotionsWrapper;
 
-var BussinessAndDriverSignUp = _styledComponents.default.div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-direction: column;\n  @media (min-width: 481px) {\n    width: ", ";\n  }\n  \n  @media (min-width: 993px) {\n    flex-direction: row;\n  }\n  button {\n    width: 100%;\n    margin-top: 15px;\n    padding: 5px;\n    margin: 0 10px;\n  }\n"])), function (_ref12) {
+var BussinessAndDriverSignUp = _styledComponents.default.div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  flex-direction: column;\n\n  @media (min-width: 481px) {\n    width: ", ";\n  }\n  \n  @media (min-width: 993px) {\n    flex-direction: row;\n  }\n\n  button {\n    width: 100%;\n    margin-top: 15px;\n    padding: 5px;\n    margin: 0 10px;\n  }\n"])), function (_ref12) {
   var isPopup = _ref12.isPopup;
   return isPopup ? 'calc(100% - 20px)' : 'calc(80% - 20px)';
 });

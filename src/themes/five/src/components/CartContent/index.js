@@ -10,7 +10,10 @@ export const CartContent = (props) => {
     carts,
     isOrderStateCarts,
     isCartPopover,
-    isForceOpenCart
+    isForceOpenCart,
+    setPreorderBusiness,
+    isOpenCart,
+    isSlideBar
   } = props
 
   const [, t] = useLanguage()
@@ -38,18 +41,10 @@ export const CartContent = (props) => {
 
   return (
     <>
-      {
-      props.beforeElements?.map((BeforeElement, i) => (
-        <React.Fragment key={i}>
-          {BeforeElement}
-        </React.Fragment>))
-      }
-      {
-      props.beforeComponents?.map((BeforeComponent, i) => (
-        <BeforeComponent key={i} {...props} />))
-      }
       <Container>
-        <Title>{t('YOUR_CART', 'Your cart')}</Title>
+        {!isSlideBar && (
+          <Title>{t('YOUR_CART', 'Your cart')}</Title>
+        )}
         {isOrderStateCarts && carts?.length > 0 &&
           carts.map(cart => (
             <React.Fragment key={cart.uuid}>
@@ -58,11 +53,13 @@ export const CartContent = (props) => {
                   isCartPending={cart?.status === 2}
                   cart={cart}
                   isCartPopover={isCartPopover}
-                  isCheckout={window.location.pathname === `/checkout/${cart?.uuid}`}
+                  isCheckout={window.location.pathname === `/checkout/${cart?.uuid}` && !isCartPopover}
                   isForceOpenCart={isForceOpenCart}
                   currentCartUuid={currentCartUuid}
                   isProducts={cart.products.length}
                   onClickCheckout={props.onClose}
+                  setPreorderBusiness={setPreorderBusiness}
+                  isOpenCart={isOpenCart}
                 />
               )}
             </React.Fragment>
@@ -74,16 +71,6 @@ export const CartContent = (props) => {
           </NotCarts>
         )}
       </Container>
-      {
-      props.afterComponents?.map((AfterComponent, i) => (
-        <AfterComponent key={i} {...props} />))
-      }
-      {
-      props.afterElements?.map((AfterElement, i) => (
-        <React.Fragment key={i}>
-          {AfterElement}
-        </React.Fragment>))
-      }
     </>
   )
 }

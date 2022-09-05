@@ -1,12 +1,17 @@
-import React from 'react'
-import { useLanguage, useUtils, useConfig, SingleOrderCard as SingleOrderCardController } from 'ordering-components-external'
+import React, { useState } from 'react'
+import { useLanguage, useUtils, useConfig, useOrder, SingleOrderCard as SingleOrderCardController } from 'ordering-components-external'
 import { Heart as DisLike, HeartFill as Like } from 'react-bootstrap-icons'
+import { ReviewOrder } from '../ReviewOrder'
+import { ReviewProduct } from '../ReviewProduct'
+import { ReviewDriver } from '../ReviewDriver'
+
 import { useTheme } from 'styled-components'
 import { getGoogleMapImage } from '../../../../../utils'
 import BsDot from '@meronex/icons/bs/BsDot'
 import { Button } from '../../styles/Buttons'
 import Skeleton from 'react-loading-skeleton'
-
+import { Modal } from '../Modal'
+import { Confirm } from '../Confirm'
 import {
   Container,
   Content,
@@ -16,12 +21,14 @@ import {
   Logo,
   TitleContainer,
   Map,
-  FavoriteWrapper
+  FavoriteWrapper,
+  ReviewWrapper
 } from './styles'
 
 import {
   BusinessInformation
 } from '../OrdersOption/styles'
+import { useOrderingTheme } from 'ordering-components-external/_modules/contexts/OrderingThemeContext'
 
 const SingleOrderCardUI = (props) => {
   const {
@@ -35,16 +42,26 @@ const SingleOrderCardUI = (props) => {
     isCustomerMode,
     handleFavoriteOrder,
     isSkeleton,
-    isFavorite
+    isFavorite,
+    handleRemoveCart,
+    cartState
   } = props
 
   const [, t] = useLanguage()
   const theme = useTheme()
+  const [{ carts }] = useOrder()
   const [{ parsePrice, parseDate, optimizeImage }] = useUtils()
   const [{ configs }] = useConfig()
+  const [orderingTheme] = useOrderingTheme()
+  const [isReviewOpen, setIsReviewOpen] = useState(false)
+  const [reviewStatus, setReviewStatus] = useState({ order: false, product: false, driver: false })
+  const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
+  const [isOrderReviewed, setIsOrderReviewed] = useState(false)
+  const [isProductReviewed, setIsProductReviewed] = useState(false)
+  const [isDriverReviewed, setIsDriverReviewed] = useState(false)
 
   const handleClickCard = (e, uuid) => {
-    if (e.target.closest('.favorite') || e.target.closest('.review')) return
+    if (e.target.closest('.favorite') || e.target.closest('.review') || e.target.closest('.reorder')) return
 
     if (customArray) {
       onRedirectPage({ page: 'checkout', params: { cartUuid: uuid } })
@@ -53,21 +70,66 @@ const SingleOrderCardUI = (props) => {
     }
   }
 
-  const handleClickReview = (uuid) => {
-    onRedirectPage({ page: 'order_detail', params: { orderId: uuid } })
+  const closeReviewOrder = () => {
+    if (!isProductReviewed) setReviewStatus({ order: false, product: true, driver: false })
+    else if (order?.driver && !order?.user_review && !isDriverReviewed) setReviewStatus({ order: false, product: false, driver: true })
+    else handleCloseReivew()
+  }
+
+  const closeReviewProduct = () => {
+    if (order?.driver && !order?.user_review && !isDriverReviewed) setReviewStatus({ order: false, product: false, driver: true })
+    else {
+      setIsDriverReviewed(true)
+      handleCloseReivew()
+    }
+  }
+  const handleOpenReview = () => {
+    if (!order?.review && !isOrderReviewed) setReviewStatus({ order: true, product: false, driver: false })
+    else if (!isProductReviewed) setReviewStatus({ order: false, product: true, driver: false })
+    else if (order?.driver && !order?.user_review && !isDriverReviewed) setReviewStatus({ order: false, product: false, driver: true })
+    else {
+      setIsReviewOpen(false)
+      return
+    }
+    setIsReviewOpen(true)
+  }
+
+  const handleCloseReivew = () => {
+    setReviewStatus({ order: false, product: false, driver: false })
+    setIsReviewOpen(false)
+  }
+
+  const handleClickReview = (order) => {
+    handleOpenReview && handleOpenReview()
   }
 
   const handleChangeFavorite = (order) => {
     handleFavoriteOrder && handleFavoriteOrder(!order?.favorite)
   }
 
-  const businessLogo = theme?.layouts?.orders?.components?.business_logo
-  const date = theme?.layouts?.orders?.components?.date
-  const map = theme?.layouts?.orders?.components?.map
+  const handleClickReorder = (order) => {
+    if (carts[`businessId:${order?.business_id}`] && carts[`businessId:${order?.business_id}`]?.products?.length > 0) {
+      setConfirm({
+        open: true,
+        content: t('QUESTION_DELETE_PRODUCTS_FROM_CART', 'Are you sure that you want to delete all products from cart?'),
+        handleOnAccept: async () => {
+          handleRemoveCart()
+          setConfirm({ ...confirm, open: false })
+        }
+      })
+    } else {
+      handleReorder(order.id)
+    }
+  }
 
-  const isHideBusinessLogo = businessLogo?.hidden
-  const isHideDate = date?.hidden
-  const isHideMap = map?.hidden
+  const handleOriginalReorder = () => {
+    setConfirm({ ...confirm, open: false })
+    handleReorder(order.id)
+  }
+
+  const showBusinessLogo = !orderingTheme?.theme?.orders?.components?.business_logo?.hidden
+  const showDate = !orderingTheme?.theme?.orders?.components?.date?.hidden
+  const showMap = !orderingTheme?.theme?.orders?.components?.map?.hidden
 
   return (
     <>
@@ -83,7 +145,7 @@ const SingleOrderCardUI = (props) => {
         isCustomerMode={isCustomerMode}
         onClick={(e) => handleClickCard(e, order?.uuid)}
       >
-        {(configs?.google_maps_api_key?.value || isBusinessesPage) && !isHideMap && (
+        {(configs?.google_maps_api_key?.value || isBusinessesPage) && showMap && (
           <>
             {isSkeleton ? (
               <Skeleton height={80} />
@@ -108,10 +170,10 @@ const SingleOrderCardUI = (props) => {
             <Skeleton width={60} height={60} />
           ) : (
             <>
-              {!isCustomerMode && !isHideBusinessLogo && (
+              {!isCustomerMode && showBusinessLogo && (
                 <BusinessLogoWrapper bgimage={optimizeImage(order?.business?.logo || theme.images?.dummies?.businessLogo, 'h_400,c_limit')} />
               )}
-              {isCustomerMode && !isHideBusinessLogo && (
+              {isCustomerMode && showBusinessLogo && (
                 <>
                   {(order.business?.logo || theme.images?.dummies?.businessLogo) && (
                     <Logo>
@@ -149,7 +211,7 @@ const SingleOrderCardUI = (props) => {
                       <p name='order_number'>{t('ORDER_NUM', 'Order No.')} {order.id}</p>
                     </>
                   )}
-                  {!isHideDate && (
+                  {showDate && (
                     <>
                       <BsDot />
                       <p>{order?.delivery_datetime_utc
@@ -177,19 +239,19 @@ const SingleOrderCardUI = (props) => {
           )}
           {pastOrders && !isCustomerMode && (
             <ButtonWrapper>
-              {!isFavorite && (!order?.review || (order.driver && !order?.user_review)) && (
+              {!isOrderReviewed && !isFavorite && (!order?.review || (order.driver && !order?.user_review)) && (
                 <Button
                   outline
                   color='primary'
                   className='review'
-                  onClick={() => handleClickReview(order.uuid)}
+                  onClick={() => handleClickReview(order)}
                 >
                   {t('REVIEW', 'Review')}
                 </Button>
               )}
               {order.cart && (
-                <Button color='primary' className='reorder' outline onClick={() => handleReorder(order.id)}>
-                  {t('REORDER', 'Reorder')}
+                <Button color='primary' className='reorder' outline onClick={() => handleClickReorder(order)}>
+                  {cartState?.loading ? t('LOADING', 'Loading...') : t('REORDER', 'Reorder')}
                 </Button>
               )}
             </ButtonWrapper>
@@ -203,6 +265,40 @@ const SingleOrderCardUI = (props) => {
           </FavoriteWrapper>
         </Content>
       </Container>
+      {isReviewOpen && (
+        <Modal
+          open={isReviewOpen}
+          onClose={handleCloseReivew}
+          title={order
+            ? (reviewStatus?.order
+              ? t('REVIEW_ORDER', 'Review order')
+              : (reviewStatus?.product
+                ? t('REVIEW_PRODUCT', 'Review Product')
+                : t('REVIEW_DRIVER', 'Review Driver')))
+            : t('LOADING', 'Loading...')}
+        >
+          <ReviewWrapper>
+            {
+              reviewStatus?.order
+                ? <ReviewOrder order={order} closeReviewOrder={closeReviewOrder} setIsReviewed={setIsOrderReviewed} />
+                : (reviewStatus?.product
+                  ? <ReviewProduct order={order} closeReviewProduct={closeReviewProduct} setIsProductReviewed={setIsProductReviewed} />
+                  : <ReviewDriver order={order} closeReviewDriver={handleCloseReivew} setIsDriverReviewed={setIsDriverReviewed} />)
+            }
+          </ReviewWrapper>
+
+        </Modal>
+      )}
+      <Confirm
+        title={t('ORDER', 'Order')}
+        content={confirm.content}
+        acceptText={t('ACCEPT', 'Accept')}
+        open={confirm.open}
+        onClose={() => handleOriginalReorder()}
+        onCancel={() => handleOriginalReorder()}
+        onAccept={confirm.handleOnAccept}
+        closeOnBackdrop={false}
+      />
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
       {props.afterElements?.map((AfterElement, i) => (

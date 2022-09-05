@@ -10,7 +10,7 @@ import { useTheme } from 'styled-components'
 import { Modal } from '../Modal'
 import { BusinessInformation } from '../BusinessInformation'
 
-import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
+import { useUtils, useOrder, useLanguage, useOrderingTheme } from 'ordering-components-external'
 
 import { convertHoursToMinutes } from '../../utils'
 
@@ -38,6 +38,7 @@ export const BusinessBasicInformation = (props) => {
   const [orderState] = useOrder()
   const [, t] = useLanguage()
   const [{ parsePrice, parseDistance, optimizeImage }] = useUtils()
+  const [orderingTheme] = useOrderingTheme()
 
   const getBusinessType = () => {
     if (Object.keys(business).length <= 0) return t('GENERAL', 'General')
@@ -47,6 +48,13 @@ export const BusinessBasicInformation = (props) => {
     ))
     return _types.join(', ')
   }
+
+  const showLogo = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.logo?.hidden
+  const showDeliveryFee = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.fee?.hidden
+  const showTime = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.time?.hidden
+  const showBusinessInfo = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.business_info?.hidden
+  const showReviews = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.reviews?.hidden
+  const showDistance = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.distance?.hidden
 
   return (
     <>
@@ -59,13 +67,15 @@ export const BusinessBasicInformation = (props) => {
       <BusinessContainer bgimage={business?.header} isSkeleton={isSkeleton} id='container' isClosed={!business?.open}>
         {!business?.open && <h1>{t('CLOSED', 'Closed')}</h1>}
         <BusinessContent>
-          <WrapperBusinessLogo>
-            {!loading ? (
-              <BusinessLogo bgimage={optimizeImage(business?.logo || theme.images?.dummies?.businessLogo, 'h_200,c_limit')} />
-            ) : (
-              <Skeleton height={70} width={70} />
-            )}
-          </WrapperBusinessLogo>
+          {showLogo && (
+            <WrapperBusinessLogo>
+              {!loading ? (
+                <BusinessLogo bgimage={optimizeImage(business?.logo || theme.images?.dummies?.businessLogo, 'h_200,c_limit')} />
+              ) : (
+                <Skeleton height={70} width={70} />
+              )}
+            </WrapperBusinessLogo>
+          )}
           <BusinessInfo className='info'>
             <BusinessInfoItem>
               <div>
@@ -74,50 +84,63 @@ export const BusinessBasicInformation = (props) => {
                 ) : (
                   <Skeleton width={100} />
                 )}
-                {!loading ? (
-                  <p>
-                    <FaStar className='start' />
-                    {business?.reviews?.total}
-                  </p>
-                ) : (
-                  <Skeleton width={100} />
-                )}
-              </div>
-              <div>
-                {!loading ? (
-                  <p className='type'>{getBusinessType()}</p>
-                ) : (
-                  <Skeleton width={100} />
-                )}
-              </div>
-              <div>
-                {!loading ? (
+                {showReviews && (
                   <>
-                    {orderState?.options?.type === 1 ? (
-                      <h5>
-                        <FiClock />
-                        {convertHoursToMinutes(business?.delivery_time)}
-                      </h5>
+                    {!loading ? (
+                      <p>
+                        <FaStar className='start' />
+                        {business?.reviews?.total}
+                      </p>
                     ) : (
-                      <h5>
-                        <FiClock />
-                        {convertHoursToMinutes(business?.pickup_time)}
-                      </h5>
+                      <Skeleton width={100} />
                     )}
                   </>
-                ) : (
-                  <Skeleton width={70} />
                 )}
-
-                {!loading ? (
-                  <h5>
-                    <GrLocation />
-                    {parseDistance(business?.distance || 0)}
-                  </h5>
-                ) : (
-                  <Skeleton width={70} />
+              </div>
+              {showBusinessInfo && (
+                <div>
+                  {!loading ? (
+                    <p className='type'>{getBusinessType()}</p>
+                  ) : (
+                    <Skeleton width={100} />
+                  )}
+                </div>
+              )}
+              <div>
+                {showTime && (
+                  <>
+                    {!loading ? (
+                      <>
+                        {orderState?.options?.type === 1 ? (
+                          <h5>
+                            <FiClock />
+                            {convertHoursToMinutes(business?.delivery_time)}
+                          </h5>
+                        ) : (
+                          <h5>
+                            <FiClock />
+                            {convertHoursToMinutes(business?.pickup_time)}
+                          </h5>
+                        )}
+                      </>
+                    ) : (
+                      <Skeleton width={70} />
+                    )}
+                  </>
                 )}
-                {orderState?.options.type === 1 && (
+                {showDistance && (
+                  <>
+                    {!loading ? (
+                      <h5>
+                        <GrLocation />
+                        {parseDistance(business?.distance || 0)}
+                      </h5>
+                    ) : (
+                      <Skeleton width={70} />
+                    )}
+                  </>
+                )}
+                {orderState?.options.type === 1 && showDeliveryFee && (
                   <>
                     {!loading ? (
                       <h5>

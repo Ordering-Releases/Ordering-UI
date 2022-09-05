@@ -4,7 +4,8 @@ import {
   BusinessInformation as BusinessInformationController,
   GoogleMapsMap,
   useLanguage,
-  useConfig
+  useConfig,
+  useOrderingTheme
 } from 'ordering-components-external'
 import { Modal } from '../Modal'
 import {
@@ -50,6 +51,10 @@ export const BusinessInformationUI = (props) => {
   ]
   const [modalImage, setModalImage] = useState(false)
   const [image, setImage] = useState('')
+  const [orderingTheme] = useOrderingTheme()
+
+  const showLocation = !orderingTheme?.theme?.business_view?.components?.information?.components?.location?.hidden
+  const showSchedule = !orderingTheme?.theme?.business_view?.components?.information?.components?.schedule?.hidden
 
   const scheduleFormatted = ({ hour, minute }) => {
     const checkTime = (val) => val < 10 ? `0${val}` : val
@@ -87,46 +92,56 @@ export const BusinessInformationUI = (props) => {
               <Description>{business.description}</Description>
             </>
           )}
-          {businessLocation.location && (
-            <>
-              <SectionTitle>{t('BUSINESS_LOCATION', 'Business location')}</SectionTitle>
-              {businessLocation.location && (
-                <Map>
-                  <GoogleMapsMap
-                    apiKey={configs?.google_maps_api_key?.value}
-                    location={businessLocation.location}
-                    mapControls={businessLocation.googleMapsControls || business.googleMapsControls}
-                  />
-                </Map>
-              )}
-            </>
-          )}
           {
-            business?.address && <BusinessAddress>{business?.address}</BusinessAddress>
+            showLocation && (
+              <>
+                {businessLocation.location && (
+                  <>
+                    <SectionTitle>{t('BUSINESS_LOCATION', 'Business location')}</SectionTitle>
+                    {businessLocation.location && (
+                      <Map>
+                        <GoogleMapsMap
+                          apiKey={configs?.google_maps_api_key?.value}
+                          location={businessLocation.location}
+                          mapControls={businessLocation.googleMapsControls || business.googleMapsControls}
+                        />
+                      </Map>
+                    )}
+                  </>
+                )}
+                {
+                  business?.address && <BusinessAddress>{business?.address}</BusinessAddress>
+                }
+                <Divider />
+              </>
+            )
           }
-          <Divider />
           {businessSchedule?.length > 0 && (
             <>
-              <SectionTitle>{t('OPENING_TIME', 'Opening time')}</SectionTitle>
-              <ScheduleSection>
-                <ScheduleContainer>
-                  {businessSchedule.map((schedule, i) => (
-                    <ScheduleBlock key={i}>
-                      <h4>{daysOfWeek[i]}</h4>
-                      {schedule.enabled ? (
-                        <div>
-                          <p>{scheduleFormatted(schedule.lapses[0].open)}</p>
-                          <div>-</div>
-                          <p>{scheduleFormatted(schedule.lapses[0].close)}</p>
-                        </div>
-                      ) : (
-                        <p className='close'>{t('CLOSED', 'Closed')}</p>
-                      )}
-                    </ScheduleBlock>
-                  ))}
-                </ScheduleContainer>
-              </ScheduleSection>
-              <Divider />
+              {showSchedule && (
+                <>
+                  <SectionTitle>{t('OPENING_TIME', 'Opening time')}</SectionTitle>
+                  <ScheduleSection>
+                    <ScheduleContainer>
+                      {businessSchedule.map((schedule, i) => (
+                        <ScheduleBlock key={i}>
+                          <h4>{daysOfWeek[i]}</h4>
+                          {schedule.enabled ? (
+                            <div>
+                              <p>{scheduleFormatted(schedule.lapses[0].open)}</p>
+                              <div>-</div>
+                              <p>{scheduleFormatted(schedule.lapses[0].close)}</p>
+                            </div>
+                          ) : (
+                            <p className='close'>{t('CLOSED', 'Closed')}</p>
+                          )}
+                        </ScheduleBlock>
+                      ))}
+                    </ScheduleContainer>
+                  </ScheduleSection>
+                  <Divider />
+                </>
+              )}
               <DeliveryInfo>
                 <div>
                   <h5>{t('DELIVERY_TIME', 'Delivery Time')}: {convertHoursToMinutes(business?.delivery_time)}</h5>

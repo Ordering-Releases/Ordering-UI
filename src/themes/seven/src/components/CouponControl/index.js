@@ -44,7 +44,6 @@ const CouponControlUI = (props) => {
     onChangeInputCoupon('')
   }
 
-
   return (
     <>
       {props.beforeElements?.map((BeforeElement, i) => (

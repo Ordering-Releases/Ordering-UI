@@ -24,15 +24,18 @@ export const OrderBill = styled.div`
   table {
     width: 100%;
     font-size: 14px;
+
     td span {
       unicode-bidi: bidi-override;
     }
+
     tr td:nth-child(2) {
       text-align: right;
       ${props => props.theme?.rtl && css`
         text-align: left;
     `}
     }
+
     .icon {
       display: flex;
       align-items: center;
@@ -83,6 +86,7 @@ export const OrderBill = styled.div`
 export const CouponContainer = styled.div`
   width: 100%;
   margin: 10px;
+
   input, button {
     border-radius: 7.6px;
   }
@@ -102,6 +106,7 @@ export const CheckoutAction = styled.div`
     font-size: 18px;
     color: ${props => props.theme.colors.darkTextColor};
   }
+
   button {
     padding: 10px 30px;
     min-width: 150px;
@@ -118,6 +123,7 @@ export const Divider = styled.div`
   height: 8px;
   width: 100%;
   margin-left: 0;
+
   @media (min-width: 768px) {
     width: calc(100% + 60px);
     margin-left: -30px;

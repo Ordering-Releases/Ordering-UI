@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useSession, useLanguage, useCustomer, useConfig } from 'ordering-components-external'
+import { useSession, useLanguage, useCustomer, useConfig, useOrderingTheme } from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 import parsePhoneNumber from 'libphonenumber-js'
+import { useTheme } from 'styled-components'
 
 import {
   FormInput,
@@ -38,21 +39,31 @@ export const UserFormDetailsUI = (props) => {
     isCheckout,
     userData,
     isCustomerMode,
-    handleChangePromotions
+    setWillVerifyOtpState,
+    handleChangePromotions,
+    isOldLayout,
+    requiredFields
   } = props
 
   const formMethods = useForm()
   const [, t] = useLanguage()
   const [{ configs }] = useConfig()
-
+  const theme = useTheme()
   const [{ user: userSession }] = useSession()
+  const [orderingTheme] = useOrderingTheme()
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(null)
   const [userPhoneNumber, setUserPhoneNumber] = useState(null)
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [, { setUserCustomer }] = useCustomer()
+  const [isChanged, setIsChanged] = useState(false)
   const emailInput = useRef(null)
 
   const user = userData || userSession
+
+  const showCustomerCellphone = !orderingTheme?.theme?.profile?.components?.cellphone?.hidden
+  const showCustomerPassword = !orderingTheme?.theme?.profile?.components?.password?.hidden
+  const showCustomerPromotions = !orderingTheme?.theme?.profile?.components?.promotions?.hidden
+  const showLangauges = !orderingTheme?.theme?.profile?.components?.languages?.hidden
 
   const closeAlert = () => {
     setAlertState({
@@ -131,6 +142,7 @@ export const UserFormDetailsUI = (props) => {
 
   const handleChangePhoneNumber = (number, isValid) => {
     setUserPhoneNumber(number)
+    setIsChanged(true)
 
     let phoneNumberParser = null
     let phoneNumber = {
@@ -169,6 +181,10 @@ export const UserFormDetailsUI = (props) => {
     }
   }
 
+  const showFieldWithTheme = (name) => {
+    return !orderingTheme?.theme?.profile?.components?.[name]?.hidden
+  }
+
   useEffect(() => {
     if (Object.keys(formMethods.errors).length > 0) {
       const content = Object.values(formMethods.errors).map(error => error.message)
@@ -197,9 +213,8 @@ export const UserFormDetailsUI = (props) => {
     }
     if ((user || !isEdit) && !formState?.loading) {
       setUserCellPhone()
-      if (!isEdit && !formState?.loading) {
+      if (!isEdit) {
         cleanFormState && cleanFormState({ changes: {} })
-        setUserCellPhone(true)
       }
     }
     if (!isEdit) onCancel && onCancel()
@@ -214,6 +229,7 @@ export const UserFormDetailsUI = (props) => {
   }, [validationFields, emailInput.current])
 
   useEffect(() => {
+    if (requiredFields) return
     formMethods.register('email', {
       required: isRequiredField('email')
         ? t('VALIDATION_ERROR_EMAIL_REQUIRED', 'The field Email is required').replace('_attribute_', t('EMAIL', 'Email'))
@@ -224,6 +240,16 @@ export const UserFormDetailsUI = (props) => {
       }
     })
   }, [formMethods])
+
+  useEffect(() => {
+    if (isChanged && userPhoneNumber && isValidPhoneNumber && formState?.changes?.country_phone_code && formState?.changes?.cellphone && configs?.verification_phone_required?.value === '1') {
+      setWillVerifyOtpState(true)
+    }
+  }, [isValidPhoneNumber, userPhoneNumber, configs?.verification_phone_required?.value, isChanged])
+
+  useEffect(() => {
+    if (requiredFields && !requiredFields.includes('cellphone')) setIsValidPhoneNumber(true)
+  }, [requiredFields])
 
   return (
     <>
@@ -246,64 +272,59 @@ export const UserFormDetailsUI = (props) => {
               props.beforeMidComponents?.map((BeforeMidComponents, i) => (
                 <BeforeMidComponents key={i} {...props} />))
             }
-            <Divider />
+            {!requiredFields && <Divider />}
             {sortInputFields({ values: validationFields?.fields?.checkout }).map(field =>
-              showField && showField(field.code) && (
+              showField && showField(field.code) && showFieldWithTheme(field.code) && (
                 <React.Fragment key={field.id}>
                   {field.code === 'email' ? (
-                    <InputGroup>
-                      <p>{t(field.code.toUpperCase(), field?.name)}</p>
-                      <Input
-                        key={field.id}
-                        type={field.type}
-                        name={field.code}
-                        className='form'
-                        borderBottom
-                        disabled={!isEdit}
-                        placeholder={t(field.code.toUpperCase(), field?.name)}
-                        defaultValue={
-                          formState?.result?.result
-                            ? formState?.result?.result[field.code]
-                            : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
-                        }
-                        onChange={handleChangeInputEmail}
-                        ref={(e) => {
-                          emailInput.current = e
-                        }}
-                        autoComplete='off'
-                      />
-                    </InputGroup>
+                    ((requiredFields && requiredFields.includes(field.code)) || !requiredFields) && (
+                      <InputGroup>
+                        <p>{t(field.code.toUpperCase(), field?.name)}</p>
+                        <Input
+                          key={field.id}
+                          type={field.type}
+                          name={field.code}
+                          className='form'
+                          borderBottom
+                          disabled={!isEdit}
+                          placeholder={t(field.code.toUpperCase(), field?.name)}
+                          defaultValue={formState?.changes[field.code] ?? (user && user[field.code]) ?? ''}
+                          onChange={handleChangeInputEmail}
+                          ref={(e) => {
+                            emailInput.current = e
+                          }}
+                          autoComplete='off'
+                        />
+                      </InputGroup>
+                    )
                   ) : (
-                    <InputGroup>
-                      <p>{t(field.code.toUpperCase(), field?.name)}</p>
-                      <Input
-                        key={field.id}
-                        type={field.type}
-                        borderBottom
-                        name={field.code}
-                        className='form'
-                        disabled={!isEdit}
-                        placeholder={t(field.code.toUpperCase(), field?.name)}
-                        defaultValue={
-                          formState?.result?.result
-                            ? formState?.result?.result[field.code]
-                            : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
-                        }
-                        onChange={handleChangeInput}
-                        ref={formMethods.register({
-                          required: isRequiredField(field.code)
-                            ? t(`VALIDATION_ERROR_${field.code.toUpperCase()}_REQUIRED`, `${field?.name} is required`).replace('_attribute_', t(field?.name, field.code))
-                            : null
-                        })}
-                        autoComplete='off'
-                      />
-                    </InputGroup>
+                    ((requiredFields && requiredFields.includes(field.code)) || !requiredFields) && (
+                      <InputGroup>
+                        <p>{t(field.code.toUpperCase(), field?.name)}</p>
+                        <Input
+                          key={field.id}
+                          type={field.type}
+                          borderBottom
+                          name={field.code}
+                          className='form'
+                          disabled={!isEdit}
+                          placeholder={t(field.code.toUpperCase(), field?.name)}
+                          defaultValue={formState?.changes[field.code] ?? (user && user[field.code]) ?? ''}
+                          onChange={handleChangeInput}
+                          ref={formMethods.register({
+                            required: isRequiredField(field.code)
+                              ? t(`VALIDATION_ERROR_${field.code.toUpperCase()}_REQUIRED`, `${field?.name} is required`).replace('_attribute_', t(field?.name, field.code))
+                              : null
+                          })}
+                          autoComplete='off'
+                        />
+                      </InputGroup>
+                    )
                   )}
-
                 </React.Fragment>
               )
             )}
-            {!!showInputPhoneNumber && (
+            {!!showInputPhoneNumber && showCustomerCellphone && ((requiredFields && requiredFields.includes('cellphone')) || !requiredFields) && (
               <InputPhoneNumberWrapper>
                 <p>{t('PHONE', 'Phone')}</p>
                 <InputPhoneNumber
@@ -315,7 +336,7 @@ export const UserFormDetailsUI = (props) => {
                 />
               </InputPhoneNumberWrapper>
             )}
-            {!isCheckout && (
+            {!isCheckout && showCustomerPassword && !requiredFields && (
               <InputGroup>
                 <p>{t('PASSWORD', 'Password')}</p>
                 <Input
@@ -338,7 +359,7 @@ export const UserFormDetailsUI = (props) => {
                 />
               </InputGroup>
             )}
-            {!isCheckout && (
+            {!isCheckout && showCustomerPromotions && (
               <PromotionsWrapper>
                 <Checkbox
                   name='promotions'
@@ -357,11 +378,15 @@ export const UserFormDetailsUI = (props) => {
                 </label>
               </PromotionsWrapper>
             )}
-            <Divider />
-            <LanguageSelectorWrapper>
-              <p>{t('LANGUAGE', 'Language')}</p>
-              <LanguageSelector />
-            </LanguageSelectorWrapper>
+            {showLangauges && !requiredFields && (
+              <>
+                <Divider />
+                <LanguageSelectorWrapper>
+                  <p>{t('LANGUAGE', 'Language')}</p>
+                  <LanguageSelector />
+                </LanguageSelectorWrapper>
+              </>
+            )}
             {
               props.afterMidElements?.map((MidElement, i) => (
                 <React.Fragment key={i}>
@@ -373,7 +398,17 @@ export const UserFormDetailsUI = (props) => {
                 <MidComponent key={i} {...props} />))
             }
             <ActionsForm>
-              {((formState && Object.keys(formState?.changes).length > 0 && isEdit) || formState?.loading) && (
+              {onCancel && isOldLayout && (
+                <Button
+                  outline
+                  type='button'
+                  onClick={() => onCancel(false)}
+                  disabled={formState.loading}
+                >
+                  {t('CANCEL', 'Cancel')}
+                </Button>
+              )}
+              {!requiredFields && ((formState && Object.keys(formState?.changes).length > 0 && isEdit) || formState?.loading) && (
                 <Button
                   id='form-btn'
                   color='primary'
@@ -381,6 +416,16 @@ export const UserFormDetailsUI = (props) => {
                   disabled={formState.loading}
                 >
                   {formState.loading ? t('UPDATING', 'Updating...') : t('UPDATE', 'Update')}
+                </Button>
+              )}
+              {requiredFields && (
+                <Button
+                  id='form-btn'
+                  color='primary'
+                  type='submit'
+                  disabled={formState.loading}
+                >
+                  {formState.loading ? t('UPDATING', 'Updating...') : t('CONTINUE', 'Continue')}
                 </Button>
               )}
             </ActionsForm>

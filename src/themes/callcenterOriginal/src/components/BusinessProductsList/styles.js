@@ -30,6 +30,7 @@ export const WrapAllCategories = styled.div`
       margin-right: 10px;
       margin-left: 0;
     `}
+
     img {
       border-radius: 7.6px;
       min-width: 41px;
@@ -42,6 +43,7 @@ export const WrapAllCategories = styled.div`
         margin-right: 0;
       `}
     }
+
     @media (min-width: 993px) {
       margin: 0px;
     }
@@ -62,6 +64,7 @@ export const WrapAllCategories = styled.div`
       cursor: pointer;
     }
   }
+
   h3 {
     font-weight: 600;
     font-size: 24px;
@@ -70,6 +73,7 @@ export const WrapAllCategories = styled.div`
     ${props => props.theme?.rtl && css`
       margin: 0px 10px 0px 0px;
     `}
+
     @media (min-width: 993px) {
       margin: 0px;
     }

@@ -22,12 +22,13 @@ export const WrapAllCategories = styled.div`
   .category-title {
     display: flex;
     align-items: center;
+    justify-content: ${({ isCategorySelected }) => isCategorySelected ? 'flex-start' : 'space-between'};
     margin-left: 10px;
-    width: 100%;
     ${props => props.theme?.rtl && css`
       margin-right: 10px;
       margin-left: 0;
     `}
+
     img {
       border-radius: 7.6px;
       min-width: 41px;
@@ -52,6 +53,7 @@ export const WrapAllCategories = styled.div`
       cursor: pointer;
     }
   }
+
   .wrap-header {
     display: flex;
     justify-content: space-between;
@@ -114,16 +116,20 @@ export const RibbonBox = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-left: 5px;
+
   ${props => props.theme.rtl && css`
     margin-left: 0px;
     margin-right: 5px;
   `}
+
   ${({ bgColor }) => bgColor && css`
     background-color: ${bgColor};
   `}
+
   ${({ isRoundRect }) => isRoundRect && css`
     border-radius: 7.6px;
   `}
+
   ${({ isCapsule }) => isCapsule && css`
     border-radius: 50px;
   `}

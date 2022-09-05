@@ -28,7 +28,7 @@ import { FacebookLoginButton } from './src/components/FacebookLogin'
 import { Favorite } from './src/components/Favorite'
 import { Footer } from './src/components/Footer'
 import { ForgotPasswordForm } from './src/components/ForgotPasswordForm'
-import { GoogleLogin } from './src/components/GoogleLogin'
+import { GoogleLoginButton } from './src/components/GoogleLogin'
 import { Header } from './src/components/Header'
 import { Header as HeaderKiosk } from './src/components/Header/layouts/Kiosk'
 import { HeaderOption } from './src/components/HeaderOption'
@@ -69,6 +69,7 @@ import { ProductIngredient } from './src/components/ProductIngredient'
 import { PhoneAutocomplete } from './src/components/PhoneAutocomplete'
 import { ProductOption } from './src/components/ProductOption'
 import { ProductOptionSubOption } from './src/components/ProductOptionSubOption'
+import { ProfileOptions } from './src/components/UserProfileForm/ProfileOptions'
 import { Promotions } from './src/components/Promotions'
 import { RenderProductsLayout } from './src/components/RenderProductsLayout'
 import { ResetPassword } from './src/components/ResetPassword'
@@ -86,9 +87,15 @@ import { UserDetails } from './src/components/UserDetails'
 import { UserPopover } from './src/components/UserPopover'
 import { UserProfileForm } from './src/components/UserProfileForm'
 import { UserVerification } from './src/components/UserVerification'
+import { VerifyCodeForm } from './src/components/VerifyCodeForm'
 import { Wallets } from './src/components/Wallets'
 import { WalletTransactionItem } from './src/components/WalletTransactionItem'
 import { BusinessListingSearch } from './src/components/BusinessListingSearch'
+import { ReviewTrigger } from './src/components/ReviewTrigger'
+import { ReviewOrder } from './src/components/ReviewOrder'
+import { ReviewDriver } from './src/components/ReviewDriver'
+import { ReviewProduct } from './src/components/ReviewProduct'
+
 import { Button } from './src/styles/Buttons'
 import { Input, TextArea } from './src/styles/Inputs'
 import { Select } from './src/styles/Select'
@@ -126,7 +133,7 @@ export {
   Favorite,
   Footer,
   ForgotPasswordForm,
-  GoogleLogin,
+  GoogleLoginButton,
   Header,
   HeaderKiosk,
   HeaderOption,
@@ -165,6 +172,7 @@ export {
   ProductIngredient,
   ProductItemAccordion,
   ProductOption,
+  ProfileOptions,
   ProductOptionSubOption,
   Promotions,
   PhoneAutocomplete,
@@ -184,8 +192,13 @@ export {
   UserPopover,
   UserProfileForm,
   UserVerification,
+  VerifyCodeForm,
   Wallets,
   WalletTransactionItem,
+  ReviewTrigger,
+  ReviewOrder,
+  ReviewDriver,
+  ReviewProduct,
 
   // styles
   Button,

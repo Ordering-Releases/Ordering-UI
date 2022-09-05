@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import IosRadioButtonOff from '@meronex/icons/ios/IosRadioButtonOff'
 import RiRadioButtonFill from '@meronex/icons/ri/RiRadioButtonFill'
 import MdClose from '@meronex/icons/md/MdClose'
+import { useWindowSize } from '../../../../../hooks/useWindowSize'
 
 import {
   Heart,
@@ -18,7 +19,8 @@ import {
   useLanguage,
   useOrder,
   useCustomer,
-  useEvent
+  useEvent,
+  useOrderingTheme
 } from 'ordering-components-external'
 
 import {
@@ -33,7 +35,8 @@ import {
   List,
   AddressFormContainer,
   TitleFormContainer,
-  CloseIcon
+  CloseIcon,
+  TitleAddress
 } from './styles'
 
 import { NotFoundSource } from '../NotFoundSource'
@@ -61,7 +64,6 @@ const AddressListUI = (props) => {
     isCustomerMode,
     isFromCheckout,
     setIsAddressFormOpen,
-    isHeader,
     isProfile
   } = props
 
@@ -72,8 +74,10 @@ const AddressListUI = (props) => {
   const [addressOpen, setAddressOpen] = useState(false)
   const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
   const theme = useTheme()
+  const [orderingTheme] = useOrderingTheme()
   const [{ user }] = useCustomer()
-
+  const { width } = useWindowSize()
+  const isCompletedLayout = width < 769 || isProfile
   const uniqueAddressesList = (addressList.addresses && addressList.addresses.filter(
     (address, i, self) =>
       i === self.findIndex(obj => (
@@ -82,6 +86,11 @@ const AddressListUI = (props) => {
         address.zipcode === obj.zipcode &&
         address.internal_number === obj.internal_number
       )))) || []
+
+  const showAddress = !orderingTheme?.theme?.profile?.components?.address_list?.components?.address?.hidden
+  const showIcons = !orderingTheme?.theme?.profile?.components?.address_list?.components?.icons?.hidden
+  const showZipcode = !orderingTheme?.theme?.profile?.components?.address_list?.components?.zipcode?.hidden
+  const showInternalNumber = !orderingTheme?.theme?.profile?.components?.address_list?.components?.internal_number?.hidden
 
   const openAddress = (address) => {
     setCurAddress(address)
@@ -214,16 +223,23 @@ const AddressListUI = (props) => {
       <>
         {
           (!isPopover || !addressOpen) && (
-            <Button
-              className='add'
-              outline
-              color={isEnableContinueButton && addressList?.addresses?.length > 0 ? 'secondary' : 'primary'}
-              onClick={() => openAddress({})}
-              disabled={orderState?.loading || actionStatus.loading}
-              style={!isCustomerMode ? { flex: 1, width: 'fit-content' } : {}}
-            >
-              {(orderState?.loading || actionStatus.loading) ? t('LOADING', 'Loading') : t('ADD_NEW_ADDRESS', 'Add New Address')}
-            </Button>
+            <>
+              {!isCompletedLayout && (
+                <TitleAddress>
+                  {t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                </TitleAddress>
+              )}
+              <Button
+                className='add'
+                outline
+                color={isEnableContinueButton && addressList?.addresses?.length > 0 ? 'secondary' : 'primary'}
+                onClick={() => openAddress({})}
+                disabled={orderState?.loading || actionStatus.loading}
+                style={isCompletedLayout ? { flex: 1, width: 'fit-content' } : {}}
+              >
+                {(orderState?.loading || actionStatus.loading) ? t('LOADING', 'Loading') : t('ADD_NEW_ADDRESS', 'Add New Address')}
+              </Button>
+            </>
           )
         }
         {
@@ -256,16 +272,24 @@ const AddressListUI = (props) => {
                     <span className='radio'>
                       {checkAddress(address) ? <RiRadioButtonFill className='address-checked' /> : <IosRadioButtonOff />}
                     </span>
-                    <span className={checkAddress(address) ? 'selected-tag tag' : 'tag'}>
-                      {address?.tag === 'home' && <House />}
-                      {address?.tag === 'office' && <Building />}
-                      {address?.tag === 'favorite' && <Heart />}
-                      {address?.tag === 'other' && <PlusLg />}
-                    </span>
-                    <div className='address'>
-                      <span>{address.address}</span>
-                      <span>{address.internal_number} {address.zipcode}</span>
-                    </div>
+                    {showIcons && (
+                      <span className={checkAddress(address) ? 'selected-tag tag' : 'tag'}>
+                        {address?.tag === 'home' && <House />}
+                        {address?.tag === 'office' && <Building />}
+                        {address?.tag === 'favorite' && <Heart />}
+                        {address?.tag === 'other' && <PlusLg />}
+                      </span>
+                    )}
+                    {(showAddress || showInternalNumber || showZipcode) && (
+                      <div className='address'>
+                        {
+                          showAddress && (
+                            <span>{address.address}</span>
+                          )
+                        }
+                        <span>{showInternalNumber && address.internal_number} {showZipcode && address.zipcode}</span>
+                      </div>
+                    )}
                   </div>
                   <AddressItemActions className='form'>
                     <a className={actionStatus.loading ? 'disabled' : ''} onClick={() => openAddress(address)}>
@@ -330,8 +354,8 @@ const AddressListUI = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
-      <AddressListContainer id='address_control' isLoading={actionStatus?.loading || orderState?.loading} isCustomerMode={isCustomerMode}>
-        {isCustomerMode ? (
+      <AddressListContainer id='address_control' isLoading={actionStatus?.loading || orderState?.loading} isCompletedLayout={isCompletedLayout}>
+        {!isCompletedLayout ? (
           <AddressListCallcenterLayout>
             <AddressListContent />
           </AddressListCallcenterLayout>
@@ -339,10 +363,10 @@ const AddressListUI = (props) => {
           <AddressListContent />
         )}
         {
-          !isPopover && (
+          !isPopover && addressOpen && (
             <Modal
               title={t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
-              open={!isPopover && addressOpen && !isCustomerMode}
+              open={!isPopover && addressOpen && isCompletedLayout}
               onClose={() => handleCloseAddressForm()}
             >
               <AddressForm

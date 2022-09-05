@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { BusinessReviews as BusinessReviewController, useLanguage } from 'ordering-components-external'
+import { BusinessReviews as BusinessReviewController, useLanguage, useOrderingTheme } from 'ordering-components-external'
 import { useTheme } from '../../../../../contexts/ThemeContext'
 import moment from 'moment'
 
@@ -28,11 +28,19 @@ export const BusinessReviewsUI = (props) => {
   const { stars, reviewsList, handleClickOption } = props
   const [, t] = useLanguage()
   const [theme] = useTheme()
-
+  const [orderingTheme] = useOrderingTheme()
   const handleOnChange = (evt) => {
     if (evt.target.value === '') handleClickOption('all')
     else handleClickOption(evt.target.value)
   }
+
+  const showRanking = !orderingTheme?.theme?.business_view?.components?.reviews?.components?.ranking?.hidden
+  const showReviewDate = !orderingTheme?.theme?.business_view?.components?.reviews?.components?.review_date?.hidden
+  const showCustomerComments = !orderingTheme?.theme?.business_view?.components?.reviews?.components?.customer_comments?.hidden
+  const showSearch = !orderingTheme?.theme?.business_view?.components?.reviews?.components?.search?.hidden
+  const hideElement = !(!showReviewDate && !showCustomerComments)
+
+  const reviewPoints = [t('TERRIBLE', 'Terrible'), t('BAD', 'Bad'), t('OKAY', 'Okay'), t('GOOD', 'Good'), t('GREAT', 'Great')]
 
   return (
     <>
@@ -57,61 +65,81 @@ export const BusinessReviewsUI = (props) => {
                 )
               }
             </ReviewsHeaderWrapper>
-            <ReviewOf>
-              {!reviewsList.loading
-                ? (
-                  <SearchContainer>
-                    <input
-                      type='number'
-                      min='1'
-                      max='5'
-                      onChange={handleOnChange}
-                      placeholder={t('SEARCH', 'Search')}
-                      style={{ backgroundImage: `url(${theme?.images?.general?.searchIcon})` }}
-                    />
-                  </SearchContainer>
-                )
-                : <Skeleton width={200} height={30} />}
-            </ReviewOf>
-            <ReviewsProgressWrapper>
-              <p>{t('REVIEW_ORDER', 'Review order')}</p>
-              <ReviewsProgressContent>
-                <ReviewsProgressBar style={{ width: `${(stars / 5) * 100}%` }} />
-                <ReviewsMarkPoint style={{ left: theme.rtl ? 'initial' : '0', right: theme?.rtl ? '0' : 'initial' }}>{t('TERRIBLE', 'Terrible')}</ReviewsMarkPoint>
-                <ReviewsMarkPoint style={{ left: theme.rtl ? 'initial' : '25%', right: theme?.rtl ? '25%' : 'initial' }}>{t('BAD', 'Bad')}</ReviewsMarkPoint>
-                <ReviewsMarkPoint style={{ left: theme.rtl ? 'initial' : '50%', right: theme?.rtl ? '50%' : 'initial' }}>{t('OKAY', 'Okay')}</ReviewsMarkPoint>
-                <ReviewsMarkPoint style={{ left: theme.rtl ? 'initial' : '75%', right: theme?.rtl ? '75%' : 'initial' }}>{t('GOOD', 'Good')}</ReviewsMarkPoint>
-                <ReviewsMarkPoint style={{ left: theme.rtl ? '0' : 'initial', right: theme?.rtl ? 'initial' : '0' }}>{t('GREAT', 'Great')}</ReviewsMarkPoint>
-              </ReviewsProgressContent>
-            </ReviewsProgressWrapper>
-            <Content id='content'>
-              {!reviewsList.loading ? reviewsList?.reviews.map((review) => (
-                <Review key={review.id} id='review'>
-                  <ReviewItemHeader>
-                    <ReviewTime>{moment(review?.created_at).format('LLL')}</ReviewTime>
-                  </ReviewItemHeader>
-                  <ReviewItemContent>{review?.comment}</ReviewItemContent>
-                </Review>
-              )) : (
-                <>
-                  {[...Array(2)].map((item, i) => (
-                    <SkeletonContainer key={i}>
-                      <div>
-                        <Skeleton width={100} height={30} />
-                        <Skeleton width={100} />
-                      </div>
-                      <div>
-                        <Skeleton width={150} height={50} />
-                      </div>
-                    </SkeletonContainer>
-                  ))}
+            {showSearch && (
+              <ReviewOf>
+                {!reviewsList.loading
+                  ? (
+                    <SearchContainer>
+                      <input
+                        type='number'
+                        min='1'
+                        max='5'
+                        onChange={handleOnChange}
+                        placeholder={t('SEARCH', 'Search')}
+                        style={{ backgroundImage: `url(${theme?.images?.general?.searchIcon})` }}
+                      />
+                    </SearchContainer>
+                  )
+                  : <Skeleton width={200} height={30} />}
+              </ReviewOf>
+            )}
+            {showRanking && (
+              <ReviewsProgressWrapper>
+                <p>{t('REVIEW_ORDER', 'Review order')}</p>
+                <ReviewsProgressContent>
+                  <ReviewsProgressBar style={{ width: `${(stars / 5) * 100}%` }} />
+                  {reviewPoints.map((reviewPoint, i) => {
+                    const isLastReviewPoint = i === reviewPoints?.length - 1
+                    return (
+                      <ReviewsMarkPoint
+                        key={i}
+                        style={{
+                          left: theme.rtl !== isLastReviewPoint ? 'initial' : `${25 * (isLastReviewPoint ? 0 : i)}%`,
+                          right: theme.rtl !== isLastReviewPoint ? `${25 * (isLastReviewPoint ? 0 : i)}%` : 'initial'
+                        }}
+                      >
+                        {reviewPoint}
+                      </ReviewsMarkPoint>
+                    )
+                  })}
+                </ReviewsProgressContent>
+              </ReviewsProgressWrapper>
+            )}
+            {hideElement && (
+              <Content id='content'>
+                {!reviewsList.loading ? reviewsList?.reviews.map((review) => (
+                  <Review key={review.id} id='review'>
+                    {showReviewDate && (
+                      <ReviewItemHeader>
+                        <ReviewTime>{moment(review?.created_at).format('LLL')}</ReviewTime>
+                      </ReviewItemHeader>
+                    )}
+                    {showCustomerComments && (
+                      <ReviewItemContent>{review?.comment}</ReviewItemContent>
+                    )}
+                  </Review>
+                )) : (
+                  <>
+                    {[...Array(2)].map((item, i) => (
+                      <SkeletonContainer key={i}>
+                        <div>
+                          <Skeleton width={100} height={30} />
+                          <Skeleton width={100} />
+                        </div>
+                        <div>
+                          <Skeleton width={150} height={50} />
+                        </div>
+                      </SkeletonContainer>
+                    ))}
 
-                </>
-              )}
-              {!reviewsList.loading && reviewsList?.reviews.length === 0 && (
-                <ReviewsNotFound>{t('NO_REVIEWS', 'No reviews')}</ReviewsNotFound>
-              )}
-            </Content>
+                  </>
+                )}
+                {!reviewsList.loading && reviewsList?.reviews.length === 0 && (
+                  <ReviewsNotFound>{t('NO_REVIEWS', 'No reviews')}</ReviewsNotFound>
+                )}
+              </Content>
+            )}
+
           </>
         )}
       </BusinessReviewsContainer>

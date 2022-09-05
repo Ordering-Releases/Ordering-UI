@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useSession, useLanguage, useCustomer } from 'ordering-components-external'
+import { useSession, useLanguage, useCustomer, useOrderingTheme } from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 import parsePhoneNumber from 'libphonenumber-js'
 
@@ -26,17 +26,18 @@ export const UserFormDetailsUI = (props) => {
     handleButtonUpdateClick,
     isCheckout,
     userData,
-    isCustomerMode
+    isCustomerMode,
+    isOriginalLayout
   } = props
 
   const formMethods = useForm()
   const [, t] = useLanguage()
-
   const [{ user: userSession }] = useSession()
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(null)
   const [userPhoneNumber, setUserPhoneNumber] = useState(null)
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [, { setUserCustomer }] = useCustomer()
+  const [orderingTheme] = useOrderingTheme()
   const emailInput = useRef(null)
 
   const user = userData || userSession
@@ -50,6 +51,8 @@ export const UserFormDetailsUI = (props) => {
   }
 
   const showInputPhoneNumber = validationFields?.fields?.checkout?.cellphone?.enabled ?? false
+  const showCustomerCellphone = !orderingTheme?.theme?.profile?.components?.cellphone?.hidden
+  const showCustomerPassword = !orderingTheme?.theme?.profile?.components?.password?.hidden
 
   const setUserCellPhone = (isEdit = false) => {
     if (userPhoneNumber && !userPhoneNumber.includes('null') && !isEdit) {
@@ -150,7 +153,13 @@ export const UserFormDetailsUI = (props) => {
   const handleChangeInputEmail = (e) => {
     handleChangeInput({ target: { name: 'email', value: e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '') } })
     formMethods.setValue('email', e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, ''))
-    emailInput.current.value = e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '')
+    if (emailInput?.current) {
+      emailInput.current.value = e.target.value.toLowerCase().replace(/[&,()%";:ç?<>{}\\[\]\s]/g, '')
+    }
+  }
+
+  const showFieldWithTheme = (name) => {
+    return !orderingTheme?.theme?.profile?.components?.[name]?.hidden
   }
 
   useEffect(() => {
@@ -220,17 +229,17 @@ export const UserFormDetailsUI = (props) => {
         {!validationFields?.loading ? (
           <>
             {
-            props.beforeMidElements?.map((BeforeMidElements, i) => (
-              <React.Fragment key={i}>
-                {BeforeMidElements}
-              </React.Fragment>))
+              props.beforeMidElements?.map((BeforeMidElements, i) => (
+                <React.Fragment key={i}>
+                  {BeforeMidElements}
+                </React.Fragment>))
             }
             {
-            props.beforeMidComponents?.map((BeforeMidComponents, i) => (
-              <BeforeMidComponents key={i} {...props} />))
+              props.beforeMidComponents?.map((BeforeMidComponents, i) => (
+                <BeforeMidComponents key={i} {...props} />))
             }
             {sortInputFields({ values: validationFields?.fields?.checkout }).map(field =>
-              showField && showField(field.code) && (
+              showField && showField(field.code) && showFieldWithTheme(field.code) && (
                 <React.Fragment key={field.id}>
                   {field.code === 'email' ? (
                     <Input
@@ -241,9 +250,9 @@ export const UserFormDetailsUI = (props) => {
                       disabled={!isEdit}
                       placeholder={t(field.code.toUpperCase(), field?.name)}
                       defaultValue={
-                      formState?.result?.result
-                        ? formState?.result?.result[field.code]
-                        : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
+                        formState?.result?.result
+                          ? formState?.result?.result[field.code]
+                          : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
                       }
                       onChange={handleChangeInputEmail}
                       ref={(e) => {
@@ -260,9 +269,9 @@ export const UserFormDetailsUI = (props) => {
                       disabled={!isEdit}
                       placeholder={t(field.code.toUpperCase(), field?.name)}
                       defaultValue={
-                      formState?.result?.result
-                        ? formState?.result?.result[field.code]
-                        : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
+                        formState?.result?.result
+                          ? formState?.result?.result[field.code]
+                          : formState?.changes[field.code] ?? (user && user[field.code]) ?? ''
                       }
                       onChange={handleChangeInput}
                       ref={formMethods.register({
@@ -277,7 +286,7 @@ export const UserFormDetailsUI = (props) => {
                 </React.Fragment>
               )
             )}
-            {!!showInputPhoneNumber && (
+            {!!showInputPhoneNumber && showCustomerCellphone && (
               <InputPhoneNumber
                 user={user}
                 value={userPhoneNumber}
@@ -286,7 +295,7 @@ export const UserFormDetailsUI = (props) => {
                 disabled={!isEdit}
               />
             )}
-            {!isCheckout && (
+            {!isCheckout && showCustomerPassword && (
               <Input
                 type='password'
                 name='password'
@@ -306,17 +315,17 @@ export const UserFormDetailsUI = (props) => {
               />
             )}
             {
-            props.afterMidElements?.map((MidElement, i) => (
-              <React.Fragment key={i}>
-                {MidElement}
-              </React.Fragment>))
+              props.afterMidElements?.map((MidElement, i) => (
+                <React.Fragment key={i}>
+                  {MidElement}
+                </React.Fragment>))
             }
             {
-             props.afterMidComponents?.map((MidComponent, i) => (
-               <MidComponent key={i} {...props} />))
+              props.afterMidComponents?.map((MidComponent, i) => (
+                <MidComponent key={i} {...props} />))
             }
             <ActionsForm>
-              {onCancel && (
+              {onCancel && !isOriginalLayout && (
                 <Button
                   outline
                   type='button'
