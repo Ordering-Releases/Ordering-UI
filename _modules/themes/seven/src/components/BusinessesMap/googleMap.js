@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59,11 +59,11 @@ var GoogleMaps = function GoogleMaps(props) {
       businessMap = props.businessMap,
       businessList = props.businessList;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
@@ -89,7 +89,7 @@ var GoogleMaps = function GoogleMaps(props) {
       boundMap = _useState8[0],
       setBoundMap = _useState8[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -455,7 +455,7 @@ GoogleMaps.defaultProps = {
   beforeElements: [],
   afterElements: []
 };
-var GoogleMapsMap = (0, _orderingComponents.WrapperGoogleMaps)(GoogleMaps);
+var GoogleMapsMap = (0, _orderingComponentsExternal.WrapperGoogleMaps)(GoogleMaps);
 exports.GoogleMapsMap = GoogleMapsMap;
 GoogleMapsMap.propTypes = {
   /**

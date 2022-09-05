@@ -7,7 +7,7 @@ exports.SmartAppBanner = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactSmartbanner = _interopRequireDefault(require("react-smartbanner"));
 
@@ -32,7 +32,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SmartAppBanneUI = function SmartAppBanneUI(props) {
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -62,7 +62,7 @@ var SmartAppBanner = function SmartAppBanner(props) {
     UIComponent: SmartAppBanneUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.SmartAppBanner, smartAppBannerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SmartAppBanner, smartAppBannerProps);
 };
 
 exports.SmartAppBanner = SmartAppBanner;

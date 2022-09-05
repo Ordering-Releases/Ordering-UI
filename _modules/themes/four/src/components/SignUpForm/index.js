@@ -21,7 +21,7 @@ var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Confirm = require("../../../../../components/Confirm");
 
@@ -95,11 +95,11 @@ var SignUpFormUI = function SignUpFormUI(props) {
       fieldsNotValid = props.fieldsNotValid,
       signupData = props.signupData;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -113,7 +113,7 @@ var SignUpFormUI = function SignUpFormUI(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 2),
       login = _useSession2[1].login;
 
@@ -448,7 +448,7 @@ var SignUpForm = function SignUpForm(props) {
     UIComponent: SignUpFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.SignupForm, loginControllerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SignupForm, loginControllerProps);
 };
 
 exports.SignUpForm = SignUpForm;

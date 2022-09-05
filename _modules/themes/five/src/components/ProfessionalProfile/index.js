@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _BusinessPreorder = require("../BusinessPreorder");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FaUserAlt = _interopRequireDefault(require("@meronex/icons/fa/FaUserAlt"));
 
@@ -36,11 +36,11 @@ var ProfessionalProfile = function ProfessionalProfile(props) {
       handleChangeProfessionalSelected = props.handleChangeProfessionalSelected,
       onClose = props.onClose;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 

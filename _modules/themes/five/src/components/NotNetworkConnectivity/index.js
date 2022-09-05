@@ -7,7 +7,7 @@ exports.NotNetworkConnectivity = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -34,7 +34,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var NotNetworkConnectivity = function NotNetworkConnectivity(props) {
   var _props$isOnline, _theme$images, _theme$images$general;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

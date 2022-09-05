@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactHookForm = require("react-hook-form");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -72,7 +72,7 @@ var ReviewOrderUI = function ReviewOrderUI(props) {
       closeReviewOrder = props.closeReviewOrder,
       setIsReviewed = props.setIsReviewed;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -286,7 +286,7 @@ var ReviewOrder = function ReviewOrder(props) {
     UIComponent: ReviewOrderUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderReview, ReviewOrderProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderReview, ReviewOrderProps);
 };
 
 exports.ReviewOrder = ReviewOrder;

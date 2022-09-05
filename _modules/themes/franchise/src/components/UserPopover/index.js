@@ -9,7 +9,7 @@ exports.UserPopover = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactPopper = require("react-popper");
 
@@ -86,15 +86,15 @@ var UserPopover = function UserPopover(props) {
       withLogout = props.withLogout,
       isCustomerMode = props.isCustomerMode;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       sessionState = _useSession2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
@@ -225,11 +225,11 @@ var UserPopover = function UserPopover(props) {
 exports.UserPopover = UserPopover;
 
 var LogoutActionUI = function LogoutActionUI(props) {
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 2),
       deleteUserCustomer = _useCustomer2[1].deleteUserCustomer;
 
@@ -263,5 +263,5 @@ var PopoverListItemLogout = function PopoverListItemLogout(props) {
     UIComponent: LogoutActionUI,
     onClose: props.onClose
   };
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LogoutAction, logoutActionProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LogoutAction, logoutActionProps);
 };

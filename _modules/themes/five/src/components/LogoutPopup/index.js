@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -57,15 +57,15 @@ var LogoutUI = function LogoutUI(props) {
   var handleLogoutClick = props.handleLogoutClick,
       onClose = props.onClose;
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       token = _useSession2[0].token;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -250,7 +250,7 @@ var LogoutPopup = function LogoutPopup(props) {
     UIComponent: LogoutUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LogoutAction, logoutProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LogoutAction, logoutProps);
 };
 
 exports.LogoutPopup = LogoutPopup;

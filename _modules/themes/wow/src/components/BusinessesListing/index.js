@@ -7,7 +7,7 @@ exports.BusinessesListing = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -38,7 +38,7 @@ var BusinessesListing = function BusinessesListing(props) {
 
   var isShowHero = props.isShowHero;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

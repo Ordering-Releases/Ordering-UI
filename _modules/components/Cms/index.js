@@ -7,7 +7,7 @@ exports.Cms = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -43,7 +43,7 @@ var CmsUI = function CmsUI(props) {
   var cmsState = props.cmsState,
       handleCmsRedirect = props.handleCmsRedirect;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -101,7 +101,7 @@ var Cms = function Cms(props) {
     UIComponent: CmsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.CmsContent, CmsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CmsContent, CmsProps);
 };
 
 exports.Cms = Cms;

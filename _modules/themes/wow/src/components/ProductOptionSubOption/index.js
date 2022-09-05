@@ -9,7 +9,7 @@ exports.ProductOptionSubOption = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BsCircleFill = _interopRequireDefault(require("@meronex/icons/bs/BsCircleFill"));
 
@@ -67,11 +67,11 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
       toggleSelect = props.toggleSelect,
       changePosition = props.changePosition;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
@@ -173,7 +173,7 @@ var ProductOptionSubOption = function ProductOptionSubOption(props) {
     UIComponent: ProductOptionSubOptionUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductOptionSuboption, productOptionSubOptionProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductOptionSuboption, productOptionSubOptionProps);
 };
 
 exports.ProductOptionSubOption = ProductOptionSubOption;

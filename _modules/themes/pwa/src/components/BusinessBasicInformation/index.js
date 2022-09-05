@@ -31,7 +31,7 @@ var _MomentContent = require("../MomentContent");
 
 var _HiArrowNarrowLeft = _interopRequireDefault(require("@meronex/icons/hi/HiArrowNarrowLeft"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _useWindowSize = require("../../../../../hooks/useWindowSize");
 
@@ -82,17 +82,17 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
   var theme = (0, _styledComponents.useTheme)();
   var history = (0, _reactRouterDom.useHistory)();
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var windowSize = (0, _useWindowSize.useWindowSize)();
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,

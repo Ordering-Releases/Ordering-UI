@@ -9,7 +9,7 @@ exports.PreviousBusinessOrderedUI = exports.PreviousBusinessOrdered = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessController = require("../../BusinessController");
 
@@ -53,7 +53,7 @@ var PreviousBusinessOrderedUI = function PreviousBusinessOrderedUI(props) {
       isLoadingOrders = props.isLoadingOrders,
       handleUpdateBusinessList = props.handleUpdateBusinessList;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -123,7 +123,7 @@ var PreviousBusinessOrdered = function PreviousBusinessOrdered(props) {
     }
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, previousBusinessOrderedController);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, previousBusinessOrderedController);
 };
 
 exports.PreviousBusinessOrdered = PreviousBusinessOrdered;

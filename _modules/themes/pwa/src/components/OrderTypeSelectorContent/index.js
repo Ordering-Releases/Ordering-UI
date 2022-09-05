@@ -7,7 +7,7 @@ exports.OrderTypeSelectorContentUI = exports.OrderTypeSelectorContent = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -44,11 +44,11 @@ var OrderTypeSelectorContentUI = function OrderTypeSelectorContentUI(props) {
       orderTypes = props.orderTypes,
       onClose = props.onClose;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderStatus = _useOrder2[0];
 
@@ -97,7 +97,7 @@ exports.OrderTypeSelectorContentUI = OrderTypeSelectorContentUI;
 var OrderTypeSelectorContent = function OrderTypeSelectorContent(props) {
   var _theme$images, _theme$images$deliver, _theme$images2, _theme$images2$delive, _theme$images3, _theme$images3$delive, _theme$images4, _theme$images4$delive, _theme$images5, _theme$images5$delive;
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -133,7 +133,7 @@ var OrderTypeSelectorContent = function OrderTypeSelectorContent(props) {
     }]
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderTypeControl, orderTypeProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderTypeControl, orderTypeProps);
 };
 
 exports.OrderTypeSelectorContent = OrderTypeSelectorContent;

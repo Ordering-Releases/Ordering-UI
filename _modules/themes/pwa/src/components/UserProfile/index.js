@@ -21,7 +21,7 @@ var _BiImage = _interopRequireDefault(require("@meronex/icons/bi/BiImage"));
 
 var _GrLogout = _interopRequireDefault(require("@meronex/icons/gr/GrLogout"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _IosGlobe = _interopRequireDefault(require("@meronex/icons/ios/IosGlobe"));
 
@@ -76,11 +76,11 @@ var UserProfileFormUI = function UserProfileFormUI(props) {
       toggleIsEdit = props.toggleIsEdit,
       isHiddenAddress = props.isHiddenAddress;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
@@ -227,14 +227,14 @@ var UserProfileFormUI = function UserProfileFormUI(props) {
       return handleClickImage();
     },
     isImage: (user === null || user === void 0 ? void 0 : user.photo) || (formState === null || formState === void 0 ? void 0 : (_formState$changes3 = formState.changes) === null || _formState$changes3 === void 0 ? void 0 : _formState$changes3.photo) && !formState.result.error
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.ExamineClick, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ExamineClick, {
     onFiles: handleFiles,
     childRef: function childRef(e) {
       inputRef.current = e;
     },
     accept: "image/png, image/jpeg, image/jpg",
     disabled: formState.loading
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.DragAndDrop, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.DragAndDrop, {
     onDrop: function onDrop(dataTransfer) {
       return handleFiles(dataTransfer.files);
     },
@@ -286,7 +286,7 @@ var UserProfile = function UserProfile(props) {
     UIComponent: UserProfileFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserFormDetails, UserProfileProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, UserProfileProps);
 };
 
 exports.UserProfile = UserProfile;
@@ -391,11 +391,11 @@ var Reward = function Reward() {
 exports.Reward = Reward;
 
 var LogoutActionUI = function LogoutActionUI(props) {
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 2),
       deleteUserCustomer = _useCustomer2[1].deleteUserCustomer;
 
@@ -429,5 +429,5 @@ var PopoverListItemLogout = function PopoverListItemLogout(props) {
     UIComponent: LogoutActionUI,
     onClose: props.onClose
   };
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LogoutAction, logoutActionProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LogoutAction, logoutActionProps);
 };

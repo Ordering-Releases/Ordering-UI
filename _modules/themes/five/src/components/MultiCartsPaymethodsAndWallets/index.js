@@ -7,7 +7,7 @@ exports.MultiCartsPaymethodsAndWallets = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -116,15 +116,15 @@ var MultiCartsPaymethodsAndWalletsUI = function MultiCartsPaymethodsAndWalletsUI
       handleSelectWallet = props.handleSelectWallet,
       handlePaymethodDataChange = props.handlePaymethodDataChange;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
@@ -218,7 +218,7 @@ var MultiCartsPaymethodsAndWallets = function MultiCartsPaymethodsAndWallets(pro
     UIComponent: MultiCartsPaymethodsAndWalletsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MultiCartsPaymethodsAndWallets, multiCartsPaymethodsAndWalletsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MultiCartsPaymethodsAndWallets, multiCartsPaymethodsAndWalletsProps);
 };
 
 exports.MultiCartsPaymethodsAndWallets = MultiCartsPaymethodsAndWallets;

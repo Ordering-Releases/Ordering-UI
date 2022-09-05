@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BiArrowBack = _interopRequireDefault(require("@meronex/icons/bi/BiArrowBack"));
 
@@ -50,7 +50,7 @@ var MyOrders = function MyOrders(props) {
       onOrderDetailsRedirect = props.onOrderDetailsRedirect;
   var history = (0, _reactRouterDom.useHistory)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

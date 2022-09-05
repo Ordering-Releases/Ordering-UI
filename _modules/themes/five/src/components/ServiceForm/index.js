@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _react2 = require("swiper/react");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Confirm = require("../Confirm");
 
@@ -82,17 +82,17 @@ var ServiceFormUI = function ServiceFormUI(props) {
       productCart = props.productCart;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
       parseDate = _useUtils2$.parseDate;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 2),
       auth = _useSession2[0].auth,
       login = _useSession2[1].login;
@@ -337,7 +337,7 @@ var ServiceForm = function ServiceForm(props) {
     isService: true
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductForm, serviceFormProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductForm, serviceFormProps);
 };
 
 exports.ServiceForm = ServiceForm;

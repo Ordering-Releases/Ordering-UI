@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactHookForm = require("react-hook-form");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -45,7 +45,7 @@ var StripeRedirectFormUI = function StripeRedirectFormUI(props) {
   var paymethods = props.paymethods,
       handleSubmitPaymentMethod = props.handleSubmitPaymentMethod;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
@@ -55,7 +55,7 @@ var StripeRedirectFormUI = function StripeRedirectFormUI(props) {
       errors = _useForm.errors,
       formState = _useForm.formState;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -118,7 +118,7 @@ var StripeRedirectForm = function StripeRedirectForm(props) {
     UIComponent: StripeRedirectFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.StripeRedirectForm, stripeRedirectFormProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.StripeRedirectForm, stripeRedirectFormProps);
 };
 
 exports.StripeRedirectForm = StripeRedirectForm;

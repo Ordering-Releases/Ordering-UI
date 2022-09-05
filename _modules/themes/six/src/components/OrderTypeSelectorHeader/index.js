@@ -9,7 +9,7 @@ exports.OrderTypeSelectorHeader = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Select = require("../../styles/Select");
 
@@ -71,17 +71,17 @@ var OrderTypeSelectorHeaderUI = function OrderTypeSelectorHeaderUI(props) {
       modalIsOpen = _useState2[0],
       setModalIsOpen = _useState2[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -132,7 +132,7 @@ var OrderTypeSelectorHeaderUI = function OrderTypeSelectorHeaderUI(props) {
 };
 
 var OrderTypeSelectorHeader = function OrderTypeSelectorHeader(props) {
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -171,7 +171,7 @@ var OrderTypeSelectorHeader = function OrderTypeSelectorHeader(props) {
     }]
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderTypeControl, orderTypeProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderTypeControl, orderTypeProps);
 };
 
 exports.OrderTypeSelectorHeader = OrderTypeSelectorHeader;

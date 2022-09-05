@@ -9,7 +9,7 @@ exports.ProfessionalFilter = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FaUserAlt = _interopRequireDefault(require("@meronex/icons/fa/FaUserAlt"));
 
@@ -44,7 +44,7 @@ var ProfessionalFilter = function ProfessionalFilter(props) {
       professionalSelected = props.professionalSelected,
       handleChangeProfessionalSelected = props.handleChangeProfessionalSelected;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

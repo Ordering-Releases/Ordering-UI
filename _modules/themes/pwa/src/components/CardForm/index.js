@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactStripeJs = require("@stripe/react-stripe-js");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -63,7 +63,7 @@ var CardFormUI = function CardFormUI(props) {
       handleChange = props.handleChange,
       SplitForm = props.SplitForm;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -110,7 +110,7 @@ var CardForm = function CardForm(props) {
     UIComponent: CardFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.CardForm, cardFormProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CardForm, cardFormProps);
 };
 
 exports.CardForm = CardForm;

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _AutoScroll = require("../../../../../components/AutoScroll");
 
@@ -205,7 +205,7 @@ var BusinessProductsCategories = function BusinessProductsCategories(props) {
     UIComponent: BusinessProductsCategoriesUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessProductsCategories, businessProductsCategoriesProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessProductsCategories, businessProductsCategoriesProps);
 };
 
 exports.BusinessProductsCategories = BusinessProductsCategories;

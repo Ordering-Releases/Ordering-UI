@@ -7,7 +7,7 @@ exports.HomeHero = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _OriginalHomeHero = require("./layouts/OriginalHomeHero");
 
@@ -38,7 +38,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var HomeHero = function HomeHero(props) {
   var _HomeLayoutConfig$hom, _HomeLayoutConfig$hom2, _HomeLayoutConfig$hom3, _HomeLayoutConfig$hom4;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs; // *****************************
   // HomeLayout = configs

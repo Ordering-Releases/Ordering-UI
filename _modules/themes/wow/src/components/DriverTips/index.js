@@ -7,7 +7,7 @@ exports.DriverTips = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -61,7 +61,7 @@ var DriverTips = function DriverTips(props) {
     UIComponent: DriverTipsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.DriverTips, driverTipsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.DriverTips, driverTipsProps);
 };
 
 exports.DriverTips = DriverTips;

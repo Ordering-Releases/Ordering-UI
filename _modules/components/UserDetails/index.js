@@ -17,7 +17,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _styles = require("./styles");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _UserFormDetails = require("../UserFormDetails");
 
@@ -60,11 +60,11 @@ var UserDetailsUI = function UserDetailsUI(props) {
       isCustomerMode = props.isCustomerMode,
       userState = props.userState;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
@@ -130,7 +130,7 @@ var UserDetails = function UserDetails(props) {
     UIComponent: UserDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserFormDetails, userDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, userDetailsProps);
 };
 
 exports.UserDetails = UserDetails;

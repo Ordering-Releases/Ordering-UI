@@ -9,7 +9,7 @@ exports.OrderTypeSelectorContentUI = exports.OrderTypeSelectorContent = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -73,31 +73,31 @@ var OrderTypeSelectorContentUI = function OrderTypeSelectorContentUI(props) {
       isDisabledTables = props.isDisabledTables;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderStatus = _useOrder2[0];
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
@@ -393,7 +393,7 @@ exports.OrderTypeSelectorContentUI = OrderTypeSelectorContentUI;
 var OrderTypeSelectorContent = function OrderTypeSelectorContent(props) {
   var _theme$images, _theme$images2, _theme$images2$dummie, _theme$defaultLanguag, _theme$images3, _theme$images3$delive, _theme$defaultLanguag2, _theme$images4, _theme$images4$delive, _theme$defaultLanguag3, _theme$images5, _theme$images5$delive, _theme$defaultLanguag4, _theme$images6, _theme$images6$delive;
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -426,7 +426,7 @@ var OrderTypeSelectorContent = function OrderTypeSelectorContent(props) {
     }]
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderTypeControl, orderTypeProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderTypeControl, orderTypeProps);
 };
 
 exports.OrderTypeSelectorContent = OrderTypeSelectorContent;

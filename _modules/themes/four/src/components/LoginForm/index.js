@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _RiPhoneLine = _interopRequireDefault(require("@meronex/icons/ri/RiPhoneLine"));
 
@@ -103,11 +103,11 @@ var LoginFormUI = function LoginFormUI(props) {
       credentials = props.credentials;
   var numOtpInputs = 4;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -121,7 +121,7 @@ var LoginFormUI = function LoginFormUI(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 2),
       login = _useSession2[1].login;
 
@@ -524,7 +524,7 @@ var LoginForm = function LoginForm(props) {
     UIComponent: LoginFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LoginForm, loginControllerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LoginForm, loginControllerProps);
 };
 
 exports.LoginForm = LoginForm;

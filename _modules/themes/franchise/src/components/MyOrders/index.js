@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styles = require("./styles");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _ProfileOptions = require("../../../../../components/UserProfileForm/ProfileOptions");
 
@@ -44,7 +44,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var MyOrders = function MyOrders(props) {
   var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

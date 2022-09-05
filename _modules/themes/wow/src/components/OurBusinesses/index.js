@@ -15,7 +15,7 @@ var _SearchValueContext = require("../../contexts/SearchValueContext");
 
 var _AutoScroll = require("../AutoScroll");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -63,13 +63,13 @@ var OurBusinessesUI = function OurBusinessesUI(props) {
       onBusinessClick = props.onBusinessClick,
       handleChangeSearch = props.handleChangeSearch;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -120,7 +120,7 @@ var OurBusinesses = function OurBusinesses(props) {
     UIComponent: OurBusinessesUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, businessListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, businessListingProps);
 };
 
 exports.OurBusinesses = OurBusinesses;

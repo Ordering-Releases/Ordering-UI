@@ -15,7 +15,7 @@ var _styledComponents = require("styled-components");
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -105,19 +105,19 @@ var BusinessProductsListingUI = function BusinessProductsListingUI(props) {
       error = businessState.error;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       carts = _useOrder2[0].carts;
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
@@ -558,7 +558,7 @@ var BusinessProductsListing = function BusinessProductsListing(props) {
     }
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessAndProductList, businessProductslistingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessAndProductList, businessProductslistingProps);
 };
 
 exports.BusinessProductsListing = BusinessProductsListing;
@@ -569,7 +569,7 @@ var AgeCheckForm = function AgeCheckForm(props) {
   var theme = (0, _styledComponents.useTheme)();
   var windowSize = useWindowSize();
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -597,7 +597,7 @@ var AgeCheckForm = function AgeCheckForm(props) {
 exports.AgeCheckForm = AgeCheckForm;
 
 var BreackFastCheck = function BreackFastCheck(props) {
-  var _useLanguage5 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage5 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage6 = _slicedToArray(_useLanguage5, 2),
       t = _useLanguage6[1];
 

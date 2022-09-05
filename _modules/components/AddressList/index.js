@@ -25,7 +25,7 @@ var _IosRadioButtonOn = _interopRequireDefault(require("@meronex/icons/ios/IosRa
 
 var _IosRadioButtonOff = _interopRequireDefault(require("@meronex/icons/ios/IosRadioButtonOff"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -91,15 +91,15 @@ var AddressListUI = function AddressListUI(props) {
       isCustomerMode = props.isCustomerMode,
       isFromCheckout = props.isFromCheckout;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
@@ -124,7 +124,7 @@ var AddressListUI = function AddressListUI(props) {
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 1),
       user = _useCustomer2[0].user;
 
@@ -384,7 +384,7 @@ var AddressList = function AddressList(props) {
     UIComponent: AddressListUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AddressList, addressListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AddressList, addressListProps);
 };
 
 exports.AddressList = AddressList;

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _SearchBar = require("../../../SearchBar");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessPreorder = require("../../../BusinessPreorder");
 
@@ -91,19 +91,19 @@ var BusinessListingUI = function BusinessListingUI(props) {
       businessTypeSelected = props.businessTypeSelected,
       handleUpdateBusinessList = props.handleUpdateBusinessList;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
@@ -314,7 +314,7 @@ var BusinessListing = function BusinessListing(props) {
     UIComponent: BusinessListingUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, businessListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, businessListingProps);
 };
 
 exports.BusinessListing = BusinessListing;

@@ -13,7 +13,7 @@ var _Inputs = require("../../styles/Inputs");
 
 var _ThemeContext = require("../../contexts/ThemeContext");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -48,7 +48,7 @@ var SearchBar = function SearchBar(props) {
       _useTheme2 = _slicedToArray(_useTheme, 1),
       theme = _useTheme2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

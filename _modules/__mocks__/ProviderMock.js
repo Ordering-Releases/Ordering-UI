@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Confirm = require("../components/Confirm");
 
@@ -33,7 +33,7 @@ var configFile = {
 var ProviderMock = function ProviderMock(props) {
   return /*#__PURE__*/_react.default.createElement(_ThemeContext.ThemeProvider, {
     theme: _theme.default
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderingProvider, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderingProvider, {
     Alert: _Confirm.Alert,
     settings: configFile
   }, props.children));

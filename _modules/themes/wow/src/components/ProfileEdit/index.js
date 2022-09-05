@@ -15,7 +15,7 @@ var _BiImage = _interopRequireDefault(require("@meronex/icons/bi/BiImage"));
 
 var _UserFormDetails = require("../UserFormDetails");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Confirm = require("../../../../../components/Confirm");
 
@@ -52,7 +52,7 @@ var ProfileEdit = function ProfileEdit(props) {
       handleButtonUpdateClick = props.handleButtonUpdateClick,
       onCancel = props.onCancel;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -118,14 +118,14 @@ var ProfileEdit = function ProfileEdit(props) {
       return handleClickImage();
     },
     isImage: (user === null || user === void 0 ? void 0 : user.photo) || (formState === null || formState === void 0 ? void 0 : (_formState$changes3 = formState.changes) === null || _formState$changes3 === void 0 ? void 0 : _formState$changes3.photo) && !formState.result.error
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.ExamineClick, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ExamineClick, {
     onFiles: handleFiles,
     childRef: function childRef(e) {
       inputRef.current = e;
     },
     accept: "image/png, image/jpeg, image/jpg",
     disabled: formState.loading
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.DragAndDrop, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.DragAndDrop, {
     onDrop: function onDrop(dataTransfer) {
       return handleFiles(dataTransfer.files);
     },

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _FiShare = _interopRequireDefault(require("@meronex/icons/fi/FiShare2"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -108,7 +108,7 @@ var ProductShare = function ProductShare(props) {
     UIComponent: ProductShareUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductShare, productShareProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductShare, productShareProps);
 };
 
 exports.ProductShare = ProductShare;

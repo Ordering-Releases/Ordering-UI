@@ -13,7 +13,7 @@ var _CartInfo = require("../CartInfo");
 
 var _Cart = require("../Cart");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -41,7 +41,7 @@ var CartFullPage = function CartFullPage(props) {
       business = props.business,
       individualBusinessCart = props.individualBusinessCart;
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 

@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.verifyDecimals = exports.sortInputFields = exports.shape = exports.scrollTo = exports.reviewCommentList = exports.priceList = exports.getTraduction = exports.getIconCard = exports.getHourMin = exports.getGoogleMapImage = exports.getDistance = exports.formatUrlVideo = exports.formatSeconds = exports.flatArray = exports.fieldsToSort = exports.convertToRadian = exports.convertHoursToMinutes = exports.checkSiteUrl = exports.capitalize = exports.bytesConverter = void 0;
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -114,7 +114,7 @@ var formatUrlVideo = function formatUrlVideo(url) {
 exports.formatUrlVideo = formatUrlVideo;
 
 var convertHoursToMinutes = function convertHoursToMinutes(time) {
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -176,7 +176,7 @@ var flatArray = function flatArray(arr) {
 exports.flatArray = flatArray;
 
 var getTraduction = function getTraduction(key) {
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -403,7 +403,7 @@ var priceList = [{
 exports.priceList = priceList;
 
 var reviewCommentList = function reviewCommentList(type) {
-  var _useLanguage5 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage5 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage6 = _slicedToArray(_useLanguage5, 2),
       t = _useLanguage6[1];
 

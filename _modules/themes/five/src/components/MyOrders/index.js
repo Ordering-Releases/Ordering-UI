@@ -9,7 +9,7 @@ exports.MyOrders = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _ProfileOptions = require("../../../../../components/UserProfileForm/ProfileOptions");
 
@@ -52,7 +52,7 @@ var MyOrders = function MyOrders(props) {
       businessesSearchList = props.businessesSearchList,
       onProductRedirect = props.onProductRedirect;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

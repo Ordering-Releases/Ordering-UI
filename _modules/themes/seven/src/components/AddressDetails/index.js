@@ -9,7 +9,7 @@ exports.AddressDetails = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -45,7 +45,7 @@ var AddressDetailsUI = function AddressDetailsUI(props) {
   var googleMapsUrl = props.googleMapsUrl,
       apiKey = props.apiKey;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -106,7 +106,7 @@ var AddressDetails = function AddressDetails(props) {
     UIComponent: AddressDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AddressDetails, addressDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AddressDetails, addressDetailsProps);
 };
 
 exports.AddressDetails = AddressDetails;

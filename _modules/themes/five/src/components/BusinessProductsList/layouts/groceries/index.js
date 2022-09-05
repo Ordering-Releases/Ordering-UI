@@ -9,7 +9,7 @@ exports.BusinessProductsList = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Buttons = require("../../../../styles/Buttons");
 
@@ -74,11 +74,11 @@ var BusinessProductsListUI = function BusinessProductsListUI(props) {
       currentCart = props.currentCart,
       handleUpdateProducts = props.handleUpdateProducts;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -272,7 +272,7 @@ var BusinessProductsList = function BusinessProductsList(props) {
     UIComponent: BusinessProductsListUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductsList, businessProductsListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductsList, businessProductsListProps);
 };
 
 exports.BusinessProductsList = BusinessProductsList;

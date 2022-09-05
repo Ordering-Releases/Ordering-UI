@@ -9,7 +9,7 @@ exports.OrdersOptionUI = exports.OrdersOption = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -73,17 +73,17 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
       handleOrderDetails = props.handleOrderDetails,
       handleOrderHelp = props.handleOrderHelp;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 2),
       reorder = _useOrder2[1].reorder;
 
@@ -301,7 +301,7 @@ var OrdersOption = function OrdersOption(props) {
     }
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderList, orderListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderList, orderListProps);
 };
 
 exports.OrdersOption = OrdersOption;

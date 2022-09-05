@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Inputs = require("../../styles/Inputs");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BiFilterAlt = _interopRequireDefault(require("@meronex/icons/bi/BiFilterAlt"));
 
@@ -48,7 +48,7 @@ var SearchBar = function SearchBar(props) {
       lazyLoad = props.lazyLoad,
       isCustomLayout = props.isCustomLayout;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

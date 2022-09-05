@@ -9,7 +9,7 @@ exports.ProductOption = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowDown"));
 
@@ -48,7 +48,7 @@ var ProductOptionUI = function ProductOptionUI(props) {
       option = props.option,
       error = props.error;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -116,7 +116,7 @@ var ProductOption = function ProductOption(props) {
     UIComponent: ProductOptionUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductOption, productOptionProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductOption, productOptionProps);
 };
 
 exports.ProductOption = ProductOption;

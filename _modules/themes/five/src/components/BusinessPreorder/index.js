@@ -9,7 +9,7 @@ exports.BusinessPreorder = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -87,21 +87,21 @@ var BusinessPreorderUI = function BusinessPreorderUI(props) {
   var _useLocation = (0, _reactRouterDom.useLocation)(),
       pathname = _useLocation.pathname;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -295,7 +295,7 @@ var BusinessPreorder = function BusinessPreorder(props) {
 
   var maxDays = props.maxDays;
 
-  var _useConfig3 = (0, _orderingComponents.useConfig)(),
+  var _useConfig3 = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig4 = _slicedToArray(_useConfig3, 1),
       configs = _useConfig4[0].configs;
 
@@ -311,7 +311,7 @@ var BusinessPreorder = function BusinessPreorder(props) {
     maxDate: currentDate
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MomentOption, businessPreorderProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MomentOption, businessPreorderProps);
 };
 
 exports.BusinessPreorder = BusinessPreorder;

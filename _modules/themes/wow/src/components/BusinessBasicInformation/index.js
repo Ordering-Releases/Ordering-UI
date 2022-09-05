@@ -15,7 +15,7 @@ var _FaStar = _interopRequireDefault(require("@meronex/icons/fa/FaStar"));
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Modal = require("../../../../../components/Modal");
 
@@ -52,11 +52,11 @@ var BusinessBasicInformation = function BusinessBasicInformation(props) {
       loading = businessState.loading;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 

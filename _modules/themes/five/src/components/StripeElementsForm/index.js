@@ -7,7 +7,7 @@ exports.StripeElementsForm = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _pure = require("@stripe/stripe-js/pure");
 
@@ -56,7 +56,7 @@ var StripeElementsFormUI = function StripeElementsFormUI(props) {
       handlePlaceOrder = props.handlePlaceOrder,
       methodsPay = props.methodsPay;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -104,7 +104,7 @@ var StripeElementsForm = function StripeElementsForm(props) {
     UIComponent: StripeElementsFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.StripeElementsForm, stripeElementsFormProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.StripeElementsForm, stripeElementsFormProps);
 };
 
 exports.StripeElementsForm = StripeElementsForm;

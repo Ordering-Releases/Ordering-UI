@@ -53,7 +53,7 @@ var _OrderTypeSelectorHeader = require("../../../../../components/OrderTypeSelec
 
 var _MomentPopover = require("../MomentPopover");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -104,19 +104,19 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
       handleChangeBusinessType = props.handleChangeBusinessType,
       handleBusinessClick = props.handleBusinessClick;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -157,7 +157,7 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
   var windowSize = (0, _useWindowSize.useWindowSize)();
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
@@ -473,7 +473,7 @@ var BusinessesListing = function BusinessesListing(props) {
     UIComponent: BusinessesListingUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, businessListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, businessListingProps);
 };
 
 exports.BusinessesListing = BusinessesListing;

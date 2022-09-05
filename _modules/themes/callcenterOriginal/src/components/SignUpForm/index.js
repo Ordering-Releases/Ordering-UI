@@ -19,7 +19,7 @@ var _InputPhoneNumber = require("../InputPhoneNumber");
 
 var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -89,11 +89,11 @@ var SignUpFormUI = function SignUpFormUI(props) {
       signupData = props.signupData,
       enableReCaptcha = props.enableReCaptcha;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -370,7 +370,7 @@ var SignUpFormUI = function SignUpFormUI(props) {
     }, /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
       height: 43
     }));
-  })), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.ReCaptcha, {
+  })), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ReCaptcha, {
     handleReCaptcha: handleReCaptcha
   })), (configs === null || configs === void 0 ? void 0 : (_configs$terms_and_co = configs.terms_and_conditions) === null || _configs$terms_and_co === void 0 ? void 0 : _configs$terms_and_co.value) === 'true' && /*#__PURE__*/_react.default.createElement(_styles.TermsConditionWrapper, null, /*#__PURE__*/_react.default.createElement(_Checkbox.Checkbox, {
     name: "acceptTerms",
@@ -419,7 +419,7 @@ var SignUpForm = function SignUpForm(props) {
     UIComponent: SignUpFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.SignupForm, loginControllerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SignupForm, loginControllerProps);
 };
 
 exports.SignUpForm = SignUpForm;

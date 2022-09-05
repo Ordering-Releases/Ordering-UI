@@ -11,7 +11,7 @@ var _EnTwitterWithCircle = _interopRequireDefault(require("@meronex/icons/en/EnT
 
 var _FaFacebook = _interopRequireDefault(require("@meronex/icons/fa/FaFacebook"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -38,7 +38,7 @@ var Footer = function Footer(props) {
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

@@ -13,7 +13,7 @@ var _moment = _interopRequireDefault(require("moment"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 require("react-datepicker/dist/react-datepicker.css");
 
@@ -79,24 +79,24 @@ var MomentControlUI = function MomentControlUI(props) {
       onClose = props.onClose,
       isAppoint = props.isAppoint;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
   var is12hours = configs === null || configs === void 0 ? void 0 : (_configs$dates_moment = configs.dates_moment_format) === null || _configs$dates_moment === void 0 ? void 0 : (_configs$dates_moment2 = _configs$dates_moment.value) === null || _configs$dates_moment2 === void 0 ? void 0 : _configs$dates_moment2.includes('hh:mm');
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parseTime = _useUtils2[0].parseTime;
 
   var _useLocation = (0, _reactRouterDom.useLocation)(),
       pathname = _useLocation.pathname;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -340,7 +340,7 @@ var MomentControl = function MomentControl(props) {
     UIComponent: MomentControlUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MomentOption, momentProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MomentOption, momentProps);
 };
 
 exports.MomentControl = MomentControl;

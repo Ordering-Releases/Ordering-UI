@@ -7,7 +7,7 @@ exports.GoogleLoginButton = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FcGoogle = _interopRequireDefault(require("@meronex/icons/fc/FcGoogle"));
 
@@ -34,7 +34,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var GoogleLoginButtonUI = function GoogleLoginButtonUI(props) {
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -51,7 +51,7 @@ var GoogleLoginButton = function GoogleLoginButton(props) {
     UIComponent: GoogleLoginButtonUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FirebaseGoogleLoginButton, googleLoginProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FirebaseGoogleLoginButton, googleLoginProps);
 };
 
 exports.GoogleLoginButton = GoogleLoginButton;

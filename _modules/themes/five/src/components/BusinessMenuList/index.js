@@ -9,7 +9,7 @@ exports.BusinessMenuList = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Select = require("../../styles/Select");
 
@@ -47,7 +47,7 @@ var BusinessMenuListUI = function BusinessMenuListUI(props) {
   var businessMenuList = props.businessMenuList,
       setMenu = props.setMenu;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -112,7 +112,7 @@ var BusinessMenuList = function BusinessMenuList(props) {
     UIComponent: BusinessMenuListUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessMenuListing, businessMenuListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessMenuListing, businessMenuListProps);
 };
 
 exports.BusinessMenuList = BusinessMenuList;

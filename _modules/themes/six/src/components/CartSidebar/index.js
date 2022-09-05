@@ -9,7 +9,7 @@ exports.CartSidebar = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
@@ -45,7 +45,7 @@ var CartSidebar = function CartSidebar(props) {
   var open = props.open,
       carts = props.carts;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -57,7 +57,7 @@ var CartSidebar = function CartSidebar(props) {
       isMenuOpen = _useState2[0],
       setIsMenuOpen = _useState2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 

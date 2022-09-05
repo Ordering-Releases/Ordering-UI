@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63,7 +63,7 @@ var ProductForm = function ProductForm(props) {
       isStarbucks = props.isStarbucks;
   var requestsState = {};
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
   /**
@@ -128,7 +128,7 @@ var ProductForm = function ProductForm(props) {
    * Order context manager
    */
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 2),
       orderState = _useOrder2[0],
       _useOrder2$ = _useOrder2[1],
@@ -168,7 +168,7 @@ var ProductForm = function ProductForm(props) {
    * Config context manager
    */
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       stateConfig = _useConfig2[0];
   /**

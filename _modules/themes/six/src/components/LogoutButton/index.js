@@ -7,7 +7,7 @@ exports.LogoutButton = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FaSignOutAlt = _interopRequireDefault(require("@meronex/icons/fa/FaSignOutAlt"));
 
@@ -37,7 +37,7 @@ var LogoutButtonUI = function LogoutButtonUI(props) {
   var onCustomClick = props.onCustomClick,
       inSide = props.inSide;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -78,7 +78,7 @@ var LogoutButton = function LogoutButton(props) {
     UIComponent: LogoutButtonUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LogoutAction, logoutButtonProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LogoutAction, logoutButtonProps);
 };
 
 exports.LogoutButton = LogoutButton;

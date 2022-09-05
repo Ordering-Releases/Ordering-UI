@@ -13,7 +13,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _IosRadioButtonOn = _interopRequireDefault(require("@meronex/icons/ios/IosRadioButtonOn"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Modal = require("../../../../../components/Modal");
 
@@ -98,11 +98,11 @@ var PaymentOptionsUI = function PaymentOptionsUI(props) {
       isCustomerMode = props.isCustomerMode,
       isOpenMethod = props.isOpenMethod;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       token = _useSession2[0].token;
 
@@ -290,7 +290,7 @@ var PaymentOptions = function PaymentOptions(props) {
     UIComponent: PaymentOptionsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.PaymentOptions, paymentOptions);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PaymentOptions, paymentOptions);
 };
 
 exports.PaymentOptions = PaymentOptions;

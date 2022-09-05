@@ -9,7 +9,7 @@ exports.BusinessController = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -76,18 +76,18 @@ var BusinessControllerUI = function BusinessControllerUI(props) {
       isBusinessClose = props.isBusinessClose;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
       parseDistance = _useUtils2$.parseDistance,
       optimizeImage = _useUtils2$.optimizeImage;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -212,7 +212,7 @@ var BusinessController = function BusinessController(props) {
     UIComponent: BusinessControllerUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessController, businessControllerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessController, businessControllerProps);
 };
 
 exports.BusinessController = BusinessController;

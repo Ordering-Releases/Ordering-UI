@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -49,21 +49,21 @@ var MomentControlUI = function MomentControlUI(props) {
       handleChangeDate = props.handleChangeDate,
       handleChangeTime = props.handleChangeTime;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parseTime = _useUtils2[0].parseTime;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var windowSize = (0, _useWindowSize.useWindowSize)();
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -136,7 +136,7 @@ var MomentControl = function MomentControl(props) {
     UIComponent: MomentControlUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MomentOption, momentProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MomentOption, momentProps);
 };
 
 exports.MomentControl = MomentControl;

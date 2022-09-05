@@ -13,7 +13,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _BsChevronLeft = _interopRequireDefault(require("@meronex/icons/bs/BsChevronLeft"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -56,7 +56,7 @@ var NavBar = function NavBar(props) {
       placeholder = props.placeholder;
   var history = (0, _reactRouterDom.useHistory)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

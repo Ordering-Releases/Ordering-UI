@@ -11,7 +11,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -44,17 +44,17 @@ var LastOrdersUI = function LastOrdersUI(props) {
 
   var orderList = props.orderList;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       optimizeImage = _useUtils2$.optimizeImage,
@@ -125,7 +125,7 @@ var LastOrders = function LastOrders(props) {
     }
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderList, lastOrdersProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderList, lastOrdersProps);
 };
 
 exports.LastOrders = LastOrders;

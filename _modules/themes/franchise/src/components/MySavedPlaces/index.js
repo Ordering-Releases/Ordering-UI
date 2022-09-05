@@ -7,7 +7,7 @@ exports.MySavedPlaces = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _AddressList = require("../AddressList");
 
@@ -38,11 +38,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var MySavedPlacesUI = function MySavedPlacesUI(props) {
   var _theme$images, _theme$images$general;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -64,7 +64,7 @@ var MySavedPlaces = function MySavedPlaces(props) {
     UIComponent: MySavedPlacesUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserFormDetails, mySavedPlacesProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, mySavedPlacesProps);
 };
 
 exports.MySavedPlaces = MySavedPlaces;

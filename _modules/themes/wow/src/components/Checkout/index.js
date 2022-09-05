@@ -13,7 +13,7 @@ var _VscWarning = _interopRequireDefault(require("@meronex/icons/vsc/VscWarning"
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
@@ -95,31 +95,31 @@ var CheckoutUI = function CheckoutUI(props) {
       handleOrderRedirect = props.handleOrderRedirect,
       isCustomerMode = props.isCustomerMode;
 
-  var _useValidationFields = (0, _orderingComponents.useValidationFields)(),
+  var _useValidationFields = (0, _orderingComponentsExternal.useValidationFields)(),
       _useValidationFields2 = _slicedToArray(_useValidationFields, 1),
       validationFields = _useValidationFields2[0];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       options = _useOrder2[0].options;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 1),
       customerState = _useCustomer2[0];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -339,20 +339,20 @@ var Checkout = function Checkout(props) {
       handleSearchRedirect = props.handleSearchRedirect,
       handleCheckoutListRedirect = props.handleCheckoutListRedirect;
 
-  var _useOrder3 = (0, _orderingComponents.useOrder)(),
+  var _useOrder3 = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder4 = _slicedToArray(_useOrder3, 2),
       orderState = _useOrder4[0],
       confirmCart = _useOrder4[1].confirmCart;
 
-  var _useSession3 = (0, _orderingComponents.useSession)(),
+  var _useSession3 = (0, _orderingComponentsExternal.useSession)(),
       _useSession4 = _slicedToArray(_useSession3, 1),
       token = _useSession4[0].token;
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -592,7 +592,7 @@ var Checkout = function Checkout(props) {
     style: {
       marginBottom: '10px'
     }
-  }))), cartUuid && cartState.cart && ((_cartState$cart2 = cartState.cart) === null || _cartState$cart2 === void 0 ? void 0 : _cartState$cart2.status) !== 1 && /*#__PURE__*/_react.default.createElement(_orderingComponents.Checkout, checkoutProps), (currentCart === null || currentCart === void 0 ? void 0 : currentCart.products) && /*#__PURE__*/_react.default.createElement(_UpsellingPage.UpsellingPage, {
+  }))), cartUuid && cartState.cart && ((_cartState$cart2 = cartState.cart) === null || _cartState$cart2 === void 0 ? void 0 : _cartState$cart2.status) !== 1 && /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.Checkout, checkoutProps), (currentCart === null || currentCart === void 0 ? void 0 : currentCart.products) && /*#__PURE__*/_react.default.createElement(_UpsellingPage.UpsellingPage, {
     businessId: currentCart === null || currentCart === void 0 ? void 0 : currentCart.business_id,
     cartProducts: currentCart === null || currentCart === void 0 ? void 0 : currentCart.products,
     business: currentCart === null || currentCart === void 0 ? void 0 : currentCart.business,

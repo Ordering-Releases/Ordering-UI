@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _templateObject, _templateObject2;
 
@@ -43,7 +43,7 @@ var ToastBar = _styledComponents.default.div(_templateObject || (_templateObject
 var ToastContainer = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width: 100%;\n  display: flex;\n  justify-content: center;\n"])));
 
 var Toast = function Toast() {
-  var _useToast = (0, _orderingComponents.useToast)(),
+  var _useToast = (0, _orderingComponentsExternal.useToast)(),
       _useToast2 = _slicedToArray(_useToast, 2),
       toastConfig = _useToast2[0],
       hideToast = _useToast2[1].hideToast;
@@ -73,15 +73,15 @@ var Toast = function Toast() {
   var backgroundColor = '#6ba4ff';
 
   switch (type) {
-    case _orderingComponents.ToastType.Info:
+    case _orderingComponentsExternal.ToastType.Info:
       backgroundColor = '#6ba4ff';
       break;
 
-    case _orderingComponents.ToastType.Error:
+    case _orderingComponentsExternal.ToastType.Error:
       backgroundColor = '#D83520';
       break;
 
-    case _orderingComponents.ToastType.Success:
+    case _orderingComponentsExternal.ToastType.Success:
       backgroundColor = '#73bd24';
       break;
   }

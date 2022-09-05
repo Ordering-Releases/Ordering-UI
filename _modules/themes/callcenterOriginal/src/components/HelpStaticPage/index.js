@@ -9,7 +9,7 @@ exports.HelpStaticPage = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -55,7 +55,7 @@ var HelpStaticPage = function HelpStaticPage(props) {
       pageState = _useState2[0],
       setPageState = _useState2[1];
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 

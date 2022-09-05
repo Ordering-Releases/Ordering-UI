@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactHookForm = require("react-hook-form");
 
@@ -77,11 +77,11 @@ var UserFormDetailsUI = function UserFormDetailsUI(props) {
       isCustomerMode = props.isCustomerMode;
   var formMethods = (0, _reactHookForm.useForm)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       userSession = _useSession2[0].user;
 
@@ -103,7 +103,7 @@ var UserFormDetailsUI = function UserFormDetailsUI(props) {
       alertState = _useState6[0],
       setAlertState = _useState6[1];
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 2),
       setUserCustomer = _useCustomer2[1].setUserCustomer;
 

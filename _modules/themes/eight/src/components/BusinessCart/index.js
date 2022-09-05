@@ -9,7 +9,7 @@ exports.BusinessCart = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _NavBar = require("../NavBar");
 
@@ -39,11 +39,11 @@ var BusinessCart = function BusinessCart(props) {
   var slug = props.slug,
       onBusinessRedirect = props.onBusinessRedirect;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       _useOrder2$ = _useOrder2[0],
       loading = _useOrder2$.loading,

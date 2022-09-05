@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _Confirm = require("../Confirm");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -81,7 +81,7 @@ var ResetPasswordUI = function ResetPasswordUI(props) {
       openAuthModal = _useState4[0],
       setOpenAuthModal = _useState4[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -282,7 +282,7 @@ var ResetPassword = function ResetPassword(props) {
     UIComponent: ResetPasswordUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ResetPassword, resetPasswordProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ResetPassword, resetPasswordProps);
 };
 
 exports.ResetPassword = ResetPassword;

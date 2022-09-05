@@ -7,7 +7,7 @@ exports.HighestRated = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 
@@ -57,11 +57,11 @@ var HighestRatedUI = function HighestRatedUI(props) {
       isCustomLayout = props.isCustomLayout,
       handleClickAddress = props.handleClickAddress;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -132,7 +132,7 @@ var HighestRated = function HighestRated(props) {
     initialOrderByValue: 'rating'
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, highestRatedProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, highestRatedProps);
 };
 
 exports.HighestRated = HighestRated;

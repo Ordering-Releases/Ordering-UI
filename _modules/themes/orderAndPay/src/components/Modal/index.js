@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -55,7 +55,7 @@ var ModalUI = function ModalUI(props) {
       customModal = props.customModal,
       isAnimation = props.isAnimation;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -113,7 +113,7 @@ var Modal = function Modal(props) {
     UIComponent: ModalUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.Popup, ModalProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.Popup, ModalProps);
 };
 
 exports.Modal = Modal;

@@ -9,7 +9,7 @@ exports.ProductOptionSubOption = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BsCircleFill = _interopRequireDefault(require("@meronex/icons/bs/BsCircleFill"));
 
@@ -71,11 +71,11 @@ var ProductOptionSubOptionUI = function ProductOptionSubOptionUI(props) {
   var disableIncrement = option !== null && option !== void 0 && option.limit_suboptions_by_max ? balance === (option === null || option === void 0 ? void 0 : option.max) || state.quantity === suboption.max : state.quantity === (suboption === null || suboption === void 0 ? void 0 : suboption.max) || !state.selected && balance === (option === null || option === void 0 ? void 0 : option.max);
   var price = option !== null && option !== void 0 && option.with_half_option && suboption !== null && suboption !== void 0 && suboption.half_price && state.position !== 'whole' ? suboption === null || suboption === void 0 ? void 0 : suboption.half_price : suboption === null || suboption === void 0 ? void 0 : suboption.price;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
@@ -190,7 +190,7 @@ var ProductOptionSubOption = function ProductOptionSubOption(props) {
     isOrigin: true
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductOptionSuboption, productOptionSubOptionProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductOptionSuboption, productOptionSubOptionProps);
 };
 
 exports.ProductOptionSubOption = ProductOptionSubOption;

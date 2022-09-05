@@ -7,7 +7,7 @@ exports.ProductIngredient = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BsCheck = _interopRequireDefault(require("@meronex/icons/bs/BsCheck"));
 
@@ -59,7 +59,7 @@ var ProductIngredient = function ProductIngredient(props) {
     UIComponent: ProductIngredientUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductIngredient, productIngredientProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductIngredient, productIngredientProps);
 };
 
 exports.ProductIngredient = ProductIngredient;

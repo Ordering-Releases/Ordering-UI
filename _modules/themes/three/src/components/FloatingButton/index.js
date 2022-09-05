@@ -7,7 +7,7 @@ exports.FloatingButton = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Buttons = require("../../styles/Buttons");
 
@@ -60,7 +60,7 @@ var FloatingButton = function FloatingButton(props) {
     UIComponent: FloatingButtonUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FloatingButton, floatingButtonProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FloatingButton, floatingButtonProps);
 };
 
 exports.FloatingButton = FloatingButton;

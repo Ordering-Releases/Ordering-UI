@@ -15,7 +15,7 @@ var _GiTronArrow = _interopRequireDefault(require("@meronex/icons/gi/GiTronArrow
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Buttons = require("../../styles/Buttons");
 
@@ -46,13 +46,13 @@ var ProfileBusinesBasicInformation = function ProfileBusinesBasicInformation(pro
       business = props.business,
       onBusinesClick = props.onBusinesClick;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parseDistance = _useUtils2$.parseDistance,

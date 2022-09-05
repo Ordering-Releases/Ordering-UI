@@ -7,7 +7,7 @@ exports.BusinessesMap = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _googleMap = require("./googleMap.js");
 
@@ -44,11 +44,11 @@ var BusinessesMapUI = function BusinessesMapUI(props) {
       setErrors = props.setErrors,
       businessList = props.businessList;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -101,7 +101,7 @@ var BusinessesMap = function BusinessesMap(props) {
     UIComponent: BusinessesMapUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessesMap, businessMapController);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessesMap, businessMapController);
 };
 
 exports.BusinessesMap = BusinessesMap;

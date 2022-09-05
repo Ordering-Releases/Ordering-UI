@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _HorizontalOrdersLayout = require("../HorizontalOrdersLayout");
 
@@ -77,13 +77,13 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
       onRedirectPage = props.onRedirectPage,
       businessesIds = props.businessesIds;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 2),
       reorder = _useOrder2[1].reorder;
 
@@ -346,7 +346,7 @@ var OrdersOption = function OrdersOption(props) {
     }
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderList, orderListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderList, orderListProps);
 };
 
 exports.OrdersOption = OrdersOption;

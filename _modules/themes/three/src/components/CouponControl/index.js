@@ -7,7 +7,7 @@ exports.CouponControl = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -50,7 +50,7 @@ var CouponControlUI = function CouponControlUI(props) {
       confirm = props.confirm,
       setConfirm = props.setConfirm;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -134,7 +134,7 @@ var CouponControl = function CouponControl(props) {
     UIComponent: CouponControlUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.CouponControl, couponProp);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CouponControl, couponProp);
 };
 
 exports.CouponControl = CouponControl;

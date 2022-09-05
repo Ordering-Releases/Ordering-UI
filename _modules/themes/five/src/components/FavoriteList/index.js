@@ -9,7 +9,7 @@ exports.FavoriteList = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 
@@ -80,19 +80,19 @@ var FavoriteListUI = function FavoriteListUI(props) {
       handleReorder = props.handleReorder,
       reorderState = props.reorderState;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useSite = (0, _orderingComponents.useSite)(),
+  var _useSite = (0, _orderingComponentsExternal.useSite)(),
       _useSite2 = _slicedToArray(_useSite, 1),
       site = _useSite2[0].site;
 
@@ -511,7 +511,7 @@ var FavoriteList = function FavoriteList(props) {
     UIComponent: FavoriteListUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FavoriteList, favoriteListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FavoriteList, favoriteListProps);
 };
 
 exports.FavoriteList = FavoriteList;

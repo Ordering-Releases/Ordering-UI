@@ -7,7 +7,7 @@ exports.FacebookLoginButton = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FaFacebook = _interopRequireDefault(require("@meronex/icons/fa/FaFacebook"));
 
@@ -36,7 +36,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FacebookLoginButtonUI = function FacebookLoginButtonUI(props) {
   var isSignup = props.isSignup;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -56,7 +56,7 @@ var FacebookLoginButton = function FacebookLoginButton(props) {
     UIComponent: FacebookLoginButtonUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FacebookLoginButton, facebookLoginProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FacebookLoginButton, facebookLoginProps);
 };
 
 exports.FacebookLoginButton = FacebookLoginButton;

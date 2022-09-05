@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Buttons = require("../../styles/Buttons");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -72,17 +72,17 @@ var OrdersListingUI = function OrdersListingUI(props) {
       small = props.small,
       setOrderListStatus = props.setOrderListStatus;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parseDate = _useUtils2$.parseDate,
@@ -294,7 +294,7 @@ var IdOrderList = function IdOrderList(props) {
     orderDirection: 'desc'
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderList, orderListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderList, orderListProps);
 };
 
 exports.IdOrderList = IdOrderList;
@@ -309,7 +309,7 @@ var NewestOrderList = function NewestOrderList(props) {
     orderDirection: 'asc'
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderList, orderListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderList, orderListProps);
 };
 
 exports.NewestOrderList = NewestOrderList;
@@ -384,7 +384,7 @@ var MessageControler = function MessageControler(props) {
     UIComponent: OrderDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderDetails, orderDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderDetails, orderDetailsProps);
 };
 
 exports.MessageControler = MessageControler;
@@ -399,7 +399,7 @@ var MessagesListing = function MessagesListing(props) {
       orderByOption = _useState4[0],
       setOrderByOption = _useState4[1];
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 

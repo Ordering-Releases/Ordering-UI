@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Modal = require("../../../../../components/Modal");
 
@@ -69,15 +69,15 @@ var ProfileBusinessesUI = function ProfileBusinessesUI(props) {
       handleChangeSearch = props.handleChangeSearch,
       getBusinesses = props.getBusinesses;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
@@ -190,7 +190,7 @@ var ProfileBusinesses = function ProfileBusinesses(props) {
     UIComponent: ProfileBusinessesUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, BusinessesListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, BusinessesListingProps);
 };
 
 exports.ProfileBusinesses = ProfileBusinesses;

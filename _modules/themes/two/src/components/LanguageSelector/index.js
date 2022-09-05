@@ -7,7 +7,7 @@ exports.LanguageSelector = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Select = require("../../styles/Select");
 
@@ -49,7 +49,7 @@ var LanguageSelectorUI = function LanguageSelectorUI(props) {
 var LanguageSelector = function LanguageSelector(props) {
   var DefaultChangeLanguage = function DefaultChangeLanguage() {};
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LanguageSelector, _extends({}, props, {
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LanguageSelector, _extends({}, props, {
     UIComponent: LanguageSelectorUI,
     onChangeLanguage: props.onChangeLanguage || DefaultChangeLanguage
   }));

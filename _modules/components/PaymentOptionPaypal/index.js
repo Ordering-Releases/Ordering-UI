@@ -7,7 +7,7 @@ exports.PaymentOptionPaypal = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -67,7 +67,7 @@ var PaymentOptionPaypalUI = function PaymentOptionPaypalUI(props) {
 var PaymentOptionPaypal = function PaymentOptionPaypal(props) {
   var _configs$stripe_curre;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -76,7 +76,7 @@ var PaymentOptionPaypal = function PaymentOptionPaypal(props) {
     currency: configs === null || configs === void 0 ? void 0 : (_configs$stripe_curre = configs.stripe_currency) === null || _configs$stripe_curre === void 0 ? void 0 : _configs$stripe_curre.value
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.PaymentOptionPaypal, paymentPaypalProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PaymentOptionPaypal, paymentPaypalProps);
 };
 
 exports.PaymentOptionPaypal = PaymentOptionPaypal;

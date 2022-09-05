@@ -17,7 +17,7 @@ var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
 var _reactOtpInput = _interopRequireDefault(require("react-otp-input"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
@@ -91,12 +91,12 @@ var LoginFormUI = function LoginFormUI(props) {
       useRootPoint = props.useRootPoint;
   var numOtpInputs = 4;
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 2),
       ordering = _useApi2[0],
       setOrdering = _useApi2[1].setOrdering;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -465,7 +465,7 @@ var LoginFormUI = function LoginFormUI(props) {
     onClick: togglePasswordView
   }, !passwordSee ? /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Eye, null) : /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.EyeSlash, null)), /*#__PURE__*/_react.default.createElement(_styles.InputBeforeIcon, null, /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.Lock, null))), !loginWithOtpState && /*#__PURE__*/_react.default.createElement(_styles.RedirectLink, {
     RedirectLinkisPopup: isPopup
-  }, /*#__PURE__*/_react.default.createElement("span", null, t('FORGOT_YOUR_PASSWORD', 'Forgot your password?')), elementLinkToForgotPassword), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.ReCaptcha, {
+  }, /*#__PURE__*/_react.default.createElement("span", null, t('FORGOT_YOUR_PASSWORD', 'Forgot your password?')), elementLinkToForgotPassword), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ReCaptcha, {
     handleReCaptcha: handleReCaptcha
   })), /*#__PURE__*/_react.default.createElement(_styles.ButtonContainer, null, !willVerifyOtpState && /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
     color: "primary",
@@ -498,7 +498,7 @@ var LoginForm = function LoginForm(props) {
     UIComponent: LoginFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.LoginForm, loginControllerProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LoginForm, loginControllerProps);
 };
 
 exports.LoginForm = LoginForm;

@@ -19,7 +19,7 @@ var _FiPlusCircle = _interopRequireDefault(require("@meronex/icons/fi/FiPlusCirc
 
 var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowDown"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 
@@ -118,14 +118,14 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
 
   var windowSize = (0, _useWindowSize.useWindowSize)();
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 2),
       _useSession2$ = _useSession2[0],
       auth = _useSession2$.auth,
       user = _useSession2$.user,
       login = _useSession2[1].login;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -134,11 +134,11 @@ var ProductOptionsUI = function ProductOptionsUI(props) {
       modalIsOpen = _useState4[0],
       setModalIsOpen = _useState4[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       optimizeImage = _useUtils2$.optimizeImage,
@@ -533,7 +533,7 @@ var ProductForm = function ProductForm(props) {
     UIComponent: ProductOptionsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductForm, productOptionsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductForm, productOptionsProps);
 };
 
 exports.ProductForm = ProductForm;

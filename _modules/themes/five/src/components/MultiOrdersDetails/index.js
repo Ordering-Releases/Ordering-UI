@@ -9,7 +9,7 @@ exports.MultiOrdersDetails = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Image = require("../../../../../components/Image");
 
@@ -64,11 +64,11 @@ var MultiOrdersDetailsUI = function MultiOrdersDetailsUI(props) {
       orders = _props$ordersList.orders,
       error = _props$ordersList.error;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
@@ -170,7 +170,7 @@ var MultiOrdersDetails = function MultiOrdersDetails(props) {
     UIComponent: MultiOrdersDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MultiOrdersDetails, MultiOrdersDetails);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MultiOrdersDetails, MultiOrdersDetails);
 };
 
 exports.MultiOrdersDetails = MultiOrdersDetails;

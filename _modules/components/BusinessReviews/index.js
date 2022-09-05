@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -63,7 +63,7 @@ var BusinessReviewsUI = function BusinessReviewsUI(props) {
       reviewsList = props.reviewsList,
       handleClickOption = props.handleClickOption;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -190,7 +190,7 @@ var BusinessReviews = function BusinessReviews(props) {
     UIComponent: BusinessReviewsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessReviews, BusinessReviewProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessReviews, BusinessReviewProps);
 };
 
 exports.BusinessReviews = BusinessReviews;

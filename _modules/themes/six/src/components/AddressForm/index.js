@@ -27,7 +27,7 @@ var _CgSearchLoading = _interopRequireDefault(require("@meronex/icons/cg/CgSearc
 
 var _reactHookForm = require("react-hook-form");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _Confirm = require("../../../../../components/Confirm");
 
@@ -103,21 +103,21 @@ var AddressFormUI = function AddressFormUI(props) {
       setIsEdit = props.setIsEdit,
       userCustomerSetup = props.userCustomerSetup;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var formMethods = (0, _reactHookForm.useForm)();
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
@@ -558,7 +558,7 @@ var AddressFormUI = function AddressFormUI(props) {
       key: field.name
     }, /*#__PURE__*/_react.default.createElement(_styles.AddressWrap, {
       className: "google-control"
-    }, /*#__PURE__*/_react.default.createElement(_styles.WrapAddressInput, null, /*#__PURE__*/_react.default.createElement(_HiOutlineLocationMarker.default, null), /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleAutocompleteInput, {
+    }, /*#__PURE__*/_react.default.createElement(_styles.WrapAddressInput, null, /*#__PURE__*/_react.default.createElement(_HiOutlineLocationMarker.default, null), /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.GoogleAutocompleteInput, {
       className: "input-autocomplete",
       apiKey: googleMapsApiKey,
       placeholder: t('ADDRESS', 'Address'),
@@ -588,7 +588,7 @@ var AddressFormUI = function AddressFormUI(props) {
       onError: setMapErrors,
       IconButton: _BiCurrentLocation.default,
       IconLoadingButton: _CgSearchLoading.default
-    })), ((addressState === null || addressState === void 0 ? void 0 : (_addressState$address12 = addressState.address) === null || _addressState$address12 === void 0 ? void 0 : _addressState$address12.location) || (formState === null || formState === void 0 ? void 0 : (_formState$changes26 = formState.changes) === null || _formState$changes26 === void 0 ? void 0 : _formState$changes26.location)) && /*#__PURE__*/_react.default.createElement(_styles.WrapperMap, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleMapsMap, {
+    })), ((addressState === null || addressState === void 0 ? void 0 : (_addressState$address12 = addressState.address) === null || _addressState$address12 === void 0 ? void 0 : _addressState$address12.location) || (formState === null || formState === void 0 ? void 0 : (_formState$changes26 = formState.changes) === null || _formState$changes26 === void 0 ? void 0 : _formState$changes26.location)) && /*#__PURE__*/_react.default.createElement(_styles.WrapperMap, null, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.GoogleMapsMap, {
       apiKey: googleMapsApiKey,
       location: locationChange,
       fixedLocation: !isEditing ? firstLocationNoEdit.value : null,
@@ -729,7 +729,7 @@ var AddressForm = function AddressForm(props) {
     isSelectedAfterAdd: true
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AddressForm, addressFormProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AddressForm, addressFormProps);
 };
 
 exports.AddressForm = AddressForm;

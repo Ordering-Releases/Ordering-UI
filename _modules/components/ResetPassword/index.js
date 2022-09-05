@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _Confirm = require("../Confirm");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -61,7 +61,7 @@ var ResetPasswordUI = function ResetPasswordUI(props) {
       redirectResetPassword = props.redirectResetPassword,
       redirectLogin = props.redirectLogin;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
@@ -79,7 +79,7 @@ var ResetPasswordUI = function ResetPasswordUI(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -270,7 +270,7 @@ var ResetPassword = function ResetPassword(props) {
     UIComponent: ResetPasswordUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ResetPassword, resetPasswordProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ResetPassword, resetPasswordProps);
 };
 
 exports.ResetPassword = ResetPassword;

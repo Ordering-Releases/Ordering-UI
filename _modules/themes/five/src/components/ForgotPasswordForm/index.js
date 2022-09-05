@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _Confirm = require("../Confirm");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -70,7 +70,7 @@ var ForgotPasswordUI = function ForgotPasswordUI(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -178,7 +178,7 @@ var ForgotPasswordUI = function ForgotPasswordUI(props) {
     }),
     onChange: handleChangeInputEmail,
     autoComplete: "off"
-  }), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.ReCaptcha, {
+  }), props.isRecaptchaEnable && enableReCaptcha && /*#__PURE__*/_react.default.createElement(_styles.ReCaptchaWrapper, null, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ReCaptcha, {
     handleReCaptcha: handleReCaptcha
   })), (_props$afterMidElemen = props.afterMidElements) === null || _props$afterMidElemen === void 0 ? void 0 : _props$afterMidElemen.map(function (MidElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
@@ -224,7 +224,7 @@ var ForgotPasswordForm = function ForgotPasswordForm(props) {
     UIComponent: ForgotPasswordUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ForgotPasswordForm, ForgotPasswordProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ForgotPasswordForm, ForgotPasswordProps);
 };
 
 exports.ForgotPasswordForm = ForgotPasswordForm;

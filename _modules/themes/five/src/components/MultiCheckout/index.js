@@ -9,7 +9,7 @@ exports.MultiCheckout = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
@@ -76,27 +76,27 @@ var MultiCheckoutUI = function MultiCheckoutUI(props) {
       handleSelectWallet = props.handleSelectWallet,
       handlePaymethodDataChange = props.handlePaymethodDataChange;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 1),
       customerState = _useCustomer2[0];
 
-  var _useValidationFields = (0, _orderingComponents.useValidationFields)(),
+  var _useValidationFields = (0, _orderingComponentsExternal.useValidationFields)(),
       _useValidationFields2 = _slicedToArray(_useValidationFields, 1),
       validationFields = _useValidationFields2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
 
@@ -252,7 +252,7 @@ var MultiCheckout = function MultiCheckout(props) {
     UIComponent: MultiCheckoutUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.MultiCheckout, multiCheckoutProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MultiCheckout, multiCheckoutProps);
 };
 
 exports.MultiCheckout = MultiCheckout;

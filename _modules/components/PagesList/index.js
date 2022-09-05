@@ -9,7 +9,7 @@ exports.PagesList = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -46,7 +46,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var PagesList = function PagesList(_ref) {
   var routes = _ref.routes;
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 
@@ -55,7 +55,7 @@ var PagesList = function PagesList(_ref) {
       roots = _useState2[0],
       setRoots = _useState2[1];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

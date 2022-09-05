@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _FiMoreVertical = _interopRequireDefault(require("@meronex/icons/fi/FiMoreVertical"));
 
@@ -71,11 +71,11 @@ var PaymentOptionStripeUI = function PaymentOptionStripeUI(props) {
       onSelectCard = props.onSelectCard,
       onPaymentChange = props.onPaymentChange;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       token = _useSession2[0].token;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -205,7 +205,7 @@ var PaymentCard = function PaymentCard(props) {
       onSelectCard = props.onSelectCard,
       defaultSelected = props.defaultSelected;
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -309,7 +309,7 @@ var PaymentOptionStripe = function PaymentOptionStripe(props) {
     UIComponent: PaymentOptionStripeUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.PaymentOptionStripe, paymentOptionStripeProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PaymentOptionStripe, paymentOptionStripeProps);
 };
 
 exports.PaymentOptionStripe = PaymentOptionStripe;

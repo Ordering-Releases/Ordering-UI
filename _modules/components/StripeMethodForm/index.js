@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactStripeJs = require("@stripe/react-stripe-js");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -53,7 +53,7 @@ var StripeMethodFormUI = function StripeMethodFormUI(props) {
       handleCancel = props.handleCancel,
       paymethod = props.paymethod;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -138,7 +138,7 @@ var StripeMethodForm = function StripeMethodForm(props) {
     UIComponent: StripeMethodFormUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.CardForm, propsController);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CardForm, propsController);
 };
 
 exports.StripeMethodForm = StripeMethodForm;

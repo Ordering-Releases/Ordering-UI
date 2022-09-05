@@ -7,7 +7,7 @@ exports.BusinessesMap = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -41,11 +41,11 @@ var BusinessesMapUI = function BusinessesMapUI(props) {
       onBusinessClick = props.onBusinessClick,
       setErrors = props.setErrors;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configState = _useConfig2[0];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
@@ -72,7 +72,7 @@ var BusinessesMapUI = function BusinessesMapUI(props) {
     }, props));
   }), /*#__PURE__*/_react.default.createElement(_styles.WrapperMap, {
     disabled: orderState.loading
-  }, /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleMapsMap, {
+  }, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.GoogleMapsMap, {
     apiKey: configState === null || configState === void 0 ? void 0 : (_configState$configs = configState.configs) === null || _configState$configs === void 0 ? void 0 : (_configState$configs$ = _configState$configs.google_maps_api_key) === null || _configState$configs$ === void 0 ? void 0 : _configState$configs$.value,
     location: userLocation,
     locations: businessLocations,
@@ -97,7 +97,7 @@ var BusinessesMap = function BusinessesMap(props) {
     UIComponent: BusinessesMapUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessesMap, businessMapController);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessesMap, businessMapController);
 };
 
 exports.BusinessesMap = BusinessesMap;

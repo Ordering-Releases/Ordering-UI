@@ -9,7 +9,7 @@ exports.FavoriteOrders = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _NotFoundSource = require("../NotFoundSource");
 
@@ -83,11 +83,11 @@ var FavoriteOrdersUI = function FavoriteOrdersUI(props) {
       pagination = props.pagination,
       getFavoriteList = props.getFavoriteList;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
@@ -100,7 +100,7 @@ var FavoriteOrdersUI = function FavoriteOrdersUI(props) {
 
   var pastOrders = [1, 2, 5, 6, 10, 11, 12, 15, 16, 17];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 2),
       reorder = _useOrder2[1].reorder;
 
@@ -347,7 +347,7 @@ var FavoriteOrders = function FavoriteOrders(props) {
     originalURL: 'orders'
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FavoriteList, favoriteOrdersProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FavoriteList, favoriteOrdersProps);
 };
 
 exports.FavoriteOrders = FavoriteOrders;

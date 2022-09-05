@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -46,11 +46,11 @@ var AppleLoginUI = function AppleLoginUI(props) {
       handleAppleLoginClick = props.handleAppleLoginClick;
   var location = (0, _reactRouterDom.useLocation)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -88,7 +88,7 @@ var AppleLogin = function AppleLogin(props) {
     UIComponent: AppleLoginUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AppleLogin, propss);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AppleLogin, propss);
 };
 
 exports.AppleLogin = AppleLogin;

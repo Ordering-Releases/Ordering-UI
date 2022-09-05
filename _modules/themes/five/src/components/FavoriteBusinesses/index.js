@@ -9,7 +9,7 @@ exports.FavoriteBusinesses = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 
@@ -81,15 +81,15 @@ var FavoriteBusinessesUI = function FavoriteBusinessesUI(props) {
       pagination = props.pagination,
       getFavoriteList = props.getFavoriteList;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
@@ -250,7 +250,7 @@ var FavoriteBusinessesUI = function FavoriteBusinessesUI(props) {
 var FavoriteBusinesses = function FavoriteBusinesses(props) {
   var _orderState$options3, _orderState$options3$, _orderState$options3$2, _orderState$options4, _orderState$options4$, _orderState$options4$2;
 
-  var _useOrder3 = (0, _orderingComponents.useOrder)(),
+  var _useOrder3 = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder4 = _slicedToArray(_useOrder3, 1),
       orderState = _useOrder4[0];
 
@@ -262,7 +262,7 @@ var FavoriteBusinesses = function FavoriteBusinesses(props) {
     propsToFetch: ['id', 'name', 'header', 'logo', 'location', 'address', 'ribbon', 'timezone', 'schedule', 'open', 'delivery_price', 'distance', 'delivery_time', 'pickup_time', 'reviews', 'featured', 'offers', 'food', 'laundry', 'alcohol', 'groceries', 'slug']
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.FavoriteList, favoriteBusinessesProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FavoriteList, favoriteBusinessesProps);
 };
 
 exports.FavoriteBusinesses = FavoriteBusinesses;

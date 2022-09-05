@@ -7,7 +7,7 @@ exports.AppleLogin = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -36,7 +36,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var AppleLoginUI = function AppleLoginUI(props) {
   var initLoginApple = props.initLoginApple;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -54,7 +54,7 @@ var AppleLogin = function AppleLogin(props) {
     UIComponent: AppleLoginUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AppleLogin, propss);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AppleLogin, propss);
 };
 
 exports.AppleLogin = AppleLogin;

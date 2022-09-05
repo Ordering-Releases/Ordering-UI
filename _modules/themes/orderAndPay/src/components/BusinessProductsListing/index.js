@@ -15,7 +15,7 @@ var _styledComponents = require("styled-components");
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -102,25 +102,25 @@ var BusinessProductsListingUI = function BusinessProductsListingUI(props) {
       error = businessState.error;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       carts = _useOrder2[0].carts;
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
       optimizeImage = _useUtils2$.optimizeImage;
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
@@ -419,11 +419,11 @@ var BusinessProductsListing = function BusinessProductsListing(props) {
       isInitialRender = _useState14[0],
       setIsInitialRender = _useState14[1];
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
-  var _useOrder3 = (0, _orderingComponents.useOrder)(),
+  var _useOrder3 = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder4 = _slicedToArray(_useOrder3, 1),
       options = _useOrder4[0].options;
 
@@ -461,7 +461,7 @@ var BusinessProductsListing = function BusinessProductsListing(props) {
     ordertype: orderType === null || orderType === void 0 ? void 0 : orderType.content
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessAndProductList, businessProductslistingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessAndProductList, businessProductslistingProps);
 };
 
 exports.BusinessProductsListing = BusinessProductsListing;

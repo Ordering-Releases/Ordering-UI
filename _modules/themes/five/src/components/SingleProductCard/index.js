@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 
@@ -82,7 +82,7 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
       handleFavoriteProduct = props.handleFavoriteProduct,
       isFavorite = props.isFavorite;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -91,26 +91,26 @@ var SingleProductCardUI = function SingleProductCardUI(props) {
       $element = _useIntersectionObser2[0],
       isObserved = _useIntersectionObser2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       stateConfig = _useConfig2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
       optimizeImage = _useUtils2$.optimizeImage;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 2),
       auth = _useSession2[0].auth,
       login = _useSession2[1].login;
 
-  var _useOrderingTheme = (0, _orderingComponents.useOrderingTheme)(),
+  var _useOrderingTheme = (0, _orderingComponentsExternal.useOrderingTheme)(),
       _useOrderingTheme2 = _slicedToArray(_useOrderingTheme, 1),
       orderingTheme = _useOrderingTheme2[0];
 
@@ -315,7 +315,7 @@ var SingleProductCard = function SingleProductCard(props) {
     UIComponent: SingleProductCardUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.SingleProductCard, singleProductCardProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SingleProductCard, singleProductCardProps);
 };
 
 exports.SingleProductCard = SingleProductCard;

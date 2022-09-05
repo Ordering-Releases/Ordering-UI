@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactOtpInput = _interopRequireDefault(require("react-otp-input"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
@@ -65,7 +65,7 @@ var UserDetails = function UserDetails(props) {
     UIComponent: _UserFormDetails.UserFormDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserFormDetails, userDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, userDetailsProps);
 };
 
 var UserVerificationUI = function UserVerificationUI(props) {
@@ -79,15 +79,15 @@ var UserVerificationUI = function UserVerificationUI(props) {
       checkVerifyPhoneCode = props.checkVerifyPhoneCode,
       cleanErrorsState = props.cleanErrorsState;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       _useSession2$ = _useSession2[0],
       auth = _useSession2$.auth,
@@ -363,7 +363,7 @@ var UserVerification = function UserVerification(props) {
     UIComponent: UserVerificationUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserVerification, verifyProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserVerification, verifyProps);
 };
 
 exports.UserVerification = UserVerification;

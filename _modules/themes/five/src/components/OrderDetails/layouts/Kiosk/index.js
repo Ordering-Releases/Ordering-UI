@@ -15,7 +15,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _AiFillCheckCircle = _interopRequireDefault(require("@meronex/icons/ai/AiFillCheckCircle"));
 
@@ -72,29 +72,29 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
       orderTypes = props.orderTypes;
   var formMethods = (0, _reactHookForm.useForm)();
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       token = _useSession2[0].token;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useApi = (0, _orderingComponents.useApi)(),
+  var _useApi = (0, _orderingComponentsExternal.useApi)(),
       _useApi2 = _slicedToArray(_useApi, 1),
       ordering = _useApi2[0];
 
-  var _useEvent = (0, _orderingComponents.useEvent)(),
+  var _useEvent = (0, _orderingComponentsExternal.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
       events = _useEvent2[0];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parseDate = _useUtils2[0].parseDate;
 
-  var _useToast = (0, _orderingComponents.useToast)(),
+  var _useToast = (0, _orderingComponentsExternal.useToast)(),
       _useToast2 = _slicedToArray(_useToast, 2),
       showToast = _useToast2[1].showToast;
 
@@ -296,7 +296,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
                 break;
               }
 
-              showToast(_orderingComponents.ToastType.Error, t('MAXIMUM_RECEIPTS_SEND_EXCEEDED', 'The maximum receipts sent has been exceeded'));
+              showToast(_orderingComponentsExternal.ToastType.Error, t('MAXIMUM_RECEIPTS_SEND_EXCEEDED', 'The maximum receipts sent has been exceeded'));
               return _context.abrupt("return");
 
             case 3:
@@ -335,9 +335,9 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
               result = _yield$response$json.result;
 
               if (_error) {
-                showToast(_orderingComponents.ToastType.Error, result);
+                showToast(_orderingComponentsExternal.ToastType.Error, result);
               } else {
-                showToast(_orderingComponents.ToastType.Success, t('RECEIPT_SEND_SUCCESSFULLY', 'Receipt send successfully'));
+                showToast(_orderingComponentsExternal.ToastType.Success, t('RECEIPT_SEND_SUCCESSFULLY', 'Receipt send successfully'));
                 setCountReceipts(countReceipts - 1);
               }
 
@@ -348,7 +348,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
             case 20:
               _context.prev = 20;
               _context.t0 = _context["catch"](7);
-              showToast(_orderingComponents.ToastType.Error, _context.t0.message);
+              showToast(_orderingComponentsExternal.ToastType.Error, _context.t0.message);
               setIsLoading(false);
 
             case 24:
@@ -500,7 +500,7 @@ var OrderDetailsUI = function OrderDetailsUI(props) {
 };
 
 var OrderDetails = function OrderDetails(props) {
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -539,7 +539,7 @@ var OrderDetails = function OrderDetails(props) {
     UIComponent: OrderDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderDetails, orderDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderDetails, orderDetailsProps);
 };
 
 exports.OrderDetails = OrderDetails;

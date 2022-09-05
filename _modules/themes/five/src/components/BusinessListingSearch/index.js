@@ -15,7 +15,7 @@ var _reactBootstrapIcons = require("react-bootstrap-icons");
 
 var _SearchBar = require("../SearchBar");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 
@@ -88,24 +88,24 @@ var BusinessListingSearchUI = function BusinessListingSearchUI(props) {
       handleUpdateBusinessList = props.handleUpdateBusinessList,
       _handleUpdateProducts = props.handleUpdateProducts;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       _useUtils2$ = _useUtils2[0],
       parsePrice = _useUtils2$.parsePrice,
       optimizeImage = _useUtils2$.optimizeImage,
       parseDistance = _useUtils2$.parseDistance;
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
@@ -367,7 +367,7 @@ var BusinessListingSearch = function BusinessListingSearch(props) {
     UIComponent: BusinessListingSearchUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessSearchList, BusinessListSearch);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessSearchList, BusinessListSearch);
 };
 
 exports.BusinessListingSearch = BusinessListingSearch;

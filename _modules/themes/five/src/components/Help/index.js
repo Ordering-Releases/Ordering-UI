@@ -9,7 +9,7 @@ exports.Help = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _HiOutlineChevronRight = _interopRequireDefault(require("@meronex/icons/hi/HiOutlineChevronRight"));
 
@@ -42,7 +42,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Help = function Help(props) {
   var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 

@@ -13,7 +13,7 @@ var _utils = require("../../../../../utils");
 
 var _GoLinkExternal = _interopRequireDefault(require("@meronex/icons/go/GoLinkExternal"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _BusinessReviews = require("../BusinessReviews");
 
@@ -64,11 +64,11 @@ var BusinessInformationUI = function BusinessInformationUI(props) {
       onClose = props.onClose,
       goBusiness = props.goBusiness;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
@@ -77,7 +77,7 @@ var BusinessInformationUI = function BusinessInformationUI(props) {
       tabValue = _useState2[0],
       setTabValue = _useState2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       parsePrice = _useUtils2[0].parsePrice;
 
@@ -210,7 +210,7 @@ var BusinessInformationUI = function BusinessInformationUI(props) {
     return /*#__PURE__*/_react.default.createElement("tr", {
       key: offer.id
     }, /*#__PURE__*/_react.default.createElement("td", null, offer.name), /*#__PURE__*/_react.default.createElement("td", null, offer.rate_type === 1 ? "".concat(offer.rate, " % ").concat(t('MIN', 'Min'), ": ").concat(parsePrice(offer.minimum)) : "".concat(parsePrice(offer.rate), " ").concat(t('MIN', 'Min'), ": ").concat(parsePrice(offer.minimum))), /*#__PURE__*/_react.default.createElement("td", null, offer.start), /*#__PURE__*/_react.default.createElement("td", null, offer.end));
-  })))))), /*#__PURE__*/_react.default.createElement(_styles.RightPanel, null, businessLocation.location ? /*#__PURE__*/_react.default.createElement(_styles.Map, null, /*#__PURE__*/_react.default.createElement(_orderingComponents.GoogleMapsMap, {
+  })))))), /*#__PURE__*/_react.default.createElement(_styles.RightPanel, null, businessLocation.location ? /*#__PURE__*/_react.default.createElement(_styles.Map, null, /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.GoogleMapsMap, {
     apiKey: configs === null || configs === void 0 ? void 0 : (_configs$google_maps_ = configs.google_maps_api_key) === null || _configs$google_maps_ === void 0 ? void 0 : _configs$google_maps_.value,
     location: businessLocation.location,
     mapControls: businessLocation.googleMapsControls || business.googleMapsControls
@@ -264,7 +264,7 @@ var BusinessInformation = function BusinessInformation(props) {
     googleMapsControls: googleMapsControls
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessInformation, BusinessInformationProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessInformation, BusinessInformationProps);
 };
 
 exports.BusinessInformation = BusinessInformation;

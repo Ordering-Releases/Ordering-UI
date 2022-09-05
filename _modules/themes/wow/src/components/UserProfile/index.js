@@ -35,7 +35,7 @@ var _UserProfileDropDown = require("../UserProfileDropDown");
 
 var _ProfileBusinesses = require("../ProfileBusinesses");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -75,14 +75,14 @@ var UserProfileUI = function UserProfileUI(props) {
       handleButtonUpdateClick = props.handleButtonUpdateClick,
       isHiddenAddress = props.isHiddenAddress;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var windowSize = (0, _useWindowSize.useWindowSize)();
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       _useSession2$ = _useSession2[0],
       auth = _useSession2$.auth,
@@ -200,7 +200,7 @@ var UserProfile = function UserProfile(props) {
     UIComponent: UserProfileUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.UserFormDetails, UserProfileProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, UserProfileProps);
 };
 
 exports.UserProfile = UserProfile;

@@ -7,7 +7,7 @@ exports.MomentContent = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -36,13 +36,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var MomentContent = function MomentContent(props) {
   var _configs$max_days_pre, _document, _document$getElementB, _props$beforeElements, _props$beforeComponen, _orderState$options, _orderState$options$a, _props$afterComponent, _props$afterElements;
 
-  var _useConfig = (0, _orderingComponents.useConfig)(),
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
       _useConfig2 = _slicedToArray(_useConfig, 1),
       configs = _useConfig2[0].configs;
 
   var limitDays = parseInt(configs === null || configs === void 0 ? void 0 : (_configs$max_days_pre = configs.max_days_preorder) === null || _configs$max_days_pre === void 0 ? void 0 : _configs$max_days_pre.value, 10);
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _TiPencil = _interopRequireDefault(require("@meronex/icons/ti/TiPencil"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styles = require("./styles");
 
@@ -57,11 +57,11 @@ var AddressDetailsUI = function AddressDetailsUI(props) {
       apiKey = props.apiKey,
       isFromCheckout = props.isFromCheckout;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -80,7 +80,7 @@ var AddressDetailsUI = function AddressDetailsUI(props) {
 
   var userCustomer = JSON.parse(window.localStorage.getItem('user-customer'));
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 1),
       user = _useCustomer2[0].user;
 
@@ -175,7 +175,7 @@ var AddressDetails = function AddressDetails(props) {
     UIComponent: AddressDetailsUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.AddressDetails, addressDetailsProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.AddressDetails, addressDetailsProps);
 };
 
 exports.AddressDetails = AddressDetails;

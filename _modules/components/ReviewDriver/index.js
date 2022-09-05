@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactHookForm = require("react-hook-form");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
@@ -75,11 +75,11 @@ var ReviewDriverUI = function ReviewDriverUI(props) {
       handleSendDriverReview = props.handleSendDriverReview;
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
@@ -324,7 +324,7 @@ var ReviewDriver = function ReviewDriver(props) {
     isToast: true
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ReviewDriver, reviewDriverProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ReviewDriver, reviewDriverProps);
 };
 
 exports.ReviewDriver = ReviewDriver;

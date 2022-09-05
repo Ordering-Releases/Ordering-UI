@@ -7,7 +7,7 @@ exports.BusinessProductsList = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
@@ -66,7 +66,7 @@ var BusinessProductsListUI = function BusinessProductsListUI(props) {
       handleClearSearch = props.handleClearSearch,
       errorQuantityProducts = props.errorQuantityProducts;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -160,7 +160,7 @@ var BusinessProductsList = function BusinessProductsList(props) {
     UIComponent: BusinessProductsListUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ProductsList, businessProductsListProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductsList, businessProductsListProps);
 };
 
 exports.BusinessProductsList = BusinessProductsList;

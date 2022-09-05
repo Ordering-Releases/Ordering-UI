@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactSelect = _interopRequireDefault(require("react-select"));
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 
@@ -79,17 +79,17 @@ var PhoneAutocompleteUI = function PhoneAutocompleteUI(props) {
       countryCallingCode = props.countryCallingCode,
       onRedirectPage = props.onRedirectPage;
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
   var theme = (0, _styledComponents.useTheme)();
 
-  var _useCustomer = (0, _orderingComponents.useCustomer)(),
+  var _useCustomer = (0, _orderingComponentsExternal.useCustomer)(),
       _useCustomer2 = _slicedToArray(_useCustomer, 2),
       deleteUserCustomer = _useCustomer2[1].deleteUserCustomer;
 
@@ -343,7 +343,7 @@ var PhoneAutocomplete = function PhoneAutocomplete(props) {
     UIComponent: PhoneAutocompleteUI
   }, props);
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.PhoneAutocomplete, phoneProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PhoneAutocomplete, phoneProps);
 };
 
 exports.PhoneAutocomplete = PhoneAutocomplete;

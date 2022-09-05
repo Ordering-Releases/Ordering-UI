@@ -33,7 +33,7 @@ var _Modal = require("../../../../../components/Modal");
 
 var _Confirm = require("../../../../../components/Confirm");
 
-var _orderingComponents = require("ordering-components-external");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -82,15 +82,15 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
       searchValue = props.searchValue,
       handleChangeSearch = props.handleChangeSearch;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useOrder = (0, _orderingComponents.useOrder)(),
+  var _useOrder = (0, _orderingComponentsExternal.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
       orderState = _useOrder2[0];
 
-  var _useSession = (0, _orderingComponents.useSession)(),
+  var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       auth = _useSession2[0].auth;
 
@@ -426,7 +426,7 @@ var BusinessesListing = function BusinessesListing(props) {
     UIComponent: BusinessesListingUI
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.BusinessList, businessListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessList, businessListingProps);
 };
 
 exports.BusinessesListing = BusinessesListing;
