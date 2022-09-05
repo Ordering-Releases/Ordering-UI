@@ -4,7 +4,7 @@ import { Alert } from '../Confirm'
 import {
   useLanguage,
   ResetPassword as ResetPasswordController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   ResetPasswordContainer,
   FormSide,

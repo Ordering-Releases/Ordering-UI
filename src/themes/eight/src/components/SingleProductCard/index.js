@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useLanguage, useConfig, useOrder, useUtils } from 'ordering-components'
+import { useLanguage, useConfig, useOrder, useUtils } from 'ordering-components-external'
 // import FaChevronRight from '@meronex/icons/fa/FaChevronRight'
 import EnChevronThinRight from '@meronex/icons/en/EnChevronThinRight'
 

@@ -7,7 +7,7 @@ import {
   useUtils,
   useConfig,
   GoogleMapsMap
-} from 'ordering-components'
+} from 'ordering-components-external'
 import RiUser2Fill from '@meronex/icons/ri/RiUser2Fill'
 import BiStoreAlt from '@meronex/icons/bi/BiStoreAlt'
 import AiFillExclamationCircle from '@meronex/icons/ai/AiFillExclamationCircle'

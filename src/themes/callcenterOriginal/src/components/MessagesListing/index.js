@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from '../../styles/Buttons'
-import { useLanguage, useUtils, useEvent, OrderList as OrderListController, OrderDetails as OrderDetailsController } from 'ordering-components'
+import { useLanguage, useUtils, useEvent, OrderList as OrderListController, OrderDetails as OrderDetailsController } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import Skeleton from 'react-loading-skeleton'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'

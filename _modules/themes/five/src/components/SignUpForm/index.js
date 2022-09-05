@@ -19,7 +19,7 @@ var _reactOtpInput = _interopRequireDefault(require("react-otp-input"));
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useCountdownTimer3 = require("../../../../../hooks/useCountdownTimer");
 

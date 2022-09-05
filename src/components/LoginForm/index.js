@@ -7,7 +7,7 @@ import {
   useConfig,
   useSession,
   ReCaptcha
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { SpinnerLoader } from '../SpinnerLoader'
 import { InputPhoneNumber } from '../InputPhoneNumber'

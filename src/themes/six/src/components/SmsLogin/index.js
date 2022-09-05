@@ -2,7 +2,7 @@ import React from 'react'
 import {
   LoginForm as LoginFormController,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import MdSms from '@meronex/icons/md/MdSms'
 import { SMSButton } from './styles'
 

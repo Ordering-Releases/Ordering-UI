@@ -4,7 +4,7 @@ import MdClose from '@meronex/icons/ios/MdClose'
 import {
   useLanguage,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   StatusFloting,

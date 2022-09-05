@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components'
+import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components-external'
 import MdCheckBox from '@meronex/icons/md/MdCheckBox'
 import MdCheckBoxOutlineBlank from '@meronex/icons/md/MdCheckBoxOutlineBlank'
 import {

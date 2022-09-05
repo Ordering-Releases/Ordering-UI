@@ -2,7 +2,7 @@ import React from 'react'
 import {
   GoogleLoginButton as GoogleLoginController,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import FcGoogle from '@meronex/icons/fc/FcGoogle'
 import {
   GoogleButton,

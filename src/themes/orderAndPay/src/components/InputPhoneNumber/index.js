@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import parsePhoneNumber from 'libphonenumber-js'
 import PhoneInput from 'react-phone-number-input'
 import BsPhone from '@meronex/icons/bs/BsPhone'
-import { useLanguage, useConfig, useSession } from 'ordering-components'
+import { useLanguage, useConfig, useSession } from 'ordering-components-external'
 
 import { Container, ErrorMsg, InputBeforeIconWrapper } from './styles'
 

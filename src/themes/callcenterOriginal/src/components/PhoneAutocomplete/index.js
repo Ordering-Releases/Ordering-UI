@@ -5,7 +5,7 @@ import {
   useLanguage,
   useOrder,
   useCustomer
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 
 import { Modal } from '../Modal'

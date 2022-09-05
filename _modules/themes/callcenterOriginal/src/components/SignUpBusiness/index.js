@@ -33,7 +33,7 @@ var _AiOutlineEye = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineE
 
 var _AiOutlineEyeInvisible = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineEyeInvisible"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

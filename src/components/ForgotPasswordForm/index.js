@@ -4,7 +4,7 @@ import { Alert } from '../Confirm'
 import {
   ForgotPasswordForm as ForgotPasswordController,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   ForgotPasswordContainer,
   FormSide,

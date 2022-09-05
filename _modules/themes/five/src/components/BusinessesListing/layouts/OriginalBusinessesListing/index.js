@@ -19,7 +19,7 @@ var _IosRadioButtonOff = _interopRequireDefault(require("@meronex/icons/ios/IosR
 
 var _RiRadioButtonFill = _interopRequireDefault(require("@meronex/icons/ri/RiRadioButtonFill"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

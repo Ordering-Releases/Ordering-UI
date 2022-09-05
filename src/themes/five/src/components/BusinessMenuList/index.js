@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLanguage, BusinessMenuListing } from 'ordering-components'
+import { useLanguage, BusinessMenuListing } from 'ordering-components-external'
 import { Select } from '../../styles/Select'
 import Skeleton from 'react-loading-skeleton'
 import {

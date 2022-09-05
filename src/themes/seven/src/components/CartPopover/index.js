@@ -9,7 +9,7 @@ import {
   Header
 } from './styles'
 
-import { useOrder, useEvent, useLanguage } from 'ordering-components'
+import { useOrder, useEvent, useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { CartContent } from '../CartContent'
 

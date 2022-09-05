@@ -13,7 +13,7 @@ import {
   useLanguage,
   useConfig,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { Alert } from '../../../../../components/Confirm'
 import { Tabs, Tab } from '../../../../../styles/Tabs'

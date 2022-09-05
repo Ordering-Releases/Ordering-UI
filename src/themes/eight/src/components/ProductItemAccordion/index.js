@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import BsPencil from '@meronex/icons/bs/BsPencil'
 import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
 import BsTrash from '@meronex/icons/bs/BsTrash'
-import { useUtils, useLanguage, useOrder } from 'ordering-components'
+import { useUtils, useLanguage, useOrder } from 'ordering-components-external'
 
 import {
   AccordionSection,

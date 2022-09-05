@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _templateObject, _templateObject2;
 

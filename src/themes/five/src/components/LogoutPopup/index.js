@@ -7,7 +7,7 @@ import {
   useLanguage,
   useSession,
   useApi
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   LoginContainer,

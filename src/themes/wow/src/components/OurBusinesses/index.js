@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { useSearchValue } from '../../contexts/SearchValueContext'
 import { AutoScroll } from '../AutoScroll'
-import { BusinessList as BusinessListController, useUtils, useLanguage } from 'ordering-components'
+import { BusinessList as BusinessListController, useUtils, useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import {
   BusinessListContainer,

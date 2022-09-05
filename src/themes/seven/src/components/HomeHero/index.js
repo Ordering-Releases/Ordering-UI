@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import { useSession, useOrder, useLanguage, OrderTypeControl, useConfig } from 'ordering-components'
+import { useSession, useOrder, useLanguage, OrderTypeControl, useConfig } from 'ordering-components-external'
 import {
   HeroContainer,
   ContentWrapper,

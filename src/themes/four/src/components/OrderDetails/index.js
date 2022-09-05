@@ -7,7 +7,7 @@ import {
   useUtils,
   useConfig,
   GoogleMapsMap
-} from 'ordering-components'
+} from 'ordering-components-external'
 import FiPhone from '@meronex/icons/fi/FiPhone'
 import BsChat from '@meronex/icons/bs/BsChat'
 import BsPhone from '@meronex/icons/bs/BsPhone'

@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactOtpInput = _interopRequireDefault(require("react-otp-input"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 

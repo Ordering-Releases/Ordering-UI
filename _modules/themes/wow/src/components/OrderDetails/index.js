@@ -39,7 +39,7 @@ var _GrStripe = _interopRequireDefault(require("@meronex/icons/gr/GrStripe"));
 
 var _EnPaypal = _interopRequireDefault(require("@meronex/icons/en/EnPaypal"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
 

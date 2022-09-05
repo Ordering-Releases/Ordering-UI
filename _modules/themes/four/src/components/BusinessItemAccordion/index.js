@@ -17,7 +17,7 @@ var _BiStoreAlt = _interopRequireDefault(require("@meronex/icons/bi/BiStoreAlt")
 
 var _VscTrash = _interopRequireDefault(require("@meronex/icons/vsc/VscTrash"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

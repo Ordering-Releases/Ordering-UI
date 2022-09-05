@@ -3,7 +3,7 @@ import {
   ProductOptionSuboption as ProductSubOptionController,
   useUtils,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import BsCircleFill from '@meronex/icons/bs/BsCircleFill'
 import BsCircleHalf from '@meronex/icons/bs/BsCircleHalf'
 import BsDashCircle from '@meronex/icons/bs/BsDashCircle'

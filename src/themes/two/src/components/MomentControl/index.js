@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components'
+import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components-external'
 
 import { Days, Day, DayName, DayNumber, ContentDay, Hours, Hour, Title, MomentContainer } from './styles'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

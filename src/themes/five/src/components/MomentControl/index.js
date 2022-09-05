@@ -7,7 +7,7 @@ import {
   useUtils,
   useConfig,
   useOrder
-} from 'ordering-components'
+} from 'ordering-components-external'
 import 'react-datepicker/dist/react-datepicker.css'
 import BsCaretLeftFill from '@meronex/icons/bs/BsCaretLeftFill'
 import { ArrowRight } from 'react-bootstrap-icons'

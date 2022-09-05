@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { OrderReview as ReviewOrderController, useLanguage } from 'ordering-components'
+import { OrderReview as ReviewOrderController, useLanguage } from 'ordering-components-external'
 import AiFillStar from '@meronex/icons/ai/AiFillStar'
 
 import { Alert } from '../../../../../components/Confirm'

@@ -34,7 +34,7 @@ import {
   useConfig,
   useUtils,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 const PIXELS_TO_SCROLL = 500
 const BusinessesListingUI = (props) => {

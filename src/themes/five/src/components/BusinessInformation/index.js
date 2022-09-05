@@ -5,7 +5,7 @@ import {
   GoogleMapsMap,
   useLanguage,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Modal } from '../Modal'
 import {
   BusinessInformationContainer,

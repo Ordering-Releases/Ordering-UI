@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { BusinessReviews as BusinessReviewController, useLanguage } from 'ordering-components'
+import { BusinessReviews as BusinessReviewController, useLanguage } from 'ordering-components-external'
 import { useTheme } from '../../../../../contexts/ThemeContext'
 import moment from 'moment'
 

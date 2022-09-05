@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { PaymentRequestButtonElement, useStripe } from '@stripe/react-stripe-js'
-import { CardForm as CardFormController, useLanguage } from 'ordering-components'
+import { CardForm as CardFormController, useLanguage } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import { Container } from './styles'
 export const StripeMethodFormUI = (props) => {

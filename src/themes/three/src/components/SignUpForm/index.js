@@ -10,7 +10,7 @@ import {
   useLanguage,
   useConfig,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   SignUpContainer,
   FormSide,

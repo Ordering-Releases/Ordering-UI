@@ -15,7 +15,7 @@ var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowD
 
 var _BsTrash = _interopRequireDefault(require("@meronex/icons/bs/BsTrash"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

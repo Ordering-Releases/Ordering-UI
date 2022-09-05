@@ -4,7 +4,7 @@ import {
   useConfig,
   useUtils,
   MultiCartsPaymethodsAndWallets as MultiCartsPaymethodsAndWalletsController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import BilStripe from '@meronex/icons/bi/BilStripe'
 import FaCcStripe from '@meronex/icons/fa/FaCcStripe'

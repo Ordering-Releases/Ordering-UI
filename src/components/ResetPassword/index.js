@@ -5,7 +5,7 @@ import {
   useLanguage,
   ResetPassword as ResetPasswordController,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   ResetPasswordContainer,
   FormSide,

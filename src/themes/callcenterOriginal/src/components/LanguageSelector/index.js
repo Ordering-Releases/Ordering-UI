@@ -1,5 +1,5 @@
 import React from 'react'
-import { LanguageSelector as LanguageSelectorController } from 'ordering-components'
+import { LanguageSelector as LanguageSelectorController } from 'ordering-components-external'
 import { Select } from '../../styles/Select'
 import { Container } from './styles'
 import BisDownArrow from '@meronex/icons/bi/BisDownArrow'

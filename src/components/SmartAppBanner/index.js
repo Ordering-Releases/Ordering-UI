@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, SmartAppBanner as SmartAppBannerController } from 'ordering-components'
+import { useLanguage, SmartAppBanner as SmartAppBannerController } from 'ordering-components-external'
 import SmartBanner from 'react-smartbanner'
 
 const SmartAppBanneUI = (props) => {

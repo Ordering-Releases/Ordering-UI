@@ -13,7 +13,7 @@ var _reactPopper = require("react-popper");
 
 var _styles = require("./styles");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

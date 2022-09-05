@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLanguage, useOrder } from 'ordering-components'
+import { useLanguage, useOrder } from 'ordering-components-external'
 import { FavoriteList } from '../FavoriteList'
 import { Tabs } from '../../styles/Tabs'
 import {

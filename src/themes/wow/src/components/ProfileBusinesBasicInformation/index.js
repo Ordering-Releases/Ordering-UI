@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import FaStar from '@meronex/icons/fa/FaStar'
 import GiTronArrow from '@meronex/icons/gi/GiTronArrow'
 import { useTheme } from 'styled-components'
-import { useLanguage, useUtils } from 'ordering-components'
+import { useLanguage, useUtils } from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 import { getHourMin } from '../../../../../utils'
 import {

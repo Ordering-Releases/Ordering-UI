@@ -21,7 +21,7 @@ var _BiImage = _interopRequireDefault(require("@meronex/icons/bi/BiImage"));
 
 var _GrLogout = _interopRequireDefault(require("@meronex/icons/gr/GrLogout"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _IosGlobe = _interopRequireDefault(require("@meronex/icons/ios/IosGlobe"));
 

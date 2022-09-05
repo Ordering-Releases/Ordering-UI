@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useLanguage, OrderTypeControl, useOrder, useApi, useEvent, useSession, useConfig, useUtils } from 'ordering-components'
+import { useLanguage, OrderTypeControl, useOrder, useApi, useEvent, useSession, useConfig, useUtils } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import BsArrowRight from '@meronex/icons/bs/BsArrowRight'
 import BsArrowLeft from '@meronex/icons/bs/BsArrowLeft'

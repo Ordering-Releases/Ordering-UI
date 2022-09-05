@@ -17,7 +17,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
 

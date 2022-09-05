@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useOrder } from 'ordering-components'
+import { useOrder } from 'ordering-components-external'
 import BsChevronDown from '@meronex/icons/bs/BsChevronDown'
 
 import {

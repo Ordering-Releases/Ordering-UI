@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import moment from 'moment'
-import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components'
+import { MomentOption, useLanguage, useUtils, useConfig, useOrder } from 'ordering-components-external'
 
 import {
   MomentControlContainer,

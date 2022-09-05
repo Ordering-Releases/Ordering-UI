@@ -13,7 +13,7 @@ var _reactHookForm = require("react-hook-form");
 
 var _Confirm = require("../../../../../components/Confirm");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

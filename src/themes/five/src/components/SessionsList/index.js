@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLanguage, useUtils, useSession, Sessions as SessionsController } from 'ordering-components'
+import { useLanguage, useUtils, useSession, Sessions as SessionsController } from 'ordering-components-external'
 import MdClose from '@meronex/icons/md/MdClose'
 import Skeleton from 'react-loading-skeleton'
 import { Button } from '../../styles/Buttons'

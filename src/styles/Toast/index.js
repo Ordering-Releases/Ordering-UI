@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { useToast, ToastType } from 'ordering-components'
+import { useToast, ToastType } from 'ordering-components-external'
 
 const ToastBar = styled.div`
   visibility: hidden;

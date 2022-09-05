@@ -31,7 +31,7 @@ var _FaMapMarkerAlt = _interopRequireDefault(require("@meronex/icons/fa/FaMapMar
 
 var _FaRegClock = _interopRequireDefault(require("@meronex/icons/fa/FaRegClock"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useWindowSize2 = require("../../../../../hooks/useWindowSize");
 

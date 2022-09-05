@@ -12,7 +12,7 @@ import { BusinessReviews } from '../BusinessReviews'
 import { MomentContent } from '../MomentContent'
 import HiArrowNarrowLeft from '@meronex/icons/hi/HiArrowNarrowLeft'
 
-import { useUtils, useOrder, useLanguage } from 'ordering-components'
+import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { convertHoursToMinutes } from '../../../../../utils'
 import { Select } from '../../styles/Select'

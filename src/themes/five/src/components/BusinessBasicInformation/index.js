@@ -8,7 +8,7 @@ import { BusinessInformation } from '../BusinessInformation'
 import { BusinessReviews } from '../BusinessReviews'
 import BsInfoCircle from '@meronex/icons/bs/BsInfoCircle'
 
-import { useUtils, useOrder, useLanguage, useConfig, useOrderingTheme } from 'ordering-components'
+import { useUtils, useOrder, useLanguage, useConfig, useOrderingTheme } from 'ordering-components-external'
 
 import { convertHoursToMinutes, shape } from '../../../../../utils'
 import { Select } from '../../styles/Select'

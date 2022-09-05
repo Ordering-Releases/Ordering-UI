@@ -13,7 +13,7 @@ var _EnChevronDown = _interopRequireDefault(require("@meronex/icons/en/EnChevron
 
 var _AiOutlineLeft = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineLeft"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useWindowSize = require("../../../../../hooks/useWindowSize");
 

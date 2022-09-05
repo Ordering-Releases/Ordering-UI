@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GoogleIdentityButton as GoogleIdentityButtonController, useLanguage } from 'ordering-components'
+import { GoogleIdentityButton as GoogleIdentityButtonController, useLanguage } from 'ordering-components-external'
 import { GoogleButton } from './styles'
 import { Alert } from '../Confirm'
 

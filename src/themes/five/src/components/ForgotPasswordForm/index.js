@@ -5,7 +5,7 @@ import {
   ForgotPasswordForm as ForgotPasswordController,
   useLanguage,
   ReCaptcha
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   ForgotPasswordContainer,

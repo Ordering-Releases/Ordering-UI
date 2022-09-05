@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
-import { useOrder, useLanguage } from 'ordering-components'
+import { useOrder, useLanguage } from 'ordering-components-external'
 import {
   HeroContainer,
   ContentWrapper

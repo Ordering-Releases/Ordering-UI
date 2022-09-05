@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { AutoScroll } from '../AutoScroll'
 import { useSearchValue } from '../../contexts/SearchValueContext'
-import { BusinessList as BusinessListController, useOrder, useLanguage } from 'ordering-components'
+import { BusinessList as BusinessListController, useOrder, useLanguage } from 'ordering-components-external'
 import { BusinessController } from '../BusinessController'
 import {
   Container,

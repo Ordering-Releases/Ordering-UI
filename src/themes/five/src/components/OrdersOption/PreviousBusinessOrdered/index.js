@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BusinessList as BusinessListController, useOrder } from 'ordering-components'
+import { BusinessList as BusinessListController, useOrder } from 'ordering-components-external'
 import { BusinessController } from '../../BusinessController'
 import { AutoScroll } from '../../AutoScroll'
 import { BusinessList, BusinessListWrapper } from './styles'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, useOrder, BusinessList as BusinessListController } from 'ordering-components'
+import { useLanguage, useOrder, BusinessList as BusinessListController } from 'ordering-components-external'
 import { BusinessController } from '../BusinessController'
 import { Button } from '../../styles/Buttons'
 import { NotFoundSource } from '../NotFoundSource'

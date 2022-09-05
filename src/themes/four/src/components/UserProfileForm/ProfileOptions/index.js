@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FiSettings from '@meronex/icons/fi/FiSettings'
 import AiOutlineUnorderedList from '@meronex/icons/ai/AiOutlineUnorderedList'
-import { useEvent, useLanguage } from 'ordering-components'
+import { useEvent, useLanguage } from 'ordering-components-external'
 
 import {
   ProfileMenuContainer,

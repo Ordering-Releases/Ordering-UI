@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ProductsList, useLanguage } from 'ordering-components'
+import { ProductsList, useLanguage } from 'ordering-components-external'
 
 import { SingleProductCard } from '../SingleProductCard'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'

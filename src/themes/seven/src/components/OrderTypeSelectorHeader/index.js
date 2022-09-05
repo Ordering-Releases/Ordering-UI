@@ -1,5 +1,5 @@
 import React from 'react'
-import { OrderTypeControl, useLanguage } from 'ordering-components'
+import { OrderTypeControl, useLanguage } from 'ordering-components-external'
 import { Select } from '../../styles/Select'
 import FaCarSide from '@meronex/icons/fa/FaCarSide'
 import FaTruckPickup from '@meronex/icons/fa/FaTruckPickup'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLanguage, useUtils, MultiOrdersDetails as MultiOrdersDetailsController } from 'ordering-components'
+import { useLanguage, useUtils, MultiOrdersDetails as MultiOrdersDetailsController } from 'ordering-components-external'
 import { Image } from '../../../../../components/Image'
 import Skeleton from 'react-loading-skeleton'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'

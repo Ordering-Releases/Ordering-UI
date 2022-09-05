@@ -15,7 +15,7 @@ var _AiFillPlusCircle = _interopRequireDefault(require("@meronex/icons/ai/AiFill
 
 var _BisMinusCircle = _interopRequireDefault(require("@meronex/icons/bi/BisMinusCircle"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

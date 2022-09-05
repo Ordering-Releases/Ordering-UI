@@ -13,7 +13,7 @@ import BiHelpCircle from '@meronex/icons/bi/BiHelpCircle'
 import SiJsonwebtokens from '@meronex/icons/si/SiJsonwebtokens'
 import { Heart } from 'react-bootstrap-icons'
 
-import { useEvent, useLanguage, useOrder, useSession, useConfig } from 'ordering-components'
+import { useEvent, useLanguage, useOrder, useSession, useConfig } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

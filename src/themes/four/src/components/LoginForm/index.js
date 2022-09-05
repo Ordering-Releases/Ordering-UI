@@ -6,7 +6,7 @@ import {
   useLanguage,
   useConfig,
   useSession,
-} from 'ordering-components'
+} from 'ordering-components-external'
 import RiPhoneLine from '@meronex/icons/ri/RiPhoneLine'
 import GoMail from '@meronex/icons/go/GoMail'
 import { Alert } from '../../../../../components/Confirm'

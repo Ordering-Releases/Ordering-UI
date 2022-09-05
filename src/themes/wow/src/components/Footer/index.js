@@ -3,7 +3,7 @@ import EnTwitterWithCircle from '@meronex/icons/en/EnTwitterWithCircle'
 import FaFacebook from '@meronex/icons/fa/FaFacebook'
 import {
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import {
   FooterContainer,

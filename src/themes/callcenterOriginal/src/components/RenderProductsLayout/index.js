@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useLanguage, useConfig, useUtils } from 'ordering-components'
+import { useLanguage, useConfig, useUtils } from 'ordering-components-external'
 import { Cart3 } from 'react-bootstrap-icons'
 
 import { BusinessBasicInformation } from '../BusinessBasicInformation'

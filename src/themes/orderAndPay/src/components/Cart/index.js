@@ -8,7 +8,7 @@ import {
   useUtils,
   useValidationFields,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 import { ProductItemAccordion } from '../ProductItemAccordion'
 import MdClose from '@meronex/icons/md/MdClose'

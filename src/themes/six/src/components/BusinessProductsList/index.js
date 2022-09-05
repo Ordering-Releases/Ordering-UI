@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductsList, useLanguage } from 'ordering-components'
+import { ProductsList, useLanguage } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 
 import { SingleProductCard } from '../SingleProductCard'

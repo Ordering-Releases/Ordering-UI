@@ -1,6 +1,6 @@
 import React from 'react'
 import { PickupBusinessesListing } from '../../../src/components/PickupBusinessesListing'
-import { useEvent } from 'ordering-components'
+import { useEvent } from 'ordering-components-external'
 import { HelmetTags } from '../../components/HelmetTags'
 
 export const PickupPage = (props) => {

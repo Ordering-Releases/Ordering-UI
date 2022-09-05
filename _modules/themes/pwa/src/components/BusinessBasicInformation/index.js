@@ -31,7 +31,7 @@ var _MomentContent = require("../MomentContent");
 
 var _HiArrowNarrowLeft = _interopRequireDefault(require("@meronex/icons/hi/HiArrowNarrowLeft"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useWindowSize = require("../../../../../hooks/useWindowSize");
 

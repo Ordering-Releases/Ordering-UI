@@ -1,5 +1,5 @@
 import React from 'react'
-import { DriverTips as DriverTipsController } from 'ordering-components'
+import { DriverTips as DriverTipsController } from 'ordering-components-external'
 
 import {
   DriverTipContainer,

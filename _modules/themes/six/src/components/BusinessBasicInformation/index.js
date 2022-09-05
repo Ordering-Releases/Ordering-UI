@@ -17,7 +17,7 @@ var _GrDeliver = _interopRequireDefault(require("@meronex/icons/gr/GrDeliver"));
 
 var _FaStar = _interopRequireDefault(require("@meronex/icons/fa/FaStar"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

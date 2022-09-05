@@ -7,7 +7,7 @@ import {
   useLanguage,
   useUtils,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { BusinessReviews } from '../BusinessReviews'
 import { Modal } from '../Modal'
 import {

@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import FaMapMarkerAlt from '@meronex/icons/fa/FaMapMarkerAlt'
 import FaStar from '@meronex/icons/fa/FaStar'
 import { useTheme } from 'styled-components'
-import { useUtils, useLanguage } from 'ordering-components'
+import { useUtils, useLanguage } from 'ordering-components-external'
 
 import { Modal } from '../../../../../components/Modal'
 import { BusinessInformation } from '../../../../../components/BusinessInformation'

@@ -13,7 +13,7 @@ var _AutoScroll = require("../AutoScroll");
 
 var _SearchValueContext = require("../../contexts/SearchValueContext");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 

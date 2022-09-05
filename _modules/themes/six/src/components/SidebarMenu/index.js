@@ -25,7 +25,7 @@ var _BiStore = _interopRequireDefault(require("@meronex/icons/bi/BiStore"));
 
 var _FaUserCircle = _interopRequireDefault(require("@meronex/icons/fa/FaUserCircle"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useWindowSize2 = require("../../../../../hooks/useWindowSize");
 

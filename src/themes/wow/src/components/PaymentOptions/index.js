@@ -8,7 +8,7 @@ import FaCcStripe from '@meronex/icons/fa/FaCcStripe'
 import FaStripeS from '@meronex/icons/fa/FaStripeS'
 import GrStripe from '@meronex/icons/gr/GrStripe'
 import EnPaypal from '@meronex/icons/en/EnPaypal'
-import { PaymentOptions as PaymentOptionsController, useLanguage, useSession } from 'ordering-components'
+import { PaymentOptions as PaymentOptionsController, useLanguage, useSession } from 'ordering-components-external'
 
 import { Modal } from '../../../../../components/Modal'
 import { PaymentOptionCash } from '../../../../../components/PaymentOptionCash'

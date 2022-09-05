@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // import { useConfig } from '../../contexts/ConfigContext'
 // import { useApi } from '../../contexts/ApiContext'
 
-import { useOrder, useConfig, useApi } from 'ordering-components'
+import { useOrder, useConfig, useApi } from 'ordering-components-external'
 
 export const ProductForm = (props) => {
   const {

@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _BusinessPreorder = require("../BusinessPreorder");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _FaUserAlt = _interopRequireDefault(require("@meronex/icons/fa/FaUserAlt"));
 

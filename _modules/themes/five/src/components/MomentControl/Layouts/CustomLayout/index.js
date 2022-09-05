@@ -9,7 +9,7 @@ exports.CustomLayout = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 require("react-calendar/dist/Calendar.css");
 

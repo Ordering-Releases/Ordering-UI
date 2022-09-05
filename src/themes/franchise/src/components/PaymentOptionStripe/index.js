@@ -4,7 +4,7 @@ import {
   PaymentOptionStripe as PaymentOptionStripeController,
   useSession,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import FiMoreVertical from '@meronex/icons/fi/FiMoreVertical'
 import { useTheme } from 'styled-components'
 

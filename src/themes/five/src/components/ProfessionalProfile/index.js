@@ -1,6 +1,6 @@
 import React from 'react'
 import { BusinessPreorder } from '../BusinessPreorder'
-import { useLanguage, useUtils } from 'ordering-components'
+import { useLanguage, useUtils } from 'ordering-components-external'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
 import {
   Container,

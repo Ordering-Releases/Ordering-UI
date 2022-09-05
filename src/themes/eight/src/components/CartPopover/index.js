@@ -6,7 +6,7 @@ import {
   PopoverArrow
 } from './styles'
 
-import { useOrder, useEvent } from 'ordering-components'
+import { useOrder, useEvent } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { CartContent } from '../CartContent'
 

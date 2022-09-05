@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductIngredient as ProductIngredientController } from 'ordering-components'
+import { ProductIngredient as ProductIngredientController } from 'ordering-components-external'
 import BsCheck from '@meronex/icons/bs/BsCheck'
 import {
   Container,

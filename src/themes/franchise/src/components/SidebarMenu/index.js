@@ -11,7 +11,7 @@ import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
 import BiHelpCircle from '@meronex/icons/bi/BiHelpCircle'
 import MdMyLocation from '@meronex/icons/md/MdMyLocation'
 
-import { useEvent, useLanguage, useOrder, useSession } from 'ordering-components'
+import { useEvent, useLanguage, useOrder, useSession } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

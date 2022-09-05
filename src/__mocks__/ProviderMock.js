@@ -1,5 +1,5 @@
 import React from 'react'
-import { OrderingProvider } from 'ordering-components'
+import { OrderingProvider } from 'ordering-components-external'
 import { Alert } from '../components/Confirm'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import theme from '../../template/theme.json'

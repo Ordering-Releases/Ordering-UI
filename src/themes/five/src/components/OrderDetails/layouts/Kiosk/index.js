@@ -10,7 +10,7 @@ import {
   useEvent,
   useToast, ToastType,
   useApi
-} from 'ordering-components'
+} from 'ordering-components-external'
 import AiFillCheckCircle from '@meronex/icons/ai/AiFillCheckCircle'
 
 import { Button } from '../../../../styles/Buttons'

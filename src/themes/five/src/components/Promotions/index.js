@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { PromotionsController, useLanguage, useSite, useUtils, useEvent } from 'ordering-components'
+import { PromotionsController, useLanguage, useSite, useUtils, useEvent } from 'ordering-components-external'
 import {
   PromotionsContainer,
   PromotionTitle,

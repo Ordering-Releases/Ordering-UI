@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useLanguage, useConfig, useSession } from 'ordering-components'
+import { useLanguage, useConfig, useSession } from 'ordering-components-external'
 import {
   HomeContainer,
   HeroContainer,

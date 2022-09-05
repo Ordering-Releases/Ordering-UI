@@ -5,7 +5,7 @@ import {
   useUtils,
   useLanguage,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 import Skeleton from 'react-loading-skeleton'
 import {

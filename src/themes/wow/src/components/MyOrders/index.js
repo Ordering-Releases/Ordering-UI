@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import BiArrowBack from '@meronex/icons/bi/BiArrowBack'
 import { OrdersOptionTabs } from '../OrdersOptionTabs'
 import { OrdersOption } from '../OrdersOption'

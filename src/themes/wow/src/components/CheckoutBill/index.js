@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, useUtils, useOrder } from 'ordering-components'
+import { useLanguage, useUtils, useOrder } from 'ordering-components-external'
 import {
   CheckoutBillContainer
 } from './styles'

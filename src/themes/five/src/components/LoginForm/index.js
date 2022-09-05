@@ -11,7 +11,7 @@ import {
   useSession,
   ReCaptcha,
   useApi
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
 import { InputPhoneNumber } from '../InputPhoneNumber'

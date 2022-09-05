@@ -37,7 +37,7 @@ var _OrdersOption = require("../OrdersOption");
 
 var _BusinessesMap = require("../../../../../components/BusinessesMap");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _HighestRated = require("../HighestRated");
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUtils, useLanguage, useConfig } from 'ordering-components'
+import { useUtils, useLanguage, useConfig } from 'ordering-components-external'
 import BiCart from '@meronex/icons/bi/BiCart'
 import FaRegClock from '@meronex/icons/fa/FaRegClock'
 import HiOutlineLocationMarker from '@meronex/icons/hi/HiOutlineLocationMarker'

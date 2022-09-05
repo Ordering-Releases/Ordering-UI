@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { UpsellingPage as UpsellingPageController, useLanguage, useUtils } from 'ordering-components'
+import { UpsellingPage as UpsellingPageController, useLanguage, useUtils } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import { Modal } from '../../../../../components/Modal'
 

@@ -34,7 +34,7 @@ import {
   useLanguage,
   useConfig,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { HighestRated } from '../HighestRated'
 import { BusinessPreorder } from '../BusinessPreorder'
 import { OrderProgress } from '../OrderProgress'

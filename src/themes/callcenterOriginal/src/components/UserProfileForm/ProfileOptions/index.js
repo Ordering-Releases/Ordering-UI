@@ -3,7 +3,7 @@ import { FlexTabs } from './styles'
 import { Tabs, Tab } from '../../../styles/Tabs'
 import BsPerson from '@meronex/icons/bs/BsPerson'
 import AiOutlineUnorderedList from '@meronex/icons/ai/AiOutlineUnorderedList'
-import { useEvent, useLanguage } from 'ordering-components'
+import { useEvent, useLanguage } from 'ordering-components-external'
 
 export const ProfileOptions = ({ value }) => {
   const [tabValue] = useState(value)

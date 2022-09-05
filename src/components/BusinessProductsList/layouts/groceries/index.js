@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductsList, useLanguage, useConfig } from 'ordering-components'
+import { ProductsList, useLanguage, useConfig } from 'ordering-components-external'
 
 import { Button } from '../../../../styles/Buttons'
 import { SingleProductCard } from '../../../SingleProductCard'

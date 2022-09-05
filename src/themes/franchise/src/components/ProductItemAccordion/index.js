@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import BsPencil from '@meronex/icons/bs/BsPencil'
 import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
 import VscTrash from '@meronex/icons/vsc/VscTrash'
-import { useUtils, useLanguage, useOrder } from 'ordering-components'
+import { useUtils, useLanguage, useOrder } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 
 import {

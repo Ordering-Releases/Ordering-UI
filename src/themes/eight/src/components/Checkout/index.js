@@ -12,7 +12,7 @@ import {
   useValidationFields,
   useConfig,
   useCustomer
-} from 'ordering-components'
+} from 'ordering-components-external'
 import parsePhoneNumber from 'libphonenumber-js'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { Alert } from '../../../../../components/Confirm'

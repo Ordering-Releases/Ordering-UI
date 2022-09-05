@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useUtils, useLanguage, useSession, ProductForm as ProductFormController } from 'ordering-components'
+import { useUtils, useLanguage, useSession, ProductForm as ProductFormController } from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { Modal } from '../Modal'
 import { LoginForm } from '../LoginForm'

@@ -23,7 +23,7 @@ var _BusinessReviews = require("../BusinessReviews");
 
 var _BsInfoCircle = _interopRequireDefault(require("@meronex/icons/bs/BsInfoCircle"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

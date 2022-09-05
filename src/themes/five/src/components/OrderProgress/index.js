@@ -4,7 +4,7 @@ import {
   useUtils,
   useEvent,
   OrderList as OrderListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 import moment from 'moment'
 import Skeleton from 'react-loading-skeleton'

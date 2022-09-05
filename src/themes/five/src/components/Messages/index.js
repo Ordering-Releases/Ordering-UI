@@ -5,7 +5,7 @@ import {
   useUtils,
   useLanguage,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 import IosSend from '@meronex/icons/ios/IosSend'
 import Skeleton from 'react-loading-skeleton'

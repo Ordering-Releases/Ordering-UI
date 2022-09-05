@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useEvent } from 'ordering-components'
+import { useEvent } from 'ordering-components-external'
 import { HelmetTags } from '../../components/HelmetTags'
 import { FilterBusinessesListing } from '../../../src/components/FilterBusinessesListing'
 

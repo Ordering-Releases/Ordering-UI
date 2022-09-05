@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { BusinessProductsCategories as ProductsCategories } from 'ordering-components'
+import { BusinessProductsCategories as ProductsCategories } from 'ordering-components-external'
 import { AutoScroll } from '../../../../../components/AutoScroll'
 import { CategoriesContainer } from './styles'
 import { Tabs, Tab } from '../../styles/Tabs'

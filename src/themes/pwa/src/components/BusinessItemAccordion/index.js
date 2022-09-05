@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import TiArrowSortedDown from '@meronex/icons/ti/TiArrowSortedDown'
-import { useOrder, useLanguage, useUtils, useEvent } from 'ordering-components'
+import { useOrder, useLanguage, useUtils, useEvent } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import BiStoreAlt from '@meronex/icons/bi/BiStoreAlt'
 import AiOutlineDelete from '@meronex/icons/ai/AiOutlineDelete'

@@ -13,7 +13,7 @@ var _VscWarning = _interopRequireDefault(require("@meronex/icons/vsc/VscWarning"
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 

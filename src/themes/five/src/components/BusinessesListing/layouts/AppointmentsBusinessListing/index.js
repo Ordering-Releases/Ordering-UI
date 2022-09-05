@@ -6,7 +6,7 @@ import {
   useSession,
   useConfig,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { BusinessPreorder } from '../../../BusinessPreorder'
 import { BusinessTypeFilter } from '../../../BusinessTypeFilter'
 import { priceList } from '../../../../../../../utils'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BusinessesMap as BusinessesMapController, useConfig, useOrder } from 'ordering-components'
+import { BusinessesMap as BusinessesMapController, useConfig, useOrder } from 'ordering-components-external'
 import { GoogleMapsMap } from './googleMap.js'
 import { WrapperMap } from './styles'
 

@@ -7,7 +7,7 @@ import {
   useSession,
   useValidationFields,
   MultiCheckout as MultiCheckoutController
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import parsePhoneNumber from 'libphonenumber-js'
 import { NotFoundSource } from '../NotFoundSource'

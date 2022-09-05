@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import BsChevronRight from '@meronex/icons/bs/BsChevronRight'
 import {
   HelpListContainer,

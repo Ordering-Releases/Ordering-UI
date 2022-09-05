@@ -5,7 +5,7 @@ import {
   PaymentOptions as PaymentOptionsController,
   useLanguage,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { Modal } from '../../../../../components/Modal'
 import { PaymentOptionStripe } from '../../../../../components/PaymentOptionStripe'

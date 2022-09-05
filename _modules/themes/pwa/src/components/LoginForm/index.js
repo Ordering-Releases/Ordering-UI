@@ -15,7 +15,7 @@ var _styledComponents = require("styled-components");
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _Confirm = require("../Confirm");
 

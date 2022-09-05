@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useApi } from 'ordering-components'
+import { useApi } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 
 export const HelpStaticPage = (props) => {

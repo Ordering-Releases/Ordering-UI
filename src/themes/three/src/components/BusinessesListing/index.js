@@ -23,7 +23,7 @@ import {
   useSession,
   useLanguage,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   BusinessContainer,

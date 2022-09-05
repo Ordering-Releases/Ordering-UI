@@ -19,7 +19,7 @@ var _FaMapMarkerAlt = _interopRequireDefault(require("@meronex/icons/fa/FaMapMar
 
 var _MdcTruckDelivery = _interopRequireDefault(require("@meronex/icons/mdc/MdcTruckDelivery"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AddressDetails as AddressDetailsController, useLanguage } from 'ordering-components'
+import { AddressDetails as AddressDetailsController, useLanguage } from 'ordering-components-external'
 import {
   AddressContainer,
   Map,

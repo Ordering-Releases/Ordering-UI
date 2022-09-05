@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils, useValidationFields, useConfig } from 'ordering-components'
+import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils, useValidationFields, useConfig } from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 import { BusinessItemAccordion } from '../BusinessItemAccordion'
 import { ProductItemAccordion } from '../ProductItemAccordion'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Divider, OrderGroupFilterWrapper } from './styles'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 
 import { ProfileOptions } from '../../../../../components/UserProfileForm/ProfileOptions'
 import { OrdersOption } from '../OrdersOption'

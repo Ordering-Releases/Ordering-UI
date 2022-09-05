@@ -1,5 +1,5 @@
 import React from 'react'
-import { FloatingButton as FloatingButtonController } from 'ordering-components'
+import { FloatingButton as FloatingButtonController } from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 
 import {

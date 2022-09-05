@@ -13,7 +13,7 @@ var _Inputs = require("../../styles/Inputs");
 
 var _ThemeContext = require("../../../../../contexts/ThemeContext");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _MdcClose = _interopRequireDefault(require("@meronex/icons/mdc/MdcClose"));
 

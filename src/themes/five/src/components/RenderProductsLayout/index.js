@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useLanguage, useConfig, useUtils, useOrderingTheme } from 'ordering-components'
+import { useLanguage, useConfig, useUtils, useOrderingTheme } from 'ordering-components-external'
 import CgSearch from '@meronex/icons/cg/CgSearch'
 import { Cart3 } from 'react-bootstrap-icons'
 

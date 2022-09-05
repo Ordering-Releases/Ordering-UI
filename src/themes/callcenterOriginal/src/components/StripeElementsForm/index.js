@@ -1,5 +1,5 @@
 import React from 'react'
-import { StripeElementsForm as StripeElementsFormController, useLanguage } from 'ordering-components'
+import { StripeElementsForm as StripeElementsFormController, useLanguage } from 'ordering-components-external'
 import { loadStripe } from '@stripe/stripe-js/pure'
 import { Elements } from '@stripe/react-stripe-js'
 

@@ -13,7 +13,7 @@ var _FiClock = _interopRequireDefault(require("@meronex/icons/fi/FiClock"));
 
 var _TiArrowSortedUp = _interopRequireDefault(require("@meronex/icons/ti/TiArrowSortedUp"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

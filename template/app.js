@@ -6,7 +6,7 @@ import {
   Link,
   useLocation
 } from 'react-router-dom'
-import { useSession, useLanguage, useOrder, Analytics, useConfig, FacebookPixel } from 'ordering-components'
+import { useSession, useLanguage, useOrder, Analytics, useConfig, FacebookPixel } from 'ordering-components-external'
 
 import { Header } from '../src/components/Header'
 import { Footer } from '../src/components/Footer'

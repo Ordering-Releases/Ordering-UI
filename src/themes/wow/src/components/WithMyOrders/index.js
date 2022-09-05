@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { AutoScroll } from '../AutoScroll'
 import { OrdersOption } from '../OrdersOption'
 import { OrderHelp } from '../OrderHelp'

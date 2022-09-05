@@ -12,7 +12,7 @@ import {
   useSession,
   useUtils,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { PageNotFound } from '../../../../../components/PageNotFound'

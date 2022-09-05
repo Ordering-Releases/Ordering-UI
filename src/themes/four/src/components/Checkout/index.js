@@ -17,7 +17,7 @@ import {
   useValidationFields,
   useConfig,
   useCustomer
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { UpsellingPage } from '../../../../../components/UpsellingPage'
 import { verifyDecimals } from '../../../../../utils'
 import { CouponControl } from '../CouponControl'

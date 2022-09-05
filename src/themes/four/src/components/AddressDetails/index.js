@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AddressDetails as AddressDetailsController, useOrder, useLanguage, useCustomer } from 'ordering-components'
+import { AddressDetails as AddressDetailsController, useOrder, useLanguage, useCustomer } from 'ordering-components-external'
 import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
 import FaMapMarkerAlt from '@meronex/icons/fa/FaMapMarkerAlt'
 import { useTheme } from 'styled-components'

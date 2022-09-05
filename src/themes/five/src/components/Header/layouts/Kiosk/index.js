@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useSession, useLanguage, useEvent, useConfig } from 'ordering-components'
+import { useSession, useLanguage, useEvent, useConfig } from 'ordering-components-external'
 
 import {
   Header as HeaderContainer,

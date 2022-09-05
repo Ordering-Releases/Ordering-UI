@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import BsChevronLeft from '@meronex/icons/bs/BsChevronLeft'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { SearchBar } from '../SearchBar'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

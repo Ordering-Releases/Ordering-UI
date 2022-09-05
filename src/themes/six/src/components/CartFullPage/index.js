@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CartInfo } from '../CartInfo'
 import { Cart } from '../Cart'
-import { useEvent } from 'ordering-components'
+import { useEvent } from 'ordering-components-external'
 import {
   Container,
   Layout,

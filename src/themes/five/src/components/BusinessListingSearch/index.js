@@ -37,7 +37,7 @@ import {
 import Skeleton from 'react-loading-skeleton'
 import { Check2, XLg as Close } from 'react-bootstrap-icons'
 import { SearchBar } from '../SearchBar'
-import { useLanguage, useOrder, useUtils, useSession, BusinessSearchList } from 'ordering-components'
+import { useLanguage, useOrder, useUtils, useSession, BusinessSearchList } from 'ordering-components-external'
 import { BusinessController } from '../BusinessController'
 import { AutoScroll } from '../AutoScroll'
 import { BusinessTypeFilter } from '../BusinessTypeFilter'

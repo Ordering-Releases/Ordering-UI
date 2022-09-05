@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 
 import { Input } from '../../styles/Inputs'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import BiFilterAlt from '@meronex/icons/bi/BiFilterAlt'
 import BsSearch from '@meronex/icons/bs/BsSearch'
 

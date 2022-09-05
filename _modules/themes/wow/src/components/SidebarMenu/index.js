@@ -35,7 +35,7 @@ var _BiHelpCircle = _interopRequireDefault(require("@meronex/icons/bi/BiHelpCirc
 
 var _FaUserAlt = _interopRequireDefault(require("@meronex/icons/fa/FaUserAlt"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

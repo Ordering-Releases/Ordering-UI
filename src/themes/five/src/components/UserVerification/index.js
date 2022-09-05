@@ -6,7 +6,7 @@ import {
   useSession,
   useLanguage,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { Envelope } from 'react-bootstrap-icons'
 

@@ -11,7 +11,7 @@ import {
   useConfig,
   useSession,
   ReCaptcha
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   SignUpContainer,
   FormSide,

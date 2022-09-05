@@ -4,7 +4,7 @@ import {
   BusinessProductsCategories as ProductsCategories,
   useUtils,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import BsChevronRight from '@meronex/icons/bs/BsChevronRight'
 import { useTheme } from 'styled-components'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'

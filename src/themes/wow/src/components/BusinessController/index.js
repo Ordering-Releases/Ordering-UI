@@ -1,5 +1,5 @@
 import React from 'react'
-import { BusinessController as BusinessSingleCard, useLanguage, useUtils } from 'ordering-components'
+import { BusinessController as BusinessSingleCard, useLanguage, useUtils } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import { convertHoursToMinutes } from '../../../../../utils'
 import GrClock from '@meronex/icons/gr/GrClock'

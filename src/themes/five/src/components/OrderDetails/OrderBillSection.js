@@ -4,7 +4,7 @@ import {
   useLanguage,
   useUtils,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { verifyDecimals } from '../../../../../utils'
 
 import {

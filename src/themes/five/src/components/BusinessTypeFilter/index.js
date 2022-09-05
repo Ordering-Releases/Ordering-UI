@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { XLg as Close } from 'react-bootstrap-icons'
-import { BusinessTypeFilter as BusinessTypeFilterController, useLanguage } from 'ordering-components'
+import { BusinessTypeFilter as BusinessTypeFilterController, useLanguage } from 'ordering-components-external'
 
 import { Tabs, Tab } from '../../styles/Tabs'
 

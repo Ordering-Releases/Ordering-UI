@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { ProductsList, useConfig, useLanguage } from 'ordering-components'
+import { ProductsList, useConfig, useLanguage } from 'ordering-components-external'
 
 import { SingleProductCard } from '../SingleProductCard'
 import { NotFoundSource } from '../NotFoundSource'

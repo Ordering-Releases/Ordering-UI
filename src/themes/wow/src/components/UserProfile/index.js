@@ -20,7 +20,7 @@ import {
   UserFormDetails as UserProfileController,
   useLanguage,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   Container,
   ProfileSidebar,

@@ -13,7 +13,7 @@ var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
 var _reactPhoneNumberInput = _interopRequireDefault(require("react-phone-number-input"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

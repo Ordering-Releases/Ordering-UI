@@ -4,7 +4,7 @@ import { useParams, useLocation } from 'react-router-dom'
 import { HelmetTags } from '../../components/HelmetTags'
 
 import { Checkout } from '../../../src/components/Checkout'
-import { useEvent, useOrder, useLanguage } from 'ordering-components'
+import { useEvent, useOrder, useLanguage } from 'ordering-components-external'
 
 export const CheckoutPage = (props) => {
   const { cartUuid } = useParams()

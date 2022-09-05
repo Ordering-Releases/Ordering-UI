@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
-import { useSession, useOrder, useLanguage } from 'ordering-components'
+import { useSession, useOrder, useLanguage } from 'ordering-components-external'
 import HiOutlineLocationMarker from '@meronex/icons/hi/HiOutlineLocationMarker'
 import { Modal } from '../../../../../components/Modal'
 import { Button } from '../../styles/Buttons'

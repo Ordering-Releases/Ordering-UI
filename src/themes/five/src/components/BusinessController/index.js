@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { useLanguage, useUtils, useOrder, useConfig, useSession, useOrderingTheme, BusinessController as BusinessSingleCard } from 'ordering-components'
+import { useLanguage, useUtils, useOrder, useConfig, useSession, useOrderingTheme, BusinessController as BusinessSingleCard } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import { Heart as DisLike, HeartFill as Like } from 'react-bootstrap-icons'
 import { useTheme } from 'styled-components'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useConfig, useLanguage } from 'ordering-components'
+import { useConfig, useLanguage } from 'ordering-components-external'
 import 'react-calendar/dist/Calendar.css'
 import Calendar from 'react-calendar'
 import MdKeyboardArrowLeft from '@meronex/icons/md/MdKeyboardArrowLeft'

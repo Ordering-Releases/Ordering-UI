@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { OrderList as OrderListController, useLanguage, useEvent, useOrder } from 'ordering-components'
+import { OrderList as OrderListController, useLanguage, useEvent, useOrder } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { Button } from '../../styles/Buttons'

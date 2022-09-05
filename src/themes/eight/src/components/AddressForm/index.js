@@ -16,7 +16,7 @@ import {
   useOrder,
   useConfig,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Alert } from '../../../../../components/Confirm'
 import { GoogleGpsButton } from '../../../../../components/GoogleGpsButton'
 import { useTheme } from 'styled-components'

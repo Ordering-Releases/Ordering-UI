@@ -13,7 +13,7 @@ var _moment = _interopRequireDefault(require("moment"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 require("react-datepicker/dist/react-datepicker.css");
 

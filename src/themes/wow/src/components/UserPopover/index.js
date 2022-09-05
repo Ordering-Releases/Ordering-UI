@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { useLanguage, useSession, LogoutAction as LogoutActionController, useEvent, useCustomer } from 'ordering-components'
+import { useLanguage, useSession, LogoutAction as LogoutActionController, useEvent, useCustomer } from 'ordering-components-external'
 import { usePopper } from 'react-popper'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
 import FaRegAddressCard from '@meronex/icons/fa/FaRegAddressCard'

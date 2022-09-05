@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DriverTips as DriverTipsController, useUtils, useLanguage, useConfig } from 'ordering-components'
+import { DriverTips as DriverTipsController, useUtils, useLanguage, useConfig } from 'ordering-components-external'
 import IosRadioButtonOn from '@meronex/icons/ios/IosRadioButtonOn'
 import IosRadioButtonOff from '@meronex/icons/ios/IosRadioButtonOff'
 import {

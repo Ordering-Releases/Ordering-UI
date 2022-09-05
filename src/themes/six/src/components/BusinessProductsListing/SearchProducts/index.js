@@ -3,7 +3,7 @@ import React from 'react'
 import { Select } from '../../../styles/Select'
 import { SearchBar } from '../../SearchBar'
 import { useTheme } from 'styled-components'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 
 export const SearchProducts = (props) => {
   const {

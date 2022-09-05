@@ -1,9 +1,9 @@
 import React from 'react'
-import { PaymentOptionPaypal as PaymentPaypalController } from 'ordering-components'
+import { PaymentOptionPaypal as PaymentPaypalController } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 
 import { Container } from './styles'
-import { useConfig } from 'ordering-components'
+import { useConfig } from 'ordering-components-external'
 const PaymentOptionPaypalUI = (props) => {
   const {
     isSdkReady,

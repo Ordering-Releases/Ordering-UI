@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import VscTrash from '@meronex/icons/vsc/VscTrash'
-import { useUtils, useLanguage, useOrder } from 'ordering-components'
+import { useUtils, useLanguage, useOrder } from 'ordering-components-external'
 import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
 
 import {

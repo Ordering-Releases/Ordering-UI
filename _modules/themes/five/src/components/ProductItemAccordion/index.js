@@ -13,7 +13,7 @@ var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowD
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _useWindowSize = require("../../../../../hooks/useWindowSize");
 

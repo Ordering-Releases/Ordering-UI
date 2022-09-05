@@ -19,7 +19,7 @@ var _FiPlusCircle = _interopRequireDefault(require("@meronex/icons/fi/FiPlusCirc
 
 var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowDown"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

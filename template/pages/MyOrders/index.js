@@ -1,7 +1,7 @@
 import React from 'react'
 import { MyOrders as MyOrdersController } from '../../../src/components/MyOrders'
 import { HelmetTags } from '../../components/HelmetTags'
-import { useEvent } from 'ordering-components'
+import { useEvent } from 'ordering-components-external'
 
 export const MyOrders = (props) => {
   const [events] = useEvent()

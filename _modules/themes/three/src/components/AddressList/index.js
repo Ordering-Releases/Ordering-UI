@@ -25,7 +25,7 @@ var _IosRadioButtonOn = _interopRequireDefault(require("@meronex/icons/ios/IosRa
 
 var _IosRadioButtonOff = _interopRequireDefault(require("@meronex/icons/ios/IosRadioButtonOff"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

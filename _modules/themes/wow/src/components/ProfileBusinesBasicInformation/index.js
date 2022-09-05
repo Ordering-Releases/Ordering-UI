@@ -15,7 +15,7 @@ var _GiTronArrow = _interopRequireDefault(require("@meronex/icons/gi/GiTronArrow
 
 var _styledComponents = require("styled-components");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _Buttons = require("../../styles/Buttons");
 

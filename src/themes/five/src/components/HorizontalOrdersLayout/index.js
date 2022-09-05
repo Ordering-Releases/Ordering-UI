@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { Card } from './styles'
 import { OrdersContainer } from '../OrdersOption/styles'
 

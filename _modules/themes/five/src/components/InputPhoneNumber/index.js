@@ -15,7 +15,7 @@ var _reactPhoneNumberInput = _interopRequireDefault(require("react-phone-number-
 
 var _BsPhone = _interopRequireDefault(require("@meronex/icons/bs/BsPhone"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

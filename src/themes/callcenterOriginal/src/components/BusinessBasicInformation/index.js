@@ -10,7 +10,7 @@ import { BusinessReviews } from '../BusinessReviews'
 import { MomentContent } from '../MomentContent'
 import BsInfoCircle from '@meronex/icons/bs/BsInfoCircle'
 
-import { useUtils, useOrder, useLanguage } from 'ordering-components'
+import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
 
 import { convertHoursToMinutes } from '../../../../../utils'
 import { Select } from '../../styles/Select'

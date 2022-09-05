@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
 import {
   Container,

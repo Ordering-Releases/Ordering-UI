@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import TiArrowSortedUp from '@meronex/icons/ti/TiArrowSortedUp'
-import { useOrder, useLanguage, useEvent, useUtils, useConfig } from 'ordering-components'
+import { useOrder, useLanguage, useEvent, useUtils, useConfig } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import FiClock from '@meronex/icons/fi/FiClock'
 import {

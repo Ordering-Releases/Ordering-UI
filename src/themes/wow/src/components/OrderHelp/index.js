@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUtils, useLanguage } from 'ordering-components'
+import { useUtils, useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import BsChevronDown from '@meronex/icons/bs/BsChevronDown'
 import { Button } from '../../styles/Buttons'

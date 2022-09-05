@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Divider, Title } from './styles'
 
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { OrdersOption } from '../OrdersOption'
 
 export const MyOrders = (props) => {

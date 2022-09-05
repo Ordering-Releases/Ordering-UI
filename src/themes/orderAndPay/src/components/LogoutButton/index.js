@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { LogoutAction, useLanguage, useToast, ToastType } from 'ordering-components'
+import { LogoutAction, useLanguage, useToast, ToastType } from 'ordering-components-external'
 
 import BiLogOut from '@meronex/icons/bi/BiLogOut'
 import { Confirm } from '../Confirm'

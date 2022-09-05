@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import FiClock from '@meronex/icons/fi/FiClock'
 import TiArrowSortedUp from '@meronex/icons/ti/TiArrowSortedUp'
-import { useOrder, useLanguage, useUtils, useEvent } from 'ordering-components'
+import { useOrder, useLanguage, useUtils, useEvent } from 'ordering-components-external'
 import { convertHoursToMinutes } from '../../../../../utils'
 
 import {

@@ -35,7 +35,7 @@ var _SiJsonwebtokens = _interopRequireDefault(require("@meronex/icons/si/SiJsonw
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

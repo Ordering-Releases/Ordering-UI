@@ -1,5 +1,5 @@
 import React from 'react'
-import { BusinessesMap as BusinessesMapController, useConfig, useOrder, GoogleMapsMap } from 'ordering-components'
+import { BusinessesMap as BusinessesMapController, useConfig, useOrder, GoogleMapsMap } from 'ordering-components-external'
 import { WrapperMap } from './styles'
 
 const BusinessesMapUI = (props) => {

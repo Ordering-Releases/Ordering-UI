@@ -1,4 +1,4 @@
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 
 export const getIconCard = (brand = '') => {

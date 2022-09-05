@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import TiArrowSortedUp from '@meronex/icons/ti/TiArrowSortedUp'
-import { useOrder, useLanguage, useEvent } from 'ordering-components'
+import { useOrder, useLanguage, useEvent } from 'ordering-components-external'
 
 import {
   AccordionSection,

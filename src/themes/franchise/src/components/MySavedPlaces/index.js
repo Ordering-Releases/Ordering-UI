@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSession, useLanguage, UserFormDetails as UserFormDetailsController } from 'ordering-components'
+import { useSession, useLanguage, UserFormDetails as UserFormDetailsController } from 'ordering-components-external'
 import { AddressList } from '../AddressList'
 import { useTheme } from 'styled-components'
 import {

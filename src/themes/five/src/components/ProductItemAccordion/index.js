@@ -4,7 +4,7 @@ import {
   Pencil,
   Trash
 } from 'react-bootstrap-icons'
-import { useUtils, useLanguage, useOrder } from 'ordering-components'
+import { useUtils, useLanguage, useOrder } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 
 import {

@@ -4,7 +4,7 @@ import {
   useEvent,
   useUtils,
   OrderDetails as OrderDetailsController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { Messages } from '../../../../../components/Messages'
 import AiFillExclamationCircle from '@meronex/icons/ai/AiFillExclamationCircle'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CmsContent, useLanguage } from 'ordering-components'
+import { CmsContent, useLanguage } from 'ordering-components-external'
 import { CmsContainer, SkeletonContainer, SkeletonHeader, SkeletonContent, SkeletonInformation, SkeletonSide } from './styles'
 import { NotFoundSource } from '../NotFoundSource'
 import Skeleton from 'react-loading-skeleton'

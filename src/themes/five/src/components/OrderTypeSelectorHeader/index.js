@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useOrder, useLanguage, useConfig } from 'ordering-components'
+import { useOrder, useLanguage, useConfig } from 'ordering-components-external'
 import {
   HeaderItem
 } from './styles'

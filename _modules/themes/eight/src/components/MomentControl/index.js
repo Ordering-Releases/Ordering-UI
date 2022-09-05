@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _moment = _interopRequireDefault(require("moment"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _reactDatepicker = _interopRequireDefault(require("react-datepicker"));
 

@@ -6,7 +6,7 @@ import {
   useSession,
   DragAndDrop,
   ExamineClick
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { UserFormDetailsUI } from '../../../../../components/UserFormDetails'
 import { AddressList } from '../AddressList'

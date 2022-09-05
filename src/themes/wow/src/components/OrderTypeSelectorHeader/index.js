@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { OrderTypeControl, useLanguage, useConfig } from 'ordering-components'
+import { OrderTypeControl, useLanguage, useConfig } from 'ordering-components-external'
 import { Select } from '../../../../../styles/Select'
 import FaCarSide from '@meronex/icons/fa/FaCarSide'
 import FaTruckPickup from '@meronex/icons/fa/FaTruckPickup'

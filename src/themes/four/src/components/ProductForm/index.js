@@ -10,7 +10,7 @@ import {
   useLanguage,
   useOrder,
   useUtils
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { scrollTo } from '../../../../../utils'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

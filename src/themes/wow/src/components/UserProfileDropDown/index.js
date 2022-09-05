@@ -4,7 +4,7 @@ import {
   useCustomer,
   useEvent,
   LogoutAction as LogoutActionController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import FaSignOutAlt from '@meronex/icons/fa/FaSignOutAlt'
 
 import { useTheme } from 'styled-components'

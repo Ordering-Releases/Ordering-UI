@@ -19,7 +19,7 @@ import {
   useSession,
   ReCaptcha,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useCountdownTimer } from '../../../../../hooks/useCountdownTimer'
 import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
 

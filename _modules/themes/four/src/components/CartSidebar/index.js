@@ -9,7 +9,7 @@ exports.CartSidebar = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 

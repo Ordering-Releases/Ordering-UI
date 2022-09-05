@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useUtils, useLanguage } from 'ordering-components'
+import { useUtils, useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { Button } from '../../styles/Buttons'
 import {

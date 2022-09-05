@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils } from 'ordering-components'
+import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils } from 'ordering-components-external'
 import { Button } from '../../styles/Buttons'
 import { Confirm } from '../../../../../components/Confirm'
 import { Modal } from '../../../../../components/Modal'

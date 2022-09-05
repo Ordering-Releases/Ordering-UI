@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useLanguage, useEvent } from 'ordering-components'
+import { useLanguage, useEvent } from 'ordering-components-external'
 // import { Input } from '../../styles/Inputs'
 import { SearchBar } from '../SearchBar'
 import { useTheme } from 'styled-components'

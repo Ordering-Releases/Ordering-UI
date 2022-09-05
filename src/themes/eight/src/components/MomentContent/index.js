@@ -1,5 +1,5 @@
 import React from 'react'
-import { useOrder, useConfig, useLanguage } from 'ordering-components'
+import { useOrder, useConfig, useLanguage } from 'ordering-components-external'
 
 import { Container, Layer } from './styles'
 

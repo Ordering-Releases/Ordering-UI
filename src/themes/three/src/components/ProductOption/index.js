@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ProductOption as ProductOptionController, useLanguage } from 'ordering-components'
+import { ProductOption as ProductOptionController, useLanguage } from 'ordering-components-external'
 import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
 
 import {

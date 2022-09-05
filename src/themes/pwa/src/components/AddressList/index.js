@@ -11,7 +11,7 @@ import {
   useOrder,
   useCustomer,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   AddressListContainer,

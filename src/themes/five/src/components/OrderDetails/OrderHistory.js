@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, useUtils } from 'ordering-components'
+import { useLanguage, useUtils } from 'ordering-components-external'
 import { ArrowRight, CheckCircleFill } from 'react-bootstrap-icons'
 import { Button } from '../../styles/Buttons'
 import { getTraduction } from '../../../../../utils'

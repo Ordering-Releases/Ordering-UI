@@ -19,7 +19,7 @@ var _MdcPlayCircleOutline = _interopRequireDefault(require("@meronex/icons/mdc/M
 
 var _LinkableText = require("../LinkableText");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

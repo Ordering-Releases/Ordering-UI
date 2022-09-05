@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductOption as ProductOptionController, useLanguage, useUtils } from 'ordering-components'
+import { ProductOption as ProductOptionController, useLanguage, useUtils } from 'ordering-components-external'
 
 import {
   Container,

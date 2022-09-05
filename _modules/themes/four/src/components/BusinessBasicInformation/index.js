@@ -25,7 +25,7 @@ var _Modal = require("../../../../../components/Modal");
 
 var _BusinessInformation = require("../../../../../components/BusinessInformation");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _utils = require("../../../../../utils");
 

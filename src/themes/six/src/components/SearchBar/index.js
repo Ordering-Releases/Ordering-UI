@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { Input } from '../../styles/inputs'
 import { useTheme } from '../../../../../contexts/ThemeContext'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import {
   BusinessSearch,
   DeleteContent

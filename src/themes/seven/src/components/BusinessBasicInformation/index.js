@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import {
   BusinessContainer,
   BusinessName,

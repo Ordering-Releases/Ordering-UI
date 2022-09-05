@@ -1,5 +1,5 @@
 import React from 'react'
-import { CouponControl as CouponController, useLanguage, useOrder } from 'ordering-components'
+import { CouponControl as CouponController, useLanguage, useOrder } from 'ordering-components-external'
 
 import {
   CouponContainer

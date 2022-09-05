@@ -6,7 +6,7 @@ import {
   useLanguage,
   useUtils,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   Container,

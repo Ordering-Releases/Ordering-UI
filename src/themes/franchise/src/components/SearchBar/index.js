@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import { Input } from '../../styles/Inputs'
 import { useTheme } from '../../../../../contexts/ThemeContext'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import BsFunnel from '@meronex/icons/bs/BsFunnel'
 
 import {

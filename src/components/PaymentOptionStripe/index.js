@@ -4,7 +4,7 @@ import {
   PaymentOptionStripe as PaymentOptionStripeController,
   useSession,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import IosRadioButtonOn from '@meronex/icons/ios/IosRadioButtonOn'
 import IosRadioButtonOff from '@meronex/icons/ios/IosRadioButtonOff'

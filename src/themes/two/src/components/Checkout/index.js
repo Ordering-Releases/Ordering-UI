@@ -13,7 +13,7 @@ import {
   useValidationFields,
   useConfig,
   useCustomer
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { UpsellingPage } from '../../../../../components/UpsellingPage'
 import parsePhoneNumber from 'libphonenumber-js'
 import { Button } from '../../../../../styles/Buttons'

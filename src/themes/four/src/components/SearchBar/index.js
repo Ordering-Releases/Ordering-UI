@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import IosSearch from '@meronex/icons/ios/IosSearch'
 
 import { Input } from '../../styles/Inputs'

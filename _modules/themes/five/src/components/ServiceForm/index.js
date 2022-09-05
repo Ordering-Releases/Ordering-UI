@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _react2 = require("swiper/react");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _Confirm = require("../Confirm");
 

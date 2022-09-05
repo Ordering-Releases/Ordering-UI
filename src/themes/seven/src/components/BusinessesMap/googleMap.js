@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import { WrapperGoogleMaps, useEvent, useUtils, useLanguage } from 'ordering-components'
+import { WrapperGoogleMaps, useEvent, useUtils, useLanguage } from 'ordering-components-external'
 
 export const GoogleMaps = (props) => {
   const {

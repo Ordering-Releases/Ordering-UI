@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { BusinessProductsCategories as ProductsCategories } from 'ordering-components'
+import { BusinessProductsCategories as ProductsCategories } from 'ordering-components-external'
 import { AutoScroll } from '../AutoScroll'
 
 import { CategoriesContainer } from './styles'

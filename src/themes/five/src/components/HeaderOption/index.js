@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUtils, useLanguage, useConfig, useOrder } from 'ordering-components'
+import { useUtils, useLanguage, useConfig, useOrder } from 'ordering-components-external'
 import AiOutlineShoppingCart from '@meronex/icons/ai/AiOutlineShoppingCart'
 import FaMapMarkerAlt from '@meronex/icons/fa/FaMapMarkerAlt'
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TiPencil from '@meronex/icons/ti/TiPencil'
-import { AddressDetails as AddressDetailsController, useOrder, useLanguage, useCustomer } from 'ordering-components'
+import { AddressDetails as AddressDetailsController, useOrder, useLanguage, useCustomer } from 'ordering-components-external'
 
 import {
   AddressContainer,

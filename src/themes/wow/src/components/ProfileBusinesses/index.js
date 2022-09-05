@@ -5,7 +5,7 @@ import {
   useOrder,
   useConfig,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Modal } from '../../../../../components/Modal'
 import { SearchBar } from '../../../../../components/SearchBar'
 import { BusinessesMap } from '../../../../../components/BusinessesMap'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useApi } from 'ordering-components'
+import { useApi } from 'ordering-components-external'
 
 import {
   FooterContainer

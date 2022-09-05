@@ -23,7 +23,7 @@ var _FaRegHeart = _interopRequireDefault(require("@meronex/icons/fa/FaRegHeart")
 
 var _BiCheck = _interopRequireDefault(require("@meronex/icons/bi/BiCheck"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   useLanguage,
   useUtils
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { Modal } from '../../../../../components/Modal'
 import { Button } from '../../styles/Buttons'

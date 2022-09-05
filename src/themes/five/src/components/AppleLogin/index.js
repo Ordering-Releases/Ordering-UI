@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppleLogin as AppleLoginController, useLanguage } from 'ordering-components'
+import { AppleLogin as AppleLoginController, useLanguage } from 'ordering-components-external'
 import { AppleButton } from './styles'
 import FaApple from '@meronex/icons/fa/FaApple'
 

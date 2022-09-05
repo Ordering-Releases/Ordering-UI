@@ -2,7 +2,7 @@ import React from 'react'
 import { useTheme } from 'styled-components'
 import EnChevronDown from '@meronex/icons/en/EnChevronDown'
 import AiOutlineLeft from '@meronex/icons/ai/AiOutlineLeft'
-import { OrderTypeControl, useLanguage, useOrder, useUtils, useConfig, useEvent } from 'ordering-components'
+import { OrderTypeControl, useLanguage, useOrder, useUtils, useConfig, useEvent } from 'ordering-components-external'
 
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 

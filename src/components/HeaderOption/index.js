@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import IosBasket from '@meronex/icons/ios/IosBasket'
 import FaMapMarkerAlt from '@meronex/icons/fa/FaMapMarkerAlt'
 

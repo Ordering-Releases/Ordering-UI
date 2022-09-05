@@ -9,7 +9,7 @@ import {
   useLanguage,
   ReCaptcha,
   useApi
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   Envelope,

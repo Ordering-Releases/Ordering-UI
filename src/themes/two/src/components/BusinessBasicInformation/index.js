@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components'
 
 import { Modal } from '../../../../../components/Modal'
 import { BusinessInformation } from '../../../../../components/BusinessInformation'
-import { useUtils, useOrder, useLanguage } from 'ordering-components'
+import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
 
 import {
   BusinessContainer,

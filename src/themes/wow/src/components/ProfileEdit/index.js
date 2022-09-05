@@ -6,7 +6,7 @@ import {
   useLanguage,
   DragAndDrop,
   ExamineClick
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Alert } from '../../../../../components/Confirm'
 import { bytesConverter } from '../../../../../utils'
 import {

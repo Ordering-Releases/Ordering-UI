@@ -9,7 +9,7 @@ import {
   useOrder,
   useCustomer,
   GoogleMapsMap
-} from 'ordering-components'
+} from 'ordering-components-external'
 import RiUser2Fill from '@meronex/icons/ri/RiUser2Fill'
 
 import { Button } from '../../styles/Buttons'

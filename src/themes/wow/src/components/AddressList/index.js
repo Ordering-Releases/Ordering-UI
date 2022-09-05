@@ -13,7 +13,7 @@ import {
   useOrder,
   useCustomer,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { Modal } from '../../../../../components/Modal'

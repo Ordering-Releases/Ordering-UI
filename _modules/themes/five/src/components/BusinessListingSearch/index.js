@@ -15,7 +15,7 @@ var _reactBootstrapIcons = require("react-bootstrap-icons");
 
 var _SearchBar = require("../SearchBar");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _BusinessController = require("../BusinessController");
 

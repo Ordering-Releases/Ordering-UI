@@ -13,7 +13,7 @@ import {
   DragAndDrop,
   ExamineClick,
   useCustomer
-} from 'ordering-components'
+} from 'ordering-components-external'
 import IosGlobe from '@meronex/icons/ios/IosGlobe'
 import { UserFormDetailsUI } from '../UserFormDetails'
 import { AddressList } from '../AddressList'

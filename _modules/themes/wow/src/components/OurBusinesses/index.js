@@ -15,7 +15,7 @@ var _SearchValueContext = require("../../contexts/SearchValueContext");
 
 var _AutoScroll = require("../AutoScroll");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

@@ -23,7 +23,7 @@ var _MdCheckBox = _interopRequireDefault(require("@meronex/icons/md/MdCheckBox")
 
 var _MdCheckBoxOutlineBlank = _interopRequireDefault(require("@meronex/icons/md/MdCheckBoxOutlineBlank"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

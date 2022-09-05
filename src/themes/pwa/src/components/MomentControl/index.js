@@ -6,7 +6,7 @@ import {
   useUtils,
   useConfig,
   useOrder
-} from 'ordering-components'
+} from 'ordering-components-external'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-calendar/dist/Calendar.css'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useConfig } from 'ordering-components'
+import { useConfig } from 'ordering-components-external'
 import { OriginalHomeHero } from './layouts/OriginalHomeHero'
 import { RedHomeHero } from './layouts/RedHomeHero'
 import { StarbucksHomeHero } from './layouts/StarbucksHomeHero'

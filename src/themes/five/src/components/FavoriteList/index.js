@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLanguage, useOrder, useSite, useEvent, FavoriteList as FavoriteListController } from 'ordering-components'
+import { useLanguage, useOrder, useSite, useEvent, FavoriteList as FavoriteListController } from 'ordering-components-external'
 import { BusinessController } from '../BusinessController'
 import { BusinessPreorder } from '../BusinessPreorder'
 import { NotFoundSource } from '../NotFoundSource'

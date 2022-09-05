@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { useOnlineStatus } from '../../../../../hooks/useOnlineStatus'
 import { Button } from '../../styles/Buttons'

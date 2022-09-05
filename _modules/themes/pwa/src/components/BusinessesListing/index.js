@@ -53,7 +53,7 @@ var _OrderTypeSelectorHeader = require("../../../../../components/OrderTypeSelec
 
 var _MomentPopover = require("../MomentPopover");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

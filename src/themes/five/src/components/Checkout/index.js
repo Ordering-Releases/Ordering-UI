@@ -13,7 +13,7 @@ import {
   useConfig,
   useCustomer,
   useEvent
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { UpsellingPage } from '../UpsellingPage'
 import parsePhoneNumber from 'libphonenumber-js'
 import { useHistory } from 'react-router-dom'

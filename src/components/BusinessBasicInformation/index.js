@@ -10,7 +10,7 @@ import { useTheme } from 'styled-components'
 import { Modal } from '../Modal'
 import { BusinessInformation } from '../BusinessInformation'
 
-import { useUtils, useOrder, useLanguage } from 'ordering-components'
+import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
 
 import { convertHoursToMinutes } from '../../utils'
 

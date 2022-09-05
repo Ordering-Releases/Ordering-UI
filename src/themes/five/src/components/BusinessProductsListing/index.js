@@ -15,7 +15,7 @@ import {
   useSession,
   useSite,
   useOrderingTheme
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   ProductsContainer,

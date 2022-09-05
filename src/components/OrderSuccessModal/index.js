@@ -5,7 +5,7 @@ import HiOutlineLocationMarker from '@meronex/icons/hi/HiOutlineLocationMarker'
 import {
   useLanguage,
   useOrder
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { getHourMin, getIconCard } from '../../utils'
 

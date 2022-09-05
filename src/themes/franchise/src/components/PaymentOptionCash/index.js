@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useUtils, useLanguage } from 'ordering-components'
+import { useUtils, useLanguage } from 'ordering-components-external'
 
 import {
   PaymentCashContainer,

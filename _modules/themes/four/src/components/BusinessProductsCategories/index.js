@@ -11,7 +11,7 @@ var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skelet
 
 var _EnChevronRight = _interopRequireDefault(require("@meronex/icons/en/EnChevronRight"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _AutoScroll = require("../AutoScroll");
 

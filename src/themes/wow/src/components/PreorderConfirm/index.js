@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, useEvent } from 'ordering-components'
+import { useLanguage, useEvent } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { Button } from '../../styles/Buttons'
 import {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BusinessesListing } from '../../../src/components/BusinessesListing'
-import { useEvent } from 'ordering-components'
+import { useEvent } from 'ordering-components-external'
 import { HelmetTags } from '../../components/HelmetTags'
 
 export const BusinessesList = (props) => {

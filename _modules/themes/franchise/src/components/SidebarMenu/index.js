@@ -31,7 +31,7 @@ var _BiHelpCircle = _interopRequireDefault(require("@meronex/icons/bi/BiHelpCirc
 
 var _MdMyLocation = _interopRequireDefault(require("@meronex/icons/md/MdMyLocation"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

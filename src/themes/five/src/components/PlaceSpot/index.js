@@ -4,7 +4,7 @@ import {
   PlaceSpot as PlaceSpotController,
   useLanguage,
   useOrder
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   PlaceGroupContainer,

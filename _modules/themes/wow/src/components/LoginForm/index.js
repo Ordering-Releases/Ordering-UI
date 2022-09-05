@@ -27,7 +27,7 @@ var _AiOutlineLock = _interopRequireDefault(require("@meronex/icons/ai/AiOutline
 
 var _BiArrowBack = _interopRequireDefault(require("@meronex/icons/bi/BiArrowBack"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _Confirm = require("../../../../../components/Confirm");
 

@@ -9,7 +9,7 @@ import {
   useLanguage,
   useOrder,
   useUtils
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { ProductForm as ProductOptions } from './productForm'
 

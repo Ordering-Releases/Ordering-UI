@@ -7,7 +7,7 @@ import {
   useUtils,
   useConfig,
   GoogleMapsMap
-} from 'ordering-components'
+} from 'ordering-components-external'
 import AiOutlineLeft from '@meronex/icons/ai/AiOutlineLeft'
 import FiPhone from '@meronex/icons/fi/FiPhone'
 import HiOutlineChat from '@meronex/icons/hi/HiOutlineChat'

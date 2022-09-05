@@ -10,7 +10,7 @@ import { SearchBar } from '../SearchBar'
 import { BusinessReviews } from '../BusinessReviews'
 import { MomentContent } from '../MomentContent'
 
-import { useUtils, useOrder, useLanguage } from 'ordering-components'
+import { useUtils, useOrder, useLanguage } from 'ordering-components-external'
 
 import { convertHoursToMinutes, shape } from '../../../../../utils'
 

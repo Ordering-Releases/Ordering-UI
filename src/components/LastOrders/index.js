@@ -6,7 +6,7 @@ import {
   useUtils,
   useEvent,
   OrderList as OrderListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   LastOrdersContainer,

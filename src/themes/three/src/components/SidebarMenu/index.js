@@ -10,7 +10,7 @@ import BiStore from '@meronex/icons/bi/BiStore'
 import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
 import BiHelpCircle from '@meronex/icons/bi/BiHelpCircle'
 
-import { useEvent, useLanguage, useOrder } from 'ordering-components'
+import { useEvent, useLanguage, useOrder } from 'ordering-components-external'
 
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { LogoutButton } from '../../../../../components/LogoutButton'

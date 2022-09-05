@@ -5,7 +5,7 @@ import {
   UserFormDetails as UserFormController,
   useLanguage,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { UserFormDetailsUI } from '../UserFormDetails'
 
 const UserDetailsUI = (props) => {

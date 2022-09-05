@@ -16,7 +16,7 @@ import {
   useSession,
   useOrder,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { GoogleGpsButton } from '../GoogleGpsButton'
 

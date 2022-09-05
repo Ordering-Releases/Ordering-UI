@@ -1,5 +1,5 @@
 import React from 'react'
-import { OrderTypeControl, useLanguage } from 'ordering-components'
+import { OrderTypeControl, useLanguage } from 'ordering-components-external'
 import { Select } from '../../styles/Select'
 import { Option, OrderTypeWrapper, SelectedOption, ContentOption } from './styles'
 

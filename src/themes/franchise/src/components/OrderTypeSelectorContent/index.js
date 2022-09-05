@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, OrderTypeControl, useOrder } from 'ordering-components'
+import { useLanguage, OrderTypeControl, useOrder } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import BsArrowRight from '@meronex/icons/bs/BsArrowRight'
 import {

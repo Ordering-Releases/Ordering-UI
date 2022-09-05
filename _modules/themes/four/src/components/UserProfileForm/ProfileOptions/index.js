@@ -13,7 +13,7 @@ var _FiSettings = _interopRequireDefault(require("@meronex/icons/fi/FiSettings")
 
 var _AiOutlineUnorderedList = _interopRequireDefault(require("@meronex/icons/ai/AiOutlineUnorderedList"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styles = require("./styles");
 

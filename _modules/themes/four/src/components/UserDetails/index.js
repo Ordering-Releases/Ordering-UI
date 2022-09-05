@@ -23,7 +23,7 @@ var _Buttons = require("../../styles/Buttons");
 
 var _styles = require("./styles");
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _UserFormDetails = require("../UserFormDetails");
 

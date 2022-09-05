@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useTheme } from 'styled-components'
-import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils, useValidationFields, useConfig } from 'ordering-components'
+import { Cart as CartController, useOrder, useLanguage, useEvent, useUtils, useValidationFields, useConfig } from 'ordering-components-external'
 import { Button } from '../../../../../styles/Buttons'
 import { Confirm } from '../../../../../components/Confirm'
 import { CouponControl } from '../../../../../components/CouponControl'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { PaymentOptionSquare as PaymentOptionSquareController, useLanguage } from 'ordering-components'
+import { PaymentOptionSquare as PaymentOptionSquareController, useLanguage } from 'ordering-components-external'
 import { Tabs, Tab } from '../../styles/Tabs'
 import Skeleton from 'react-loading-skeleton'
 import { Alert } from '../Confirm'

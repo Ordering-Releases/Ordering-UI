@@ -3,7 +3,7 @@ import {
   CartStoresListing as StoresListingController,
   useOrder,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { BusinessController } from '../BusinessController'

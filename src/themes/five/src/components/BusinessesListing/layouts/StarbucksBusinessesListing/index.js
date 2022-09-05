@@ -8,7 +8,7 @@ import {
   useConfig,
   useUtils,
   BusinessList as BusinessListController
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import { Button } from '../../../../../../../styles/Buttons'
 import { NotFoundSource } from '../../../../../../../components/NotFoundSource'

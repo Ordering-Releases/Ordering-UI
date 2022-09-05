@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLanguage } from 'ordering-components'
+import { useLanguage } from 'ordering-components-external'
 import MdClose from '@meronex/icons/md/MdClose'
 import FaShoppingBag from '@meronex/icons/fa/FaShoppingBag'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'

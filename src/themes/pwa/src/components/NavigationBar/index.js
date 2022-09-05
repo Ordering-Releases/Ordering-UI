@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useLanguage, useEvent, useOrder, useSession } from 'ordering-components'
+import { useLanguage, useEvent, useOrder, useSession } from 'ordering-components-external'
 import BsSearch from '@meronex/icons/bs/BsSearch'
 import AiOutlineShoppingCart from '@meronex/icons/ai/AiOutlineShoppingCart'
 import BsCardChecklist from '@meronex/icons/bs/BsCardChecklist'

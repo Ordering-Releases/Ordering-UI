@@ -1,7 +1,7 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import EnChevronRight from '@meronex/icons/en/EnChevronRight'
-import { BusinessProductsCategories as ProductsCategories } from 'ordering-components'
+import { BusinessProductsCategories as ProductsCategories } from 'ordering-components-external'
 import { AutoScroll } from '../AutoScroll'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 

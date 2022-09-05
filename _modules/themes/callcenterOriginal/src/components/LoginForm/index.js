@@ -17,7 +17,7 @@ var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
 
 var _reactOtpInput = _interopRequireDefault(require("react-otp-input"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _reactBootstrapIcons = require("react-bootstrap-icons");
 

@@ -5,7 +5,7 @@ import {
   MomentOption,
   useConfig,
   useOrder
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useLocation } from 'react-router-dom'
 import moment from 'moment'
 import { useTheme } from 'styled-components'

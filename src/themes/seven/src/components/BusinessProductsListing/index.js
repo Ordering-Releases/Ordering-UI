@@ -8,7 +8,7 @@ import {
   useLanguage,
   useOrder,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import {
   ProductsContainer,
   WrapContent,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
-import { useLanguage, useEvent } from 'ordering-components'
+import { useLanguage, useEvent } from 'ordering-components-external'
 import { Container, NotCarts } from './styles'
 
 import { Cart } from '../Cart'

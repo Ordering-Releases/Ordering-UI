@@ -7,7 +7,7 @@ import AiOutlineUserAdd from '@meronex/icons/ai/AiOutlineUserAdd'
 import FaRegAddressCard from '@meronex/icons/fa/FaRegAddressCard'
 import FaRegListAlt from '@meronex/icons/fa/FaRegListAlt'
 import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
-import { useEvent, useLanguage, useOrder } from 'ordering-components'
+import { useEvent, useLanguage, useOrder } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { LogoutButton } from '../../../../../components/LogoutButton'
 import {

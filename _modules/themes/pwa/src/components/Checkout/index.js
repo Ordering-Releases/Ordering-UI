@@ -17,7 +17,7 @@ var _styledComponents = require("styled-components");
 
 var _HiArrowNarrowLeft = _interopRequireDefault(require("@meronex/icons/hi/HiArrowNarrowLeft"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _UpsellingPage = require("../UpsellingPage");
 

@@ -11,7 +11,7 @@ var _EnTwitterWithCircle = _interopRequireDefault(require("@meronex/icons/en/EnT
 
 var _FaFacebook = _interopRequireDefault(require("@meronex/icons/fa/FaFacebook"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _styledComponents = require("styled-components");
 

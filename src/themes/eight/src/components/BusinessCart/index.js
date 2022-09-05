@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useOrder, useLanguage } from 'ordering-components'
+import { useOrder, useLanguage } from 'ordering-components-external'
 import { NavBar } from '../NavBar'
 import { Cart } from '../Cart'
 import { WrapCart } from './styles'

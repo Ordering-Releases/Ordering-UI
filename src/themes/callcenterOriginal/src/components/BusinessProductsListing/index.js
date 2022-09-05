@@ -12,7 +12,7 @@ import {
   useOrder,
   useSession,
   useUtils
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   ProductsContainer,

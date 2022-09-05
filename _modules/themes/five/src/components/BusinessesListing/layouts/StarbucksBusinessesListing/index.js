@@ -13,7 +13,7 @@ var _FiMap = _interopRequireDefault(require("@meronex/icons/fi/FiMap"));
 
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponents = require("ordering-components-external");
 
 var _Buttons = require("../../../../../../../styles/Buttons");
 

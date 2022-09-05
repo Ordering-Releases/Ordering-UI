@@ -20,7 +20,7 @@ import {
   useUtils,
   useConfig,
   useLanguage
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { Modal } from '../../../../../components/Modal'
 import { Messages } from '../../../../../components/Messages'

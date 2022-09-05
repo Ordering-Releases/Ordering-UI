@@ -5,7 +5,7 @@ import {
   useLanguage,
   useConfig,
   useSession
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 import AiOutlineEye from '@meronex/icons/ai/AiOutlineEye'
 import AiOutlineEyeInvisible from '@meronex/icons/ai/AiOutlineEyeInvisible'

@@ -10,7 +10,7 @@ import BiStore from '@meronex/icons/bi/BiStore'
 import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
 import FaMapMarkerAlt from '@meronex/icons/fa/FaMapMarkerAlt'
 import FaRegClock from '@meronex/icons/fa/FaRegClock'
-import { useEvent, useLanguage, useOrder, useUtils, useConfig } from 'ordering-components'
+import { useEvent, useLanguage, useOrder, useUtils, useConfig } from 'ordering-components-external'
 
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { LogoutButton } from '../../../../../components/LogoutButton'

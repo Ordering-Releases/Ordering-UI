@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useHistory, Link } from 'react-router-dom'
-import { useSession, useLanguage, useOrder, useEvent, useConfig, useCustomer } from 'ordering-components'
+import { useSession, useLanguage, useOrder, useEvent, useConfig, useCustomer } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import {
   Header as HeaderContainer,

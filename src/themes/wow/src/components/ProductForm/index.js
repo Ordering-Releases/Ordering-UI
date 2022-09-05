@@ -8,7 +8,7 @@ import {
   useLanguage,
   useOrder,
   useUtils
-} from 'ordering-components'
+} from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 
 import { scrollTo } from '../../../../../utils'

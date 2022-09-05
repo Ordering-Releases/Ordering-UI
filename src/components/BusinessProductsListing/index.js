@@ -10,7 +10,7 @@ import {
   useSession,
   useUtils,
   useConfig
-} from 'ordering-components'
+} from 'ordering-components-external'
 
 import {
   ProductsContainer,

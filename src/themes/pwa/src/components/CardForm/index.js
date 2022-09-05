@@ -5,7 +5,7 @@ import {
   CardCvcElement,
   CardExpiryElement
 } from '@stripe/react-stripe-js'
-import { CardForm as CardFormController, useLanguage } from 'ordering-components'
+import { CardForm as CardFormController, useLanguage } from 'ordering-components-external'
 
 import {
   FormStripe,

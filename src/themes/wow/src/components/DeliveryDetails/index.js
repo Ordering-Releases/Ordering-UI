@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useOrder, useLanguage, useUtils, useConfig } from 'ordering-components'
+import { useOrder, useLanguage, useUtils, useConfig } from 'ordering-components-external'
 import { Modal } from '../../../../../components/Modal'
 import { MomentContent } from '../../../../../components/MomentContent'
 import { Button } from '../../styles/Buttons'

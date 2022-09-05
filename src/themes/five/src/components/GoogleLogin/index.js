@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage, FirebaseGoogleLoginButton as GoogleLoginController } from 'ordering-components'
+import { useLanguage, FirebaseGoogleLoginButton as GoogleLoginController } from 'ordering-components-external'
 import FcGoogle from '@meronex/icons/fc/FcGoogle'
 import { GoogleButton } from './styles'
 
