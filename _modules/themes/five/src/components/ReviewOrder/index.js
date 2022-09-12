@@ -11,7 +11,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactHookForm = require("react-hook-form");
 
-var _orderingComponentsExternal = require("ordering-components-external");
+var _orderingComponents = require("ordering-components");
 
 var _MdClose = _interopRequireDefault(require("@meronex/icons/md/MdClose"));
 
@@ -74,11 +74,11 @@ var ReviewOrderUI = function ReviewOrderUI(props) {
       setIsReviewed = props.setIsReviewed,
       setStars = props.setStars;
 
-  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
+  var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
+  var _useUtils = (0, _orderingComponents.useUtils)(),
       _useUtils2 = _slicedToArray(_useUtils, 1),
       optimizeImage = _useUtils2[0].optimizeImage;
 
@@ -336,7 +336,7 @@ var ReviewOrder = function ReviewOrder(props) {
     defaultStar: (_props$defaultStar = props === null || props === void 0 ? void 0 : props.defaultStar) !== null && _props$defaultStar !== void 0 ? _props$defaultStar : 0
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderReview, ReviewOrderProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponents.OrderReview, ReviewOrderProps);
 };
 
 exports.ReviewOrder = ReviewOrder;

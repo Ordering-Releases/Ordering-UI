@@ -23,7 +23,7 @@ var ReviewProductContainer = _styledComponents.default.form(_templateObject || (
 
 exports.ReviewProductContainer = ReviewProductContainer;
 
-var ActionBlock = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 30px;\n  width: 100%;\n\n  span {\n    cursor: pointer;\n    font-weight: 600;\n    font-size: 16px;\n    user-select: none;\n  }\n\n  button {\n    font-size: 14px;\n    padding: 6px 20px;\n\n    svg {\n      color: white;\n      font-size: 21px;\n      vertical-align: middle;\n      margin-left: 8px;\n      ", "\n    }\n  }\n"])), function (props) {
+var ActionBlock = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 30px;\n  width: 100%;\n  span {\n    cursor: pointer;\n    font-weight: 600;\n    font-size: 16px;\n    user-select: none;\n  }\n  button {\n    font-size: 14px;\n    padding: 6px 20px;\n    svg {\n      color: white;\n      font-size: 21px;\n      vertical-align: middle;\n      margin-left: 8px;\n      ", "\n    }\n  }\n"])), function (props) {
   var _props$theme;
 
   return ((_props$theme = props.theme) === null || _props$theme === void 0 ? void 0 : _props$theme.rtl) && (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n        margin-left: 0;\n        margin-right: 8px;\n        transform: rotateZ(180deg);\n      "])));
@@ -35,7 +35,7 @@ var SingleProductReviewContainer = _styledComponents.default.div(_templateObject
 
 exports.SingleProductReviewContainer = SingleProductReviewContainer;
 
-var HandReviewWrapper = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n\n  p {\n    font-size: 15px;\n    color: ", ";\n    margin: 0;\n    color: #344050;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n"])), function (props) {
+var HandReviewWrapper = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  p {\n    font-size: 15px;\n    color: ", ";\n    margin: 0;\n    color: #344050;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n"])), function (props) {
   var _props$theme2;
 
   return (_props$theme2 = props.theme) === null || _props$theme2 === void 0 ? void 0 : _props$theme2.colors.headingColor;
@@ -47,7 +47,7 @@ var HandReviewContent = _styledComponents.default.div(_templateObject6 || (_temp
 
 exports.HandReviewContent = HandReviewContent;
 
-var HandIconWrapper = _styledComponents.default.span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  margin-left: 15px;\n\n  ", "\n\n  svg {\n    font-size: 24px;\n    color: #B1BCCC;\n    cursor: pointer;\n    transition: all 0.3s linear;\n  }\n\n  ", "\n"])), function (props) {
+var HandIconWrapper = _styledComponents.default.span(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  margin-left: 15px;\n  ", "\n  svg {\n    font-size: 24px;\n    color: #B1BCCC;\n    cursor: pointer;\n    transition: all 0.3s linear;\n  }\n  ", "\n"])), function (props) {
   var _props$theme3;
 
   return ((_props$theme3 = props.theme) === null || _props$theme3 === void 0 ? void 0 : _props$theme3.rtl) && (0, _styledComponents.css)(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    margin-right: 15px;\n    margin-left: 0;\n  "])));
@@ -66,7 +66,7 @@ var AdditionCommentsWrapper = _styledComponents.default.div(_templateObject10 ||
 
 exports.AdditionCommentsWrapper = AdditionCommentsWrapper;
 
-var AddCommentHideShow = _styledComponents.default.p(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  text-decoration: underline;\n  text-align: center;\n  user-select: none;\n  cursor: pointer;\n  margin: 0;\n  transition: all 0.3s linear;\n  color: #909BA9;\n  font-size: 13px;\n\n  &:hover {\n    color: ", ";\n  }\n  \n  ", "\n"])), function (props) {
+var AddCommentHideShow = _styledComponents.default.p(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  text-decoration: underline;\n  text-align: center;\n  user-select: none;\n  cursor: pointer;\n  margin: 0;\n  transition: all 0.3s linear;\n  color: #909BA9;\n  font-size: 13px;\n  &:hover {\n    color: ", ";\n  }\n  \n  ", "\n"])), function (props) {
   var _props$theme5;
 
   return (_props$theme5 = props.theme) === null || _props$theme5 === void 0 ? void 0 : _props$theme5.colors.primary;
@@ -81,14 +81,14 @@ var AddCommentHideShow = _styledComponents.default.p(_templateObject11 || (_temp
 
 exports.AddCommentHideShow = AddCommentHideShow;
 
-var Comments = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  margin-top: 50px;\n\n  p {\n    margin-top: 0;\n    margin-bottom: 8px;\n    font-size: 14px;\n    color: #344050;\n  }\n\n  textarea {\n    width: 100%;\n    box-sizing: border-box;\n    border-radius: 7.6px;\n    min-height: 100px;\n  }\n"])));
+var Comments = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  margin-top: 50px;\n  p {\n    margin-top: 0;\n    margin-bottom: 8px;\n    font-size: 14px;\n    color: #344050;\n  }\n  textarea {\n    width: 100%;\n    box-sizing: border-box;\n    border-radius: 7.6px;\n    min-height: 100px;\n  }\n"])));
 
 exports.Comments = Comments;
 
 var CommentsList = _styledComponents.default.div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  margin-top: 20px;\n"])));
 
 exports.CommentsList = CommentsList;
-var ButtonCustomized = (0, _styledComponents.default)(_Buttons.Button)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  border-radius: 50px;\n  margin-bottom: 18px;\n  margin-right: 18px;\n  font-size: 13px;\n  color: #414954;\n  background: #E9ECEF;\n  border: 1px solid #E9ECEF;\n  transition: all 0.3s linear;\n\n  ", "\n\n  svg {\n    vertical-align: middle;\n    margin-left: 5px;\n\n    ", "\n  }\n\n  ", "\n"])), function (props) {
+var ButtonCustomized = (0, _styledComponents.default)(_Buttons.Button)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  border-radius: 50px;\n  margin-bottom: 18px;\n  margin-right: 18px;\n  font-size: 13px;\n  color: #414954;\n  background: #E9ECEF;\n  border: 1px solid #E9ECEF;\n  transition: all 0.3s linear;\n  ", "\n  svg {\n    vertical-align: middle;\n    margin-left: 5px;\n    ", "\n  }\n  ", "\n"])), function (props) {
   var _props$theme7;
 
   return ((_props$theme7 = props.theme) === null || _props$theme7 === void 0 ? void 0 : _props$theme7.rtl) && (0, _styledComponents.css)(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    margin-left: 18px;\n    margin-right: 0;\n  "])));

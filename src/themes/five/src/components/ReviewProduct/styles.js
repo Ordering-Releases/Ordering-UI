@@ -9,18 +9,15 @@ export const ActionBlock = styled.div`
   justify-content: space-between;
   margin-top: 30px;
   width: 100%;
-
   span {
     cursor: pointer;
     font-weight: 600;
     font-size: 16px;
     user-select: none;
   }
-
   button {
     font-size: 14px;
     padding: 6px 20px;
-
     svg {
       color: white;
       font-size: 21px;
@@ -43,7 +40,6 @@ export const HandReviewWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   p {
     font-size: 15px;
     color: ${props => props.theme?.colors.headingColor};
@@ -62,19 +58,16 @@ export const HandReviewContent = styled.div`
 
 export const HandIconWrapper = styled.span`
   margin-left: 15px;
-
   ${props => props.theme?.rtl && css`
     margin-right: 15px;
     margin-left: 0;
   `}
-
   svg {
     font-size: 24px;
     color: #B1BCCC;
     cursor: pointer;
     transition: all 0.3s linear;
   }
-
   ${({ active }) => active && css`
     svg {
       color: ${props => props.theme?.colors.primary};
@@ -93,7 +86,6 @@ export const AddCommentHideShow = styled.p`
   transition: all 0.3s linear;
   color: #909BA9;
   font-size: 13px;
-
   &:hover {
     color: ${props => props.theme?.colors.primary};
   }
@@ -105,14 +97,12 @@ export const AddCommentHideShow = styled.p`
 
 export const Comments = styled.div`
   margin-top: 50px;
-
   p {
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 14px;
     color: #344050;
   }
-
   textarea {
     width: 100%;
     box-sizing: border-box;
@@ -134,22 +124,18 @@ export const ButtonCustomized = styled(Button)`
   background: #E9ECEF;
   border: 1px solid #E9ECEF;
   transition: all 0.3s linear;
-
   ${props => props.theme?.rtl && css`
     margin-left: 18px;
     margin-right: 0;
   `}
-
   svg {
     vertical-align: middle;
     margin-left: 5px;
-
     ${props => props.theme?.rtl && css`
       margin-right: 5px;
       margin-left: 0;
     `}
   }
-
   ${({ active }) => active && css`
     background: ${props => props.theme?.colors.primary};
     border: 1px solid ${props => props.theme?.colors.primary};
