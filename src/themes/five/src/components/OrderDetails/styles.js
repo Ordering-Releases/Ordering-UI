@@ -6,7 +6,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  margin: 45px 0 20px;
+
+  @media (min-width: 740px) {
+    margin: 20px 0;
+  }
 `
 
 export const WrapperContainer = styled.div`
@@ -70,9 +74,11 @@ export const OrderBusiness = styled.div`
 
 export const BusinessWrapper = styled.div`
   display: flex;
-  width: ${props => props.w ?? '100%'};
+  width: 100%;
   display: flex;
   align-items: center;
+  flex-direction: column;
+
   ${props => props.borderBottom && css`
     padding-bottom: 15px;
     border-bottom: 1px solid ${props => props.theme.colors.lightGray};
@@ -85,32 +91,50 @@ export const BusinessWrapper = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 7.6px;
-    margin-right: 40px;
+    margin-right: 0;
+
+    @media (min-width: 400px) {
+      margin-right: 40px;
+    }
+  }
+
+  @media (min-width: 400px) {
+    flex-direction: row;
+    width: ${props => props.w ?? '100%'};
   }
 `
 
 export const BtsOrderStatus = styled.div`
-  width: calc(100% - 20px);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 
   div + div {
-    margin-left: 30px;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  @media (min-width: 400px) {
+    flex-direction: row;
+    div + div {
+      margin-left: 30px;
+      margin-top: 0px;
+    }
   }
 `
 
 export const BusinessInfo = styled.div`
   width: 100%;
   box-sizing: border-box;
-  margin-right: 15px;
+  margin-right: 0;
+  margin-top: 10px;
+
   h1,
   p {
     margin: 0;
     color: ${props => props.theme.colors.darkTextColor};
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
   }
 
   h2 {
@@ -122,13 +146,17 @@ export const BusinessInfo = styled.div`
     font-size: 14px;
     margin-bottom: 5px;
   }
+
+  @media (min-width: 400px) {
+    margin-right: 15px;
+    margin-top: 0;
+  }
 `
 
 export const ActionsBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-direction: column;
   > * {
     margin-right: 5px;
     ${props => props.theme?.rtl && css`
@@ -143,8 +171,6 @@ export const ActionsBlock = styled.div`
   }
 
   @media (min-width: 380px) {
-    flex-direction: row;
-
     svg {
       font-size: 20px;
     }
@@ -185,7 +211,12 @@ export const OrderInfo = styled.div`
     font-size: 16px;
   }
 `
-
+export const OrderIdSec = styled.h1`
+  font-size: 25px !important;
+  @media (min-width: 350px) {
+    font-size: 32px !important;
+  }
+`
 export const ReviewOrderLink = styled.span`
   margin: 0;
   cursor: pointer;
@@ -201,7 +232,7 @@ export const ReviewOrderLink = styled.span`
     }
   `}
   ${({ isMargin }) => isMargin && css`
-    margin: 0px 10px;
+    margin: 0 10px 0 0;
   `}
 `
 
@@ -553,7 +584,7 @@ export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 90%;
   margin: auto;
   button {
     display: flex;
@@ -563,6 +594,12 @@ export const TitleContainer = styled.div`
     min-width: 200px;
     max-height: 53px;
   }
+  > h1 {
+    text-align: center;
+  }
+  @media (min-width: 650px) {
+    width: 50%;
+  }
 `
 
 export const ReOrder = styled.div`
@@ -570,11 +607,20 @@ export const ReOrder = styled.div`
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  flex-direction: column;
 
   button {
     padding: 5px 16px;
     min-width: unset;
-    margin: 0px 5px;
+    margin: 5px 5px;
+
+    @media (min-width: 650px) {
+      margin: 0px 5px;
+    }
+  }
+
+  @media (min-width: 650px) {
+    flex-direction: row;
   }
 `
 
@@ -600,10 +646,19 @@ export const HeaderTitle = styled.div`
 export const PlaceSpotSection = styled.div`
 
 `
+export const OrderStatusAndLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  @media (min-width: 450px) {
+    flex-direction: row;
+  }
+`
 export const LinkWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `
 
 export const OrderHistoryContainer = styled.div``
