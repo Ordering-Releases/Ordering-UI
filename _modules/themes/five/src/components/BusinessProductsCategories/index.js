@@ -15,6 +15,10 @@ var _orderingComponentsExternal = require("ordering-components-external");
 
 var _AutoScroll = require("../../../../../components/AutoScroll");
 
+var _styledComponents = require("styled-components");
+
+var _useWindowSize2 = require("../../../../../hooks/useWindowSize");
+
 var _styles = require("./styles");
 
 var _Tabs = require("../../styles/Tabs");
@@ -62,7 +66,9 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
       openBusinessInformation = props.openBusinessInformation,
       business = props.business,
       handlerClickCategory = props.handlerClickCategory,
-      categorySelected = props.categorySelected;
+      categorySelected = props.categorySelected,
+      useKioskApp = props.useKioskApp;
+  var theme = (0, _styledComponents.useTheme)();
 
   var _useState = (0, _react.useState)({
     id: null
@@ -70,6 +76,9 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
       _useState2 = _slicedToArray(_useState, 2),
       selectedCategory = _useState2[0],
       setSelectedCateogry = _useState2[1];
+
+  var _useWindowSize = (0, _useWindowSize2.useWindowSize)(),
+      width = _useWindowSize.width;
 
   var scrollTopSpan = 60;
 
@@ -126,12 +135,16 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
     var _diff = -50;
 
     var _moveDiff = 30;
+
+    var _paddDiff = scrollTopSpan + 10;
+
     (_categories === null || _categories === void 0 ? void 0 : _categories.length) && _categories.some(function (category) {
-      var _document$getElementB3, _document$getElementB4;
+      var _document$getElementB3, _document$getElementB4, _document$getElementB5;
 
       var topPos = category !== null && category !== void 0 && category.id ? (_document$getElementB3 = document.getElementById("category".concat(category.id))) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.offsetTop : (_document$getElementB4 = document.getElementById('businessProductList')) === null || _document$getElementB4 === void 0 ? void 0 : _document$getElementB4.offsetTop;
+      var HeightOfEle = category !== null && category !== void 0 && category.id ? (_document$getElementB5 = document.getElementById("category".concat(category.id))) === null || _document$getElementB5 === void 0 ? void 0 : _document$getElementB5.clientHeight : 0;
 
-      if (topPos - windowTop < scrollTopSpan + 5 && topPos - windowTop > 0 && category !== null && category !== void 0 && category.id) {
+      if (windowTop > topPos - _paddDiff && windowTop < topPos + HeightOfEle - _paddDiff && category !== null && category !== void 0 && category.id) {
         var choosedCategory = document.getElementById("category-menu".concat((category === null || category === void 0 ? void 0 : category.id) || '-all'));
         var choosedCategoryLeft = (choosedCategory === null || choosedCategory === void 0 ? void 0 : choosedCategory.offsetLeft) || 0;
 
@@ -170,26 +183,29 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
   };
 
   (0, _react.useEffect)(function () {
+    if (typeof useKioskApp === 'undefined') return;
     var styleSheet = document.getElementById('styles').sheet;
     var style0 = '.sticky-prod-cat {';
     style0 += 'position: fixed !important;';
-    style0 += 'top: 0 !important;';
-    style0 += 'width: 97% !important;';
-    style0 += 'padding: 15px 5px 0px 0px;';
+    style0 += 'top: 0px !important;';
+    style0 += 'left: 0px !important;';
+    style0 += 'padding: 5px 5px 0px 5px !important;';
+    style0 += "width: calc(100% - ".concat(useKioskApp ? '50px' : '155px', ") !important;");
     style0 += '}';
     var style1 = '.sticky-prod-cart {';
     style1 += 'position: fixed !important;';
-    style1 += 'top: 0 !important;';
+    style1 += 'top: 38px !important;';
     style1 += 'right: 2.5% !important;';
     style1 += 'width: 28.5% !important;';
     style1 += 'margin-top: 32px !important;';
     style1 += '}';
     var style2 = '.sticky-search {';
     style2 += 'position: fixed !important;';
-    style2 += 'top: 10px !important;';
-    style2 += 'right: 32% !important;';
-    style2 += 'height: 50px !important;';
+    style2 += 'top: 0px !important;';
+    style2 += 'right: 0% !important;';
     style2 += 'z-index: 9999 !important;';
+    style2 += 'width: 50px !important;';
+    style2 += "background-color: ".concat(theme.colors.backgroundPage, " !important;");
     style2 += '}';
     styleSheet.insertRule(style0, 0);
     styleSheet.insertRule(style1, 1);
@@ -198,7 +214,7 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
     return function () {
       return window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [useKioskApp]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
