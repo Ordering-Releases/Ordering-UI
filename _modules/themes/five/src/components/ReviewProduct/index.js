@@ -9,7 +9,7 @@ exports.ReviewProduct = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _orderingComponents = require("ordering-components");
+var _orderingComponentsExternal = require("ordering-components-external");
 
 var _reactHookForm = require("react-hook-form");
 
@@ -72,7 +72,7 @@ var SingleProductReview = function SingleProductReview(props) {
       handleChangeFormState = props.handleChangeFormState,
       formState = props.formState;
 
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
@@ -212,7 +212,7 @@ var ReviewProductUI = function ReviewProductUI(props) {
       handleSendProductReview = props.handleSendProductReview,
       setIsProductReviewed = props.setIsProductReviewed;
 
-  var _useLanguage3 = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
       _useLanguage4 = _slicedToArray(_useLanguage3, 2),
       t = _useLanguage4[1];
 
@@ -323,7 +323,7 @@ var ReviewProduct = function ReviewProduct(props) {
     isToast: true
   });
 
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.ReviewProduct, reviewProductProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ReviewProduct, reviewProductProps);
 };
 
 exports.ReviewProduct = ReviewProduct;

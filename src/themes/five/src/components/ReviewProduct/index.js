@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLanguage, ReviewProduct as ReviewProductController } from 'ordering-components'
+import { useLanguage, ReviewProduct as ReviewProductController } from 'ordering-components-external'
 import { useForm } from 'react-hook-form'
 
 import {
