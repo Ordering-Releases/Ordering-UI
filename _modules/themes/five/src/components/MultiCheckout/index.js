@@ -9,6 +9,8 @@ exports.MultiCheckout = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _orderingComponentsExternal = require("ordering-components-external");
 
 var _libphonenumberJs = _interopRequireDefault(require("libphonenumber-js"));
@@ -99,6 +101,8 @@ var MultiCheckoutUI = function MultiCheckoutUI(props) {
   var _useSession = (0, _orderingComponentsExternal.useSession)(),
       _useSession2 = _slicedToArray(_useSession, 1),
       user = _useSession2[0].user;
+
+  var history = (0, _reactRouterDom.useHistory)();
 
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),

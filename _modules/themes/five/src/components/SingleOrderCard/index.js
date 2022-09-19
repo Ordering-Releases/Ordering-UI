@@ -37,7 +37,7 @@ var _styles = require("./styles");
 
 var _styles2 = require("../OrdersOption/styles");
 
-var _OrderingThemeContext = require("ordering-components-external/_modules/contexts/OrderingThemeContext");
+var _OrderingThemeContext = require("ordering-components/_modules/contexts/OrderingThemeContext");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

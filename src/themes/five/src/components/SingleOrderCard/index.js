@@ -28,7 +28,7 @@ import {
 import {
   BusinessInformation
 } from '../OrdersOption/styles'
-import { useOrderingTheme } from 'ordering-components-external/_modules/contexts/OrderingThemeContext'
+import { useOrderingTheme } from 'ordering-components/_modules/contexts/OrderingThemeContext'
 
 const SingleOrderCardUI = (props) => {
   const {
