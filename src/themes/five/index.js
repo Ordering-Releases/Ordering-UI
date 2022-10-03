@@ -72,7 +72,9 @@ import { ProductOption } from './src/components/ProductOption'
 import { ProductOptionSubOption } from './src/components/ProductOptionSubOption'
 import { ProfileOptions } from './src/components/UserProfileForm/ProfileOptions'
 import { Promotions } from './src/components/Promotions'
+import { ProfessionalInfo } from './src/components/ProfessionalInfo'
 import { RenderProductsLayout } from './src/components/RenderProductsLayout'
+import { ReviewProfessional } from './src/components/ReviewProfessional'
 import { ResetPassword } from './src/components/ResetPassword'
 import { SearchBar } from './src/components/SearchBar'
 import { SessionsList } from './src/components/SessionsList'
@@ -80,6 +82,7 @@ import { SidebarMenu } from './src/components/SidebarMenu'
 import { SignUpForm } from './src/components/SignUpForm'
 import { SignUpBusiness } from './src/components/SignUpBusiness'
 import { SignUpDriver } from './src/components/SignUpDriver'
+import { SignUpApproval } from './src/components/SignUpApproval'
 import { SingleProductCard } from './src/components/SingleProductCard'
 import { StripeElementsForm } from './src/components/StripeElementsForm'
 import { StripeRedirectForm } from './src/components/StripeRedirectForm'
@@ -106,6 +109,7 @@ import { Button } from './src/styles/Buttons'
 import { Input, TextArea } from './src/styles/Inputs'
 import { Select } from './src/styles/Select'
 import { Checkbox } from '../../styles/Checkbox'
+import { NavigationBar } from './src/components/NavigationBar'
 
 export {
   AccordionDropdown,
@@ -182,7 +186,9 @@ export {
   ProfileOptions,
   ProductOptionSubOption,
   Promotions,
+  ProfessionalInfo,
   PhoneAutocomplete,
+  ReviewProfessional,
   RenderProductsLayout,
   ResetPassword,
   SearchBar,
@@ -191,6 +197,7 @@ export {
   SignUpForm,
   SignUpBusiness,
   SignUpDriver,
+  SignUpApproval,
   SingleProductCard,
   StripeElementsForm,
   StripeRedirectForm,
@@ -217,5 +224,6 @@ export {
   Input,
   TextArea,
   Select,
-  Checkbox
+  Checkbox,
+  NavigationBar
 }

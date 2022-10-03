@@ -33,6 +33,8 @@ var _Buttons = require("../../styles/Buttons");
 
 var _useWindowSize = require("../../../../../hooks/useWindowSize");
 
+var _useIsMounted = require("../../../../../hooks/useIsMounted");
+
 var _RenderProductsLayout = require("../RenderProductsLayout");
 
 var _Cart = require("../Cart");
@@ -110,7 +112,9 @@ var BusinessProductsListingUI = function BusinessProductsListingUI(props) {
       professionalSelected = props.professionalSelected,
       handleChangeProfessionalSelected = props.handleChangeProfessionalSelected,
       onChangeMetaTag = props.onChangeMetaTag,
-      onBusinessClick = props.onBusinessClick;
+      onBusinessClick = props.onBusinessClick,
+      handleChangePriceFilterValues = props.handleChangePriceFilterValues,
+      priceFilterValues = props.priceFilterValues;
   var business = businessState.business,
       loading = businessState.loading,
       error = businessState.error;
@@ -187,6 +191,7 @@ var BusinessProductsListingUI = function BusinessProductsListingUI(props) {
       subcategoriesSelected = _useState16[0],
       setSubcategoriesSelected = _useState16[1];
 
+  var isMounted = (0, _useIsMounted.useIsMounted)();
   var currentCart = (_Object$values$find = Object.values(carts).find(function (cart) {
     var _cart$business;
 
@@ -449,8 +454,10 @@ var BusinessProductsListingUI = function BusinessProductsListingUI(props) {
     handleUpdateProducts: handleUpdateProducts,
     professionalSelected: professionalSelected,
     handleChangeProfessionalSelected: handleChangeProfessionalSelected,
-    onBusinessClick: onBusinessClick
-  }), !loading && business && !Object.keys(business).length && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
+    onBusinessClick: onBusinessClick,
+    priceFilterValues: priceFilterValues,
+    handleChangePriceFilterValues: handleChangePriceFilterValues
+  }), isMounted && !loading && business && !Object.keys(business).length && /*#__PURE__*/_react.default.createElement(_NotFoundSource.NotFoundSource, {
     content: t('NOT_FOUND_BUSINESS_PRODUCTS', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag7 = theme.defaultLanguages) === null || _theme$defaultLanguag7 === void 0 ? void 0 : _theme$defaultLanguag7.NOT_FOUND_BUSINESS_PRODUCTS) || 'No products to show at this business, please try with other business.'),
     btnTitle: t('SEARCH_REDIRECT', (theme === null || theme === void 0 ? void 0 : (_theme$defaultLanguag8 = theme.defaultLanguages) === null || _theme$defaultLanguag8 === void 0 ? void 0 : _theme$defaultLanguag8.SEARCH_REDIRECT) || 'Go to Businesses'),
     onClickButton: function onClickButton() {
