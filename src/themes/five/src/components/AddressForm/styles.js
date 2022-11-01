@@ -26,7 +26,7 @@ export const FormControl = styled.form`
   input {
     box-sizing: border-box;
     margin: 10px 0px;
-    height: 43px;
+    height: 50px;
     width: 100%;
     &.internal_number,
     &.zipcode {
@@ -106,6 +106,7 @@ export const AddressWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  margin-top: -11px;
 
   button {
     height: 41px;
@@ -204,7 +205,7 @@ export const WrapperMap = styled.div`
 export const WrapperSkeleton = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 9px 10px;
 
   span {
     width: 100%;

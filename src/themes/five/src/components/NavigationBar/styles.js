@@ -7,12 +7,12 @@ export const NavigationBarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 15px 10vw;
-  position: sticky;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   width: 100%;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 1005;
 `
 
 export const NavigationLink = styled.div`

@@ -22,7 +22,7 @@ import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { ProductIngredient } from '../ProductIngredient'
 import { ProductOption } from '../ProductOption'
 import { ProductOptionSubOption } from '../ProductOptionSubOption'
-import { ProductShare } from '../../../../../components/ProductShare'
+import { ProductShare } from '../ProductShare'
 import { LoginForm } from '../LoginForm'
 import { SignUpForm } from '../SignUpForm'
 import { ForgotPasswordForm } from '../ForgotPasswordForm'
@@ -91,7 +91,8 @@ const ProductOptionsUI = (props) => {
     handleSave,
     handleChangeIngredientState,
     handleChangeSuboptionState,
-    handleChangeCommentState
+    handleChangeCommentState,
+    productAddedToCartLength
   } = props
 
   const { product, loading, error } = productObject
@@ -375,6 +376,7 @@ const ProductOptionsUI = (props) => {
               slug={businessSlug}
               categoryId={product?.category_id}
               productId={product?.id}
+              product={product}
             />
           ) : (
             <div style={{ height: 30 }} />
@@ -640,15 +642,15 @@ const ProductOptionsUI = (props) => {
               <div className='price-amount-block'>
                 <div className='price'>
                   <h4>{productCart.total && parsePrice(productCart.total)}</h4>
-                  {product?.minimum_per_order && productCart?.quantity <= product?.minimum_per_order && productCart?.quantity !== 1 && <span>{t('MINIMUM_TO_ORDER', 'Minimum _number_ to order').replace('_number_', product?.minimum_per_order)}</span>}
-                  {product?.maximum_per_order && productCart?.quantity >= product?.maximum_per_order && <span>{t('MAXIMUM_TO_ORDER', 'Max. _number_ to order'.replace('_number_', product?.maximum_per_order))}</span>}
+                  {product?.minimum_per_order && (productCart?.quantity + productAddedToCartLength) <= product?.minimum_per_order && productCart?.quantity !== 1 && <span>{t('MINIMUM_TO_ORDER', 'Minimum _number_ to order').replace('_number_', product?.minimum_per_order)}</span>}
+                  {product?.maximum_per_order && (productCart?.quantity + productAddedToCartLength) >= product?.maximum_per_order && <span>{t('MAXIMUM_TO_ORDER', 'Max. _number_ to order'.replace('_number_', product?.maximum_per_order))}</span>}
                 </div>
                 {
                   productCart && !isSoldOut && maxProductQuantity > 0 && (
                     <div className={isHaveWeight ? 'incdec-control show-weight-unit' : 'incdec-control'}>
                       <FiMinusCircle
                         onClick={decrement}
-                        className={`${productCart.quantity === 1 || !productCart.quantity || isSoldOut || (productCart?.quantity <= product?.minimum_per_order) ? 'disabled' : ''}`}
+                        className={`${productCart.quantity === 1 || !productCart.quantity || isSoldOut || ((productCart?.quantity + productAddedToCartLength) <= product?.minimum_per_order) ? 'disabled' : ''}`}
                       />
                       {
                         qtyBy?.pieces && (
@@ -669,7 +671,7 @@ const ProductOptionsUI = (props) => {
                       )}
                       <FiPlusCircle
                         onClick={increment}
-                        className={`${maxProductQuantity <= 0 || productCart.quantity >= maxProductQuantity || (productCart.quantity >= product?.maximum_per_order && product?.maximum_per_order) || isSoldOut ? 'disabled' : ''}`}
+                        className={`${maxProductQuantity <= 0 || (productCart?.quantity + productAddedToCartLength) >= maxProductQuantity || ((productCart?.quantity + productAddedToCartLength) >= product?.maximum_per_order && product?.maximum_per_order) || isSoldOut ? 'disabled' : ''}`}
                       />
                       {isHaveWeight && (
                         <WeightUnitSwitch>
@@ -687,7 +689,7 @@ const ProductOptionsUI = (props) => {
                   className={`add ${(maxProductQuantity === 0 || Object.keys(errors).length > 0) ? 'disabled' : ''}`}
                   color='primary'
                   onClick={() => handleSaveProduct()}
-                  disabled={orderState.loading || productCart?.quantity === 0 || (product?.minimum_per_order && (productCart?.quantity < product?.minimum_per_order)) || (product?.maximum_per_order && (productCart?.quantity > product?.maximum_per_order))}
+                  disabled={orderState.loading || productCart?.quantity === 0 || (product?.minimum_per_order && ((productCart?.quantity + productAddedToCartLength) < product?.minimum_per_order)) || (product?.maximum_per_order && ((productCart?.quantity + productAddedToCartLength) > product?.maximum_per_order))}
                 >
                   {orderState.loading ? (
                     <span>{t('LOADING', theme?.defaultLanguages?.LOADING || 'Loading')}</span>

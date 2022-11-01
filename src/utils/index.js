@@ -4,14 +4,7 @@ import { useTheme } from 'styled-components'
 export const getIconCard = (brand = '') => {
   const value = brand.toLowerCase()
   const theme = useTheme()
-  switch (value) {
-    case 'visa':
-      return theme.images?.general?.visa
-    case 'mastercard':
-      return theme.images?.general?.mastercard
-    default:
-      return theme.images?.general?.credit
-  }
+    return theme.images?.general?.[value] ?? theme.images?.general?.credit
 }
 
 /**
@@ -117,12 +110,14 @@ export const getTraduction = key => {
     ERROR_MISSING_PAYMETHOD_HOOK: 'Missing payment method hook',
     INVALID_CODE: 'Invalid verify code',
     ERROR_YOU_HAVE_NOT_CART: 'Cart not found',
+    ERROR_PLACE_GROUP_PAY_WITH_CARD: 'An Error place group pay with card',
+    ERROR_PLACE_GROUP_CART_TOTAL_DIFFERENT: 'Error, place group cart total different',
     ERROR_PLACE_PAY_WITH_REDIRECT: 'An error occurred while trying to pay by redirect',
     ERROR_PLACE_PAY_WITH_CARD1: 'An error occurred while trying to pay by card',
     ERROR_PLACE_PAY_WITH_PAYPAL_CAPTURE: 'An error occurred while trying to pay by PayPal',
     ERROR_ADD_PRODUCT_VERY_FAR_FOR_DELIVERY: 'Error adding product, very far for delivery',
     ERROR_INVALID_OFFER: 'The offer doesn\'t exist',
-    ERROR_CASH_WALLET_FEATURE_DISABLED: 'Cash wallet feature is disabled'
+    ERROR_CASH_WALLET_FEATURE_DISABLED: 'Cash wallet feature is disabled',
   }
 
   return keyList[key] ? t(key, keyList[key]) : t(key)
@@ -134,6 +129,38 @@ export const getTraduction = key => {
  */
 export const bytesConverter = bytes => {
   return Math.floor(bytes / 1024)
+}
+
+/**
+ * Function to get colors darker/lighten.
+ */
+export const LightenDarkenColor = (col, amt) => {
+
+    var usePound = false;
+  
+    if (col[0] == "#") {
+        col = col.slice(1);
+        usePound = true;
+    }
+ 
+    var num = parseInt(col,16);
+ 
+    var r = (num >> 16) + amt;
+ 
+    if (r > 255) r = 255;
+    else if  (r < 0) r = 0;
+ 
+    var b = ((num >> 8) & 0x00FF) + amt;
+ 
+    if (b > 255) b = 255;
+    else if  (b < 0) b = 0;
+ 
+    var g = (num & 0x0000FF) + amt;
+ 
+    if (g > 255) g = 255;
+    else if (g < 0) g = 0;
+ 
+    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
 }
 
 /**

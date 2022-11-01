@@ -1,12 +1,18 @@
 import React from 'react'
+import { useOrderingTheme } from 'ordering-components-external'
 import { UserProfileForm as UserProfileFormOriginal } from '../../../src/themes/five/src/components/UserProfileForm'
 import { UserProfileForm as UserProfileFormOld } from '../../../src/components/UserProfileForm'
 import { HelmetTags } from '../../components/HelmetTags'
-import { useOrderingTheme } from 'ordering-components-external'
+import { useWindowSize } from '../../../src/hooks/useWindowSize'
+
 export const Profile = (props) => {
+  const windowSize = useWindowSize()
+
   const profileProps = {
     ...props,
-    refreshSessionUser: true
+    refreshSessionUser: true,
+    showLogout: true,
+    hideOptions: windowSize.width < 576
   }
 
   const [orderingTheme] = useOrderingTheme()

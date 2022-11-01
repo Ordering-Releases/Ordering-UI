@@ -62,6 +62,10 @@ export const BusinessCategoriesContainer = styled.div`
   margin: 0;
   margin-right: 10px;
   width: 100%;
+  ${(props) => !props.offSticky && css`
+    top: 65px;
+    position: sticky;
+  `}
   @media (min-width: 993px) {
     width: calc(31% - 25px);
   }
@@ -71,6 +75,7 @@ export const BusinessCartContainer = styled(BusinessCategoriesContainer)`
   display: none;
   margin-top: 70px;
   min-width: 325px;
+  height: fit-content;
   @media (min-width: 769px) {
     ${({ isProfessional }) => isProfessional && css`
       margin-top: 0px;

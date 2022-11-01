@@ -243,12 +243,6 @@ export const RenderProductsLayout = (props) => {
                       </WrapperSearchAbsolute>
                     )}
                   </div>
-                  {/* {windowSize.width < 500 && (
-                    <MobileCartViewWrapper>
-                      <span>{currentCart?.products?.length > 0 ? parsePrice(currentCart?.total) : parsePrice(0)}</span>
-                      <Button color='primary' onClick={() => setisCartModal(true)}>{t('VIEW_CART', 'View cart')}</Button>
-                    </MobileCartViewWrapper>
-                  )} */}
                   <WrapContent id='businessProductList'>
                     {!business?.loading && business?.previously_products?.length > 0 && (
                       <OrderItAgain
@@ -288,7 +282,7 @@ export const RenderProductsLayout = (props) => {
                   </WrapContent>
                 </BusinessCategoryProductWrapper>
                 {showCartOnProductList && (
-                  <BusinessCartContainer id='BusinessCartContainer' isProfessional={business?.professionals?.length > 0 && !useKioskApp}>
+                  <BusinessCartContainer isProfessional={business?.professionals?.length > 0 && !useKioskApp}>
                     <BusinessCartContent maxHeight={window.innerHeight - 100}>
                       {currentCart?.products?.length > 0 ? (
                         <>
@@ -335,7 +329,7 @@ export const RenderProductsLayout = (props) => {
                   </ProfessionalFilterWrapper>
                 )}
                 <BusinessContent>
-                  <BusinessCategoriesContainer>
+                  <BusinessCategoriesContainer offSticky>
                     {!(business?.categories?.length === 0 && !categoryId) && (
                       <BusinessLayoutCategories
                         component='categories'

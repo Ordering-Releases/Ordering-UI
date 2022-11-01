@@ -101,7 +101,7 @@ var MyOrders = function MyOrders(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), hideOrders && !allEmpty && /*#__PURE__*/_react.default.createElement("h2", null, t('PREVIOUSLY_ORDERED', 'Previously ordered')), !hideOrders && /*#__PURE__*/_react.default.createElement(_ProfileOptions.ProfileOptions, {
+  }), hideOrders && !allEmpty && /*#__PURE__*/_react.default.createElement("h2", null, t('PREVIOUSLY_ORDERED', 'Previously ordered')), !hideOrders && !props.hideOptions && /*#__PURE__*/_react.default.createElement(_ProfileOptions.ProfileOptions, {
     value: "orders"
   }), /*#__PURE__*/_react.default.createElement(_styles.Container, {
     hideOrders: hideOrders
@@ -144,17 +144,17 @@ var MyOrders = function MyOrders(props) {
     horizontal: true,
     setIsEmptyPreorder: setIsEmptyPreorder,
     selectItem: selectItem
-  })), /*#__PURE__*/_react.default.createElement(_styles.Divider, null)), (selectItem === 'all' || selectItem === 'active') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
+  })), !isEmptyPreorder && /*#__PURE__*/_react.default.createElement(_styles.Divider, null)), (selectItem === 'all' || selectItem === 'active') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
     activeOrders: true,
     horizontal: true,
     setIsEmptyActive: setIsEmptyActive,
     selectItem: selectItem
-  })), /*#__PURE__*/_react.default.createElement(_styles.Divider, null)), (selectItem === 'all' || selectItem === 'past') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
+  })), !isEmptyActive && /*#__PURE__*/_react.default.createElement(_styles.Divider, null)), (selectItem === 'all' || selectItem === 'past') && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
     pastOrders: true,
     horizontal: true,
     setIsEmptyPast: setIsEmptyPast,
     selectItem: selectItem
-  })), /*#__PURE__*/_react.default.createElement(_styles.Divider, null)))), notOrderOptions.includes(selectedOption) && /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
+  })), !isEmptyPast && /*#__PURE__*/_react.default.createElement(_styles.Divider, null)))), notOrderOptions.includes(selectedOption) && /*#__PURE__*/_react.default.createElement(_OrdersOption.OrdersOption, _extends({}, props, {
     titleContent: t('PREVIOUSLY_ORDERED', 'Previously ordered'),
     hideOrders: true,
     horizontal: true,

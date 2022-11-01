@@ -212,7 +212,7 @@ export const Header = (props) => {
         <BeforeComponent key={i} {...props} />))}
       <HeaderContainer>
         <InnerHeader>
-          <LeftHeader>
+          <LeftHeader id='left-side'>
             <SidebarMenu
               auth={auth}
               isHideSignup={isHideSignup}
@@ -227,7 +227,7 @@ export const Header = (props) => {
             </LogoHeader>
           </LeftHeader>
           {isShowOrderOptions && !props.isCustomLayout && (
-            <Menu className='left-header' isCustomerMode={isCustomerMode}>
+            <Menu id='center-side' className='left-header' isCustomerMode={isCustomerMode}>
               {windowSize.width > 820 && isFarAway && (
                 <FarAwayMessage>
                   <TiWarningOutline />
@@ -240,7 +240,8 @@ export const Header = (props) => {
                     isCustomerMode={isCustomerMode}
                     onClick={(e) => handleClickUserCustomer(e)}
                   >
-                    <GeoAlt /> {orderState.options?.address?.address?.split(',')?.[0] || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                    <GeoAlt />
+                    <span>{orderState.options?.address?.address || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}</span>
                   </AddressMenu>
                   <Divider />
                 </>
@@ -268,7 +269,12 @@ export const Header = (props) => {
                     <AddressMenu
                       onClick={() => openModal('address')}
                     >
-                      <GeoAlt /> {orderState.options?.address?.address?.split(',')?.[0] || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                      <GeoAlt />
+                      <span>
+                        <p>
+                          {orderState.options?.address?.address || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                        </p>
+                      </span>
                     </AddressMenu>
                   )}
                   {!isCustomerMode && (isPreOrderSetting || configState?.configs?.preorder_status_enabled?.value === undefined) && (
@@ -301,7 +307,7 @@ export const Header = (props) => {
             </Menu>
           )}
           {onlineStatus && (
-            <RightHeader>
+            <RightHeader id='right-side'>
               <Menu isCustomerMode={isCustomerMode}>
                 {
                   !auth && windowSize.width > 920 && (
@@ -374,7 +380,7 @@ export const Header = (props) => {
               <AddressMenu
                 onClick={() => openModal('address')}
               >
-                <GeoAlt /> {orderState.options?.address?.address?.split(',')?.[0] || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
+                <GeoAlt /> {orderState.options?.address?.address || t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
               </AddressMenu>
               {!isCustomerMode && (isPreOrderSetting || configState?.configs?.preorder_status_enabled?.value === undefined) && (
                 <HeaderOption
@@ -396,7 +402,7 @@ export const Header = (props) => {
               )}
               <HeaderOption
                 variant='address'
-                addressState={orderState?.options?.address?.address?.split(',')?.[0]}
+                addressState={orderState?.options?.address?.address}
                 onClick={(variant) => openModal(variant)}
               />
               {!isCustomerMode && (isPreOrderSetting || configState?.configs?.preorder_status_enabled?.value === undefined) && (
@@ -413,9 +419,10 @@ export const Header = (props) => {
         )}
         {modalIsOpen && (
           <Modal
+            title={(!auth && modalSelected === 'address') && t('WHAT_IS_YOUR_ADDRESS', 'What\'s your address?')}
             open={modalIsOpen}
             onClose={() => setModalIsOpen(false)}
-            width={modalSelected === 'address' ? '70%' : '700px'}
+            width={modalSelected === 'address' ? orderState?.options?.user_id ? '70%' : '50%' : '700px'} 
           >
             {modalSelected === 'cart' && (
               <CartContent
@@ -504,6 +511,7 @@ export const Header = (props) => {
             onClose={() => closeAuthModal()}
             width='50%'
             authModal
+            closeOnBackdrop={false}
           >
             {modalPageToShow === 'login' && (
               <LoginForm

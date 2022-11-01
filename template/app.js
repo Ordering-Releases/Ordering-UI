@@ -139,8 +139,8 @@ export const App = () => {
 
   const handleSuccessSignup = (user) => {
     if (!user?.enabled && (configs?.business_signup_enabled_default?.value === '0' || configs?.driver_signup_enabled_default?.value === '0')) {
-      signUplayout === 'new' ?
-        setBusinessSignUpSuccessed({
+      signUplayout === 'new'
+        ? setBusinessSignUpSuccessed({
           open: true,
           content: {
             approvalType: 'no_automatic',
@@ -243,8 +243,9 @@ export const App = () => {
   }
 
   const closeReviewOrder = () => {
-    if (!lastOrderReview?.reviewed?.isProductReviewed) setLastOrderReview({ ...lastOrderReview, reviewStatus: { order: false, product: true, driver: false } })
-    else if (lastOrderReview?.order?.driver && !lastOrderReview?.order?.user_review && !lastOrderReview?.reviewed?.isDriverReviewed) setLastOrderReview({ ...lastOrderReview, reviewStatus: { order: false, product: false, driver: true } })
+    const enableProduct = lastOrderReview?.order?.products.some(product => !product?.deleted)
+    if (!lastOrderReview?.reviewed?.isProductReviewed && enableProduct) setLastOrderReview({ ...lastOrderReview, reviewStatus: { order: false, product: true, driver: false } })
+    else if ((lastOrderReview?.order?.driver || enableProduct) && !lastOrderReview?.order?.user_review && !lastOrderReview?.reviewed?.isDriverReviewed) setLastOrderReview({ ...lastOrderReview, reviewStatus: { order: false, product: false, driver: true } })
     else handleCloseReivew()
   }
 
@@ -306,13 +307,13 @@ export const App = () => {
         window.localStorage.getItem('country-code')
 
       if (localCountryCode) {
-        ordering?.setCountryCode(localCountryCode)
+        ordering.setCountryCode && ordering.setCountryCode(localCountryCode)
       }
     }
   }, [orderStatus])
 
   return (
-    <>
+    <div style={{ marginBottom: windowSize.width < 576 && onlineStatus ? 80 : 0 }}>
       {!!configs?.track_id_google_analytics?.value && (
         <Analytics trackId={configs?.track_id_google_analytics?.value} />
       )}
@@ -332,7 +333,7 @@ export const App = () => {
         loaded && (
           <ThemeProvider theme={themeUpdated}>
             <ListenPageChanges />
-            {!(isKioskApp && isHome) && (
+            {!(isKioskApp && isHome) && windowSize.width > 576 && (
               <HeaderComponent
                 isHome={isHome}
                 location={location}
@@ -653,12 +654,12 @@ export const App = () => {
               </ScrollToTop>
             )}
             {!navigator.userAgent.match('CriOS') && (
-              <PWAPrompt promptOnVisit={1} timesToShow={100} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
+              <PWAPrompt promptOnVisit={1} timesToShow={100} copyClosePrompt='Close' permanentlyHideOnDismiss={false} />
             )}
             {!isFooterPage && (
               <Footer />
             )}
-            {(windowSize.width < 576 && auth) && (
+            {windowSize.width < 576 && onlineStatus && (
               <NavigationBar />
             )}
             <Alert
@@ -696,7 +697,7 @@ export const App = () => {
               open={businessSignUpSuccessed?.open}
               onClose={() => setBusinessSignUpSuccessed({ open: false, content: {} })}
               title={t('CONGRATULATIONS', 'Congratulations')}
-              width={'990px'}
+              width='990px'
             >
               <SignUpApproval
                 content={businessSignUpSuccessed?.content}
@@ -707,6 +708,6 @@ export const App = () => {
           </ThemeProvider>
         )
       }
-    </>
+    </div>
   )
 }

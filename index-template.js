@@ -30,6 +30,11 @@ import emptyActiveOrders from './template/assets/images/empty-active-orders.svg'
 import emptyPastOrders from './template/assets/images/empty-past-orders.svg'
 import visa from './template/assets/images/visa.png'
 import mastercard from './template/assets/images/mastercard.png'
+import amex from './template/assets/images/amex.svg'
+import diners from './template/assets/images/diners.svg'
+import discover from './template/assets/images/discover.svg'
+import jcb from './template/assets/images/jcb.svg'
+import unionpay from './template/assets/images/unionpay.svg'
 import credit from './template/assets/images/credit.png'
 import businessSignUpHero from './template/assets/images/business_signup.png'
 import driverSignUpHero from './template/assets/images/driver-signup-hero.png'
@@ -78,7 +83,7 @@ import pickUp from './template/assets/images/delivery-types/pickup.jpg'
 
 Sentry.init({
   environment: process.env.NODE_ENV,
-  dsn: "https://28d1f7ef8d764235902101e569102521@o460529.ingest.sentry.io/6302953",
+  dsn: 'https://28d1f7ef8d764235902101e569102521@o460529.ingest.sentry.io/6302953',
   release: 'ordering-ui-release@' + process.env.npm_package_version,
   integrations: [
     new Integrations.BrowserTracing()
@@ -118,6 +123,11 @@ theme.images = {
     emptyPastOrders,
     visa,
     mastercard,
+    amex,
+    diners,
+    discover,
+    jcb,
+    unionpay,
     credit,
     businessSignUpHero,
     driverSignUpHero,

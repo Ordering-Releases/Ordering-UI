@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.verifyDecimals = exports.sortInputFields = exports.shape = exports.scrollTo = exports.reviewCommentList = exports.priceList = exports.getTraduction = exports.getIconCard = exports.getHourMin = exports.getGoogleMapImage = exports.getDistance = exports.formatUrlVideo = exports.formatSeconds = exports.flatArray = exports.fieldsToSort = exports.convertToRadian = exports.convertHoursToMinutes = exports.checkSiteUrl = exports.capitalize = exports.bytesConverter = void 0;
+exports.verifyDecimals = exports.sortInputFields = exports.shape = exports.scrollTo = exports.reviewCommentList = exports.priceList = exports.getTraduction = exports.getIconCard = exports.getHourMin = exports.getGoogleMapImage = exports.getDistance = exports.formatUrlVideo = exports.formatSeconds = exports.flatArray = exports.fieldsToSort = exports.convertToRadian = exports.convertHoursToMinutes = exports.checkSiteUrl = exports.capitalize = exports.bytesConverter = exports.LightenDarkenColor = void 0;
 var _orderingComponentsExternal = require("ordering-components-external");
 var _styledComponents = require("styled-components");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -17,18 +17,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var getIconCard = function getIconCard() {
-  var _theme$images, _theme$images$general, _theme$images2, _theme$images2$genera, _theme$images3, _theme$images3$genera;
+  var _theme$images$general, _theme$images, _theme$images$general2, _theme$images2, _theme$images2$genera;
   var brand = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var value = brand.toLowerCase();
   var theme = (0, _styledComponents.useTheme)();
-  switch (value) {
-    case 'visa':
-      return (_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$general = _theme$images.general) === null || _theme$images$general === void 0 ? void 0 : _theme$images$general.visa;
-    case 'mastercard':
-      return (_theme$images2 = theme.images) === null || _theme$images2 === void 0 ? void 0 : (_theme$images2$genera = _theme$images2.general) === null || _theme$images2$genera === void 0 ? void 0 : _theme$images2$genera.mastercard;
-    default:
-      return (_theme$images3 = theme.images) === null || _theme$images3 === void 0 ? void 0 : (_theme$images3$genera = _theme$images3.general) === null || _theme$images3$genera === void 0 ? void 0 : _theme$images3$genera.credit;
-  }
+  return (_theme$images$general = (_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$general2 = _theme$images.general) === null || _theme$images$general2 === void 0 ? void 0 : _theme$images$general2[value]) !== null && _theme$images$general !== void 0 ? _theme$images$general : (_theme$images2 = theme.images) === null || _theme$images2 === void 0 ? void 0 : (_theme$images2$genera = _theme$images2.general) === null || _theme$images2$genera === void 0 ? void 0 : _theme$images2$genera.credit;
 };
 
 /**
@@ -153,6 +146,8 @@ var getTraduction = function getTraduction(key) {
     ERROR_MISSING_PAYMETHOD_HOOK: 'Missing payment method hook',
     INVALID_CODE: 'Invalid verify code',
     ERROR_YOU_HAVE_NOT_CART: 'Cart not found',
+    ERROR_PLACE_GROUP_PAY_WITH_CARD: 'An Error place group pay with card',
+    ERROR_PLACE_GROUP_CART_TOTAL_DIFFERENT: 'Error, place group cart total different',
     ERROR_PLACE_PAY_WITH_REDIRECT: 'An error occurred while trying to pay by redirect',
     ERROR_PLACE_PAY_WITH_CARD1: 'An error occurred while trying to pay by card',
     ERROR_PLACE_PAY_WITH_PAYPAL_CAPTURE: 'An error occurred while trying to pay by PayPal',
@@ -173,9 +168,29 @@ var bytesConverter = function bytesConverter(bytes) {
 };
 
 /**
- * Function to get time in 12 hours format.
+ * Function to get colors darker/lighten.
  */
 exports.bytesConverter = bytesConverter;
+var LightenDarkenColor = function LightenDarkenColor(col, amt) {
+  var usePound = false;
+  if (col[0] == "#") {
+    col = col.slice(1);
+    usePound = true;
+  }
+  var num = parseInt(col, 16);
+  var r = (num >> 16) + amt;
+  if (r > 255) r = 255;else if (r < 0) r = 0;
+  var b = (num >> 8 & 0x00FF) + amt;
+  if (b > 255) b = 255;else if (b < 0) b = 0;
+  var g = (num & 0x0000FF) + amt;
+  if (g > 255) g = 255;else if (g < 0) g = 0;
+  return (usePound ? "#" : "") + (g | b << 8 | r << 16).toString(16);
+};
+
+/**
+ * Function to get time in 12 hours format.
+ */
+exports.LightenDarkenColor = LightenDarkenColor;
 var getHourMin = function getHourMin(hour, min) {
   var _hour;
   if (hour < 12) {
