@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import {
   useLanguage,
@@ -12,6 +12,7 @@ import {
   useOrderingTheme
 } from 'ordering-components-external'
 import RiUser2Fill from '@meronex/icons/ri/RiUser2Fill'
+import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
 
 import { Button } from '../../styles/Buttons'
 import { NotFoundSource } from '../NotFoundSource'
@@ -65,7 +66,9 @@ import {
   OrderStatusAndLinkContainer,
   LinkWrapper,
   MapWrapper,
-  BusinessExternalWrapper
+  BusinessExternalWrapper,
+  ProfessionalWrapper,
+  ProfessionalBlock
 } from './styles'
 import { useTheme } from 'styled-components'
 import { TaxInformation } from '../TaxInformation'
@@ -284,6 +287,45 @@ const OrderDetailsUI = (props) => {
     setConfirm({ ...confirm, open: false })
     handleReorder(order.id)
   }
+
+  const getProductList = () => {
+    const professionalList = order?.products.reduce((prev, current) => {
+      const found = prev.find(item => item.id === current?.calendar_event?.professional?.id)
+      if (found || !current?.calendar_event) {
+        return prev
+      }
+      return [...prev, current?.calendar_event?.professional]
+    }, [])
+
+    return (
+      <>
+        {professionalList?.length > 0 && professionalList.map((professional, i) => (
+          <ProfessionalBlock key={i}>
+            <ProfessionalWrapper>
+              {professional?.photo
+                ? <img src={professional?.photo} alt='' />
+                : <FaUserAlt />}
+              <p>{professional?.name} {professional?.lastname}</p>
+            </ProfessionalWrapper>
+            {order?.products.filter(product => product?.calendar_event?.professional?.id === professional?.id).map(product => (
+              <ProductItemAccordion
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </ProfessionalBlock>
+        ))}
+        {order?.products.filter(product => !product?.calendar_event).map(product => (
+          <ProductItemAccordion
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </>
+    )
+  }
+
+  const sortedProductList = useMemo(() => getProductList(), [order?.products])
 
   const ActionsSectionProps = {
     order,
@@ -661,12 +703,7 @@ const OrderDetailsUI = (props) => {
                 <OrderHeaderInfoSection />
                 <OrderActionsSection />
               </HeaderTitle>
-              {order?.products?.length && order?.products.map(product => (
-                <ProductItemAccordion
-                  key={product.id}
-                  product={product}
-                />
-              ))}
+              {sortedProductList}
               <OrderBillSection
                 order={order}
                 setOpenTaxModal={setOpenTaxModal}
