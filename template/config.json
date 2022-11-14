@@ -11,11 +11,14 @@
     "url": "https://socket.ordering.co"
   },
   "use_marketplace": false,
+  "use_project_domain": false,
+  "use_project_subdomain": false,
   "store_android_id": "",
   "store_apple_id": "",
   "store_kindle_id": "",
   "url_dashboard": "https://app.tryordering.com",
   "use_kiosk": false,
   "businessSlug": "",
-  "franchiseSlug": null
+  "franchiseSlug": null,
+  "isCancellation" : false
 }

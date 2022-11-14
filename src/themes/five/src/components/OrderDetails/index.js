@@ -33,7 +33,6 @@ import { Confirm } from '../Confirm'
 import {
   Container,
   WrapperContainer,
-  HeaderInfo,
   Content,
   OrderBusiness,
   BusinessWrapper,
@@ -52,7 +51,6 @@ import {
   ShareOrder,
   WrapperLeftContainer,
   WrapperRightContainer,
-  MyOrderActions,
   ReviewOrderLink,
   SkeletonWrapper,
   ReviewWrapper,
@@ -67,6 +65,7 @@ import {
   LinkWrapper,
   MapWrapper,
   BusinessExternalWrapper,
+  DirectionButtonWrapper,
   ProfessionalWrapper,
   ProfessionalBlock
 } from './styles'
@@ -76,6 +75,8 @@ import { TaxInformation } from '../TaxInformation'
 import { getGoogleMapImage } from '../../../../../utils'
 import { OrderHistory } from './OrderHistory'
 import { ReviewProfessional } from '../ReviewProfessional'
+import { OrderActionsSection } from './OrderActionsSection'
+import { OrderHeaderInfoSection } from './OrderHeaderInfoSection'
 
 const OrderDetailsUI = (props) => {
   const {
@@ -142,6 +143,7 @@ const OrderDetailsUI = (props) => {
   const showCustomerPhone = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.phone?.hidden
   const showCustomerAddress = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.address?.hidden
   const showCustomerEmail = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.email?.hidden
+  const showCustomerPhoto = !orderingTheme?.theme?.confirmation?.components?.customer?.components?.photo?.hidden
 
   const getOrderStatus = (s) => {
     const status = parseInt(s)
@@ -176,6 +178,9 @@ const OrderDetailsUI = (props) => {
 
     return objectStatus && objectStatus
   }
+
+  const validTrackingStatus = [9, 19, 23]
+  const mapConfigs = { zoom: 15 }
 
   const handleGoToPage = (data) => {
     events.emit('go_to_page', data)
@@ -337,9 +342,19 @@ const OrderDetailsUI = (props) => {
     setUnreadAlert
   }
 
+  const driverLocationString = typeof order?.driver?.location?.location === 'string' && order?.driver?.location?.location?.split(',').map((l) => l.replace(/[^-.0-9]/g, ''))
+  const parsedLocations = locations.map(location => typeof location?.location === 'string' ? {
+    ...location,
+    lat: parseFloat(location?.location?.split(',')[0].replace(/[^-.0-9]/g, '')),
+    lng: parseFloat(location?.location?.split(',')[1].replace(/[^-.0-9]/g, ''))
+  } : location)
+
   useEffect(() => {
     if (driverLocation) {
-      locations[0] = driverLocation
+      parsedLocations[0] = {
+        ...locations[0],
+        ...driverLocation
+      }
     }
   }, [driverLocation])
 
@@ -382,70 +397,6 @@ const OrderDetailsUI = (props) => {
     businessLogoUrlValidation()
   }, [order])
 
-  const OrderMapSection = (props) => {
-    const validStatuses = props.validStatuses ?? [9, 19, 23]
-    const location = props.location ?? order?.driver?.location
-    const mapConfigs = { zoom: 15 }
-    return (
-      showBusinessMap ? (
-        props.isMapImg ? (
-          <Map style={props.mapStyle}>
-            <img
-              src={getGoogleMapImage(location, googleMapsApiKey, mapConfigs)}
-              id='google-maps-image'
-              alt='google-maps-location'
-              width='100%'
-              height='100%'
-              loading='lazy'
-            />
-          </Map>
-        ) : (
-          location?.lat && location?.lng && validStatuses.includes(parseInt(order?.status)) ? (
-            <>
-              <Map style={props.mapStyle}>
-                <GoogleMapsMap
-                  apiKey={configs?.google_maps_api_key?.value}
-                  location={location}
-                  locations={!props.location && locations}
-                  mapControls={googleMapsControls}
-                />
-              </Map>
-            </>
-          ) : null
-        )
-      ) : null
-    )
-  }
-
-  const OrderHeaderInfoSection = () => {
-    return (
-      <HeaderInfo>
-        <h1>{isService ? t('SERVICES', 'Services') : t('ORDER_MESSAGE_RECEIVED', theme?.defaultLanguages?.ORDER_MESSAGE_RECEIVED || 'Your order has been received')}</h1>
-        <p>{!isService && t('ORDER_MESSAGE_HEADER_TEXT', theme?.defaultLanguages?.ORDER_MESSAGE_HEADER_TEXT || 'Once business accepts your order, we will send you an email, thank you!')}</p>
-      </HeaderInfo>
-    )
-  }
-
-  const OrderActionsSection = () => {
-    return (
-      <>
-        {!userCustomerId && (
-          <MyOrderActions>
-            <Button
-              color='primary'
-              outline
-              onClick={() => handleGoToPage({ page: 'orders' })}
-            >
-              {isService
-                ? t('YOUR_APPOINTMENTS', 'Your appointments')
-                : t('YOUR_ORDERS', theme?.defaultLanguages?.YOUR_ORDERS || 'Your Orders')}
-            </Button>
-          </MyOrderActions>
-        )}
-      </>
-    )
-  }
-
   return (
     <Container>
       {!loading && order && Object.keys(order).length > 0 && !(openMessages.driver || openMessages.business) && (
@@ -484,33 +435,33 @@ const OrderDetailsUI = (props) => {
                     }
                   </p>
                 )}
-                {(
-                  acceptedStatus.includes(parseInt(order?.status, 10)) ||
+                {(acceptedStatus.includes(parseInt(order?.status, 10)) ||
                   !isOriginalLayout
-                ) && (
-                  <ReOrder>
-                    <Button
-                      color='primary'
-                      outline
-                      onClick={() => handleStartNewOrder(order.id)}
-                      disabled={reorderState?.loading}
-                    >
-                      {t('START_NEW_ORDER', 'Start new order')}
-                    </Button>
-                    {completedStatus.includes(parseInt(order?.status, 10)) && (
+                ) &&
+                  (
+                    <ReOrder>
                       <Button
                         color='primary'
                         outline
-                        onClick={() => handleClickReorder(order)}
+                        onClick={() => handleStartNewOrder(order.id)}
                         disabled={reorderState?.loading}
                       >
-                        {reorderState?.loading
-                          ? t('LOADING', 'Loading...')
-                          : t('REORDER', 'Reorder')}
+                        {t('START_NEW_ORDER', 'Start new order')}
                       </Button>
-                    )}
-                  </ReOrder>
-                )}
+                      {completedStatus.includes(parseInt(order?.status, 10)) && (
+                        <Button
+                          color='primary'
+                          outline
+                          onClick={() => handleClickReorder(order)}
+                          disabled={reorderState?.loading}
+                        >
+                          {reorderState?.loading
+                            ? t('LOADING', 'Loading...')
+                            : t('REORDER', 'Reorder')}
+                        </Button>
+                      )}
+                    </ReOrder>
+                  )}
               </TitleContainer>
               {showDeliveryProgress && (
                 <>
@@ -570,6 +521,16 @@ const OrderDetailsUI = (props) => {
                         </p>
                       </PlaceSpotSection>
                     )}
+                    {showOrderActions && (
+                      <DirectionButtonWrapper>
+                        <Button
+                          color='primary'
+                          onClick={() => window.open(`http://maps.google.com/?q=${order?.business?.address}`)}
+                        >
+                          {t('GET_DIRECTIONS', 'Get Directions')}
+                        </Button>
+                      </DirectionButtonWrapper>
+                    )}
                   </BusinessInfo>
                 </BusinessWrapper>
 
@@ -618,20 +579,24 @@ const OrderDetailsUI = (props) => {
                   </BusinessWrapper>
                 )}
               </BusinessExternalWrapper>
-              {googleMapsApiKey && (
+              {googleMapsApiKey && showBusinessMap && (
                 <MapWrapper>
-                  <OrderMapSection
-                    isMapImg
-                    validStatuses={[order?.status]}
-                    location={order?.business?.location}
-                    mapStyle={{ width: '100%' }}
-                  />
+                  <Map style={{ width: '100%' }}>
+                    <img
+                      src={getGoogleMapImage(order?.business?.location, googleMapsApiKey, mapConfigs)}
+                      id='google-maps-image'
+                      alt='google-maps-location'
+                      width='100%'
+                      height='100%'
+                      loading='lazy'
+                    />
+                  </Map>
                 </MapWrapper>
               )}
             </OrderBusiness>
             <OrderCustomer>
               <BusinessWrapper>
-                {order?.customer?.photo && (
+                {showCustomerPhoto && order?.customer?.photo && (
                   <img src={order?.customer?.photo} />
                 )}
                 <BusinessInfo>
@@ -683,9 +648,24 @@ const OrderDetailsUI = (props) => {
                     </div>
                   </WrapperDriver>
                 </OrderDriver>
-                {!isOriginalLayout && (
-                  <OrderMapSection />
-                )}
+                {
+                  order?.driver?.location &&
+                  validTrackingStatus.includes(parseInt(order?.status)) &&
+                  (
+                    <Map style={{ width: '100%' }}>
+                      <GoogleMapsMap
+                        location={typeof order?.driver?.location?.location === 'string'
+                          ? {
+                            lat: parseFloat(driverLocationString[0]),
+                            lng: parseFloat(driverLocationString[1])
+                          } : driverLocation ?? order?.driver?.location}
+                        locations={parsedLocations}
+                        mapControls={googleMapsControls}
+                        apiKey={configs?.google_maps_api_key?.value}
+                      />
+                    </Map>
+                  )
+                }
               </>
             )}
             {(order?.delivery_type === 1 || order?.comment) && (
@@ -700,8 +680,12 @@ const OrderDetailsUI = (props) => {
           <WrapperRightContainer>
             <OrderProducts>
               <HeaderTitle>
-                <OrderHeaderInfoSection />
-                <OrderActionsSection />
+                <OrderHeaderInfoSection isService={isService} />
+                <OrderActionsSection
+                  userCustomerId={userCustomerId}
+                  isService={isService}
+                  handleGoToPage={handleGoToPage}
+                />
               </HeaderTitle>
               {sortedProductList}
               <OrderBillSection
