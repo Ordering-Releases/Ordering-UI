@@ -19,6 +19,7 @@ import isotype from './template/assets/images/isotype.svg'
 import isotypeInvert from './template/assets/images/isotype-invert.svg'
 
 import homeHero from './template/assets/images/home-hero.jpg'
+import homeHeroMobile from './template/assets/images/home-hero-mobile.jpg'
 import businessHero from './template/assets/images/business-hero.jpg'
 import notFound from './template/assets/images/not-found.svg'
 import notNetwork from './template/assets/images/not-network.svg'
@@ -113,6 +114,7 @@ theme.images = {
   logos,
   general: {
     homeHero,
+    homeHeroMobile,
     businessHero,
     notFound,
     notFound404,
