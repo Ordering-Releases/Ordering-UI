@@ -153,8 +153,8 @@ const BusinessControllerUI = (props) => {
           {business?.ribbon?.enabled && (
             <RibbonBox
               bgColor={business?.ribbon?.color}
-              colorText={lightenDarkenColor(business?.ribbon?.color, -200)}
-              borderRibbon={lightenDarkenColor(business?.ribbon?.color, -200)}
+              colorText={lightenDarkenColor(business?.ribbon?.color)}
+              borderRibbon={lightenDarkenColor(business?.ribbon?.color)}
               isRoundRect={business?.ribbon?.shape === shape?.rectangleRound}
               isCapsule={business?.ribbon?.shape === shape?.capsuleShape}
             >

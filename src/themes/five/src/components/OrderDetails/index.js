@@ -23,7 +23,7 @@ import { Messages } from '../Messages'
 import { ReviewOrder } from '../ReviewOrder'
 import { ReviewProduct } from '../ReviewProduct'
 import { ReviewDriver } from '../ReviewDriver'
-import { ProductShare } from '../../../../../components/ProductShare'
+import { ProductShare } from '../ProductShare'
 import { OrderBillSection } from './OrderBillSection'
 import { ActionsSection } from './ActionsSection'
 import { OrderPreferencesSection } from './OrderPreferencesSections'
@@ -67,7 +67,9 @@ import {
   BusinessExternalWrapper,
   DirectionButtonWrapper,
   ProfessionalWrapper,
-  ProfessionalBlock
+  ProfessionalBlock,
+  PlaceSpotWrapper,
+  PoweredByOrdering
 } from './styles'
 import { useTheme } from 'styled-components'
 import { TaxInformation } from '../TaxInformation'
@@ -411,6 +413,10 @@ const OrderDetailsUI = (props) => {
                       <div className='wrap'>
                         <ProductShare
                           defaultUrl={urlToShare(order?.hash_key)}
+                          product={{
+                            images: order.business?.logo,
+                            name: order.business?.name
+                          }}
                         />
                       </div>
                     </ShareOrder>
@@ -535,18 +541,14 @@ const OrderDetailsUI = (props) => {
                 </BusinessWrapper>
 
                 {showDeliveryType && placeSpotTypes.includes(order?.delivery_type) && (
-                  <BusinessWrapper
-                    w='calc(100% - 20px)'
-                    borderTop
-                  >
+                  <PlaceSpotWrapper>
                     <PlaceSpot
                       isInputMode
                       cart={order}
-                      containerStyle={{ width: 'calc(100% - 20px)' }}
                       spotNumberDefault={order?.spot_number}
                       vehicleDefault={order?.vehicle}
                     />
-                  </BusinessWrapper>
+                  </PlaceSpotWrapper>
                 )}
 
                 {showOrderActions && (
