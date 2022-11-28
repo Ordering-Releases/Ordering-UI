@@ -42,16 +42,18 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var PIXELS_TO_SCROLL = 300;
 var BusinessesListingUI = function BusinessesListingUI(props) {
-  var _theme$business_listi, _theme$business_listi2, _theme$business_listi3, _theme$business_listi4, _theme$business_listi5, _theme$business_listi6, _theme$business_listi7, _theme$business_listi8, _theme$business_listi9, _theme$business_listi10, _businessesList$busin, _businessesList$busin3, _props$beforeElements, _props$beforeComponen, _orderState$options3, _orderState$options3$, _configs$business_lis, _theme$images2, _theme$images2$genera, _theme$business_listi11, _theme$business_listi12, _theme$business_listi13, _theme$business_listi14, _Object$values, _citiesState$cities2, _citiesState$cities3, _citiesState$cities3$, _configs$advanced_bus, _orderState$options5, _orderState$options5$, _configs$advanced_bus2, _orderState$options6, _orderState$options6$, _businessesList$busin6, _businessesList$busin7, _orderState$options9, _citiesState$cities4, _props$afterComponent, _props$afterElements;
+  var _theme$business_listi, _theme$business_listi2, _theme$business_listi3, _theme$business_listi4, _theme$business_listi5, _theme$business_listi6, _theme$business_listi7, _theme$business_listi8, _theme$business_listi9, _theme$business_listi10, _businessesList$busin, _configState$configs, _configState$configs$, _businessesList$busin3, _props$beforeElements, _props$beforeComponen, _orderState$options3, _orderState$options3$, _configs$business_lis, _theme$images2, _theme$images2$genera, _theme$business_listi11, _theme$business_listi12, _theme$business_listi13, _theme$business_listi14, _Object$values, _citiesState$cities2, _citiesState$cities3, _citiesState$cities3$, _configs$advanced_bus, _orderState$options5, _orderState$options5$, _configs$advanced_bus2, _orderState$options6, _orderState$options6$, _businessesList$busin6, _businessesList$busin7, _orderState$options9, _citiesState$cities4, _props$afterComponent, _props$afterElements;
   var businessesList = props.businessesList,
     paginationProps = props.paginationProps,
     searchValue = props.searchValue,
@@ -75,12 +77,15 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
     _useOrder2 = _slicedToArray(_useOrder, 2),
     orderState = _useOrder2[0],
     changeCityFilter = _useOrder2[1].changeCityFilter;
+  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
+    _useConfig2 = _slicedToArray(_useConfig, 1),
+    configState = _useConfig2[0];
   var _useSession = (0, _orderingComponentsExternal.useSession)(),
     _useSession2 = _slicedToArray(_useSession, 1),
     auth = _useSession2[0].auth;
-  var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
-    _useConfig2 = _slicedToArray(_useConfig, 1),
-    configs = _useConfig2[0].configs;
+  var _useConfig3 = (0, _orderingComponentsExternal.useConfig)(),
+    _useConfig4 = _slicedToArray(_useConfig3, 1),
+    configs = _useConfig4[0].configs;
   var windowSize = (0, _useWindowSize.useWindowSize)();
   var theme = (0, _styledComponents.useTheme)();
   var _useState = (0, _react.useState)({
@@ -134,6 +139,9 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
   var businessesIds = isCustomLayout && businessesList.businesses && ((_businessesList$busin = businessesList.businesses) === null || _businessesList$busin === void 0 ? void 0 : _businessesList$busin.map(function (business) {
     return business.id;
   }));
+  var configTypes = (configState === null || configState === void 0 ? void 0 : (_configState$configs = configState.configs) === null || _configState$configs === void 0 ? void 0 : (_configState$configs$ = _configState$configs.order_types_allowed) === null || _configState$configs$ === void 0 ? void 0 : _configState$configs$.value.split('|').map(function (value) {
+    return Number(value);
+  })) || [];
   var handleScroll = (0, _react.useCallback)(function () {
     var _document$documentEle, _document$documentEle2, _businessesList$error;
     var innerHeightScrolltop = window.innerHeight + ((_document$documentEle = document.documentElement) === null || _document$documentEle === void 0 ? void 0 : _document$documentEle.scrollTop) + PIXELS_TO_SCROLL;
@@ -297,7 +305,9 @@ var BusinessesListingUI = function BusinessesListingUI(props) {
     onClick: function onClick() {
       return handleClickAddress();
     }
-  }, /*#__PURE__*/_react.default.createElement(_FaMapMarkerAlt.default, null), /*#__PURE__*/_react.default.createElement("span", null, ((_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : (_orderState$options3$ = _orderState$options3.address) === null || _orderState$options3$ === void 0 ? void 0 : _orderState$options3$.address) || t('WHERE_DO_WE_DELIVERY', 'Where do we delivery?'))), /*#__PURE__*/_react.default.createElement(_styles.FeatureItems, null, /*#__PURE__*/_react.default.createElement(_styles.ItemInline, null, /*#__PURE__*/_react.default.createElement(_OrderTypeSelectorHeader.OrderTypeSelectorHeader, null)), /*#__PURE__*/_react.default.createElement(_styles.ItemInline, null, /*#__PURE__*/_react.default.createElement(_MomentPopover.MomentPopover, {
+  }, /*#__PURE__*/_react.default.createElement(_FaMapMarkerAlt.default, null), /*#__PURE__*/_react.default.createElement("span", null, ((_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : (_orderState$options3$ = _orderState$options3.address) === null || _orderState$options3$ === void 0 ? void 0 : _orderState$options3$.address) || t('WHERE_DO_WE_DELIVERY', 'Where do we delivery?'))), /*#__PURE__*/_react.default.createElement(_styles.FeatureItems, null, /*#__PURE__*/_react.default.createElement(_styles.ItemInline, null, /*#__PURE__*/_react.default.createElement(_OrderTypeSelectorHeader.OrderTypeSelectorHeader, {
+    configTypes: configTypes
+  })), /*#__PURE__*/_react.default.createElement(_styles.ItemInline, null, /*#__PURE__*/_react.default.createElement(_MomentPopover.MomentPopover, {
     open: openPopover.moment,
     onClick: function onClick() {
       return handleTogglePopover('moment');
