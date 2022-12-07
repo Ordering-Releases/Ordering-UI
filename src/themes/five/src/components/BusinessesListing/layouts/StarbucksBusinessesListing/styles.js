@@ -3,8 +3,10 @@ export const BusinessContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 35px;
-  box-shadow: 0px -2px 1px 0px lightgrey;
+  margin-top: 0;
+  @media (min-width: 577px){
+    margin-top: 35px
+  }
 `
 export const BusinessList = styled.div`
   display: flex;
@@ -14,10 +16,24 @@ export const WrapperSearch = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  
+  position: relative;
+  padding: 15px 10px 15px 25px;
+  input {
+    border-bottom: 1px solid #ccc;
+  }
+  svg{
+    ${({ theme }) => theme?.business_listing_view?.components?.layout?.type === 'mapview' && css`
+    position: absolute;
+    right: 5px;
+      transform: translateY(70%);
+      cursor: pointer;
+      `}
+  }
   @media (min-width: 850px) {
     width: 100%;
+    box-shadow: 0px -2px 1px 4px lightgrey;
   }
+    
   
   ${({ isCustomLayout }) => isCustomLayout && css`
     box-sizing: border-box;
@@ -94,4 +110,23 @@ export const BusinessFilter = styled.div`
   ${props => props.theme?.rtl && css`
     padding-right: 20px;
   `}
+`
+
+export const AddressInput = styled.div`
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  margin: 20px;
+  margin-bottom: 0;
+  border-radius: 7.6px;
+  cursor: pointer;
+  p{
+    margin: 0;
+    margin-left: 35px
+  }
+
+  svg {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+  }
 `

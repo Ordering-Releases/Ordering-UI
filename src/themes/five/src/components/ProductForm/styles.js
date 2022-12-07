@@ -22,6 +22,21 @@ export const ProductContainer = styled.div`
   }
 `
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+ .favorite {
+  cursor: pointer;
+    svg {
+      color: ${props => props.theme.colors.danger500};
+      display: flex;
+      font-size: 20px;
+    }
+  }
+`
+
 export const WrapperImage = styled.div`
   margin-left: -20px;
   margin-top: 20px;
@@ -41,7 +56,9 @@ export const SwiperWrapper = styled.div`
   .mySwiper2 {
     height: 250px;
     width: 100%;
-
+    ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+      height: 290px;
+    `}
     .swiper-slide-active {
       border-radius: 0px;
       img {
@@ -49,11 +66,35 @@ export const SwiperWrapper = styled.div`
       }
     }
 
+    @media (min-width: 480px){
+      ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+        height: 340px;
+      `}
+    }
+
     @media (min-width: 576px) {
       height: 320px;
+      ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+        height: 60vw;
+      `}
     }
+      ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+      @media (min-width: 768px) {
+        height: 40vw;
+      }
+      @media (min-width: 993px) {
+        height: 30vw;
+      }
+      @media (min-width: 1024px){
+        height: 350px !important;
+      }
+      @media (min-width: 1200px) {
+        height: 300px !important;
+        width: 300px !important;
+      }
+    `}
   }
-
+  
 
   .swiper {
     width: 100%;
@@ -65,6 +106,10 @@ export const SwiperWrapper = styled.div`
   .swiper-slide {
     background-size: cover;
     background-position: center;
+    .active-img {
+      ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+      `}
+    }
   }
 
   .product-thumb {
@@ -83,6 +128,10 @@ export const SwiperWrapper = styled.div`
       img {
         border-radius: 7.6px;
         max-height: 70px;
+        ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+          max-width: 80px;
+          max-height: 80px;
+        `}
       }
     }
 
@@ -96,6 +145,33 @@ export const SwiperWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+      border-radius: 50% !important;
+    `}
+  }
+
+  .active-img {
+    ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'starbucks' && css`
+      height: 60vw !important;
+      width: 60vw !important;
+      margin: 0 auto;
+      @media (min-width: 768px) {
+        height: 40vw !important;
+        width: 40vw !important;
+      }
+      @media (min-width: 993px) {
+        height: 30vw !important;
+        width: 30vw !important;
+      }
+      @media (min-width: 1024px) {
+        height: 350px !important;
+        width: 350px !important;
+      }
+      @media (min-width: 1200px) {
+        height: 300px !important;
+        width: 300px !important;
+      }
+    `}
   }
 
   .swiper-button-next {
@@ -406,9 +482,9 @@ export const ProductName = styled.h1`
   font-size: 20px;
   line-height: 30px;
   color: #344050;
-  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
+  margin: 0;
   .calories {
     font-size: 16px;
     font-weight: 100;
@@ -416,7 +492,7 @@ export const ProductName = styled.h1`
     white-space: nowrap;
     display: flex;
     align-items: flex-end;
-  } 
+  }
   @media (min-width: 768px) {
     font-size: 22px;
     line-height: 34px;
@@ -424,18 +500,25 @@ export const ProductName = styled.h1`
 `
 export const Properties = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `
 export const ProductDescription = styled.p`
   margin-top: 0px;
   white-space: pre-wrap;
 `
-export const PriceContent = styled.p`
-  font-size: 18px;
-  line-height: 27px;
-  color: #344050;
-  margin: 0;
-  margin-bottom: 10px;
+export const PriceContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  > p {
+    font-size: 18px;
+    line-height: 27px;
+    color: #344050;
+    margin: 0;
+  }
   .offer-price {
     text-decoration: line-through;
     font-size: 16px;
@@ -449,7 +532,6 @@ export const ProductMeta = styled.div`
     font-size: 16px;
     line-height: 24px;
     color: #909BA9;
-    margin-bottom: 10px;
   }
 `
 export const EstimatedPersons = styled.div`

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import FiMap from '@meronex/icons/fi/FiMap'
+import FiFilter from '@meronex/icons/fi/FiFilter'
 import Skeleton from 'react-loading-skeleton'
 import {
   useOrder,
@@ -24,7 +25,7 @@ import { SearchBar } from '../../../../../../six/src/components/SearchBar'
 import { AddressList } from '../../../../../../six/src/components/AddressList'
 import { AddressForm } from '../../../../../../six/src/components/AddressForm'
 import { BusinessInformation } from '../../../../../../six/src/components/BusinessInformation'
-
+import EiLocation from '@meronex/icons/ei/EiLocation'
 import {
   BusinessContainer,
   BusinessList,
@@ -33,7 +34,8 @@ import {
   BusinessesTitle,
   ListWrapper,
   BusinessContent,
-  MapWrapper
+  MapWrapper,
+  AddressInput
 } from './styles'
 
 const PIXELS_TO_SCROLL = 500
@@ -168,7 +170,11 @@ const BusinessesListingUI = (props) => {
                         placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
                         onSearch={handleChangeSearch}
                         handleCustomEnter={term => onRedirectPage({ page: configs?.advanced_business_search_enabled?.value === '1' && 'business_search', search: `?term=${term}` })}
+                        isHome
                       />
+                      {configs?.advanced_business_search_enabled?.value === '1' && (
+                        <FiFilter onClick={() => onRedirectPage({ page: 'business_search' })} />
+                      )}
                       {isCustomLayout && (
                         <FiMap onClick={toggleMap} />
                       )}
@@ -222,6 +228,14 @@ const BusinessesListingUI = (props) => {
                 </>
               </ListWrapper>
               <MapWrapper className='map-wrapper'>
+                {windowSize.width < 576 && orderState.options?.address?.address && (
+                  <AddressInput onClick={handleClickAddress}>
+                    <EiLocation />
+                    <p>
+                      {orderState.options?.address?.address}
+                    </p>
+                  </AddressInput>
+                )}
                 {windowSize.width < 850 && (
                   <WrapperSearch isCustomLayout={isCustomLayout}>
                     <SearchBar
@@ -236,21 +250,19 @@ const BusinessesListingUI = (props) => {
                     )}
                   </WrapperSearch>
                 )}
-                {(configs?.google_maps_api_key?.value && businessesList?.businesses?.length > 0) ? (
+                {(configs?.google_maps_api_key?.value && businessesList?.businesses?.length > 0) && (
                   <BusinessesMap
                     businessList={businessesList.businesses}
                     userLocation={orderState?.options?.address?.location}
                     setErrors={setMapErrors}
                   />
-                ) : (
-                  <Skeleton width={70} />
                 )}
               </MapWrapper>
             </BusinessContent>
           ) : (
             <>
               {
-                businessInfoById &&
+                businessInfoById && (
                   <BusinessInformation
                     business={businessInfoById}
                     getBusinessType={getBusinessType}
@@ -258,6 +270,7 @@ const BusinessesListingUI = (props) => {
                     onClose={setShowBusinessInfo}
                     goBusiness={handleBusinessClick}
                   />
+                )
               }
             </>
           )}

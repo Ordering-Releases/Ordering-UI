@@ -21,6 +21,7 @@ export const CardContainer = styled.div`
   button {
     width: 100%;
     margin-top: 10px;
+    padding: 4px;
   }
   ${({ productsRows }) => productsRows ? css`
     width: ${() => productsRows === 3 ? 'calc(33% - 20px)' : 'calc(50% - 20px)'};
@@ -88,6 +89,9 @@ export const CardInfo = styled.div`
   > * {
     margin: 3px;
   }
+  ${({ theme }) => theme?.business_view?.components?.products?.components?.layout?.type === 'pfchangs' && css`
+    
+  `}
   p {
     color: #909BA9;
     text-align: left;
@@ -122,11 +126,11 @@ export const CardInfo = styled.div`
 
 export const WrapLogo = styled.div`
   position: relative;
-  max-width: 86px;
-  max-height: 86px;
-  height: 86px;
+  max-width: 120px;
+  max-height: 120px;
+  height: 120px;
   ${({ isBgimage }) => isBgimage && css`
-    width: 86px;
+    width: 120px;
   `}
   margin-left: 5px;
   ${props => props.theme?.rtl && css`
@@ -142,7 +146,7 @@ const CardLogoStyled = styled.div`
   background-size: cover;
   background-position: center;
   object-fit: cover;
-  min-height: 86px;
+  min-height: 120px;
   border-radius: 10px;
 `
 export const CardLogo = (props) => {
