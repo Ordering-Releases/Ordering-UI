@@ -89,7 +89,9 @@ const CheckoutUI = (props) => {
     instructionsOptions,
     deliveryOptionSelected,
     handleStoreRedirect,
-    onPlaceOrderClick
+    onPlaceOrderClick,
+    setPlaceSpotNumber,
+    placeSpotNumber
   } = props
 
   const theme = useTheme()
@@ -114,6 +116,7 @@ const CheckoutUI = (props) => {
   const [isSuccess, setIsSuccess] = useState(false)
 
   const businessConfigs = businessDetails?.business?.configs ?? []
+  const isTableNumberEnabled = configs?.table_numer_enabled?.value
   const isWalletCashEnabled = businessConfigs.find(config => config.key === 'wallet_cash_enabled')?.value === '1'
   const isWalletCreditPointsEnabled = businessConfigs.find(config => config.key === 'wallet_credit_point_enabled')?.value === '1'
   const isWalletEnabled = configs?.cash_wallet?.value && configs?.wallet_enabled?.value === '1' && (isWalletCashEnabled || isWalletCreditPointsEnabled) && !useKioskApp
@@ -128,7 +131,7 @@ const CheckoutUI = (props) => {
     placing ||
     errorCash ||
     loading ||
-    (options?.type === 3 && !(cartState?.cart?.spot_number || cart?.spot_number)) ||
+    (isTableNumberEnabled === '1' && (options?.type === 3 && !(cartState?.cart?.spot_number || cart?.spot_number || placeSpotNumber))) ||
     !cart?.valid_maximum ||
     (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) ||
     // (((placeSpotTypes.includes(options?.type) && !cart?.place) && hasBusinessPlaces)) ||
@@ -462,6 +465,7 @@ const CheckoutUI = (props) => {
               cart={cart}
               spotNumberDefault={cartState?.cart?.spot_number ?? cart?.spot_number}
               vehicleDefault={cart?.vehicle}
+              setPlaceSpotNumber={setPlaceSpotNumber}
             />
           </SelectSpotContainer>
         )}
@@ -547,7 +551,7 @@ const CheckoutUI = (props) => {
           </WarningText>
         )}
 
-        {options?.type === 3 && !cart?.spot_number && (
+        {isTableNumberEnabled === '1' && (options?.type === 3 && !(cart?.spot_number || placeSpotNumber)) && (
           <WarningText>
             {t('WARNING_PLACE_SPOT', 'Please, select your spot to place order.')}
           </WarningText>
@@ -572,9 +576,9 @@ const CheckoutUI = (props) => {
             onClick={() => isDisablePlaceOrderButton ? handleScrollTo('.paymentsContainer') : handlePlaceOrder()}
           >
             {!cart?.valid_maximum ? (
-                `${t('MAXIMUM_SUBTOTAL_ORDER', 'Maximum subtotal order')}: ${parsePrice(cart?.maximum)}`
+              `${t('MAXIMUM_SUBTOTAL_ORDER', 'Maximum subtotal order')}: ${parsePrice(cart?.maximum)}`
             ) : (!cart?.valid_minimum && !(cart?.discount_type === 1 && cart?.discount_rate === 100)) ? (
-                `${t('MINIMUN_SUBTOTAL_ORDER', 'Minimum subtotal order:')} ${parsePrice(cart?.minimum)}`
+              `${t('MINIMUN_SUBTOTAL_ORDER', 'Minimum subtotal order:')} ${parsePrice(cart?.minimum)}`
             ) : placing ? t('PLACING', 'Placing') : t('PLACE_ORDER', 'Place Order')}
           </Button>
         </MobileWrapperPlaceOrderButton>

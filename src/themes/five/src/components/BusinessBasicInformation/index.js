@@ -89,7 +89,6 @@ export const BusinessBasicInformation = (props) => {
   const searchLayout = theme?.business_view?.components?.product_search?.components?.layout?.type
   const hideCity = orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.city?.hidden
   const isChew = orderingTheme?.theme?.header?.components?.layout?.type?.toLowerCase() === 'chew'
-  const showBusinessInfo = !orderingTheme?.theme?.business_view?.components?.header?.components?.business?.components?.business_info?.hidden && !isChew
   const layoutsWithOldSearch = ['starbucks', 'old', 'floating']
   const hideSearch = layoutsWithOldSearch.includes(theme?.business_view?.components?.product_search?.components?.layout?.type)
   const getBusinessType = () => {
@@ -205,15 +204,6 @@ export const BusinessBasicInformation = (props) => {
                 </TitleWrapper>
               ) : (
                 <Skeleton width={isCustomerMode ? 100 : 150} height={isCustomerMode ? 35 : 'auto'} />
-              )}
-              {showBusinessInfo && (
-                <>
-                  {!loading ? (
-                    <p className='type'>{getBusinessType()}</p>
-                  ) : (
-                    <Skeleton width={isCustomerMode ? 100 : 150} />
-                  )}
-                </>
               )}
               {typeof hideCity !== 'undefined' && !hideCity && business?.city?.name && (
                 <>
