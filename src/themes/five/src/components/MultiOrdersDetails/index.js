@@ -19,6 +19,7 @@ import {
 } from './styles'
 import { NotFoundSource } from '../NotFoundSource'
 import { useTheme } from 'styled-components'
+import { getOrderStatus } from '../../../../../utils'
 
 const MultiOrdersDetailsUI = (props) => {
   const {
@@ -161,6 +162,7 @@ const MultiOrdersDetailsUI = (props) => {
           {orders.map(order => (
             <SingleOrderCard
               key={order.id}
+              getOrderStatus={getOrderStatus}
               order={order}
             />
           ))}

@@ -369,7 +369,7 @@ export const App = () => {
         loaded && (
           <ThemeProvider theme={themeUpdated}>
             <ListenPageChanges />
-            {!(isKioskApp && isHome) && windowSize.width > 576 && (
+            {!(isKioskApp && isHome) && (
               <HeaderComponent
                 isHome={isHome}
                 location={location}
