@@ -368,6 +368,7 @@ const OrdersOptionUI = (props) => {
             reorderLoading={reorderState?.loading}
             orders={orders.filter(order => orderStatus.includes(order.status)).sort((a, b) => moment(b?.delivery_datetime_utc).valueOf() - moment(a?.delivery_datetime_utc).valueOf())}
             pagination={pagination}
+            customArray={customArray}
             loadMoreOrders={loadMoreOrders}
             onRedirectPage={onRedirectPage}
             getOrderStatus={getOrderStatus}
@@ -409,7 +410,7 @@ export const OrdersOption = (props) => {
     useDefualtSessionManager: true,
     paginationSettings: {
       initialPage: 1,
-      pageSize: 3,
+      pageSize: (getAllOrders || props.activeOrders) ? 30 : 10,
       controlType: 'infinity'
     }
   }

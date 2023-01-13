@@ -411,6 +411,7 @@ var OrdersOptionUI = function OrdersOptionUI(props) {
       return (0, _moment3.default)(b === null || b === void 0 ? void 0 : b.delivery_datetime_utc).valueOf() - (0, _moment3.default)(a === null || a === void 0 ? void 0 : a.delivery_datetime_utc).valueOf();
     }),
     pagination: pagination,
+    customArray: customArray,
     loadMoreOrders: loadMoreOrders,
     onRedirectPage: onRedirectPage,
     getOrderStatus: getOrderStatus,
@@ -452,7 +453,7 @@ var OrdersOption = function OrdersOption(props) {
     useDefualtSessionManager: true,
     paginationSettings: {
       initialPage: 1,
-      pageSize: 3,
+      pageSize: getAllOrders || props.activeOrders ? 30 : 10,
       controlType: 'infinity'
     }
   });
