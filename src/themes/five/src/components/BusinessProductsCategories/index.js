@@ -121,7 +121,7 @@ const BusinessProductsCategoriesUI = (props) => {
     if (typeof useKioskApp === 'undefined') return
     const styleSheet = document.getElementById('styles').sheet
 
-    const disabledCustomWidth = isChew
+    const disabledCustomWidth = isChew || !useKioskApp
 
     let style0 = '.sticky-prod-cat {'
     style0 += 'position: fixed !important;'

@@ -135,7 +135,7 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
   (0, _react.useEffect)(function () {
     if (typeof useKioskApp === 'undefined') return;
     var styleSheet = document.getElementById('styles').sheet;
-    var disabledCustomWidth = isChew;
+    var disabledCustomWidth = isChew || !useKioskApp;
     var style0 = '.sticky-prod-cat {';
     style0 += 'position: fixed !important;';
     style0 += 'top: 0px !important;';
