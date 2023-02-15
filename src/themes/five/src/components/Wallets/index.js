@@ -109,7 +109,7 @@ const WalletsUI = (props) => {
                     </span>
                   </BalanceElement>
                 </SectionWrapper>
-                <GiftCardUI />
+                {/* <GiftCardUI /> */}
                 <div className='transactions_list'>
                   {!transactionsList?.loading && transactionsList.list?.[`wallet:${currentWalletSelected?.id}`]?.length > 0 && (
                     <>
