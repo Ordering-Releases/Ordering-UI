@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import IosRadioButtonOn from '@meronex/icons/ios/IosRadioButtonOn'
-import BilStripe from '@meronex/icons/bi/BilStripe'
 import FaCcStripe from '@meronex/icons/fa/FaCcStripe'
 import FaStripeS from '@meronex/icons/fa/FaStripeS'
 import GrStripe from '@meronex/icons/gr/GrStripe'
@@ -197,7 +196,7 @@ const PaymentOptionsUI = (props) => {
                   (!isCustomerMode || (isCustomerMode && (paymethod.gateway === 'card_delivery' || paymethod.gateway === 'cash'))) && (
                     <PayCard
                       isDisabled={isDisabled}
-                      className={`card ${paymethodSelected?.id === paymethod.id ? 'active' : ''}`}
+                      className={`card ${(paymethodSelected?.id || isOpenMethod?.paymethod?.id) === paymethod.id ? 'active' : ''}`}
                       onClick={() => handlePaymentMethodClick(paymethod)}
                     >
                       <div>
@@ -328,7 +327,7 @@ const PaymentOptionsUI = (props) => {
         >
           {!isOpenMethod?.paymethod?.credentials?.publishable &&
             <Container>
-              <p>{t('ADD_PUBLISHABLE_KEY', 'Please add a stripe key')}</p>
+              <p>{t('ADD_PUBLISHABLE_KEY', 'Please add a publishable key')}</p>
             </Container>}
           {isOpenMethod?.paymethod?.credentials?.publishable && stripeDirectMethods?.includes(isOpenMethod?.paymethod?.gateway) && (
             <StripeElementsForm
