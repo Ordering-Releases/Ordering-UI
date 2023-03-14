@@ -314,7 +314,7 @@ export const ProductActions = styled.div`
   div.price-amount-block {
     display: flex;
     justify-content: space-between;
-    width: 80%
+    width: 70%
   }
 
   svg {
@@ -356,6 +356,17 @@ export const ProductActions = styled.div`
     margin: 0 10px;
   }
 
+  #address_control {
+    button.add {
+      width: calc(100% - 20px) !important;
+      margin: 10px 10px 0 10px;
+    }
+  }
+  
+  div#address_list {
+    padding: 0;
+  }
+
   @media (min-width: 577px) {
     position: sticky;
   }
@@ -369,6 +380,13 @@ export const ProductActions = styled.div`
     transform: translateX(-20px);
     padding: 10px 20px;
     box-sizing: border-box;
+
+    ${({ isColumn }) => isColumn && css`
+      flex-direction: column;
+      div.price-amount-block {
+        margin-bottom: 15px;
+      }
+    `}
 
     div.price {
       width: 25%;
@@ -601,4 +619,21 @@ export const VideoGalleryWrapper = styled.div`
     fill: #fff;
     font-size: 28px;
   }
+`
+
+export const GuestUserLink = styled.div`
+  font-size: 14px;
+  color: ${props => props.theme.colors.primary};
+  text-align: center;
+  cursor: pointer;
+  margin: 15px 0;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+  }
+  margin-left: 10px;
+  ${props => props.theme.rtl && css`
+    margin-left: 0;
+    margin-right: 10px;
+  `}
 `

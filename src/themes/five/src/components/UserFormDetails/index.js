@@ -4,6 +4,7 @@ import { useSession, useLanguage, useCustomer, useConfig, useOrderingTheme } fro
 import { useForm } from 'react-hook-form'
 import parsePhoneNumber from 'libphonenumber-js'
 import { useTheme } from 'styled-components'
+import { SignUpForm } from '../SignUpForm'
 
 import {
   FormInput,
@@ -14,7 +15,8 @@ import {
   InputPhoneNumberWrapper,
   LanguageSelectorWrapper,
   SwitchWrapper,
-  NotificationsGroupSwitchWrapper
+  NotificationsGroupSwitchWrapper,
+  TextLinkWrapper
 } from './styles'
 
 import { Switch } from '../../../../../styles/Switch'
@@ -26,6 +28,7 @@ import { LanguageSelector } from '../../../../../components/LanguageSelector'
 import { Alert } from '../Confirm'
 import { sortInputFields } from '../../../../../utils'
 import { Checkbox } from '../../../../../styles/Checkbox'
+import Modal from '../Modal'
 
 export const UserFormDetailsUI = (props) => {
   const {
@@ -46,24 +49,26 @@ export const UserFormDetailsUI = (props) => {
     handleChangePromotions,
     isOldLayout,
     requiredFields,
-    handleChangeNotifications
+    handleChangeNotifications,
+    handlePlaceOrderAsGuest
   } = props
 
   const formMethods = useForm()
   const [, t] = useLanguage()
   const [{ configs }] = useConfig()
   const theme = useTheme()
-  const [{ user: userSession }] = useSession()
+  const [{ user: userSession }, { login }] = useSession()
   const [orderingTheme] = useOrderingTheme()
   const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(null)
   const [userPhoneNumber, setUserPhoneNumber] = useState(null)
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [, { setUserCustomer }] = useCustomer()
   const [isChanged, setIsChanged] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   const emailInput = useRef(null)
-  
+
   const user = userData || userSession
-  
+
   const [notificationList, setNotificationList] = useState({
     email: formState?.result?.result
       ? !!formState?.result?.result?.settings?.email?.newsletter
@@ -75,12 +80,12 @@ export const UserFormDetailsUI = (props) => {
       ? !!formState?.result?.result?.settings?.notification?.newsletter
       : !!(formState?.changes?.settings?.notification?.newsletter ?? (user && user?.settings?.notification?.newsletter))
   })
-  
-  const showCustomerCellphone = !orderingTheme?.theme?.profile?.components?.cellphone?.hidden
-  const showCustomerPassword = !orderingTheme?.theme?.profile?.components?.password?.hidden
-  const showCustomerPromotions = !orderingTheme?.theme?.profile?.components?.promotions?.hidden
-  const showLangauges = !orderingTheme?.theme?.profile?.components?.languages?.hidden
-  const showNotifications = !orderingTheme?.theme?.profile?.components?.notification_settings?.hidden
+
+  const showCustomerCellphone = !theme?.profile?.components?.cellphone?.hidden
+  const showCustomerPassword = !theme?.profile?.components?.password?.hidden
+  const showCustomerPromotions = !theme?.profile?.components?.promotions?.hidden
+  const showLangauges = !theme?.profile?.components?.languages?.hidden
+  const showNotifications = !theme?.profile?.components?.notification_settings?.hidden
 
   const closeAlert = () => {
     setAlertState({
@@ -88,6 +93,14 @@ export const UserFormDetailsUI = (props) => {
       content: []
     })
     cleanFormState && cleanFormState({ result: { error: false } })
+  }
+
+  const handleSuccessSignup = (user) => {
+    login({
+      user,
+      token: user?.session?.access_token
+    })
+    handlePlaceOrderAsGuest && handlePlaceOrderAsGuest()
   }
 
   const showInputPhoneNumber = validationFields?.fields?.checkout?.cellphone?.enabled ?? false
@@ -275,9 +288,9 @@ export const UserFormDetailsUI = (props) => {
     })
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     isEdit && handleChangeNotifications(notificationList)
-  },[notificationList])
+  }, [notificationList])
 
   return (
     <>
@@ -453,7 +466,7 @@ export const UserFormDetailsUI = (props) => {
                   {formState.loading ? t('UPDATING', 'Updating...') : t('UPDATE', 'Update')}
                 </Button>
               )}
-              {requiredFields && (
+              {requiredFields && !userSession?.guest_id && (
                 <Button
                   id='form-btn'
                   color='primary'
@@ -464,6 +477,24 @@ export const UserFormDetailsUI = (props) => {
                 </Button>
               )}
             </ActionsForm>
+            {requiredFields && isCheckout && userSession?.guest_id && (
+              <>
+                <Button
+                  id='form-btn'
+                  color='primary'
+                  type='button'
+                  onClick={() => setModalIsOpen(true)}
+                  disabled={formState.loading}
+                >
+                  {formState.loading ? t('UPDATING', 'Updating...') : t('SIGN_UP_AND_PLACE_ORDER', 'Sign up and place order')}
+                </Button>
+                <TextLinkWrapper>
+                  <span onClick={() => handlePlaceOrderAsGuest()}>
+                    {t('PLACE_ORDER_AS_GUEST', 'Place order as guest')}
+                  </span>
+                </TextLinkWrapper>
+              </>
+            )}
           </>
         ) : (
           <SkeletonForm>
@@ -482,6 +513,19 @@ export const UserFormDetailsUI = (props) => {
         onAccept={() => closeAlert()}
         closeOnBackdrop={false}
       />
+      <Modal
+        open={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+        width='760px'
+      >
+        <SignUpForm
+          useLoginByCellphone
+          useChekoutFileds
+          handleSuccessSignup={handleSuccessSignup}
+          isPopup
+          isGuest
+        />
+      </Modal>
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
       {props.afterElements?.map((AfterElement, i) => (
