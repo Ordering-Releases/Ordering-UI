@@ -5609,9 +5609,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.345"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.345.tgz#c90b7183b39245cddf0e990337469063bfced6f0"
-  integrity sha512-znGhOQK2TUYLICgS25uaM0a7pHy66rSxbre7l762vg9AUoCcJK+Bu+HCPWpjL/U/kK8/Hf+6E0szAUJSyVYb3Q==
+  version "1.4.347"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.347.tgz#4b72564912c3456c6704d4250918aa6a105d5dc3"
+  integrity sha512-LNi3+/9nV0vT6Bz1OsSoZ/w7IgNuWdefZ7mjKNjZxyRlI/ag6uMXxsxAy5Etvuixq3Q26exw2fc4bNYvYQqXSw==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9162,10 +9162,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-2.7.2.tgz#129035f92cf655f6530748cdf8d15fd7c0ea3d76"
-  integrity sha512-Sv4PtOPNB+mjWMgcN4LpsrCwDAw2m7IW8Js2GSwCVqXLHazBeApOvnHqYyl8mvxappokBj37vnm/jn/wDDu7sA==
+ordering-components-external@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-2.7.3.tgz#732790db7691323cba510e09538f5a1a859cd2e9"
+  integrity sha512-OkqGmPSireswc3UWioIX/txsMtUgJ+kgCcx3qXJRRK60PjrEJOMXusYi3GI4IT0k87QMBrFaAbiSNEWnbRa7JQ==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
