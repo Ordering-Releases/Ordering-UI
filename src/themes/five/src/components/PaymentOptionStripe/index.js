@@ -5,7 +5,9 @@ import {
   useSession,
   useLanguage
 } from 'ordering-components-external'
-import FiMoreVertical from '@meronex/icons/fi/FiMoreVertical'
+import IosRadioButtonOn from '@meronex/icons/ios/IosRadioButtonOn'
+import IosRadioButtonOff from '@meronex/icons/ios/IosRadioButtonOff'
+import { Trash } from 'react-bootstrap-icons'
 import { useTheme } from 'styled-components'
 
 import { Modal } from '../Modal'
@@ -22,22 +24,26 @@ import {
   CardItemActions,
   BlockLoading,
   AddNewCard,
-  ActionsContent,
   CardItemActionsWrapper
 } from './styles'
 
-const PaymentOptionStripeUI = (props) => {
+export const PaymentOptionStripeUI = (props) => {
   const {
     deleteCard,
     cardsList,
     handleCardClick,
-    handleNewCard
+    handleNewCard,
+    paymethodSelected,
+    cardSelected,
+    gateway
   } = props
   const [{ token }] = useSession()
   const [, t] = useLanguage()
   const [confirm, setConfirm] = useState({ open: false, content: null, handleOnAccept: null })
 
   const [addCartOpen, setAddCardOpen] = useState(false)
+
+  const paymethodsWithoutSaveCards = ['credomatic']
 
   const _handleNewCard = (card) => {
     setAddCardOpen(false)
@@ -54,6 +60,12 @@ const PaymentOptionStripeUI = (props) => {
       }
     })
   }
+
+  useEffect(() => {
+    if (!cardsList?.loading && cardsList?.cards?.length === 0 && !paymethodsWithoutSaveCards.includes(gateway)) {
+      setAddCardOpen(true)
+    }
+  }, [cardsList?.loading])
 
   return (
     <>
@@ -79,7 +91,7 @@ const PaymentOptionStripeUI = (props) => {
         )}
         {token && cardsList.cards && cardsList.cards.length > 0 && (
           <>
-            {cardsList?.cards?.map((card, i) => (
+            {cardsList?.cards?.map((card, i) =>
               <PaymentCard
                 {...props}
                 key={i}
@@ -87,11 +99,14 @@ const PaymentOptionStripeUI = (props) => {
                 handleDeleteCard={() => handleDeleteCard(card)}
                 card={card}
                 defaultSelected={i === 0}
+                active={(paymethodSelected || cardSelected?.id) === card.id}
+                cardSelected={cardSelected}
+                paymethodSelected={paymethodSelected}
               />
-            ))}
+            )}
           </>
         )}
-        {token && !cardsList.loading && (
+        {token && !cardsList.loading && !paymethodsWithoutSaveCards.includes(gateway) && (
           <AddNewCard>
             <span onClick={() => setAddCardOpen(true)}>{t('ADD_NEW_CARD', 'Add new card')}</span>
           </AddNewCard>
@@ -148,14 +163,15 @@ export const PaymentCard = (props) => {
     handleDeleteCard,
     card,
     handleCardClick,
-    onSelectCard
+    onSelectCard,
+    active,
+    cardSelected
   } = props
 
-  const [, t] = useLanguage()
-  const theme = useTheme()
   const [isShowActions, setIsShowActions] = useState(false)
   const cardActionsRef = useRef(null)
   const actionWrapperRef = useRef(null)
+  const theme = useTheme()
 
   const handleClickOutside = (e) => {
     if (!isShowActions) return
@@ -168,7 +184,8 @@ export const PaymentCard = (props) => {
   const handleChangeDefaultCard = (e) => {
     if (actionWrapperRef.current?.contains(e.target)) return
     handleCardClick(card)
-    onSelectCard({
+    onSelectCard && onSelectCard({
+      ...cardSelected,
       id: card.id,
       type: 'card',
       card: {
@@ -179,6 +196,19 @@ export const PaymentCard = (props) => {
   }
 
   useEffect(() => {
+    if (!cardSelected) return
+    onSelectCard && onSelectCard({
+      ...cardSelected,
+      id: cardSelected?.id,
+      type: 'card',
+      card: {
+        brand: cardSelected?.brand,
+        last4: cardSelected?.last4
+      }
+    })
+  }, [cardSelected])
+
+  useEffect(() => {
     window.addEventListener('click', handleClickOutside)
     return () => window.removeEventListener('click', handleClickOutside)
   }, [isShowActions])
@@ -186,25 +216,21 @@ export const PaymentCard = (props) => {
   return (
     <CardItem onClick={handleChangeDefaultCard} isCursor>
       <CardItemContent>
+        <span className='checks'>
+          {active ? <IosRadioButtonOn /> : <IosRadioButtonOff />}
+        </span>
         <div>
           <img src={getIconCard(card?.brand)} alt={card?.brand} />
         </div>
         <span>
-          {card?.brand} {card.last4}
+          XXXX-XXXX-XXXX-{card?.last4}
         </span>
       </CardItemContent>
       <CardItemActions>
         <CardItemActionsWrapper ref={actionWrapperRef}>
           <span ref={cardActionsRef}>
-            <FiMoreVertical onClick={() => setIsShowActions(true)} />
+            <Trash color={theme.colors.lightGray} onClick={() => handleDeleteCard()} />
           </span>
-          {
-            isShowActions && (
-              <ActionsContent>
-                <div className='delete' onClick={handleDeleteCard}>{t('DELETE', 'Delete')}</div>
-              </ActionsContent>
-            )
-          }
         </CardItemActionsWrapper>
       </CardItemActions>
     </CardItem>
