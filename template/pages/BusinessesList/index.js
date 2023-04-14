@@ -16,6 +16,7 @@ export const BusinessesList = (props) => {
     isSearchByName: true,
     isSearchByDescription: true,
     franchiseId: settings?.franchiseSlug,
+    businessId: settings?.businessSlug,
     onBusinessClick: (business) => {
       if (businessUrlTemplate === '/store/:business_slug' || businessUrlTemplate === '/:business_slug') {
         events.emit('go_to_page', { page: 'business', params: { business_slug: business.slug } })
@@ -24,7 +25,7 @@ export const BusinessesList = (props) => {
       }
     },
     currentPageParam: 0,
-    propsToFetch: ['id', 'name', 'header', 'logo', 'location', 'address', 'ribbon', 'timezone', 'schedule', 'open', 'delivery_price', 'distance', 'delivery_time', 'pickup_time', 'reviews', 'featured', 'offers', 'food', 'laundry', 'alcohol', 'groceries', 'slug', 'city', 'city_id'],
+    propsToFetch: ['id', 'name', 'header', 'logo', 'location', 'address', 'ribbon', 'timezone', 'schedule', 'open', 'delivery_price', 'distance', 'delivery_time', 'pickup_time', 'reviews', 'featured', 'offers', 'food', 'laundry', 'alcohol', 'groceries', 'slug', 'city', 'city_id', 'menus'],
     onRedirectPage: (data) => events.emit('go_to_page', data),
   }
 
