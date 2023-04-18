@@ -8,7 +8,7 @@ import { SpinnerLoader } from '../SpinnerLoader'
 import { useWindowSize } from '../../hooks/useWindowSize'
 
 export const MomentContent = (props) => {
-  
+
   const [orderState] = useOrder()
 
   const { width } = useWindowSize()

@@ -73,7 +73,7 @@ const ModalUI = (props) => {
             {onCancel && <Button color='primary' onClick={() => onCancel()}>{cancelText || t('CANCEL')}</Button>}
           </ModalActions>)}
       </ModalDialogInnerContainer>
-      
+
     </ModalDialog>
   )
 }
