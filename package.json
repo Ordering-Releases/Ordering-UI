@@ -1,6 +1,6 @@
 {
   "name": "ordering-ui-external",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Ordering UI Components",
   "main": "./_modules/index.js",
   "exports": {
@@ -87,7 +87,7 @@
     "lodash": "^4.17.19",
     "moment": "^2.29.4",
     "nanoid": "^4.0.0",
-    "ordering-components-external": "3.0.1",
+    "ordering-components-external": "3.0.2",
     "payment": "^2.4.6",
     "polished": "^3.6.6",
     "react-bootstrap-icons": "^1.7.2",
