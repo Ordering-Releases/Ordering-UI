@@ -212,7 +212,7 @@ const BusinessControllerUI = (props) => {
                     )}
                   </>
                 )}
-                {!hideBusinessFavorite && (
+                {!hideBusinessFavorite && !isCustomerMode && (
                   <FavoriteWrapper ref={favoriteRef} onClick={handleChangeFavorite}>
                     {!isSkeleton ? (
                       <>
