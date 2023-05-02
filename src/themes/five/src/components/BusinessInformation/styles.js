@@ -163,6 +163,10 @@ export const DeliveryInfo = styled.div`
   justify-content: flex-start;
   margin-top: 10px;
 
+  h5 {
+    font-size: 16px;
+  }
+
   div {
     width: 100%;
     &:last-child {
@@ -276,7 +280,12 @@ export const BusinessTitle = styled.h2`
 export const BusinessAddress = styled.p`
   font-size: 14px;
   color: ${props => props.theme.colors.darkTextColor};
-  margin-bottom: 25px;
+  margin: 15px 0;
+`
+export const BusinessAddressNotes = styled.p`
+  font-size: 14px;
+  color: ${props => props.theme.colors.darkTextColor};
+  margin: 15px 0 25px 0;
 `
 
 export const Divider = styled.div`

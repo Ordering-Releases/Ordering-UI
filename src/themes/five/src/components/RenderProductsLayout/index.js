@@ -87,7 +87,8 @@ export const RenderProductsLayout = (props) => {
     onBusinessClick,
     handleChangePriceFilterValues,
     priceFilterValues,
-    handleUpdateProfessionals
+    handleUpdateProfessionals,
+    isCustomerMode,
   } = props
 
   const theme = useTheme()
@@ -192,9 +193,11 @@ export const RenderProductsLayout = (props) => {
               />
             )}
 
-            <PageBannerWrapper>
-              <PageBanner position='web_business_page' />
-            </PageBannerWrapper>
+              {!isCustomerMode && (
+                <PageBannerWrapper>
+                  <PageBanner position='web_business_page' />
+                </PageBannerWrapper>
+              )}
 
             {!errorQuantityProducts && SearchProductsComponent && !useKioskApp && (
               <>
@@ -473,6 +476,7 @@ export const RenderProductsLayout = (props) => {
                   isSkeleton
                   categories={[]}
                   openBusinessInformation={openBusinessInformation}
+                  isCustomerMode={isCustomerMode}
                 />
               </div>
             </BusinessCategoryProductWrapper>

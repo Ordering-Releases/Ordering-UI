@@ -242,6 +242,7 @@ export const CustomerInfo = styled.div`
       align-items: center;
       margin: 0;
       p {
+        max-width: 250px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -252,8 +253,6 @@ export const CustomerInfo = styled.div`
         color: #748194; 
         margin: 0;
         font-size: 20px;
-        position: absolute;
-        right: 0;
       }
     }
   }
@@ -261,7 +260,11 @@ export const CustomerInfo = styled.div`
 
 export const UserEdit = styled.div`
   > :first-child{
-     margin-bottom: 20px;  
+     margin-bottom: 20px;
+     width: 100%;
+     ${props => !props.isOpenUserData && css`
+     position: absolute;
+     `
   }
 `
 

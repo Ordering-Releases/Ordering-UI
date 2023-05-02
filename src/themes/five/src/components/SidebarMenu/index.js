@@ -13,7 +13,7 @@ import BiHelpCircle from '@meronex/icons/bi/BiHelpCircle'
 import SiJsonwebtokens from '@meronex/icons/si/SiJsonwebtokens'
 import BiMessageDetail from '@meronex/icons/bi/BiMessageDetail'
 import BsSearch from '@meronex/icons/bs/BsSearch'
-import { Heart, Tag } from 'react-bootstrap-icons'
+import { Heart, Tag, X as CloseIcon } from 'react-bootstrap-icons'
 
 import { useEvent, useLanguage, useOrder, useSession, useConfig } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
@@ -35,7 +35,8 @@ import {
   MenuLinkIcon,
   MenuLinkText,
   TextInfo,
-  MenuLinkSeparator
+  MenuLinkSeparator,
+  MobileMessage
 } from './styles'
 
 export const SidebarMenu = (props) => {

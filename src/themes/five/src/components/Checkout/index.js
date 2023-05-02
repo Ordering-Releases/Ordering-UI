@@ -219,7 +219,7 @@ const CheckoutUI = (props) => {
   const checkValidationFields = () => {
     setUserErrors([])
     const errors = []
-    const notFields = ['coupon', 'driver_tip', 'mobile_phone', 'address', 'zipcode', 'address_notes']
+    const notFields = ['coupon', 'driver_tip', 'mobile_phone', 'address', 'zipcode', 'address_notes', 'comments']
     const userSelected = isCustomerMode ? customerState.user : user
     const _requiredFields = []
 
@@ -423,6 +423,7 @@ const CheckoutUI = (props) => {
                         <p>{businessDetails?.business?.name}</p>
                         <p>{businessDetails?.business?.email}</p>
                         <p>{businessDetails?.business?.cellphone}</p>
+                        {businessDetails?.business?.address_notes && <p>{businessDetails?.business?.address_notes}</p>}
                       </div>
                     </div>
                   )}

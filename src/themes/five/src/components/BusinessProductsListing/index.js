@@ -84,6 +84,7 @@ const BusinessProductsListingUI = (props) => {
     handleChangePriceFilterValues,
     priceFilterValues,
     handleUpdateProfessionals,
+    isCustomerMode,
     isCustomLayout
   } = props
 
@@ -132,9 +133,10 @@ const BusinessProductsListingUI = (props) => {
       setProductIdToLoading(product.id)
       const isProductAddedToCart = currentCart?.products?.find(Cproduct => Cproduct.id === product.id)
       const productQuantity = isProductAddedToCart?.quantity
+      const minimumPerOrder = product?.minimum_per_order || 1
       const addCurrentProduct = {
         ...product,
-        quantity: 1
+        quantity: minimumPerOrder
       }
       const updateCurrentProduct = {
         id: product.id,
@@ -381,6 +383,7 @@ const BusinessProductsListingUI = (props) => {
           handleChangePriceFilterValues={handleChangePriceFilterValues}
           productToIdLoading={productToIdLoading}
           handleUpdateProfessionals={handleUpdateProfessionals}
+          isCustomerMode={isCustomerMode}
         />
 
         {
@@ -529,6 +532,7 @@ const BusinessProductsListingUI = (props) => {
                 productId={curProduct?.id}
                 handleUpdateProducts={handleUpdateProducts}
                 onSave={handlerProductAction}
+                isCustomerMode={isCustomerMode}
                 productAddedToCartLength={currentCart?.products?.reduce((productsLength, Cproduct) => { return productsLength + (Cproduct?.id === (productModal.product || curProduct)?.id ? Cproduct?.quantity : 0) }, 0) || 0}
               />
             )}
