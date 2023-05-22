@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.BusinessSelectHeader = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
-var _orderingComponents = require("ordering-components-");
+var _orderingComponentsExternal = require("ordering-components-external");
 var _styles = require("../../../styles");
 var _styles2 = require("./styles");
 var _Shared = require("../../Shared");
@@ -39,10 +39,10 @@ var BusinessessListingUI = function BusinessessListingUI(props) {
     close = props.close,
     changeBusinessState = props.changeBusinessState,
     handleOpenAddBusiness = props.handleOpenAddBusiness;
-  var _useLanguage = (0, _orderingComponents.useLanguage)(),
+  var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
     _useLanguage2 = _slicedToArray(_useLanguage, 2),
     t = _useLanguage2[1];
-  var _useUtils = (0, _orderingComponents.useUtils)(),
+  var _useUtils = (0, _orderingComponentsExternal.useUtils)(),
     _useUtils2 = _slicedToArray(_useUtils, 1),
     optimizeImage = _useUtils2[0].optimizeImage;
   var dropdownReference = (0, _react.useRef)();
@@ -143,6 +143,6 @@ var BusinessSelectHeader = function BusinessSelectHeader(props) {
     isSearchByBusinessPhone: true,
     propsToFetch: (_props$defaultPropsTo = props.defaultPropsToFetch) !== null && _props$defaultPropsTo !== void 0 ? _props$defaultPropsTo : ['name', 'slug', 'logo', 'city']
   });
-  return /*#__PURE__*/_react.default.createElement(_orderingComponents.DashboardBusinessList, businessListingProps);
+  return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.DashboardBusinessList, businessListingProps);
 };
 exports.BusinessSelectHeader = BusinessSelectHeader;

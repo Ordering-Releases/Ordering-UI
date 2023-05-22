@@ -4,7 +4,7 @@ import {
   useLanguage,
   useUtils,
   DashboardBusinessList as BusinessListController
-} from 'ordering-components-'
+} from 'ordering-components-external'
 import { Button } from '../../../styles'
 import {
   PopMenuContatiner,
