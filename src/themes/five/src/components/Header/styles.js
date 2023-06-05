@@ -31,15 +31,18 @@ export const InnerHeader = styled.div`
     #left-side {
       width: ${({ theme }) => theme?.header?.components?.layout?.type === 'starbucks' ? '30%' : 'initial'};
     }
+    #center-side {
+      width: calc(100% - 60px);
+    }
   }
   @media (min-width: 1024px) {
     #center-side {
-      width: calc(60% - 140px);
+      width: calc(100% - 140px);
     }
   }
   @media (min-width: 1200px) {
     #center-side {
-      width: calc(60% - 200px);
+      width: calc(70% - 200px);
     }
   }
   @media (min-width: 1500px) {
@@ -132,7 +135,7 @@ export const Menu = styled.div`
     border: none;
     box-sizing: border-box;
     border-radius: ${props => props.isChew ? '8px' : '50px'};
-    margin: 0 20px;
+    margin: 0 15px;
     flex-grow: 1;
     padding: 0 10px;
     display: flex;
@@ -145,6 +148,7 @@ export const Menu = styled.div`
       justify-content: space-between;
     }
     @media (min-width: 1024px) {
+      margin: 0 20px;
       padding: 0 20px;
       margin-left: 45px;
     }
@@ -156,9 +160,6 @@ export const Menu = styled.div`
       padding: 0 30px;
       margin: 0 75px;
     }
-  }
-  > *:not(:last-child) {
-    margin: 0 5px;
   }
   > span {
     #select-input {
@@ -193,8 +194,9 @@ export const Menu = styled.div`
     }
   }
   .order-type {
-    padding: 0 10px;
-    @media (min-width: 1200px) {
+    padding: 0 5px;
+
+    @media (min-width: 1300px) {
       padding: 0 20px;
     }
   }
@@ -326,7 +328,7 @@ export const MomentMenu = styled.div`
   border-right: 1px solid #DEE2E6;
   height: 100%;
   justify-content: center;
-  width: 200px;
+  width: 175px;
   display: none;
   
   @media (min-width: 850px) {
@@ -446,10 +448,15 @@ export const HeaderSearchMode = styled.div`
     text-overflow: ellipsis;
   }
   @media (min-width: 1400px){
-    width: 300px;
+    width: 350px;
   }
   @media (min-width: 1200px){
-    width: 250px;
+    width: 300px;
+    div {
+      > span {
+        padding: 7px 0;
+      }
+    }
   }
 `
 
@@ -459,6 +466,6 @@ export const LeftSide = styled.div`
   @media (min-width: 769px){
     flex-direction: ${({ theme }) =>
     ['center', 'right']?.includes(theme?.header?.components?.logo?.components?.layout?.position) ? 'row-reverse' : 'row'};
-    width: 60%;
+    width: 62%;
   }
 `
