@@ -219,7 +219,7 @@ const ReviewProductUI = (props) => {
           )) : !productsOrder?.deleted && (
             <SingleProductReview
               {...props}
-              key={i}
+              key={productsOrder?.id}
               product={productsOrder}
             />
           )
