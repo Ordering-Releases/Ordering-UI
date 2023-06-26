@@ -13,7 +13,6 @@ import {
   useValidationFields,
   useConfig,
   useCustomer,
-  useOrderingTheme,
   useEvent
 } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
@@ -105,7 +104,6 @@ const CheckoutUI = (props) => {
 
   const theme = useTheme()
   const [validationFields] = useValidationFields()
-  const [orderingTheme] = useOrderingTheme()
   const [{ options, loading }] = useOrder()
   const [, t] = useLanguage()
   const [{ parsePrice }] = useUtils()
@@ -137,7 +135,7 @@ const CheckoutUI = (props) => {
   const isWalletCreditPointsEnabled = businessConfigs.find(config => config.key === 'wallet_credit_point_enabled')?.value === '1'
   const isWalletEnabled = configs?.cash_wallet?.value && configs?.wallet_enabled?.value === '1' &&
     (isWalletCashEnabled || isWalletCreditPointsEnabled) && !useKioskApp && !isCustomerMode
-  const isMultiDriverTips = orderingTheme?.theme?.header?.components?.layout?.type?.toLowerCase() === 'chew'
+  const isMultiDriverTips = theme?.header?.components?.layout?.type?.toLowerCase() === 'chew'
 
   const placeSpotTypes = [3, 4, 5]
   const placeSpotsEnabled = placeSpotTypes.includes(options?.type) && !useKioskApp
@@ -170,7 +168,7 @@ const CheckoutUI = (props) => {
     ? JSON.parse(configs?.driver_tip_options?.value) || []
     : configs?.driver_tip_options?.value || []
 
-  const deliveryOptions = instructionsOptions?.result && instructionsOptions?.result?.filter(option => option?.enabled)?.map(option => {
+  const deliveryOptions = instructionsOptions?.result && Array.isArray(instructionsOptions?.result) && instructionsOptions?.result?.filter(option => option?.enabled)?.map(option => {
     return {
       value: option?.id, content: t(option?.name.toUpperCase().replace(/\s/g, '_'), option?.name), showOnSelected: t(option?.name.toUpperCase().replace(/\s/g, '_'), option?.name)
     }

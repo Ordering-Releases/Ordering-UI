@@ -4,8 +4,7 @@ import {
   BusinessInformation as BusinessInformationController,
   GoogleMapsMap,
   useLanguage,
-  useConfig,
-  useOrderingTheme
+  useConfig
 } from 'ordering-components-external'
 import { Modal } from '../Modal'
 import {

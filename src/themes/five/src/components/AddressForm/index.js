@@ -16,8 +16,7 @@ import {
   GoogleMapsMap,
   useSession,
   useOrder,
-  useConfig,
-  useOrderingTheme
+  useConfig
 } from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { GoogleGpsButton } from '../../../../../components/GoogleGpsButton'

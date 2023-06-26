@@ -7,8 +7,7 @@ import {
   useSession,
   useLanguage,
   useConfig,
-  BusinessList as BusinessListController,
-  useOrderingTheme
+  BusinessList as BusinessListController
 } from 'ordering-components-external'
 
 import {
@@ -79,7 +78,6 @@ const BusinessesListingUI = (props) => {
   const [{ auth }] = useSession()
   const [{ configs }] = useConfig()
   const windowSize = useWindowSize()
-  const [orderingTheme] = useOrderingTheme()
   const theme = useTheme()
   const [modals, setModals] = useState({ listOpen: false, formOpen: false, citiesOpen: false })
   const [alertState, setAlertState] = useState({ open: false, content: [] })
@@ -101,7 +99,7 @@ const BusinessesListingUI = (props) => {
   const isAllCategoriesHidden = theme?.business_listing_view?.components?.categories?.hidden
   const businessesIds = businessesList.businesses &&
     businessesList.businesses?.map(business => business.id)
-  const isChew = orderingTheme?.theme?.header?.components?.layout?.type?.toLowerCase() === 'chew'
+  const isChew = theme?.header?.components?.layout?.type?.toLowerCase() === 'chew'
   const cateringTypeString = orderState?.options?.type === 7
     ? 'catering_delivery'
     : orderState?.options?.type === 8
@@ -226,9 +224,10 @@ const BusinessesListingUI = (props) => {
 
   return (
     <BusinessContainer>
-      {!isCustomerMode && ( // Keep this banner at the top
-        <PageBanner position='web_business_listing' />
-      )}
+      <PageBanner
+        position='web_business_listing'
+        isCustomerMode={isCustomerMode}
+      />
 
       {(windowSize.width < 576 || (configs?.business_listing_hide_image?.value !== '1' && !isChew)) && (
         <BusinessBanner>
