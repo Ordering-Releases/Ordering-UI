@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { nanoid } from 'nanoid'
-import { useUtils, useLanguage, useSession, useConfig, ProductForm as ProductFormController, useOrder } from 'ordering-components-external'
+import { useUtils, useLanguage, useSession, useConfig, useOrder, ProductForm as ProductFormController } from 'ordering-components-external'
 import Skeleton from 'react-loading-skeleton'
 import { Alert } from '../Confirm'
 import { Modal } from '../Modal'
@@ -160,6 +160,7 @@ const ServiceFormUI = (props) => {
   }
 
   const isBusyTime = (professional, selectedMoment) => {
+    if (!professional?.schedule) return true
     if (!selectedMoment) return false
     const startDay = moment(selectedMoment).utc().format('d')
     const isStartScheduleEnabled = professional?.schedule?.[startDay]?.enabled
@@ -183,7 +184,7 @@ const ServiceFormUI = (props) => {
   }
 
   const handleClickOutside = (e) => {
-    if (dropDownRef?.current.contains(e.target)) return
+    if (dropDownRef?.current?.contains(e.target)) return
     setIsDropDown(false)
   }
 
@@ -251,7 +252,7 @@ const ServiceFormUI = (props) => {
 
   useEffect(() => {
     if (selectDate === null || currentProfessional === null) return
-    const _times = getTimeList(selectDate, currentProfessional)
+    const _times = currentProfessional?.schedule ? getTimeList(selectDate, currentProfessional) : []
     setTimeList(_times)
   }, [selectDate, currentProfessional])
 
@@ -319,79 +320,92 @@ const ServiceFormUI = (props) => {
               <p>{product?.description}</p>
             </HeaderInfoWrapper>
             <Divider />
-            <ProfessionalInfoWrapper>
-              <SectionHeader>
-                <h2>{t('PROFESSIONALS', 'Professionals')}</h2>
-                <span>{t('REQUIRED', 'Required')}</span>
-              </SectionHeader>
-              <ProfessionalSelectWrapper ref={dropDownRef}>
-                <SelectedItem onClick={() => setIsDropDown(prev => !prev)}>
-                  {currentProfessional ? (
-                    <InfoWrapper>
-                      {currentProfessional?.photo ? (
-                        <ProfessionalPhoto
-                          bgimage={currentProfessional?.photo}
-                        />
-                      ) : <FaUserAlt />}
-                      <NameWrapper>
-                        <p>{currentProfessional?.name} {currentProfessional?.lastname}</p>
-                        <StatusInfo available={!isBusyTime(currentProfessional, dateSelected)}>
-                          {isBusyTime(currentProfessional, dateSelected) ? (
-                            <>
-                              <span className='status'>{t('BUSY_ON_SELECTED_TIME', 'Busy on selected time')}</span>
-                            </>
-                          ) : (
-                            <span className='status'>{t('AVAILABLE', 'Available')}</span>
-                          )}
-                        </StatusInfo>
-                      </NameWrapper>
-                    </InfoWrapper>
-                  ) : (
-                    <p>{t('SELECT_PROFESSIONAL', 'Select professional')}</p>
+            {!professionalSelected && (
+              <ProfessionalInfoWrapper>
+                <SectionHeader>
+                  <h2>{t('PROFESSIONALS', 'Professionals')}</h2>
+                  <span>{t('REQUIRED', 'Required')}</span>
+                </SectionHeader>
+                <ProfessionalSelectWrapper ref={dropDownRef}>
+                  <SelectedItem onClick={() => setIsDropDown(prev => !prev)}>
+                    {currentProfessional ? (
+                      <InfoWrapper>
+                        {currentProfessional?.photo ? (
+                          <ProfessionalPhoto
+                            bgimage={currentProfessional?.photo}
+                          />
+                        ) : <FaUserAlt />}
+                        <NameWrapper>
+                          <p>{currentProfessional?.name} {currentProfessional?.lastname}</p>
+                          <StatusInfo available={!isBusyTime(currentProfessional, dateSelected)}>
+                            {currentProfessional?.schedule ? (
+                              <>
+                                {isBusyTime(currentProfessional, dateSelected) ? (
+                                  <>
+                                    <span className='status'>{t('BUSY_ON_SELECTED_TIME', 'Busy on selected time')}</span>
+                                  </>
+                                ) : (
+                                  <span className='status'>{t('AVAILABLE', 'Available')}</span>
+                                )}
+                              </>
+                            ) : (
+                              <span className='status'>{t('NOT_AVAILABLE', 'Not available')}</span>
+                            )}
+                          </StatusInfo>
+                        </NameWrapper>
+                      </InfoWrapper>
+                    ) : (
+                      <p>{t('SELECT_PROFESSIONAL', 'Select professional')}</p>
+                    )}
+                    <ChevronDown />
+                  </SelectedItem>
+                  {isDropDown && (
+                    <DropDownWrapper>
+                      {professionalListState?.professionals?.map((professional) => (
+                        <SelectedItem
+                          key={professional?.id}
+                          isDropDown
+                          active={professional?.id === currentProfessional?.id}
+                          onClick={() => handleChangeProfessional(professional)}
+                        >
+                          <InfoWrapper>
+                            {professional?.photo ? (
+                              <ProfessionalPhoto
+                                bgimage={professional?.photo}
+                              />
+                            ) : <FaUserAlt />}
+                            <NameWrapper>
+                              <p>{professional?.name} {professional?.lastname}</p>
+                              <StatusInfo available={!isBusyTime(professional, dateSelected)}>
+                                {professional?.schedule ? (
+                                  <>
+                                    {isBusyTime(professional, dateSelected) ? (
+                                      <>
+                                        <span className='status'>{t('BUSY_ON_SELECTED_TIME', 'Busy on selected time')}</span>
+                                      </>
+                                    ) : (
+                                      <span className='status'>{t('AVAILABLE', 'Available')}</span>
+                                    )}
+                                  </>
+                                ) : (
+                                  <span className='status'>{t('NOT_AVAILABLE', 'Not available')}</span>
+                                )}
+                              </StatusInfo>
+                            </NameWrapper>
+                          </InfoWrapper>
+                        </SelectedItem>
+                      ))}
+                    </DropDownWrapper>
                   )}
-                  <ChevronDown />
-                </SelectedItem>
-                {isDropDown && (
-                  <DropDownWrapper>
-                    {professionalListState?.professionals?.map((professional) => (
-                      <SelectedItem
-                        key={professional?.id}
-                        isDropDown
-                        active={professional?.id === currentProfessional?.id}
-                        onClick={() => handleChangeProfessional(professional)}
-                      >
-                        <InfoWrapper>
-                          {professional?.photo ? (
-                            <ProfessionalPhoto
-                              bgimage={professional?.photo}
-                            />
-                          ) : <FaUserAlt />}
-                          <NameWrapper>
-                            <p>{professional?.name} {professional?.lastname}</p>
-                            <StatusInfo available={!isBusyTime(professional, dateSelected)}>
-                              {isBusyTime(professional, dateSelected) ? (
-                                <>
-                                  <span className='status'>{t('BUSY_ON_SELECTED_TIME', 'Busy on selected time')}</span>
-                                </>
-                              ) : (
-                                <span className='status'>{t('AVAILABLE', 'Available')}</span>
-                              )}
-                            </StatusInfo>
-                          </NameWrapper>
-                        </InfoWrapper>
-                      </SelectedItem>
-                    ))}
-                  </DropDownWrapper>
-                )}
-
-              </ProfessionalSelectWrapper>
-            </ProfessionalInfoWrapper>
+                </ProfessionalSelectWrapper>
+              </ProfessionalInfoWrapper>
+            )}
             <ScheduleWrapper>
               <SectionHeader>
                 <h2>{t('SCHEDULE', 'Schedule')}</h2>
                 <span>{t('REQUIRED', 'Required')}</span>
               </SectionHeader>
-              {currentProfessional ? (
+              {currentProfessional?.schedule ? (
                 <OrderTimeWrapper>
                   <DateWrapper>
                     <MonthYearLayer>
@@ -482,9 +496,9 @@ const ServiceFormUI = (props) => {
                 <Button
                   onClick={() => handleAddProduct()}
                   color='primary'
-                  disabled={isBusyTime(currentProfessional, dateSelected)}
+                  disabled={isBusyTime(currentProfessional, dateSelected) || orderState?.loading}
                 >
-                  {t('BOOK', 'Book')}
+                  {orderState?.loading ? t('LOADING', theme?.defaultLanguages?.LOADING || 'Loading') : t('BOOK', 'Book')}
                 </Button>
               )}
               {(!auth || isSoldOut || maxProductQuantity <= 0) && (
