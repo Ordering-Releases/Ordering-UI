@@ -64,7 +64,7 @@ export const CardContainer = styled.div`
       `}
     }
   `}
-
+  
   `}
 `
 
