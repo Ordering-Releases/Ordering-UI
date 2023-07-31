@@ -80,7 +80,7 @@ export const ContentWrapper = styled.div`
   height: 100%;
   padding: 0px 20px 0px;
   width: 70%;
-
+  position: relative;
   .select__control {
     border-radius: 30px;
   }
@@ -131,13 +131,16 @@ export const ContentWrapper = styled.div`
 
 export const WrappBtn = styled.div`
   width: 50%;
-  margin-top: 20px;
+  position: relative;
   button {
+    position: absolute;
+    top: 55px;
     min-width: 130px;
     max-width: 400px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    z-index: 100;
   }
 `
 
@@ -198,7 +201,7 @@ export const WrapInput = styled.div`
       width: calc(50% - 20px);
     }
   `}
-  
+
   div{
     color: #FFF;
     position: relative;
@@ -231,7 +234,7 @@ export const WrapInput = styled.div`
 `
 
 export const AutoComplete = styled.div`
-  width: 45%; 
+  width: 45%;
   button {
     position: absolute;
     left: 100%;
@@ -241,7 +244,7 @@ export const AutoComplete = styled.div`
 
 export const UserEdit = styled.div`
   > :first-child{
-     margin-bottom: 20px;  
+     margin-bottom: 20px;
   }
 `
 
@@ -286,6 +289,9 @@ export const SelectContainer = styled.div`
     .select__indicator {
       bottom: 8px;
       position: relative;
+    }
+    .select__menu{
+      top: 45px;
     }
     input {
       position: relative;
@@ -377,9 +383,19 @@ export const AdditionalTypesContainer = styled.div`
 `
 
 export const PhoneAutocompleteContainer = styled.div`
-
+  position: relative;
   h2 {
     font-size: 20px;
     margin-bottom: 20px;
+  }
+`
+
+export const ContinueButton = styled.span`
+  position: absolute;
+  right: 35px;
+  bottom: 5px;
+  width:
+  button {
+    cursor: pointer;
   }
 `

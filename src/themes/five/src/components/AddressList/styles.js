@@ -113,7 +113,7 @@ export const AddressItemActions = styled.div`
     cursor: pointer;
     margin: 0px 5px;
     font-size: 20px;
-    
+
     svg {
       color: #B1BCCC;
     }
@@ -127,13 +127,19 @@ export const AddressItemActions = styled.div`
 `
 
 export const WrappNotAddresses = styled.div`
-  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 80%;
   margin: 20px auto 10px;
+
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    min-height: 200px;
+    height: 200px
+  ` : css`
+    height: 350px;
+  `}
 
   img {
     width: 200px;
@@ -183,7 +189,7 @@ export const ContinueButton = styled.div`
   width: 100%;
   position: sticky;
   bottom: 1px;
-  
+
   button {
     width: 100%;
     white-space: nowrap;
@@ -208,7 +214,7 @@ export const AddressHalfContainer = styled.div`
 export const List = styled.div`
   width: ${({ halfWidth }) => halfWidth ? '50%' : '100%'};
   padding-right: 10px;
-  button { 
+  button {
     width: 100%;
   }
 `
@@ -218,7 +224,7 @@ export const AddressFormContainer = styled.div`
   position: sticky;
   right: 0;
   top: 0;
-  margin-top: ${({ isCustomerMode }) => isCustomerMode ? '-190px' : '0'};
+  margin-top: ${({ isCustomerMode, isOpenUserData }) => isCustomerMode && !isOpenUserData ? '-190px' : '0'};
   height: 100%;
   padding-left: 10px;
 `
@@ -250,13 +256,13 @@ export const CloseIcon = styled.div`
     &:active {
       background-color: ${() => darken(0.07, '#CCC')};
     }
-  
+
     border-radius: 50%;
   }
 `
 
 export const TitleFormContainer = styled.div`
-  display: flex; 
+  display: flex;
   align-items: flex-start;
   h1 {
     margin: 0 auto;

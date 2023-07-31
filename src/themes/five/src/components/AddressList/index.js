@@ -65,7 +65,8 @@ const AddressListUI = (props) => {
     setIsAddressFormOpen,
     isProfile,
     isMobile,
-    onCancel
+    onCancel,
+    isOpenUserData
   } = props
 
   const [, t] = useLanguage()
@@ -190,6 +191,12 @@ const AddressListUI = (props) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (addressList?.addresses?.length === 0 && !addressList.loading && isCustomerMode) {
+      openAddress({})
+    }
+  }, [addressList.loading, addressList?.addresses?.length])
+
   const AddressListCallcenterLayout = ({ children }) => {
     return (
       <AddressHalfContainer>
@@ -197,7 +204,7 @@ const AddressListUI = (props) => {
           {children}
         </List>
         {addressOpen && (
-          <AddressFormContainer isCustomerMode={isCustomerMode}>
+          <AddressFormContainer isCustomerMode={isCustomerMode} isOpenUserData={isOpenUserData}>
             <TitleFormContainer>
               <CloseIcon>
                 <MdClose onClick={() => handleCloseAddressForm()} />
@@ -318,9 +325,13 @@ const AddressListUI = (props) => {
           addressList?.addresses?.length === 0 &&
           !isProductForm &&
           (
-            <WrappNotAddresses>
-              <img src={theme.images?.general?.notFound} alt='Not Found' width='200px' height='112px' loading='lazy' />
-              <h1>{t('NOT_FOUND_ADDRESS', 'Sorry, You don\'t seem to have any addresses.')}</h1>
+            <WrappNotAddresses isCustomerMode={isCustomerMode}>
+              {!isCustomerMode && (
+                <>
+                  <img src={theme.images?.general?.notFound} alt='Not Found' width='200px' height='112px' loading='lazy' />
+                  <h1>{t('NOT_FOUND_ADDRESS', 'Sorry, You don\'t seem to have any addresses.')}</h1>
+                </>
+              )}
             </WrappNotAddresses>
           )}
 
