@@ -11,7 +11,7 @@ export const Header = styled.div`
   h1 {
     font-weight: 500;
     font-size: 20px;
-    color: ${props => props.theme.colors.darkTextColor}; 
+    color: ${props => props.theme.colors.darkTextColor};
     margin: 0px 10px 0px 0px;
     ${props => props.theme?.rtl && css`
       margin: 0px 0px 0px 10px;
@@ -91,7 +91,7 @@ export const TitleContainer = styled.div`
     font-size: 24px;
   }
   ${({ isAddressFormOpen }) => isAddressFormOpen && css`
-      h1{ 
+      h1{
         width: 75%;
       }
   `}
@@ -114,7 +114,4 @@ export const PhoneContainer = styled.div`
   display: flex;
   align-items: center;
   height: 30px;
-  p {
-    margin-bottom: 0;
-  }
 `
