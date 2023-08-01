@@ -113,7 +113,7 @@ export const AddressItemActions = styled.div`
     cursor: pointer;
     margin: 0px 5px;
     font-size: 20px;
-
+    
     svg {
       color: #B1BCCC;
     }
@@ -189,7 +189,7 @@ export const ContinueButton = styled.div`
   width: 100%;
   position: sticky;
   bottom: 1px;
-
+  
   button {
     width: 100%;
     white-space: nowrap;
@@ -214,7 +214,7 @@ export const AddressHalfContainer = styled.div`
 export const List = styled.div`
   width: ${({ halfWidth }) => halfWidth ? '50%' : '100%'};
   padding-right: 10px;
-  button {
+  button { 
     width: 100%;
   }
 `
@@ -256,13 +256,13 @@ export const CloseIcon = styled.div`
     &:active {
       background-color: ${() => darken(0.07, '#CCC')};
     }
-
+  
     border-radius: 50%;
   }
 `
 
 export const TitleFormContainer = styled.div`
-  display: flex;
+  display: flex; 
   align-items: flex-start;
   h1 {
     margin: 0 auto;
