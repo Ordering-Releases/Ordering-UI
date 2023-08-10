@@ -12,7 +12,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 var Container = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral([""])));
 exports.Container = Container;
-var Header = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 5px;\n\n  h1 {\n    font-weight: 500;\n    font-size: 20px;\n    color: ", ";\n    margin: 0px 10px 0px 0px;\n    ", "\n  }\n\n  svg {\n    font-size: 24px;\n  }\n\n  svg.cancel {\n    color: #D81212;\n    cursor: pointer;\n  }\n\n  span {\n    font-size: 13px;\n    color: ", ";\n    cursor: pointer;\n    user-select: none;\n    &:hover {\n        text-decoration: underline;\n      }\n  }\n"])), function (props) {
+var Header = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 5px;\n\n  h1 {\n    font-weight: 500;\n    font-size: 20px;\n    color: ", "; \n    margin: 0px 10px 0px 0px;\n    ", "\n  }\n\n  svg {\n    font-size: 24px;\n  }\n\n  svg.cancel {\n    color: #D81212;\n    cursor: pointer;\n  }\n\n  span {\n    font-size: 13px;\n    color: ", ";\n    cursor: pointer;\n    user-select: none;\n    &:hover {\n        text-decoration: underline;\n      }\n  }\n"])), function (props) {
   return props.theme.colors.darkTextColor;
 }, function (props) {
   var _props$theme;
@@ -37,7 +37,7 @@ var ModalIcon = _styledComponents.default.span(_templateObject8 || (_templateObj
 exports.ModalIcon = ModalIcon;
 var TitleContainer = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  margin-top: 0;\n  h1 {\n    margin: auto;\n    font-size: 24px;\n  }\n  ", "\n"])), function (_ref) {
   var isAddressFormOpen = _ref.isAddressFormOpen;
-  return isAddressFormOpen && (0, _styledComponents.css)(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n      h1{\n        width: 75%;\n      }\n  "])));
+  return isAddressFormOpen && (0, _styledComponents.css)(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n      h1{ \n        width: 75%;\n      }\n  "])));
 });
 exports.TitleContainer = TitleContainer;
 var CountryFlag = _styledComponents.default.div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  margin-right: 5px;\n  .PhoneInputCountryIcon {\n    width: 25px;\n  }\n  .PhoneInputInput {\n    display: none;\n  }\n  .PhoneInputCountrySelect {\n    display: none;\n  }\n"])));

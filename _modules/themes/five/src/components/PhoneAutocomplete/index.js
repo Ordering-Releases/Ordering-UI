@@ -13,8 +13,8 @@ var _Modal = require("../Modal");
 var _SignUpForm = require("../SignUpForm");
 var _Buttons = require("../../styles/Buttons");
 var _Confirm = require("../Confirm");
-var _UserDetails = require("../UserDetails");
 var _AddressList = require("../AddressList");
+var _UserDetails = require("../UserDetails");
 var _styles = require("./styles");
 var _MdcCellphoneAndroid = _interopRequireDefault(require("@meronex/icons/mdc/MdcCellphoneAndroid"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
