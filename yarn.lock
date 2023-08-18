@@ -9215,10 +9215,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@9.7.2:
-  version "9.7.2"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-9.7.2.tgz#eb2a5d4778baf81e8da05487a94d0e946409370e"
-  integrity sha512-1/8mKHwxUHL8JuFxS0PydQ9IIgtqG+sw4XMM+JDj03FLBvMDwOsdMx4evaPhp84U1MSU8HbcZw38uoiBHbUZZQ==
+ordering-components-external@9.7.3:
+  version "9.7.3"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-9.7.3.tgz#9a3dd72de3ad40673507e8106bfa68ea2ffe2d9d"
+  integrity sha512-z0k0P2NWZAaDFU+gQbV1WKAivlKDu1Bc6mjIbjLHKAd5aitCBhNJNrVx50aVPO7hJ6MlGhAkXNPQi0skkNeXLg==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
@@ -10128,9 +10128,9 @@ react-otp-input@^2.3.0:
   integrity sha512-AIgl7u4sS9BTNCxX1xlaS5fPWay/Zml8Ho5LszXZKXrH1C/TiFsTQGmtl13UecQYO3mSF3HUzG2rrDf0sjEFmg==
 
 react-phone-number-input@^3.1.6:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.2.tgz#2164e58484ddd08786636b75989f0cace75b9c12"
-  integrity sha512-h/XdyBlmy9DApKqSbmXvvvJYL1nxA3omUsCc1aeeXkt63k2QJs971jE8T/ItV9vgljBLL36BEuKs0pZlJflGew==
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.4.tgz#a9efaa70185444306bef296c538ecfbbadc0b4b3"
+  integrity sha512-g3cnJroqkgPlfg2jWg1I7TRRASkTutYVdTbmi8XObhmAv3OCdJHZxaeW5nKelPlvqyWHXnTKZNE3lKMas3rS0Q==
   dependencies:
     classnames "^2.3.1"
     country-flag-icons "^1.5.4"
@@ -10663,9 +10663,9 @@ sass-loader@^9.0.2:
     semver "^7.3.2"
 
 sass@^1.26.10:
-  version "1.65.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.65.1.tgz#8f283b0c26335a88246a448d22e1342ba2ea1432"
-  integrity sha512-9DINwtHmA41SEd36eVPQ9BJKpn7eKDQmUHmpI0y5Zv2Rcorrh0zS+cFrt050hdNbmmCNKTW3hV5mWfuegNRsEA==
+  version "1.66.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.66.0.tgz#74728eed49b0e490cd729c233e7f1c6ce356e638"
+  integrity sha512-C3U+RgpAAlTXULZkWwzfysgbbBBo8IZudNAOJAVBLslFbIaZv4MBPkTqhuvpK4lqgdoFiWhnOGMoV4L1FyOBag==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
