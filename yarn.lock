@@ -2169,9 +2169,9 @@
     tslib "^2.4.1"
 
 "@segment/analytics-next@^1.35.1":
-  version "1.53.4"
-  resolved "https://registry.yarnpkg.com/@segment/analytics-next/-/analytics-next-1.53.4.tgz#5628b8018e4de08e2fd504e0d8e7fa93a8ce12a9"
-  integrity sha512-lBI5oyU7h0BuAWrO8KxAtJatXHD+sLLUz6MVfXrOqzWwdeWZ33IOnERnKoLrr3OZXVBHEoEjAcTy1dd4XZsaJw==
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@segment/analytics-next/-/analytics-next-1.54.0.tgz#79403a442684437b6aa1e8cf309529660029fb36"
+  integrity sha512-KJ1sZswWab0KkufhXHF+Gjscm/sZmHdLybvOASe9smRDhnyaqmDxZqCWJnwS8LVIhy7mG4DvPynpyj8TL2JLdQ==
   dependencies:
     "@lukeed/uuid" "^2.0.0"
     "@segment/analytics-core" "1.3.0"
@@ -5705,9 +5705,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.477:
-  version "1.4.503"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.503.tgz#7bd43927ea9b4198697672d28d8fbd0da016a7a1"
-  integrity sha512-LF2IQit4B0VrUHFeQkWhZm97KuJSGF2WJqq1InpY+ECpFRkXd8yTIaTtJxsO0OKDmiBYwWqcrNaXOurn2T2wiA==
+  version "1.4.504"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.504.tgz#975522945676cf2d55910988a169f07b83081488"
+  integrity sha512-cSMwIAd8yUh54VwitVRVvHK66QqHWE39C3DRj8SWiXitEpVSY3wNPD9y1pxQtLIi4w3UdzF9klLsmuPshz09DQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -8265,7 +8265,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libphonenumber-js@^1.10.39, libphonenumber-js@^1.9.17, libphonenumber-js@^1.9.4:
+libphonenumber-js@^1.10.43, libphonenumber-js@^1.9.17, libphonenumber-js@^1.9.4:
   version "1.10.43"
   resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.43.tgz#ef8b697c70a160142a653fc92931852c403a656f"
   integrity sha512-M/iPACJGsTvEy8QmUY4K0SoIFB71X2j7y2JvUMYzUXUxCNmiU+NTfHdz7gt+dC48BVfBzZi2oO6s9TDGllCfxA==
@@ -9285,10 +9285,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@9.8.3:
-  version "9.8.3"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-9.8.3.tgz#bcfede671504292bfb527a44de0febb054138025"
-  integrity sha512-Zt2agRobs1kf9WFl/vQKFMcD9n6NQmGwTiXFY+s64TpT71fclCvDuMSXAZHvt7+445As7AFpaq7r6Z5vZ0tfag==
+ordering-components-external@9.8.4:
+  version "9.8.4"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-9.8.4.tgz#8f4259fcb6b151c56a5d20e65336f7877a5d3fe5"
+  integrity sha512-FMPHOOI6ff2Tp6CGUNDxSVMKu53dDguH08V5/2lX1vBRAwG8H7lXIYoiJ6v+NldKE1NlSU2+e38wov/+223zUQ==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
@@ -10208,14 +10208,14 @@ react-otp-input@^2.3.0:
   integrity sha512-AIgl7u4sS9BTNCxX1xlaS5fPWay/Zml8Ho5LszXZKXrH1C/TiFsTQGmtl13UecQYO3mSF3HUzG2rrDf0sjEFmg==
 
 react-phone-number-input@^3.1.6:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.4.tgz#a9efaa70185444306bef296c538ecfbbadc0b4b3"
-  integrity sha512-g3cnJroqkgPlfg2jWg1I7TRRASkTutYVdTbmi8XObhmAv3OCdJHZxaeW5nKelPlvqyWHXnTKZNE3lKMas3rS0Q==
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.5.tgz#dee78befd9bec28070394140bbb9726f406d2866"
+  integrity sha512-obrdj58s3OSpqueuxLr/QvT4XhhzpeeIikkSoyJGyheprX//52Mcg5PINxivH6fgtaIwiJFWKgfDVB68FYHbdg==
   dependencies:
     classnames "^2.3.1"
     country-flag-icons "^1.5.4"
     input-format "^0.3.8"
-    libphonenumber-js "^1.10.39"
+    libphonenumber-js "^1.10.43"
     prop-types "^15.8.1"
 
 react-popper@^2.2.3, react-popper@^2.3.0:
