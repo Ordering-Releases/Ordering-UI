@@ -53,7 +53,8 @@ export const Header = (props) => {
     isShowOrderOptions,
     isHideSignup,
     isCustomerMode,
-    isShowRedirectButton
+    isShowRedirectButton,
+    franchiseId
   } = props
 
   const { pathname } = useLocation()
@@ -397,6 +398,7 @@ export const Header = (props) => {
                 isModal
                 setIsOpenUserData={setIsOpenUserData}
                 onClose={() => setCustomerModalOpen(false)}
+                franchiseId={franchiseId}
               />
               <AddressList
                 isModal
@@ -407,6 +409,7 @@ export const Header = (props) => {
                 setCustomerModalOpen={setCustomerModalOpen}
                 setIsOpenUserData={setIsOpenUserData}
                 setIsAddressFormOpen={setIsAddressFormOpen}
+                franchiseId={franchiseId}
                 isHeader
               />
             </>

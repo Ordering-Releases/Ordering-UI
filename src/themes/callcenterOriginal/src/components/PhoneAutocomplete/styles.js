@@ -201,7 +201,7 @@ export const WrapInput = styled.div`
       width: calc(50% - 20px);
     }
   `}
-  
+
   div{
     color: #FFF;
     position: relative;
@@ -234,7 +234,7 @@ export const WrapInput = styled.div`
 `
 
 export const AutoComplete = styled.div`
-  width: 45%; 
+  width: 45%;
   button {
     position: absolute;
     left: 100%;
@@ -244,7 +244,7 @@ export const AutoComplete = styled.div`
 
 export const UserEdit = styled.div`
   > :first-child{
-     margin-bottom: 20px;  
+     margin-bottom: 20px;
   }
 `
 
@@ -394,8 +394,13 @@ export const ContinueButton = styled.span`
   position: absolute;
   right: 35px;
   bottom: 5px;
-  width: 
+  width:
   button {
     cursor: pointer;
   }
+`
+
+export const NotFoundUser = styled.div`
+  margin: 70px 0px;
+  text-align: center;
 `

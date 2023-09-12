@@ -8,6 +8,7 @@ import {
   House,
   GeoAlt
 } from 'react-bootstrap-icons'
+import { useTheme } from 'styled-components'
 import { useForm } from 'react-hook-form'
 import {
   AddressForm as AddressFormController,
@@ -49,7 +50,9 @@ const AddressFormUI = (props) => {
     userCustomerSetup,
     businessesList,
     getBusinessDeliveryZones,
-    isEnableContinueButton
+    isEnableContinueButton,
+    address,
+    notUseCustomerInfo
   } = props
 
   const [configState] = useConfig()
@@ -57,6 +60,7 @@ const AddressFormUI = (props) => {
   const [, t] = useLanguage()
   const formMethods = useForm()
   const [{ auth }] = useSession()
+  const theme = useTheme()
 
   const [state, setState] = useState({ selectedFromAutocomplete: true })
   const [addressTag, setAddressTag] = useState(addressState?.address?.tag)
@@ -345,6 +349,12 @@ const AddressFormUI = (props) => {
     })
   }, [formMethods])
 
+  useEffect(() => {
+    if (address?.location) {
+      getBusinessDeliveryZones(address?.location)
+    }
+  }, [address])
+
   return (
     <div className='address-form'>
       {props.beforeElements?.map((BeforeElement, i) => (
@@ -412,9 +422,9 @@ const AddressFormUI = (props) => {
                 </AddressWrap>
 
                 {locationChange && (addressState?.address?.location || formState?.changes?.location) && (
-                  <WrapperMap isEnableContinueButton={isEnableContinueButton}>
+                  <WrapperMap isEnableContinueButton={isEnableContinueButton} notUseCustomerInfo={notUseCustomerInfo}>
                     <GoogleMapsMap
-                      useLocationPin
+                      useMapWithBusinessZones
                       deactiveAlerts
                       apiKey={googleMapsApiKey}
                       location={locationChange}
@@ -423,8 +433,9 @@ const AddressFormUI = (props) => {
                       mapControls={googleMapsControls}
                       handleChangeAddressMap={handleChangeAddress}
                       setErrors={setMapErrors}
-                      maxLimitLocation={maxLimitLocation}
+                      maxLimitLocation={parseInt(maxLimitLocation, 10)}
                       businessZones={businessesList?.businesses?.map(business => business?.zones)}
+                      fallbackIcon={theme.images?.dummies?.businessLogo}
                     />
                   </WrapperMap>
                 )}
