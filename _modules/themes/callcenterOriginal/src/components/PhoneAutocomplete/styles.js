@@ -50,7 +50,7 @@ var Slogan = _styledComponents.default.p(_templateObject9 || (_templateObject9 =
   return ((_props$theme7 = props.theme) === null || _props$theme7 === void 0 ? void 0 : _props$theme7.rtl) && (0, _styledComponents.css)(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n      text-align: right;\n  "])));
 });
 exports.Slogan = Slogan;
-var WrapInput = _styledComponents.default.div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  position: relative;\n  cursor: pointer;\n\n  ", "\n\n  div{\n    color: #FFF;\n    position: relative;\n    bottom: 25px;\n    left: 15px;\n    ", "\n  }\n\n  svg {\n    color: #FFF;\n    position: absolute;\n    font-size: 22px;\n\n    margin-right: 10px;\n      ", "\n\n    ", "\n\n  }\n"])), function (_ref2) {
+var WrapInput = _styledComponents.default.div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  position: relative;\n  cursor: pointer;\n\n  ", "\n  \n  div{\n    color: #FFF;\n    position: relative;\n    bottom: 25px;\n    left: 15px;\n    ", "\n  }\n\n  svg {\n    color: #FFF;\n    position: absolute;\n    font-size: 22px;\n\n    margin-right: 10px;\n      ", "\n\n    ", "\n\n  }\n"])), function (_ref2) {
   var withIcon = _ref2.withIcon;
   return withIcon && (0, _styledComponents.css)(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    width: calc(100% - 20px);\n    box-sizing: border-box;\n\n    &::before {\n      content: \"\";\n      position: absolute;\n      right: 5px;\n      top: 0;\n      bottom: 18px;\n      width: 15px;\n\n      ", "\n    }\n\n    @media (min-width: 1024px) {\n      width: calc(50% - 20px);\n    }\n  "])), function (props) {
     var _props$theme8;
@@ -67,9 +67,9 @@ var WrapInput = _styledComponents.default.div(_templateObject11 || (_templateObj
   return (_props$theme11 = props.theme) !== null && _props$theme11 !== void 0 && _props$theme11.rtl ? (0, _styledComponents.css)(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n      left: 0px;\n    "]))) : (0, _styledComponents.css)(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n      right: 0px;\n    "])));
 });
 exports.WrapInput = WrapInput;
-var AutoComplete = _styledComponents.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  width: 45%;\n  button {\n    position: absolute;\n    left: 100%;\n    transform: translate(-90%, -165%)\n  }\n"])));
+var AutoComplete = _styledComponents.default.div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  width: 45%; \n  button {\n    position: absolute;\n    left: 100%;\n    transform: translate(-90%, -165%)\n  }\n"])));
 exports.AutoComplete = AutoComplete;
-var UserEdit = _styledComponents.default.div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  > :first-child{\n     margin-bottom: 20px;\n  }\n"])));
+var UserEdit = _styledComponents.default.div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  > :first-child{\n     margin-bottom: 20px;  \n  }\n"])));
 exports.UserEdit = UserEdit;
 var Info = _styledComponents.default.p(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral([""])));
 exports.Info = Info;
@@ -118,7 +118,7 @@ var AdditionalTypesContainer = _styledComponents.default.div(_templateObject29 |
 exports.AdditionalTypesContainer = AdditionalTypesContainer;
 var PhoneAutocompleteContainer = _styledComponents.default.div(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  position: relative;\n  h2 {\n    font-size: 20px;\n    margin-bottom: 20px;\n  }\n"])));
 exports.PhoneAutocompleteContainer = PhoneAutocompleteContainer;
-var ContinueButton = _styledComponents.default.span(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  position: absolute;\n  right: 35px;\n  bottom: 5px;\n  width:\n  button {\n    cursor: pointer;\n  }\n"])));
+var ContinueButton = _styledComponents.default.span(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  position: absolute;\n  right: 35px;\n  bottom: 5px;\n  width: \n  button {\n    cursor: pointer;\n  }\n"])));
 exports.ContinueButton = ContinueButton;
 var NotFoundUser = _styledComponents.default.div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  margin: 70px 0px;\n  text-align: center;\n"])));
 exports.NotFoundUser = NotFoundUser;

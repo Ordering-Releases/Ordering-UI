@@ -101,7 +101,7 @@ export const AddressItemActions = styled.div`
     cursor: pointer;
     margin: 0px 5px;
     font-size: 20px;
-
+    
     svg {
       color: #B1BCCC;
     }
@@ -171,7 +171,7 @@ export const ContinueButton = styled.div`
   width: 100%;
   position: sticky;
   bottom: 1px;
-
+  
   button {
     width: 100%;
     white-space: nowrap;
@@ -200,7 +200,7 @@ export const List = styled.div`
     margin-top: 0px;
   ` : css`
     margin-top: 222px;
-  `}
+  `} 
   button {
     width: 100%;
   }
@@ -228,7 +228,7 @@ export const CloseIcon = styled.div`
 `
 
 export const TitleFormContainer = styled.div`
-  display: flex;
+  display: flex; 
   align-items: center;
   margin-top: 7px;
   h1 {

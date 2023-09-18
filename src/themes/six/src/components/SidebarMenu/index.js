@@ -6,8 +6,9 @@ import FaRegAddressCard from '@meronex/icons/fa/FaRegAddressCard'
 import FaRegListAlt from '@meronex/icons/fa/FaRegListAlt'
 import AiOutlineHome from '@meronex/icons/ai/AiOutlineHome'
 import BiStore from '@meronex/icons/bi/BiStore'
+import BiHelpCircle from '@meronex/icons/bi/BiHelpCircle'
 import FaUserCircle from '@meronex/icons/fa/FaUserCircle'
-import { useEvent, useLanguage, useOrder, useConfig } from 'ordering-components-external'
+import { useEvent, useLanguage, useOrder, useConfig, useSession } from 'ordering-components-external'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
 import { capitalize } from '../../../../../utils'
 import { MomentContent } from '../../../../../components/MomentContent'
@@ -19,6 +20,9 @@ import { HeaderOption } from '../HeaderOption'
 import { Modal } from '../Modal'
 import { AddressForm } from '../AddressForm'
 import { AddressList } from '../AddressList'
+import { LoginForm } from '../../../../../themes/five/src/components/LoginForm'
+import { SignUpForm } from '../../../../../themes/five/src/components/SignUpForm'
+import { ForgotPasswordForm } from '../../../../../themes/five/src/components/ForgotPasswordForm'
 
 import {
   Container,
@@ -30,12 +34,14 @@ import {
   MenuLinkText,
   TextInfo,
   Hr,
-  SideBarOver
+  SideBarOver,
+  MenuLinkSeparator
 } from './styles'
 export const SidebarMenu = (props) => {
-  const { auth, isHideSignup, userCustomer, isCustomerMode } = props
+  const { auth, isHideSignup, userCustomer, isCustomerMode, notificationState } = props
   const [events] = useEvent()
   const [, t] = useLanguage()
+  const [, { login }] = useSession()
   const [{ options }] = useOrder()
   const { width } = useWindowSize()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -44,6 +50,7 @@ export const SidebarMenu = (props) => {
   const [sideBackOver, setSideBackOver] = useState(false)
   const [modalSelected, setModalSelected] = useState(null)
   const theme = useTheme()
+  const hideHelp = theme?.bar_menu?.components?.help?.hidden
 
   const configTypes = configState?.configs?.order_types_allowed?.value.split('|').map(value => Number(value)) || []
   const handleGoToPage = (data) => {
@@ -68,6 +75,31 @@ export const SidebarMenu = (props) => {
   const openModal = (opt) => {
     setModalSelected(opt)
     setModalIsOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalIsOpen(false)
+    setModalSelected(null)
+    actionSidebar(false)
+  }
+
+  const handleSuccessSignup = (user) => {
+    login({
+      user,
+      token: user?.session?.access_token
+    })
+    closeModal()
+  }
+
+  const handleCustomModalClick = (e, { page }) => {
+    e.preventDefault()
+    setModalSelected(page)
+  }
+
+  const handleSuccessLogin = (user) => {
+    if (user) {
+      closeModal()
+    }
   }
 
   useEffect(() => {
@@ -175,6 +207,35 @@ export const SidebarMenu = (props) => {
                   </MenuLinkText>
                 </WrappContent>
               </MenuLink>
+              {!hideHelp && (
+                <MenuLink
+                  onClick={() => handleGoToPage({ page: 'help' })}
+                >
+                  <WrappContent>
+                    <MenuLinkIcon
+                      active={
+                        window.location.pathname === '/help'
+                      }
+                    >
+                      <BiHelpCircle />
+                    </MenuLinkIcon>
+                    <MenuLinkText>
+                      <TextInfo
+                        active={
+                          window.location.pathname === '/help'
+                        }
+                      >
+                        {t('HELP', 'help')}
+                      </TextInfo>
+                    </MenuLinkText>
+                    <MenuLinkSeparator>
+                      <div>
+                        <hr />
+                      </div>
+                    </MenuLinkSeparator>
+                  </WrappContent>
+                </MenuLink>
+              )}
               {
                 !isCustomerMode && (
                   <MenuLink
@@ -239,9 +300,9 @@ export const SidebarMenu = (props) => {
 
           {!auth && (
             <MenuLink style={{ marginTop: '25px' }}>
-              <Button outline color='secundary' onClick={() => handleGoToPage({ page: 'signin' })} name='signin'>{t(theme?.defaultLanguages?.SIGN_IN || 'Sign in')}</Button>
+              <Button outline color='secundary' onClick={() => openModal('login')} name='login'>{t(theme?.defaultLanguages?.SIGN_IN || 'Sign in')}</Button>
               {!isHideSignup && (
-                <Button color='secundary' onClick={() => handleGoToPage({ page: 'signup' })} highlight={1} name='signup'>{t(theme?.defaultLanguages?.SIGN_UP || 'Join now')}</Button>
+                <Button color='secundary' onClick={() => openModal('signup')} highlight={1} name='signup'>{t(theme?.defaultLanguages?.SIGN_UP || 'Join now')}</Button>
               )}
             </MenuLink>
           )}
@@ -275,6 +336,60 @@ export const SidebarMenu = (props) => {
             )}
             {modalSelected === 'moment' && (
               <MomentContent />
+            )}
+            {modalSelected === 'login' && (
+              <LoginForm
+                handleSuccessLogin={handleSuccessLogin}
+                elementLinkToSignup={
+                  <a
+                    onClick={
+                      (e) => handleCustomModalClick(e, { page: 'signup' })
+                    } href='#'
+                  >{t('CREATE_ACCOUNT', theme?.defaultLanguages?.CREATE_ACCOUNT || 'Create account')}
+                  </a>
+                }
+                elementLinkToForgotPassword={
+                  <a
+                    onClick={
+                      (e) => handleCustomModalClick(e, { page: 'forgotpassword' })
+                    } href='#'
+                  >{t('RESET_PASSWORD', theme?.defaultLanguages?.RESET_PASSWORD || 'Reset password')}
+                  </a>
+                }
+                useLoginByCellphone
+                isPopup
+              />
+            )}
+            {modalSelected === 'signup' && (
+              <SignUpForm
+                notificationState={notificationState}
+                elementLinkToLogin={
+                  <a
+                    onClick={
+                      (e) => handleCustomModalClick(e, { page: 'login' })
+                    } href='#'
+                  >{t('LOGIN', theme?.defaultLanguages?.LOGIN || 'Login')}
+                  </a>
+                }
+                useLoginByCellphone
+                useChekoutFileds
+                handleSuccessSignup={handleSuccessSignup}
+                isPopup
+                closeModal={() => closeModal()}
+              />
+            )}
+            {modalSelected === 'forgotpassword' && (
+              <ForgotPasswordForm
+                elementLinkToLogin={
+                  <a
+                    onClick={
+                      (e) => handleCustomModalClick(e, { page: 'login' })
+                    } href='#'
+                  >{t('LOGIN', theme?.defaultLanguages?.LOGIN || 'Login')}
+                  </a>
+                }
+                isPopup
+              />
             )}
           </Modal>
         )}
