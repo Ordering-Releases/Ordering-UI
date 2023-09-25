@@ -142,7 +142,7 @@ var SelectBusinessCategoriesUI = function SelectBusinessCategoriesUI(props) {
     });
   }));
 };
-var SelectBusinessCategories = function SelectBusinessCategories(props) {
+var SelectBusinessCategories = exports.SelectBusinessCategories = function SelectBusinessCategories(props) {
   var _useApi = (0, _orderingComponentsExternal.useApi)(),
     _useApi2 = _slicedToArray(_useApi, 1),
     ordering = _useApi2[0];
@@ -163,4 +163,3 @@ var SelectBusinessCategories = function SelectBusinessCategories(props) {
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.BusinessProductsListing, businessProductslistingProps);
 };
-exports.SelectBusinessCategories = SelectBusinessCategories;

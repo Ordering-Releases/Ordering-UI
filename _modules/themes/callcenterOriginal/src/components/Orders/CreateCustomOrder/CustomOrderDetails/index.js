@@ -130,10 +130,9 @@ var CustomOrderDetailsUI = function CustomOrderDetailsUI(props) {
     onAccept: handleCloseAlert
   })));
 };
-var CustomOrderDetails = function CustomOrderDetails(props) {
+var CustomOrderDetails = exports.CustomOrderDetails = function CustomOrderDetails(props) {
   var customOrderProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: CustomOrderDetailsUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CustomOrderDetails, customOrderProps);
 };
-exports.CustomOrderDetails = CustomOrderDetails;

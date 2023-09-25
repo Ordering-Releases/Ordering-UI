@@ -469,11 +469,10 @@ var SignUpFormUI = function SignUpFormUI(props) {
     }, AfterElement);
   }));
 };
-var SignUpForm = function SignUpForm(props) {
+var SignUpForm = exports.SignUpForm = function SignUpForm(props) {
   var loginControllerProps = _objectSpread(_objectSpread({}, props), {}, {
     isRecaptchaEnable: true,
     UIComponent: SignUpFormUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SignupForm, loginControllerProps);
 };
-exports.SignUpForm = SignUpForm;

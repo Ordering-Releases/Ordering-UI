@@ -183,10 +183,9 @@ var ForgotPasswordUI = function ForgotPasswordUI(props) {
     }, AfterElement);
   }));
 };
-var ForgotPasswordForm = function ForgotPasswordForm(props) {
+var ForgotPasswordForm = exports.ForgotPasswordForm = function ForgotPasswordForm(props) {
   var ForgotPasswordProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: ForgotPasswordUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ForgotPasswordForm, ForgotPasswordProps);
 };
-exports.ForgotPasswordForm = ForgotPasswordForm;
