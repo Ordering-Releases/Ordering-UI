@@ -56,7 +56,7 @@ export const Text = styled.div`
     text-overflow: ellipsis;
     ${props => props.theme?.rtl && css`
       margin-left: 0;
-      margin-right: 10px;    
+      margin-right: 10px;
     `}
   }
 
@@ -151,6 +151,14 @@ export const PositionControl = styled.div`
 
     &.selected {
       color: ${props => props.theme.colors.primary};
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.2
+    }
+    &.disable-clicks {
+      pointer-events: none;
     }
 
     &:last-child {
