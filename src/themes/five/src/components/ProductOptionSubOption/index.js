@@ -166,21 +166,21 @@ const ProductOptionSubOptionUI = React.memo((props) => {
                   <BsCircleHalf
                     className={[
                       pizzaType.center ? 'disabled' : '',
-                      pizzaType.type?.toLowerCase() === 'Mitad y mitad' && 'disable-clicks',
+                      pizzaType.type?.toLowerCase() === 'mitad y mitad' && 'disable-clicks',
                       'reverse',
                       state.selected && state.position === 'left' ? 'selected' : null].filter(classname => classname).join(' ')}
                     onClick={(e) => handlePosition(e, 'left')}
                   />
                   <BsCircleFill
                     className={[
-                      !pizzaType.center && pizzaType.type?.toLowerCase() === 'Mitad y mitad' ? 'disabled' : '',
+                      !pizzaType.center && pizzaType.type?.toLowerCase() === 'mitad y mitad' ? 'disabled' : '',
                       state.selected && state.position === 'whole' ? 'selected' : null].filter(classname => classname).join(' ')}
                     onClick={(e) => handlePosition(e, 'whole')}
                   />
                   <BsCircleHalf
                     className={[
                       pizzaType.center ? 'disabled' : '',
-                      pizzaType.type?.toLowerCase() === 'Mitad y mitad' && 'disable-clicks',
+                      pizzaType.type?.toLowerCase() === 'mitad y mitad' && 'disable-clicks',
                       state.selected && state.position === 'right' ? 'selected' : null].filter(classname => classname).join(' ')}
                     onClick={(e) => handlePosition(e, 'right')}
                   />

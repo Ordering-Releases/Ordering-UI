@@ -143,21 +143,21 @@ var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props)
     disabled: disableIncrement || isSoldOut,
     onClick: handleIncrement
   }))), /*#__PURE__*/_react.default.createElement(_styles.PositionControl, null, (option === null || option === void 0 ? void 0 : option.with_half_option) && (state === null || state === void 0 ? void 0 : state.selected) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type2 = pizzaType.type) === null || _pizzaType$type2 === void 0 ? void 0 : _pizzaType$type2.toLowerCase()) === 'Mitad y mitad' && 'disable-clicks', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type2 = pizzaType.type) === null || _pizzaType$type2 === void 0 ? void 0 : _pizzaType$type2.toLowerCase()) === 'mitad y mitad' && 'disable-clicks', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'left');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleFill.default, {
-    className: [!pizzaType.center && ((_pizzaType$type3 = pizzaType.type) === null || _pizzaType$type3 === void 0 ? void 0 : _pizzaType$type3.toLowerCase()) === 'Mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
+    className: [!pizzaType.center && ((_pizzaType$type3 = pizzaType.type) === null || _pizzaType$type3 === void 0 ? void 0 : _pizzaType$type3.toLowerCase()) === 'mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'whole');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type4 = pizzaType.type) === null || _pizzaType$type4 === void 0 ? void 0 : _pizzaType$type4.toLowerCase()) === 'Mitad y mitad' && 'disable-clicks', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type4 = pizzaType.type) === null || _pizzaType$type4 === void 0 ? void 0 : _pizzaType$type4.toLowerCase()) === 'mitad y mitad' && 'disable-clicks', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
