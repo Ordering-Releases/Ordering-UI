@@ -61,9 +61,10 @@ var MultiCartUI = function MultiCartUI() {
     height: 25
   })));
 };
-var MultiCart = exports.MultiCart = function MultiCart(props) {
+var MultiCart = function MultiCart(props) {
   var mulcartProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: MultiCartUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.MultiCartCreate, mulcartProps);
 };
+exports.MultiCart = MultiCart;

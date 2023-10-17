@@ -75,9 +75,10 @@ var PurchaseGiftCardUI = function PurchaseGiftCardUI(props) {
     }
   }, t('ACCEPT', 'Accept'))));
 };
-var PurchaseGiftCard = exports.PurchaseGiftCard = function PurchaseGiftCard(props) {
+var PurchaseGiftCard = function PurchaseGiftCard(props) {
   var purchaseGiftCardProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: PurchaseGiftCardUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PurchaseGiftCard, purchaseGiftCardProps);
 };
+exports.PurchaseGiftCard = PurchaseGiftCard;

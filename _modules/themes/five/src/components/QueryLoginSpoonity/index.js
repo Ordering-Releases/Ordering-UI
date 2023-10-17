@@ -155,9 +155,10 @@ var QueryLoginSpoonityUI = function QueryLoginSpoonityUI(props) {
     isPopup: true
   }))));
 };
-var QueryLoginSpoonity = exports.QueryLoginSpoonity = function QueryLoginSpoonity(props) {
+var QueryLoginSpoonity = function QueryLoginSpoonity(props) {
   var queryProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: QueryLoginSpoonityUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.QueryLoginSpoonity, queryProps);
 };
+exports.QueryLoginSpoonity = QueryLoginSpoonity;

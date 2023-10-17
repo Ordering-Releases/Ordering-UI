@@ -73,9 +73,10 @@ var CartStoresListingUI = function CartStoresListingUI(props) {
     content: storesState !== null && storesState !== void 0 && storesState.error ? t('ERROR_NOT_FOUND_CART_STORES', 'Sorry, an error has occurred') : t('NOT_FOUND_CART_STORES', 'No businesses to show at this time.')
   }));
 };
-var CartStoresListing = exports.CartStoresListing = function CartStoresListing(props) {
+var CartStoresListing = function CartStoresListing(props) {
   var storeProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: CartStoresListingUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CartStoresListing, storeProps);
 };
+exports.CartStoresListing = CartStoresListing;

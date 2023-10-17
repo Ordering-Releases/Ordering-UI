@@ -17,8 +17,8 @@ var _MdCheckBoxOutlineBlank = _interopRequireDefault(require("@meronex/icons/md/
 var _RiRadioButtonFill = _interopRequireDefault(require("@meronex/icons/ri/RiRadioButtonFill"));
 var _MdRadioButtonUnchecked = _interopRequireDefault(require("@meronex/icons/md/MdRadioButtonUnchecked"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -32,10 +32,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ProductOptionSubOptionPropsAreEqual = function ProductOptionSubOptionPropsAreEqual(prevProps, nextProps) {
-  return JSON.stringify(prevProps.state) === JSON.stringify(nextProps.state) && JSON.stringify(prevProps.pizzaType) === JSON.stringify(nextProps.pizzaType) && prevProps.balance === nextProps.balance && JSON.stringify(prevProps.productCart) === JSON.stringify(nextProps.productCart);
+  return JSON.stringify(prevProps.state) === JSON.stringify(nextProps.state) && prevProps.pizzaType === nextProps.pizzaType && prevProps.balance === nextProps.balance && JSON.stringify(prevProps.productCart) === JSON.stringify(nextProps.productCart);
 };
 var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props) {
-  var _props$beforeElements, _props$beforeComponen, _pizzaType$type2, _pizzaType$type3, _pizzaType$type4, _props$afterComponent, _props$afterElements;
+  var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
   var state = props.state,
     increment = props.increment,
     decrement = props.decrement,
@@ -97,27 +97,10 @@ var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props)
     }
   }, [state === null || state === void 0 ? void 0 : state.selected]);
   (0, _react.useEffect)(function () {
-    var _pizzaType$type, _pizzaType$type$toLow;
-    if ((pizzaType === null || pizzaType === void 0 || (_pizzaType$type = pizzaType.type) === null || _pizzaType$type === void 0 || (_pizzaType$type$toLow = _pizzaType$type.toLowerCase) === null || _pizzaType$type$toLow === void 0 ? void 0 : _pizzaType$type$toLow.call(_pizzaType$type)) === 'mitad y mitad' && option !== null && option !== void 0 && option.with_half_option) {
-      var _Object$values, _Object$values3;
-      var _option = (_Object$values = Object.values((productCart === null || productCart === void 0 ? void 0 : productCart.options) || {})) === null || _Object$values === void 0 ? void 0 : _Object$values.find(function (option) {
-        var _option$name, _option$name$toLowerC, _Object$values2;
-        return (option === null || option === void 0 || (_option$name = option.name) === null || _option$name === void 0 || (_option$name$toLowerC = _option$name.toLowerCase) === null || _option$name$toLowerC === void 0 ? void 0 : _option$name$toLowerC.call(_option$name)) === 'elige tus ingredientes' && ((_Object$values2 = Object.values(option === null || option === void 0 ? void 0 : option.suboptions)) === null || _Object$values2 === void 0 ? void 0 : _Object$values2.length) > 0;
-      });
-      var alreadyRight = (_Object$values3 = Object.values((_option === null || _option === void 0 ? void 0 : _option.suboptions) || {})) === null || _Object$values3 === void 0 ? void 0 : _Object$values3.some(function (suboption) {
-        return (suboption === null || suboption === void 0 ? void 0 : suboption.position) === 'right';
-      });
-      if (pizzaType.right && !alreadyRight) {
-        if (state !== null && state !== void 0 && state.selected) {
-          handlePosition({}, 'right');
-        }
-      } else if (pizzaType.left || alreadyRight) {
-        if (state !== null && state !== void 0 && state.selected) {
-          handlePosition({}, 'left');
-        }
-      }
+    if (pizzaType === 'mitad y mitad' && option !== null && option !== void 0 && option.with_half_option) {
+      handlePosition({}, 'left');
     }
-  }, [pizzaType === null || pizzaType === void 0 ? void 0 : pizzaType.type, state === null || state === void 0 ? void 0 : state.selected, suboption === null || suboption === void 0 ? void 0 : suboption.id]);
+  }, [pizzaType, state === null || state === void 0 ? void 0 : state.selected, suboption === null || suboption === void 0 ? void 0 : suboption.id]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
@@ -143,21 +126,21 @@ var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props)
     disabled: disableIncrement || isSoldOut,
     onClick: handleIncrement
   }))), /*#__PURE__*/_react.default.createElement(_styles.PositionControl, null, (option === null || option === void 0 ? void 0 : option.with_half_option) && (state === null || state === void 0 ? void 0 : state.selected) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type2 = pizzaType.type) === null || _pizzaType$type2 === void 0 ? void 0 : _pizzaType$type2.toLowerCase()) === 'mitad y mitad' && 'disable-clicks', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType === 'center' ? 'disabled disable-clicks' : '', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'left');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleFill.default, {
-    className: [!pizzaType.center && ((_pizzaType$type3 = pizzaType.type) === null || _pizzaType$type3 === void 0 ? void 0 : _pizzaType$type3.toLowerCase()) === 'mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType === 'mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'whole');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type4 = pizzaType.type) === null || _pizzaType$type4 === void 0 ? void 0 : _pizzaType$type4.toLowerCase()) === 'mitad y mitad' && 'disable-clicks', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType === 'center' ? 'disabled disable-clicks' : '', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
@@ -175,10 +158,11 @@ var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props)
     }, AfterElement);
   }));
 }, ProductOptionSubOptionPropsAreEqual);
-var ProductOptionSubOption = exports.ProductOptionSubOption = function ProductOptionSubOption(props) {
+var ProductOptionSubOption = function ProductOptionSubOption(props) {
   var productOptionSubOptionProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: ProductOptionSubOptionUI,
     isOrigin: true
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductOptionSuboption, productOptionSubOptionProps);
 };
+exports.ProductOptionSubOption = ProductOptionSubOption;
