@@ -35,7 +35,7 @@ var ProductOptionSubOptionPropsAreEqual = function ProductOptionSubOptionPropsAr
   return JSON.stringify(prevProps.state) === JSON.stringify(nextProps.state) && JSON.stringify(prevProps.pizzaType) === JSON.stringify(nextProps.pizzaType) && prevProps.balance === nextProps.balance && JSON.stringify(prevProps.productCart) === JSON.stringify(nextProps.productCart);
 };
 var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props) {
-  var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
+  var _props$beforeElements, _props$beforeComponen, _pizzaType$type2, _pizzaType$type3, _pizzaType$type4, _props$afterComponent, _props$afterElements;
   var state = props.state,
     increment = props.increment,
     decrement = props.decrement,
@@ -143,21 +143,21 @@ var ProductOptionSubOptionUI = /*#__PURE__*/_react.default.memo(function (props)
     disabled: disableIncrement || isSoldOut,
     onClick: handleIncrement
   }))), /*#__PURE__*/_react.default.createElement(_styles.PositionControl, null, (option === null || option === void 0 ? void 0 : option.with_half_option) && (state === null || state === void 0 ? void 0 : state.selected) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', pizzaType.type === 'Mitad y mitad' && 'disable-clicks', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type2 = pizzaType.type) === null || _pizzaType$type2 === void 0 ? void 0 : _pizzaType$type2.toLowerCase()) === 'Mitad y mitad' && 'disable-clicks', 'reverse', state.selected && state.position === 'left' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'left');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleFill.default, {
-    className: [!pizzaType.center && pizzaType.type === 'Mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
+    className: [!pizzaType.center && ((_pizzaType$type3 = pizzaType.type) === null || _pizzaType$type3 === void 0 ? void 0 : _pizzaType$type3.toLowerCase()) === 'Mitad y mitad' ? 'disabled' : '', state.selected && state.position === 'whole' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
       return handlePosition(e, 'whole');
     }
   }), /*#__PURE__*/_react.default.createElement(_BsCircleHalf.default, {
-    className: [pizzaType.center ? 'disabled' : '', pizzaType.type === 'Mitad y mitad' && 'disable-clicks', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
+    className: [pizzaType.center ? 'disabled' : '', ((_pizzaType$type4 = pizzaType.type) === null || _pizzaType$type4 === void 0 ? void 0 : _pizzaType$type4.toLowerCase()) === 'Mitad y mitad' && 'disable-clicks', state.selected && state.position === 'right' ? 'selected' : null].filter(function (classname) {
       return classname;
     }).join(' '),
     onClick: function onClick(e) {
