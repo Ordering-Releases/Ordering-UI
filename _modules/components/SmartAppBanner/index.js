@@ -48,10 +48,12 @@ var SmartAppBanneUI = function SmartAppBanneUI(props) {
     ignoreIosVersion: true
   }));
 };
-var SmartAppBanner = exports.SmartAppBanner = function SmartAppBanner(props) {
+var SmartAppBanner = function SmartAppBanner(props) {
   var smartAppBannerProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: SmartAppBanneUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.SmartAppBanner, smartAppBannerProps);
 };
-var _default = exports.default = SmartAppBanner;
+exports.SmartAppBanner = SmartAppBanner;
+var _default = SmartAppBanner;
+exports.default = _default;

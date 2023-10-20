@@ -43,7 +43,7 @@ var LanguageSelectorUI = function LanguageSelectorUI(props) {
     notReload: notReload
   }) : null;
 };
-var LanguageSelector = exports.LanguageSelector = function LanguageSelector(props) {
+var LanguageSelector = function LanguageSelector(props) {
   var DefaultChangeLanguage = function DefaultChangeLanguage() {};
   var langProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: LanguageSelectorUI,
@@ -57,3 +57,4 @@ var LanguageSelector = exports.LanguageSelector = function LanguageSelector(prop
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.LanguageSelector, langProps);
 };
+exports.LanguageSelector = LanguageSelector;

@@ -49,7 +49,7 @@ var PaymentOptionPaypalUI = function PaymentOptionPaypalUI(props) {
     }, AfterElement);
   }));
 };
-var PaymentOptionPaypal = exports.PaymentOptionPaypal = function PaymentOptionPaypal(props) {
+var PaymentOptionPaypal = function PaymentOptionPaypal(props) {
   var _configs$stripe_curre;
   var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
     _useConfig2 = _slicedToArray(_useConfig, 1),
@@ -60,3 +60,4 @@ var PaymentOptionPaypal = exports.PaymentOptionPaypal = function PaymentOptionPa
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.PaymentOptionPaypal, paymentPaypalProps);
 };
+exports.PaymentOptionPaypal = PaymentOptionPaypal;

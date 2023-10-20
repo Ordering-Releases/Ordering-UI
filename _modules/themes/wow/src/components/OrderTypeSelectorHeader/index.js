@@ -68,7 +68,7 @@ var OrderTypeSelectorHeaderUI = function OrderTypeSelectorHeaderUI(props) {
     }, type.content);
   })))));
 };
-var OrderTypeSelectorHeader = exports.OrderTypeSelectorHeader = function OrderTypeSelectorHeader(props) {
+var OrderTypeSelectorHeader = function OrderTypeSelectorHeader(props) {
   var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
     _useLanguage2 = _slicedToArray(_useLanguage, 2),
     t = _useLanguage2[1];
@@ -98,3 +98,4 @@ var OrderTypeSelectorHeader = exports.OrderTypeSelectorHeader = function OrderTy
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.OrderTypeControl, orderTypeProps);
 };
+exports.OrderTypeSelectorHeader = OrderTypeSelectorHeader;

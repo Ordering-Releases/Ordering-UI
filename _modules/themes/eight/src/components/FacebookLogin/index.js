@@ -36,9 +36,10 @@ var FacebookLoginButtonUI = function FacebookLoginButtonUI(props) {
     isSignup: isSignup
   }, /*#__PURE__*/_react.default.createElement(_styles.IconWrapper, null, /*#__PURE__*/_react.default.createElement(_FaFacebook.default, null)), /*#__PURE__*/_react.default.createElement("div", null, t('LOGIN_WITH_FACEBOOK', 'Login with Facebook'))));
 };
-var FacebookLoginButton = exports.FacebookLoginButton = function FacebookLoginButton(props) {
+var FacebookLoginButton = function FacebookLoginButton(props) {
   var facebookLoginProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: FacebookLoginButtonUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FacebookLoginButton, facebookLoginProps);
 };
+exports.FacebookLoginButton = FacebookLoginButton;

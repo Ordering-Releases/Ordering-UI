@@ -29,8 +29,8 @@ var _BsInfoCircle = _interopRequireDefault(require("@meronex/icons/bs/BsInfoCirc
 var _MdCloseCircle = _interopRequireDefault(require("@meronex/icons/ios/MdCloseCircle"));
 var _MomentContent = require("../MomentContent");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -44,7 +44,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var CartUI = function CartUI(props) {
-  var _configs$driver_tip_o, _configs$driver_tip_o2, _configs$driver_tip_o3, _validationFields$fie, _configs$checkout_mul, _orderState$carts, _props$cart, _theme$viewString, _validationFields$fie2, _theme$viewString2, _validationFields$fie3, _orderState$options, _orderState$options2, _cart$taxes, _orderState$option, _orderState$option2, _props$beforeElements, _props$beforeComponen, _cart$products, _cart$offers, _cart$offers2, _cart$offers3, _cart$offers4, _cart$business, _ref, _cart$subtotal_with_d, _cart$taxes3, _cart$taxes4, _cart$fees, _cart$fees2, _cart$offers5, _cart$offers6, _orderState$options3, _cart$offers7, _cart$offers8, _configs$driver_tip_t, _configs$driver_tip_u, _orderState$options4, _validationFields$fie4, _configs$driver_tip_t2, _configs$driver_tip_u2, _configs$driver_tip_t3, _cart$payment_events, _cart$payment_events2, _orderState$options5, _cart$business2, _cart$business3, _curProduct$calendar_, _openTaxModal$data, _openTaxModal$data2, _openTaxModal$data3, _openTaxModal$data4, _openTaxModal$data$fi, _openTaxModal$data5, _openTaxModal$data6, _props$afterComponent, _props$afterElements;
+  var _configs$driver_tip_o, _configs$driver_tip_o2, _configs$driver_tip_o3, _validationFields$fie, _configs$checkout_mul, _orderState$carts, _props$cart, _theme$viewString, _validationFields$fie2, _theme$viewString2, _validationFields$fie3, _orderState$options, _orderState$options2, _cart$taxes, _orderState$option, _orderState$option2, _props$beforeElements, _props$beforeComponen, _cart$products, _cart$offers, _cart$offers2, _cart$offers3, _cart$offers4, _cart$business, _ref, _cart$subtotal_with_d, _cart$taxes3, _cart$taxes4, _cart$fees, _cart$fees2, _cart$offers5, _cart$offers6, _orderState$options3, _cart$taxes5, _cart$taxes6, _cart$offers7, _cart$offers8, _configs$driver_tip_t, _configs$driver_tip_u, _orderState$options4, _validationFields$fie4, _configs$driver_tip_t2, _configs$driver_tip_u2, _configs$driver_tip_t3, _cart$payment_events, _cart$payment_events2, _orderState$options5, _cart$business2, _cart$business3, _curProduct$calendar_, _openTaxModal$data, _openTaxModal$data2, _openTaxModal$data3, _openTaxModal$data4, _openTaxModal$data$fi, _openTaxModal$data5, _openTaxModal$data6, _props$afterComponent, _props$afterElements;
   var currentCartUuid = props.currentCartUuid,
     clearCart = props.clearCart,
     isProducts = props.isProducts,
@@ -167,13 +167,13 @@ var CartUI = function CartUI(props) {
       name: t('PAY_WITH_CREDITS_POINTS_WALLET', 'Pay with Credit Points Wallet')
     }
   };
-  var getIncludedTaxes = function getIncludedTaxes() {
+  var getIncludedTaxes = function getIncludedTaxes(isDeliveryFee) {
     if ((cart === null || cart === void 0 ? void 0 : cart.taxes) === null) {
       return (cart === null || cart === void 0 ? void 0 : cart.business.tax_type) === 1 ? cart === null || cart === void 0 ? void 0 : cart.tax : 0;
     } else {
       return cart === null || cart === void 0 ? void 0 : cart.taxes.reduce(function (taxIncluded, tax) {
         var _tax$summary;
-        return taxIncluded + (tax.type === 1 ? (_tax$summary = tax.summary) === null || _tax$summary === void 0 ? void 0 : _tax$summary.tax : 0);
+        return taxIncluded + (!isDeliveryFee && tax.type === 1 && tax.target === 'product' || isDeliveryFee && tax.type === 1 && tax.target === 'delivery_fee' ? (_tax$summary = tax.summary) === null || _tax$summary === void 0 ? void 0 : _tax$summary.tax : 0);
       }, 0);
     }
   };
@@ -306,7 +306,7 @@ var CartUI = function CartUI(props) {
   var getIncludedTaxesDiscounts = function getIncludedTaxesDiscounts() {
     var _cart$taxes2;
     return cart === null || cart === void 0 || (_cart$taxes2 = cart.taxes) === null || _cart$taxes2 === void 0 || (_cart$taxes2 = _cart$taxes2.filter(function (tax) {
-      return (tax === null || tax === void 0 ? void 0 : tax.type) === 1;
+      return (tax === null || tax === void 0 ? void 0 : tax.type) === 1 && (tax === null || tax === void 0 ? void 0 : tax.target) === 'product';
     })) === null || _cart$taxes2 === void 0 ? void 0 : _cart$taxes2.reduce(function (carry, tax) {
       var _tax$summary$tax_afte, _tax$summary2, _tax$summary3;
       return carry + ((_tax$summary$tax_afte = tax === null || tax === void 0 || (_tax$summary2 = tax.summary) === null || _tax$summary2 === void 0 ? void 0 : _tax$summary2.tax_after_discount) !== null && _tax$summary$tax_afte !== void 0 ? _tax$summary$tax_afte : tax === null || tax === void 0 || (_tax$summary3 = tax.summary) === null || _tax$summary3 === void 0 ? void 0 : _tax$summary3.tax);
@@ -483,7 +483,27 @@ var CartUI = function CartUI(props) {
         return onRemoveOffer(offer === null || offer === void 0 ? void 0 : offer.id);
       }
     }))), /*#__PURE__*/_react.default.createElement("td", null, "- ", parsePrice(offer === null || offer === void 0 || (_offer$summary2 = offer.summary) === null || _offer$summary2 === void 0 ? void 0 : _offer$summary2.discount)));
-  })), (orderState === null || orderState === void 0 || (_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : _orderState$options3.type) === 1 && !hideDeliveryFee && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DELIVERY_FEE', 'Delivery Fee')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice(cart === null || cart === void 0 ? void 0 : cart.delivery_price_with_discount))), !hideCartDiscount && (cart === null || cart === void 0 || (_cart$offers7 = cart.offers) === null || _cart$offers7 === void 0 ? void 0 : _cart$offers7.length) > 0 && (cart === null || cart === void 0 || (_cart$offers8 = cart.offers) === null || _cart$offers8 === void 0 || (_cart$offers8 = _cart$offers8.filter(function (offer) {
+  })), (orderState === null || orderState === void 0 || (_orderState$options3 = orderState.options) === null || _orderState$options3 === void 0 ? void 0 : _orderState$options3.type) === 1 && !hideDeliveryFee && /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, t('DELIVERY_FEE', 'Delivery Fee')), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((cart === null || cart === void 0 ? void 0 : cart.delivery_price_with_discount) + getIncludedTaxes(true)))), (cart === null || cart === void 0 || (_cart$taxes5 = cart.taxes) === null || _cart$taxes5 === void 0 ? void 0 : _cart$taxes5.length) > 0 && (cart === null || cart === void 0 || (_cart$taxes6 = cart.taxes) === null || _cart$taxes6 === void 0 ? void 0 : _cart$taxes6.filter(function (tax) {
+    return (tax === null || tax === void 0 ? void 0 : tax.type) === 2 && (tax === null || tax === void 0 ? void 0 : tax.rate) !== 0 && (tax === null || tax === void 0 ? void 0 : tax.target) === 'delivery_fee';
+  }).map(function (tax) {
+    var _ref4, _tax$summary$tax_afte3, _tax$summary6, _tax$summary7;
+    return /*#__PURE__*/_react.default.createElement("tr", {
+      key: tax === null || tax === void 0 ? void 0 : tax.id
+    }, /*#__PURE__*/_react.default.createElement("td", {
+      className: "icon"
+    }, tax.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business'), /*#__PURE__*/_react.default.createElement("span", null, "(".concat((0, _utils.verifyDecimals)(tax === null || tax === void 0 ? void 0 : tax.rate, parseNumber), "%)")), /*#__PURE__*/_react.default.createElement(_styles.IconContainer, {
+      onClick: function onClick() {
+        return setOpenTaxModal({
+          open: true,
+          data: tax,
+          type: 'tax'
+        });
+      }
+    }, /*#__PURE__*/_react.default.createElement(_BsInfoCircle.default, {
+      size: "20",
+      color: theme.colors.primary
+    }))), /*#__PURE__*/_react.default.createElement("td", null, parsePrice((_ref4 = (_tax$summary$tax_afte3 = tax === null || tax === void 0 || (_tax$summary6 = tax.summary) === null || _tax$summary6 === void 0 ? void 0 : _tax$summary6.tax_after_discount) !== null && _tax$summary$tax_afte3 !== void 0 ? _tax$summary$tax_afte3 : tax === null || tax === void 0 || (_tax$summary7 = tax.summary) === null || _tax$summary7 === void 0 ? void 0 : _tax$summary7.tax) !== null && _ref4 !== void 0 ? _ref4 : 0)));
+  })), !hideCartDiscount && (cart === null || cart === void 0 || (_cart$offers7 = cart.offers) === null || _cart$offers7 === void 0 ? void 0 : _cart$offers7.length) > 0 && (cart === null || cart === void 0 || (_cart$offers8 = cart.offers) === null || _cart$offers8 === void 0 || (_cart$offers8 = _cart$offers8.filter(function (offer) {
     return (offer === null || offer === void 0 ? void 0 : offer.target) === 2;
   })) === null || _cart$offers8 === void 0 ? void 0 : _cart$offers8.map(function (offer) {
     var _offer$summary3;
@@ -690,9 +710,10 @@ var CartUI = function CartUI(props) {
     }, AfterElement);
   }));
 };
-var Cart = exports.Cart = function Cart(props) {
+var Cart = function Cart(props) {
   var cartProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: CartUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.Cart, cartProps);
 };
+exports.Cart = Cart;

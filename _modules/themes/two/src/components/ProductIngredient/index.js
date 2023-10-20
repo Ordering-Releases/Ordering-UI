@@ -45,9 +45,10 @@ var ProductIngredientUI = function ProductIngredientUI(props) {
     }, AfterElement);
   }));
 };
-var ProductIngredient = exports.ProductIngredient = function ProductIngredient(props) {
+var ProductIngredient = function ProductIngredient(props) {
   var productIngredientProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: ProductIngredientUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductIngredient, productIngredientProps);
 };
+exports.ProductIngredient = ProductIngredient;
