@@ -17,7 +17,7 @@ export const HeaderItem = styled.div`
         margin-right: 10px;
       ` : css`
         margin-left: 10px;
-      `} 
+      `}
     }
     svg {
       font-size: 16px;
@@ -31,7 +31,7 @@ export const PopoverBody = styled.div`
   padding: 15px;
   border-radius: 10px;
   max-width: 500px;
-  z-index: 1001;
+  z-index: 10002;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 `
 
