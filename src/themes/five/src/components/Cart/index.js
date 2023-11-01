@@ -399,7 +399,7 @@ const CartUI = (props) => {
                       )
                     }
                     {
-                      cart?.taxes?.length > 0 && cart?.taxes?.filter(tax => tax?.type === 2 && tax?.rate !== 0).map(tax => (
+                      cart?.taxes?.length > 0 && cart?.taxes?.filter(tax => tax?.type === 2 && tax?.rate !== 0 && tax?.target === 'product').map(tax => (
                         <tr key={tax?.id}>
                           <td className='icon'>
                             {tax.name || t('INHERIT_FROM_BUSINESS', 'Inherit from business')}

@@ -25,7 +25,7 @@ var Text = exports.Text = _styledComponents.default.div(_templateObject4 || (_te
   return props.theme.colors.primary;
 }, function (props) {
   var _props$theme2;
-  return ((_props$theme2 = props.theme) === null || _props$theme2 === void 0 ? void 0 : _props$theme2.rtl) && (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n      margin-left: 0;\n      margin-right: 10px;\n    "])));
+  return ((_props$theme2 = props.theme) === null || _props$theme2 === void 0 ? void 0 : _props$theme2.rtl) && (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n      margin-left: 0;\n      margin-right: 10px;    \n    "])));
 }, function (_ref) {
   var noMargin = _ref.noMargin;
   return noMargin && (0, _styledComponents.css)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    span {\n      margin: 0;\n    }\n  "])));

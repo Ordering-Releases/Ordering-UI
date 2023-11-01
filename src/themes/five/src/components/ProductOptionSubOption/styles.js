@@ -56,7 +56,7 @@ export const Text = styled.div`
     text-overflow: ellipsis;
     ${props => props.theme?.rtl && css`
       margin-left: 0;
-      margin-right: 10px;
+      margin-right: 10px;    
     `}
   }
 

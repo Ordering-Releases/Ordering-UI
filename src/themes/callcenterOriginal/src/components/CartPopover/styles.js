@@ -17,7 +17,7 @@ export const HeaderItem = styled.div`
         margin-right: 10px;
       ` : css`
         margin-left: 10px;
-      `}
+      `} 
     }
     svg {
       font-size: 16px;
