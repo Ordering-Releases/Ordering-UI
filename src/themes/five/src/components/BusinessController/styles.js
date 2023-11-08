@@ -28,11 +28,15 @@ export const ContainerCard = styled.div`
       padding: 10px 30px;
     }
   `}
-  
+
   ${({ firstCard }) => firstCard && css`
     margin-left: 0;
   `}
-  
+
+  ${({ disabled }) => disabled && css`
+    cursor: not-allowed;
+  `}
+
   ${({ businessRows }) => css`
     width: calc(100% - 40px);
 
@@ -52,13 +56,17 @@ export const ContainerCard = styled.div`
       width: ${() => businessRows === 4 ? 'calc(25% - 40px)' : businessRows === 3 ? 'calc(33% - 40px)' : 'calc(50% - 40px)'};
     }
   `}
-  
+
 `
 
 export const WrapperBusinessCard = styled.div`
   height: 100%;
   position: relative;
   cursor: ${({ isSkeleton }) => isSkeleton ? 'default' : 'pointer'};
+  ${({ disabled }) => disabled && css`
+    pointer-events: none;
+    cursor: not-allowed;
+  `}
 `
 
 export const BusinessHero = styled.div`
@@ -84,19 +92,25 @@ const BusinessHeaderStyled = styled.div`
   align-items: center;
   border-radius: 7.6px 7.6px 0px 0px;
 
-  h1 {
+  h1, h2 {
     color: #FFF;
     opacity: 0.7;
   }
 
-  .closed {
+  .closed, .disabled {
     text-transform: uppercase;
     font-weight: 600;
-    font-size: 28px;
-    line-height: 42px;
+    font-size: 22px;
+    line-height: 35px;
     opacity: 1;
     position: relative;
     z-index: 2;
+  }
+
+  .disabled {
+    font-size: 16px;
+    text-align: center;
+
   }
 
   @media (min-width: 481px) {
@@ -118,6 +132,20 @@ export const BusinessHeader = (props) => {
     </BusinessHeaderStyled>
   )
 }
+
+export const BusinessHeaderClosedContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    div {
+      text-align: center;
+      width: 100%;
+      line-break: anywhere;
+    }
+
+`
 
 export const BusinessTags = styled.div`
   display: flex;
@@ -169,11 +197,13 @@ export const BusinessContent = styled.div`
   justify-content: space-between;
   max-height: 135px;
   padding: 0 20px 20px 20px;
-  height: calc(100% - 145px);
+  ${({ isCustomerMode }) => !isCustomerMode && css`
+    height: calc(100% - 145px);
 
-  @media (min-width: 481px) {
-    height: calc(100% - 165px);
-  }
+    @media (min-width: 481px) {
+      height: calc(100% - 165px);
+    }
+  `}
 `
 
 export const WrapperBusinessLogo = styled.div`
@@ -246,7 +276,11 @@ export const BusinessLogo = (props) => {
 
 export const BusinessInfo = styled.div`
   display: flex;
-  width: 100%;
+  ${({ isCustomerMode }) => isCustomerMode ? css`
+    width: 90%;
+  ` : css`
+    width: 100%;
+  `}
 `
 
 export const BusinessInfoItem = styled.div`
@@ -306,7 +340,7 @@ export const Medadata = styled.div`
   font-size: 12px;
   color: #909BA9;
   flex-wrap: wrap;
-  
+
 
   ${({ isCustomerMode }) => isCustomerMode && css`
     > div {

@@ -378,7 +378,7 @@ export const Timer = styled.div`
   .at_risk {
     color: #FFC700;
   }
-  
+
   .delayed {
     color: #E63757;
   }
@@ -414,4 +414,23 @@ export const DragTh = styled.th`
   ${({ selectedDragOver }) => selectedDragOver && css`
     border: 1px solid ${props => props.theme.colors.primary};
   `}
+`
+export const InfoWrapper = styled.div`
+  position: relative;
+  ${props => props.theme?.rtl ? css`
+    margin-left: 4px;
+  ` : css`
+    margin-right: 4px;
+  `}
+
+  .bold {
+    max-width: 150px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &:hover > div {
+    visibility: visible;
+    opacity: 1;
+  }
 `
