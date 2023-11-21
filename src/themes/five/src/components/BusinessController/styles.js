@@ -28,7 +28,7 @@ export const ContainerCard = styled.div`
       padding: 10px 30px;
     }
   `}
-
+  
   ${({ firstCard }) => firstCard && css`
     margin-left: 0;
   `}
@@ -36,7 +36,7 @@ export const ContainerCard = styled.div`
   ${({ disabled }) => disabled && css`
     cursor: not-allowed;
   `}
-
+  
   ${({ businessRows }) => css`
     width: calc(100% - 40px);
 
@@ -56,7 +56,7 @@ export const ContainerCard = styled.div`
       width: ${() => businessRows === 4 ? 'calc(25% - 40px)' : businessRows === 3 ? 'calc(33% - 40px)' : 'calc(50% - 40px)'};
     }
   `}
-
+  
 `
 
 export const WrapperBusinessCard = styled.div`
@@ -340,7 +340,7 @@ export const Medadata = styled.div`
   font-size: 12px;
   color: #909BA9;
   flex-wrap: wrap;
-
+  
 
   ${({ isCustomerMode }) => isCustomerMode && css`
     > div {

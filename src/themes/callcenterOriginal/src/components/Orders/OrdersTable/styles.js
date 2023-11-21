@@ -378,7 +378,7 @@ export const Timer = styled.div`
   .at_risk {
     color: #FFC700;
   }
-
+  
   .delayed {
     color: #E63757;
   }

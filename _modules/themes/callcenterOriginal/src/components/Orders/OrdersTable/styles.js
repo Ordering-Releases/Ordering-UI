@@ -168,7 +168,7 @@ var Timestatus = exports.Timestatus = _styledComponents.default.div(_templateObj
   var timeState = _ref18.timeState;
   return timeState === 'delayed' && (0, _styledComponents.css)(_templateObject48 || (_templateObject48 = _taggedTemplateLiteral(["\n    background-color: #E63757;\n  "])));
 });
-var Timer = exports.Timer = _styledComponents.default.div(_templateObject49 || (_templateObject49 = _taggedTemplateLiteral(["\n  min-width: 65px;\n  p {\n    margin: 0px;\n    color: ", ";\n    font-size: 12px;\n  }\n\n  .bold {\n    font-size: 14px;\n    font-weight: 600;\n    color: ", ";\n  }\n\n  .in_time{\n    color: #00D27A;\n  }\n\n  .at_risk {\n    color: #FFC700;\n  }\n\n  .delayed {\n    color: #E63757;\n  }\n"])), function (props) {
+var Timer = exports.Timer = _styledComponents.default.div(_templateObject49 || (_templateObject49 = _taggedTemplateLiteral(["\n  min-width: 65px;\n  p {\n    margin: 0px;\n    color: ", ";\n    font-size: 12px;\n  }\n\n  .bold {\n    font-size: 14px;\n    font-weight: 600;\n    color: ", ";\n  }\n\n  .in_time{\n    color: #00D27A;\n  }\n\n  .at_risk {\n    color: #FFC700;\n  }\n  \n  .delayed {\n    color: #E63757;\n  }\n"])), function (props) {
   var _props$theme$colors8;
   return (_props$theme$colors8 = props.theme.colors) === null || _props$theme$colors8 === void 0 ? void 0 : _props$theme$colors8.lightGray;
 }, function (props) {
