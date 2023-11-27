@@ -4544,9 +4544,9 @@ camelize@^1.0.0:
   integrity sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==
 
 caniuse-lite@^1.0.30001541:
-  version "1.0.30001564"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001564.tgz#eaa8bbc58c0cbccdcb7b41186df39dd2ba591889"
-  integrity sha512-DqAOf+rhof+6GVx1y+xzbFPeOumfQnhYzVnZD6LAXijR77yPtm9mfOcqOnT3mpnJiZVT+kwLAFnRlZcIz+c6bg==
+  version "1.0.30001565"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001565.tgz#a528b253c8a2d95d2b415e11d8b9942acc100c4f"
+  integrity sha512-xrE//a3O7TP0vaJ8ikzkD2c2NgcVUvsEe2IvFTntV4Yd1Z9FVzh+gW+enX96L0psrbaFMcVcH2l90xNuGDWc8w==
 
 canvg@^3.0.6:
   version "3.0.10"
@@ -5732,9 +5732,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.593"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.593.tgz#f71b157f7382f3d3a164f73ff2da772d4b3fd984"
-  integrity sha512-c7+Hhj87zWmdpmjDONbvNKNo24tvmD4mjal1+qqTYTrlF0/sNpAcDlU0Ki84ftA/5yj3BF2QhSGEC0Rky6larg==
+  version "1.4.595"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.595.tgz#fa33309eb9aabb7426915f8e166ec60f664e9ad4"
+  integrity sha512-+ozvXuamBhDOKvMNUQvecxfbyICmIAwS4GpLmR0bsiSBlGnLaOcs2Cj7J8XSbW+YEaN3Xl3ffgpm+srTUWFwFQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9296,10 +9296,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@11.0.2:
-  version "11.0.2"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-11.0.2.tgz#fb6a5ccfffe37e988261b90ee7c3d2b4013cce8f"
-  integrity sha512-Vjk+oPJv+R0hsdM7v0KidS4lbiMOfIjEfVcR1SnhKjODOPhdjfsZyW5QxpaSf6Z9yNxE1l3Q9ldvYHi6j75FmA==
+ordering-components-external@12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-12.0.0.tgz#1a6ad44ea3bcc5315c378ac7dd06738cd02c0d59"
+  integrity sha512-F3eo1m+Z2sMPbuaeddivaMVtXxXSQlAYq6N36xXFd6ulPLWHZrEBlTRXOGkjdDyFgHiiA6Tlz/nlINzCi76s0w==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
