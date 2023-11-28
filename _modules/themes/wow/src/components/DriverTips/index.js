@@ -48,9 +48,10 @@ var DriverTipsUI = function DriverTipsUI(props) {
     }, AfterElement);
   }));
 };
-var DriverTips = exports.DriverTips = function DriverTips(props) {
+var DriverTips = function DriverTips(props) {
   var driverTipsProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: DriverTipsUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.DriverTips, driverTipsProps);
 };
+exports.DriverTips = DriverTips;

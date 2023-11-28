@@ -123,6 +123,7 @@ const CartUI = (props) => {
       : null
 
   const cateringValues = businessConfigs && getCateringValues(cateringTypeString, businessConfigs)
+  const extraValueAdjustment = cart?.metafields?.find?.(meta => meta?.key === 'extra_value_adjustment_amount')
 
   const walletName = {
     cash: {
@@ -507,6 +508,14 @@ const CartUI = (props) => {
                             )}
                         </td>
                         <td>{parsePrice(cart?.driver_tip)}</td>
+                      </tr>
+                    )}
+                    {extraValueAdjustment && !!parseFloat(extraValueAdjustment?.value) && (
+                      <tr>
+                        <td>
+                          {t(extraValueAdjustment?.key?.toUpperCase(), extraValueAdjustment?.key)}{' '}
+                        </td>
+                        <td>{parseFloat(extraValueAdjustment?.value) > 0 ? parsePrice(parseFloat(extraValueAdjustment?.value)) : `- ${parsePrice(parseFloat(extraValueAdjustment?.value) * -1)}`}</td>
                       </tr>
                     )}
                   </tbody>

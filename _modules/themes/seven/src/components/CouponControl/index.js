@@ -108,9 +108,10 @@ var CouponControlUI = function CouponControlUI(props) {
     }, AfterElement);
   }));
 };
-var CouponControl = exports.CouponControl = function CouponControl(props) {
+var CouponControl = function CouponControl(props) {
   var couponProp = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: CouponControlUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.CouponControl, couponProp);
 };
+exports.CouponControl = CouponControl;

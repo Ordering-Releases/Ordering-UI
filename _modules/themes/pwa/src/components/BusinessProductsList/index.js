@@ -130,9 +130,10 @@ var BusinessProductsListUI = function BusinessProductsListUI(props) {
     }, AfterElement);
   }));
 };
-var BusinessProductsList = exports.BusinessProductsList = function BusinessProductsList(props) {
+var BusinessProductsList = function BusinessProductsList(props) {
   var businessProductsListProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: BusinessProductsListUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductsList, businessProductsListProps);
 };
+exports.BusinessProductsList = BusinessProductsList;

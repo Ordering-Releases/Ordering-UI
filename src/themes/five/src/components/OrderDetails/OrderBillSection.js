@@ -34,6 +34,7 @@ export const OrderBillSection = (props) => {
       name: t('PAY_WITH_CREDITS_POINTS_WALLET', 'Pay with Credit Points Wallet')
     }
   }
+  const extraValueAdjustment = order?.metafields?.find?.(meta => meta?.key === 'extra_value_adjustment_amount')
 
   const getIncludedTaxes = (isDeliveryFee) => {
     if (order?.taxes?.length === 0) {
@@ -236,6 +237,14 @@ export const OrderBillSection = (props) => {
                   )}
               </td>
               <td>{parsePrice(order?.summary?.driver_tip ?? order?.totalDriverTip)}</td>
+            </tr>
+          )}
+          {extraValueAdjustment && !!parseFloat(extraValueAdjustment?.value) && (
+            <tr>
+              <td>
+                {t(extraValueAdjustment?.key?.toUpperCase(), extraValueAdjustment?.key)}{' '}
+              </td>
+              <td>{parseFloat(extraValueAdjustment?.value) > 0 ? parsePrice(parseFloat(extraValueAdjustment?.value)) : `- ${parsePrice(parseFloat(extraValueAdjustment?.value) * -1)}`}</td>
             </tr>
           )}
         </tbody>
