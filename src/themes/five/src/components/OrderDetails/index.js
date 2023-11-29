@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import {
-  useLanguage,
   OrderDetails as OrderDetailsController,
+  useLanguage,
   useEvent,
   useUtils,
   useConfig,
@@ -14,7 +14,6 @@ import {
 import RiUser2Fill from '@meronex/icons/ri/RiUser2Fill'
 import FaUserAlt from '@meronex/icons/fa/FaUserAlt'
 import ExclamationTriangleIcon from '@meronex/icons/bs/BsExclamationTriangle'
-
 import { Button } from '../../styles/Buttons'
 import { NotFoundSource } from '../NotFoundSource'
 
@@ -129,14 +128,15 @@ const OrderDetailsUI = (props) => {
   const acceptedStatus = [1, 2, 5, 6, 10, 11, 12, 15]
   const completedStatus = [1, 2, 5, 6, 10, 11, 12, 15, 16, 17]
   const placeSpotTypes = [3, 4, 5]
-  const activeStatus = [0, 3, 4, 7, 8, 9, 13, 14, 18, 19, 20, 21, 22, 23]
+  const activeStatus = [0, 3, 4, 7, 8, 9, 13, 14, 18, 19, 20, 21, 22, 23, 24, 25, 26]
   const preorderStatus = [0, 13]
   const googleMapsApiKey = configs?.google_maps_api_key?.value
   const enabledPoweredByOrdering = configs?.powered_by_ordering_module?.value
   const changeIdToExternalId = configs?.change_order_id?.value === '1'
   const cateringTypes = [7, 8]
+  const deliveryTypes = [1, 7]
 
-  const hideOrderActions = order?.delivery_type === 1
+  const hideOrderActions = deliveryTypes?.includes(order?.delivery_type)
   const isGiftCardOrder = !order?.business_id
 
   const isOriginalLayout = theme?.confirmation?.components?.layout?.type === 'original'
@@ -158,7 +158,7 @@ const OrderDetailsUI = (props) => {
   const hideCustomerEmail = theme?.confirmation?.components?.customer?.components?.email?.hidden
   const hideCustomerPhoto = theme?.confirmation?.components?.customer?.components?.photo?.hidden
 
-  const validTrackingStatus = [9, 19, 23]
+  const validTrackingStatus = [9, 19, 23, 26]
   const mapConfigs = { zoom: 15 }
 
   const handleGoToPage = (data) => {
@@ -435,13 +435,22 @@ const OrderDetailsUI = (props) => {
                   </p>
                 )}
                 {!hideDeliveryDate && (
-                  <p className='date'>
-                    {activeStatus.includes(order?.status) ? (
-                      <OrderEta order={order} outputFormat={`YYYY-MM-DD ${configs?.general_hour_format?.value}`} />
-                    ) : (
-                      parseDate(order?.reporting_data?.at[`status:${order.status}`], { outputFormat: `YYYY-MM-DD ${configs?.general_hour_format?.value}` })
+                  <>
+                    {cateringTypes.includes(order?.delivery_type) && (
+                      <p className='date'>
+                        {t('CREATED_AT', 'Created at')}: {parseDate(order?.created_at)}
+                      </p>
                     )}
-                  </p>
+                    <p className='date'>
+                      {activeStatus.includes(order?.status) ? (
+                        <>
+                          {cateringTypes.includes(order?.delivery_type) ? `${t('PLACED_TO', 'Placed to')}:` : ''} <OrderEta order={order} outputFormat={`YYYY-MM-DD ${configs?.general_hour_format?.value}`} />
+                        </>
+                      ) : (
+                        parseDate(order?.reporting_data?.at[`status:${order.status}`], { outputFormat: `YYYY-MM-DD ${configs?.general_hour_format?.value}` })
+                      )}
+                    </p>
+                  </>
                 )}
                 {(acceptedStatus.includes(parseInt(order?.status, 10)) ||
                   !isOriginalLayout
@@ -679,7 +688,7 @@ const OrderDetailsUI = (props) => {
                 }
               </>
             )}
-            {(order?.delivery_type === 1 || order?.comment) && !isGiftCardOrder && (
+            {(deliveryTypes?.includes(order?.delivery_type) || order?.comment) && !isGiftCardOrder && (
               <OrderPreferences>
                 <OrderPreferencesSection
                   order={order}

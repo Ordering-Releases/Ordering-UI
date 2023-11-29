@@ -90,7 +90,7 @@ const MessagesUI = (props) => {
   const buttonRef = useRef(null)
   const [modalImage, setModalImage] = useState({ open: false, src: '' })
   const imageRef = useRef(null)
-  const previousStatus = [1, 2, 5, 6, 10, 11, 12, 16, 17]
+  const previousStatus = [1, 2, 5, 6, 10, 11, 12, 15, 16, 17]
   const chatDisabled = previousStatus.includes(order?.status)
 
   const quickMessageList = [
@@ -255,6 +255,12 @@ const MessagesUI = (props) => {
         return 'ORDER_LOOKING_FOR_DRIVER'
       case 23:
         return 'ORDER_DRIVER_ON_WAY'
+      case 24:
+        return 'ORDER_DRIVER_WAITING_FOR_ORDER'
+      case 25:
+        return 'ORDER_ACCEPTED_BY_DRIVER_COMPANY'
+      case 26:
+        return 'ORDER_DRIVER_ARRIVED_CUSTOMER'
       default:
         return getTraduction(status)
     }

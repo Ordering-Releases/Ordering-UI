@@ -51,6 +51,7 @@ const OrdersListingUI = (props) => {
   const theme = useTheme()
   const [events] = useEvent()
   const [{ parseDate, optimizeImage }] = useUtils()
+  const deliveryTypes = [1, 7]
 
   const handleOrderClick = (e, order) => {
     const isInvalid = e.target.closest('.view-details') || e.target.closest('.driver-selector')
@@ -157,7 +158,7 @@ const OrdersListingUI = (props) => {
                     <p>{order?.business?.city?.name}</p>
                   </div>
                 </BusinessInfo>
-                {order?.delivery_type === 1 && (
+                {deliveryTypes?.includes(order?.delivery_type) && (
                   <DriverInfo>
                     <WrapperImage>
                       {(order?.driver && order?.driver?.photo) ? (
@@ -216,7 +217,7 @@ export const IdOrderList = (props) => {
   const orderListProps = {
     ...props,
     UIComponent: OrdersListingUI,
-    orderStatus: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    orderStatus: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
     useDefualtSessionManager: true,
     orderBy: 'id',
     orderDirection: 'desc'
@@ -229,7 +230,7 @@ export const NewestOrderList = (props) => {
   const orderListProps = {
     ...props,
     UIComponent: OrdersListingUI,
-    orderStatus: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    orderStatus: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
     useDefualtSessionManager: true,
     profileMessages: true,
     orderBy: 'last_direct_message_at',
