@@ -27,8 +27,8 @@ require("swiper/swiper-bundle.min.css");
 require("swiper/swiper.min.css");
 var _styles = require("./styles");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -211,7 +211,7 @@ var ServiceFormUI = function ServiceFormUI(props) {
       return !(item.start === (productCart === null || productCart === void 0 || (_productCart$calendar = productCart.calendar_event) === null || _productCart$calendar === void 0 ? void 0 : _productCart$calendar.start) && item.end === (productCart === null || productCart === void 0 || (_productCart$calendar2 = productCart.calendar_event) === null || _productCart$calendar2 === void 0 ? void 0 : _productCart$calendar2.end));
     }) : _toConsumableArray(professional === null || professional === void 0 ? void 0 : professional.busy_times);
     var valid = busyTimes.some(function (item) {
-      return _moment2.default.utc(item === null || item === void 0 ? void 0 : item.start).local().valueOf() <= (0, _moment2.default)(selectedMoment).valueOf() && (0, _moment2.default)(selectedMoment).valueOf() < _moment2.default.utc(item === null || item === void 0 ? void 0 : item.end).local().valueOf() || _moment2.default.utc(item === null || item === void 0 ? void 0 : item.start).local().valueOf() < (0, _moment2.default)(selectedMoment).add(duration, 'minutes').valueOf() && (0, _moment2.default)(selectedMoment).add(duration, 'minutes').valueOf() < _moment2.default.utc(item === null || item === void 0 ? void 0 : item.end).local().valueOf();
+      return _moment2.default.utc(item === null || item === void 0 ? void 0 : item.start).local().valueOf() <= (0, _moment2.default)(selectedMoment).valueOf() && (0, _moment2.default)(selectedMoment).valueOf() < _moment2.default.utc(item === null || item === void 0 ? void 0 : item.end).local().valueOf() || _moment2.default.utc(item === null || item === void 0 ? void 0 : item.start).local().valueOf() < (0, _moment2.default)(selectedMoment).valueOf() && (0, _moment2.default)(selectedMoment).add(duration, 'minutes').valueOf() < _moment2.default.utc(item === null || item === void 0 ? void 0 : item.end).local().valueOf();
     });
     return valid;
   };
@@ -338,7 +338,7 @@ var ServiceFormUI = function ServiceFormUI(props) {
     className: "button-next"
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.ChevronRight, null)))), /*#__PURE__*/_react.default.createElement(_styles.HeaderInfoWrapper, null, /*#__PURE__*/_react.default.createElement("h2", null, product === null || product === void 0 ? void 0 : product.name), /*#__PURE__*/_react.default.createElement(_styles.PriceAndDuration, null, /*#__PURE__*/_react.default.createElement("span", null, parsePrice(product === null || product === void 0 ? void 0 : product.price)), /*#__PURE__*/_react.default.createElement("span", {
     className: "dot"
-  }, "\u2022"), /*#__PURE__*/_react.default.createElement("span", null, product === null || product === void 0 ? void 0 : product.duration, "min")), /*#__PURE__*/_react.default.createElement("p", null, product === null || product === void 0 ? void 0 : product.description)), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), !professionalSelected && /*#__PURE__*/_react.default.createElement(_styles.ProfessionalInfoWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.SectionHeader, null, /*#__PURE__*/_react.default.createElement("h2", null, t('PROFESSIONALS', 'Professionals')), /*#__PURE__*/_react.default.createElement("span", null, t('REQUIRED', 'Required'))), /*#__PURE__*/_react.default.createElement(_styles.ProfessionalSelectWrapper, {
+  }, "\u2022"), /*#__PURE__*/_react.default.createElement("span", null, product === null || product === void 0 ? void 0 : product.duration, "min")), /*#__PURE__*/_react.default.createElement("p", null, product === null || product === void 0 ? void 0 : product.description)), /*#__PURE__*/_react.default.createElement(_styles.Divider, null), /*#__PURE__*/_react.default.createElement(_styles.ProfessionalInfoWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.SectionHeader, null, /*#__PURE__*/_react.default.createElement("h2", null, t('PROFESSIONALS', 'Professionals')), /*#__PURE__*/_react.default.createElement("span", null, t('REQUIRED', 'Required'))), /*#__PURE__*/_react.default.createElement(_styles.ProfessionalSelectWrapper, {
     ref: dropDownRef
   }, /*#__PURE__*/_react.default.createElement(_styles.SelectedItem, {
     onClick: function onClick() {
@@ -375,7 +375,7 @@ var ServiceFormUI = function ServiceFormUI(props) {
     }, t('AVAILABLE', 'Available'))) : /*#__PURE__*/_react.default.createElement("span", {
       className: "status"
     }, t('NOT_AVAILABLE', 'Not available'))))));
-  })))), /*#__PURE__*/_react.default.createElement(_styles.ScheduleWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.SectionHeader, null, /*#__PURE__*/_react.default.createElement("h2", null, t('SCHEDULE', 'Schedule')), /*#__PURE__*/_react.default.createElement("span", null, t('REQUIRED', 'Required'))), currentProfessional !== null && currentProfessional !== void 0 && currentProfessional.schedule ? /*#__PURE__*/_react.default.createElement(_styles.OrderTimeWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.DateWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.MonthYearLayer, null, /*#__PURE__*/_react.default.createElement("span", null, (0, _moment2.default)(dateSelected).format('MMMM, yyyy'))), /*#__PURE__*/_react.default.createElement(_styles.DaysSwiper, {
+  })))), /*#__PURE__*/_react.default.createElement(_styles.ScheduleWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.SectionHeader, null, /*#__PURE__*/_react.default.createElement("h2", null, t('SCHEDULE', 'Schedule')), /*#__PURE__*/_react.default.createElement("span", null, t('REQUIRED', 'Required'))), currentProfessional !== null && currentProfessional !== void 0 && currentProfessional.schedule ? /*#__PURE__*/_react.default.createElement(_styles.OrderTimeWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.DateWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.MonthYearLayer, null, /*#__PURE__*/_react.default.createElement("span", null, dateSelected && (0, _moment2.default)(dateSelected).format('MMMM, yyyy'))), /*#__PURE__*/_react.default.createElement(_styles.DaysSwiper, {
     left: /*#__PURE__*/_react.default.createElement(_BsCaretLeftFill.default, null)
   }, /*#__PURE__*/_react.default.createElement(_react2.Swiper, {
     spaceBetween: 0,
@@ -514,11 +514,10 @@ var ServiceFormUI = function ServiceFormUI(props) {
     closeOnBackdrop: false
   }));
 };
-var ServiceForm = function ServiceForm(props) {
+var ServiceForm = exports.ServiceForm = function ServiceForm(props) {
   var serviceFormProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: ServiceFormUI,
     isService: true
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.ProductForm, serviceFormProps);
 };
-exports.ServiceForm = ServiceForm;
