@@ -51,7 +51,7 @@ const OrderTypeSelectorHeaderUI = (props) => {
           ? (
             <OrderTypeBoxGroup>
               {
-                orderTypes && orderTypes.map((orderType) => {
+                orderTypes && orderTypes.filter((orderType) => configTypes?.includes(orderType?.value)).map(orderType => {
                   return (
                     <OrderItem key={orderType.value} onClick={openModal}>
                       <OrderItemWraper>
