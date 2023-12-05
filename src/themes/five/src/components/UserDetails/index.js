@@ -11,7 +11,8 @@ import {
   ModalIcon,
   TitleContainer,
   CountryFlag,
-  PhoneContainer
+  PhoneContainer,
+  SkeletonsContainer
 } from './styles'
 import MdClose from '@meronex/icons/md/MdClose'
 import PhoneInput from 'react-phone-number-input'
@@ -50,8 +51,9 @@ const UserDetailsUI = (props) => {
   } = props
 
   const [, t] = useLanguage()
-  const [{ user }] = useSession()
+  const [{ user, loading }] = useSession()
   const [alertState, setAlertState] = useState({ open: false, content: [] })
+  const [skeletonsLength] = useState(requiredFields)
   const userData = userState.result?.result || props.userData || formState.result?.result || user
 
   const [willVerifyOtpState, setWillVerifyOtpState] = useState(false)
@@ -127,7 +129,10 @@ const UserDetailsUI = (props) => {
   }, [willVerifyOtpState])
 
   useEffect(() => {
-    if (isCheckoutPlace && requiredFields?.length === 0 && !formState?.loading) {
+    if (isCheckoutPlace &&
+      (requiredFields?.length === 0 || (requiredFields?.length === 1 && requiredFields?.includes('email') && isCustomerMode)) &&
+      !formState?.loading
+    ) {
       setIsSuccess && setIsSuccess(true)
       onClose && onClose()
     }
@@ -141,15 +146,21 @@ const UserDetailsUI = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
-      {(validationFields.loading || formState.loading || userState.loading) && (
-        <UserData>
-          <Skeleton width={250} height={25} />
-          <Skeleton width={180} height={25} />
-          <Skeleton width={210} height={25} />
-        </UserData>
+      {((validationFields.loading || formState.loading || userState.loading || loading)) && (
+        <SkeletonsContainer>
+          <UserData>
+            {skeletonsLength?.map(field => (
+              <div key={field?.id}>
+                <Skeleton width={250} height={35} />
+                <Skeleton width='100%' height={40} />
+              </div>
+            ))}
+            <Skeleton width='100%' height={44} style={{ marginTop: 20 }} />
+          </UserData>
+        </SkeletonsContainer>
       )}
 
-      {!(validationFields.loading || formState.loading || userState.loading) && (
+      {!(validationFields.loading || formState.loading || userState.loading || loading) && (
         <Container>
           {isModal && (
             <TitleContainer isAddressFormOpen={isAddressFormOpen && !isEdit}>
