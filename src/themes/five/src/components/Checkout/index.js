@@ -100,8 +100,7 @@ const CheckoutUI = (props) => {
     onPlaceOrderClick,
     setPlaceSpotNumber,
     placeSpotNumber,
-    checkoutFieldsState,
-    alseaCheckPriceError
+    checkoutFieldsState
   } = props
 
   const theme = useTheme()
@@ -172,8 +171,7 @@ const CheckoutUI = (props) => {
     validateCommentsCartField ||
     validateDriverTipField ||
     validateCouponField ||
-    validateZipcodeCard ||
-    !!alseaCheckPriceError
+    validateZipcodeCard
 
   const driverTipsOptions = typeof configs?.driver_tip_options?.value === 'string'
     ? JSON.parse(configs?.driver_tip_options?.value) || []
@@ -723,12 +721,6 @@ const CheckoutUI = (props) => {
         {validateZipcodeCard && (
           <WarningText>
             {t('WARNING_CARD_ZIPCODE_REQUIRED', 'Your card selected has not zipcode')}
-          </WarningText>
-        )}
-
-        {!!alseaCheckPriceError && (
-          <WarningText>
-            {alseaCheckPriceError}
           </WarningText>
         )}
         {cart?.valid_preorder !== undefined && !cart?.valid_preorder && (
