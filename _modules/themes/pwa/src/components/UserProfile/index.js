@@ -22,13 +22,13 @@ var _LanguageSelector = require("../../../../../components/LanguageSelector");
 var _Modal = require("../Modal");
 var _styles = require("./styles");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -228,13 +228,14 @@ var UserProfileFormUI = function UserProfileFormUI(props) {
     }, AfterElement);
   }));
 };
-var UserProfile = exports.UserProfile = function UserProfile(props) {
+var UserProfile = function UserProfile(props) {
   var UserProfileProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: UserProfileFormUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.UserFormDetails, UserProfileProps);
 };
-var Bell = exports.Bell = function Bell() {
+exports.UserProfile = UserProfile;
+var Bell = function Bell() {
   return /*#__PURE__*/_react.default.createElement("svg", {
     width: "16",
     height: "16",
@@ -264,7 +265,8 @@ var Bell = exports.Bell = function Bell() {
     fill: "white"
   }))));
 };
-var GeoAlt = exports.GeoAlt = function GeoAlt() {
+exports.Bell = Bell;
+var GeoAlt = function GeoAlt() {
   return /*#__PURE__*/_react.default.createElement("svg", {
     width: "16",
     height: "16",
@@ -287,7 +289,8 @@ var GeoAlt = exports.GeoAlt = function GeoAlt() {
     fill: "white"
   }))));
 };
-var LifePre = exports.LifePre = function LifePre() {
+exports.GeoAlt = GeoAlt;
+var LifePre = function LifePre() {
   return /*#__PURE__*/_react.default.createElement("svg", {
     width: "16",
     height: "16",
@@ -307,7 +310,8 @@ var LifePre = exports.LifePre = function LifePre() {
     fill: "white"
   }))));
 };
-var Reward = exports.Reward = function Reward() {
+exports.LifePre = LifePre;
+var Reward = function Reward() {
   return /*#__PURE__*/_react.default.createElement("svg", {
     id: "Capa_1",
     enableBackground: "new 0 0 512 512",
@@ -321,6 +325,7 @@ var Reward = exports.Reward = function Reward() {
     d: "m256 84.791c-64.428 0-116.844 52.416-116.844 116.845s52.416 116.843 116.844 116.843 116.844-52.416 116.844-116.844-52.416-116.844-116.844-116.844zm0 203.662c-47.871 0-86.818-38.947-86.818-86.818 0-47.872 38.947-86.818 86.818-86.818s86.818 38.947 86.818 86.818c0 47.872-38.947 86.818-86.818 86.818z"
   }));
 };
+exports.Reward = Reward;
 var LogoutActionUI = function LogoutActionUI(props) {
   var _useLanguage3 = (0, _orderingComponentsExternal.useLanguage)(),
     _useLanguage4 = _slicedToArray(_useLanguage3, 2),

@@ -16,7 +16,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  * Hook to mangage Recaptcha version
  * @param {boolean} enableRecaptcha
  */
-var useRecaptcha = exports.useRecaptcha = function useRecaptcha(enableRecaptcha) {
+var useRecaptcha = function useRecaptcha(enableRecaptcha) {
   var _useConfig = (0, _orderingComponentsExternal.useConfig)(),
     _useConfig2 = _slicedToArray(_useConfig, 1),
     configs = _useConfig2[0].configs;
@@ -59,3 +59,4 @@ var useRecaptcha = exports.useRecaptcha = function useRecaptcha(enableRecaptcha)
   }, [configs, enableRecaptcha]);
   return [reCaptchaConfig];
 };
+exports.useRecaptcha = useRecaptcha;

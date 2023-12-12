@@ -11,7 +11,7 @@ var _react = require("react");
  * @param {object} ref
  * @param {Function} cb
  */
-var useOutsideClick = exports.useOutsideClick = function useOutsideClick(ref, cb) {
+var useOutsideClick = function useOutsideClick(ref, cb) {
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) cb();
@@ -22,3 +22,4 @@ var useOutsideClick = exports.useOutsideClick = function useOutsideClick(ref, cb
     };
   }, [ref]);
 };
+exports.useOutsideClick = useOutsideClick;
