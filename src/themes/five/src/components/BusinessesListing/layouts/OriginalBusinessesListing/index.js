@@ -204,6 +204,12 @@ const BusinessesListingUI = (props) => {
   useEffect(() => {
     setActiveMap(false)
     if (!businessesList?.businesses?.length) return
+    if (businessesList?.businesses?.length === 1 && configs?.activate_single_store_automatically?.value === '1') {
+      onBusinessClick(businessesList?.businesses[0])
+      window.localStorage.setItem('single_business', true)
+      return
+    }
+    window.localStorage.removeItem('single_business')
     const ids = [...favoriteIds]
     businessesList.businesses.forEach(business => {
       if (business?.favorite) {
@@ -292,7 +298,9 @@ const BusinessesListingUI = (props) => {
       )}
       {(userCustomer && orderState?.options?.address?.address && isCustomerMode) && (
         <>
-          <Title>{t('DELIVERY_TYPE', 'Delivery Type')}</Title>
+          {(configTypes.includes(1) || configTypes.some(type => pickupTypes.includes(type))) && (
+            <Title>{t('DELIVERY_TYPE', 'Delivery Type')}</Title>
+          )}
           <TypesContainer>
             {configTypes.includes(1) && (
               <TypeButton onClick={() => handleChangeType(1)} disabled={orderState?.loading} activated={!isPickupSelected}>
