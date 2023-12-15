@@ -1,6 +1,6 @@
 {
   "name": "ordering-ui-external",
-  "version": "14.0.12",
+  "version": "14.0.14",
   "description": "Ordering UI Components",
   "main": "./_modules/index.js",
   "exports": {
