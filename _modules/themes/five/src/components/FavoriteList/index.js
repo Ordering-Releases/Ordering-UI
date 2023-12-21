@@ -20,13 +20,13 @@ var _SingleOrderCard = require("../SingleOrderCard");
 var _utils = require("../../../../../utils");
 var _SingleProfessionalCard = require("../SingleProfessionalCard");
 var _styles = require("./styles");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -39,7 +39,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FavoriteListUI = function FavoriteListUI(props) {
-  var _props$beforeElements, _props$beforeComponen, _favoriteList$favorit2, _favoriteList$favorit3, _favoriteList$favorit4, _favoriteList$favorit5, _favoriteList$favorit6, _props$afterComponent, _props$afterElements;
+  var _props$beforeElements, _props$beforeComponen, _favoriteList$favorit2, _favoriteList$favorit3, _favoriteList$favorit4, _favoriteList$favorit5, _favoriteList$favorit6, _favProduct$businesse, _favProduct$businesse2, _favProduct$businesse3, _props$afterComponent, _props$afterElements;
   var favoriteList = props.favoriteList,
     handleUpdateFavoriteList = props.handleUpdateFavoriteList,
     pagination = props.pagination,
@@ -75,6 +75,14 @@ var FavoriteListUI = function FavoriteListUI(props) {
     _useState4 = _slicedToArray(_useState3, 2),
     preorderBusiness = _useState4[0],
     setPreorderBusiness = _useState4[1];
+  var _useState5 = (0, _react.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    openModal = _useState6[0],
+    setOpenModal = _useState6[1];
+  var _useState7 = (0, _react.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    favProduct = _useState8[0],
+    setFavProduct = _useState8[1];
   var pastOrders = [1, 2, 5, 6, 10, 11, 12, 15, 16, 17];
   var handleClickBusiness = function handleClickBusiness(business) {
     if (businessUrlTemplate === '/store/:business_slug' || businessUrlTemplate === '/:business_slug') {
@@ -109,11 +117,11 @@ var FavoriteListUI = function FavoriteListUI(props) {
   var onRedirectPage = function onRedirectPage(data) {
     events.emit('go_to_page', data);
   };
-  var _onProductClick = function onProductClick(product) {
-    var _product$category, _product$category2;
-    var slug = product === null || product === void 0 || (_product$category = product.category) === null || _product$category === void 0 || (_product$category = _product$category.business) === null || _product$category === void 0 ? void 0 : _product$category.slug;
-    var categoryId = product === null || product === void 0 || (_product$category2 = product.category) === null || _product$category2 === void 0 ? void 0 : _product$category2.id;
-    var productId = product === null || product === void 0 ? void 0 : product.id;
+  var handleOpenProduct = function handleOpenProduct(business) {
+    var _favProduct$category;
+    var slug = business.slug;
+    var categoryId = favProduct === null || favProduct === void 0 || (_favProduct$category = favProduct.category) === null || _favProduct$category === void 0 ? void 0 : _favProduct$category.id;
+    var productId = favProduct === null || favProduct === void 0 ? void 0 : favProduct.id;
     if (!categoryId && !productId) {
       if (businessUrlTemplate === '/store/:business_slug' || businessUrlTemplate === '/:business_slug') {
         events.emit('go_to_page', {
@@ -175,6 +183,10 @@ var FavoriteListUI = function FavoriteListUI(props) {
         search: "?".concat(_categoryParameter, "=").concat(categoryId, "&").concat(_productParameter, "=").concat(productId)
       });
     }
+  };
+  var _onProductClick = function onProductClick(product) {
+    setOpenModal(true);
+    setFavProduct(product);
   };
   var closeOrderModal = function closeOrderModal(e) {
     var outsideModal = !window.document.getElementById('app-modals') || !window.document.getElementById('app-modals').contains(e.target);
@@ -355,7 +367,29 @@ var FavoriteListUI = function FavoriteListUI(props) {
     business: preorderBusiness,
     handleClick: handleClickBusiness,
     showButton: true
-  })), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
+  })), /*#__PURE__*/_react.default.createElement(_Modal.Modal, {
+    open: openModal,
+    onClose: function onClose() {
+      return setOpenModal(false);
+    }
+  }, /*#__PURE__*/_react.default.createElement(_styles.FavPopupView, null, (favProduct === null || favProduct === void 0 ? void 0 : favProduct.images) && /*#__PURE__*/_react.default.createElement(_styles.Image, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: favProduct.images,
+    alt: "product-".concat(i),
+    width: "150px",
+    height: "150px",
+    loading: "lazy"
+  })), /*#__PURE__*/_react.default.createElement("h2", null, favProduct === null || favProduct === void 0 ? void 0 : favProduct.name), /*#__PURE__*/_react.default.createElement("h2", null, favProduct !== null && favProduct !== void 0 && favProduct.businesses && (favProduct === null || favProduct === void 0 || (_favProduct$businesse = favProduct.businesses) === null || _favProduct$businesse === void 0 ? void 0 : _favProduct$businesse.length) > 1 ? t('AVAILABLE_BUSINESSES_FOR_PRODUCT', 'Available businesses for this product') : favProduct !== null && favProduct !== void 0 && favProduct.businesses && (favProduct === null || favProduct === void 0 || (_favProduct$businesse2 = favProduct.businesses) === null || _favProduct$businesse2 === void 0 ? void 0 : _favProduct$businesse2.length) == 1 ? t('AVAILABLE_BUSINESSE_FOR_PRODUCT', 'Available business for this product') : t('NOT_AVAILABLE_BUSINESSE', 'Business is not available for this product')), /*#__PURE__*/_react.default.createElement("div", null, favProduct === null || favProduct === void 0 || (_favProduct$businesse3 = favProduct.businesses) === null || _favProduct$businesse3 === void 0 ? void 0 : _favProduct$businesse3.map(function (business) {
+    return /*#__PURE__*/_react.default.createElement(_styles.SingleBusinessOffer, {
+      key: business.id
+    }, /*#__PURE__*/_react.default.createElement(_styles.BusinessLogo, {
+      bgimage: business === null || business === void 0 ? void 0 : business.logo
+    }), /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, /*#__PURE__*/_react.default.createElement("p", null, business.name), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
+      onClick: function onClick() {
+        return handleOpenProduct(business);
+      },
+      color: "primary"
+    }, t('GO_TO_BUSINESSS', 'Go to business'))));
+  })))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
     }, props));
@@ -365,10 +399,9 @@ var FavoriteListUI = function FavoriteListUI(props) {
     }, AfterElement);
   }));
 };
-var FavoriteList = function FavoriteList(props) {
+var FavoriteList = exports.FavoriteList = function FavoriteList(props) {
   var favoriteListProps = _objectSpread(_objectSpread({}, props), {}, {
     UIComponent: FavoriteListUI
   });
   return /*#__PURE__*/_react.default.createElement(_orderingComponentsExternal.FavoriteList, favoriteListProps);
 };
-exports.FavoriteList = FavoriteList;

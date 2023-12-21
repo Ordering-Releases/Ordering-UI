@@ -9234,10 +9234,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@13.0.12:
-  version "13.0.12"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.0.12.tgz#2d8d28a6c0d7a7247e643a5a198da6c86285ab44"
-  integrity sha512-uV2t0EcQb+FrEivnka0AXICx295u8LRXKvf51Njpl5NcTyJ61z/m9PjBOzdzLhtPuNO1KxuyWNTd29MlANFlCQ==
+ordering-components-external@13.0.14:
+  version "13.0.14"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.0.14.tgz#f3e4eb002c6042d54293c75489490a6e0c418ba8"
+  integrity sha512-SHZRGmMcvUA0wjjhyEfc4OMzBD8azOOu36gC8GjQZw15AnI2KI6l11aaLWx1Hrjq3uGalVvVDanQ4kvhjnoQfA==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
@@ -10041,9 +10041,9 @@ react-date-range@^1.4.0:
     shallow-equal "^1.2.1"
 
 react-datepicker@^4.12.0:
-  version "4.24.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.24.0.tgz#dfb12e277993f1ae2d350b7ba4dd6bba7d21bfb1"
-  integrity sha512-2QUC2pP+x4v3Jp06gnFllxKsJR0yoT/K6y86ItxEsveTXUpsx+NBkChWXjU0JsGx/PL8EQnsxN0wHl4zdA1m/g==
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.25.0.tgz#86b3ee8ac764bad1650046d0cf9280837bf6d845"
+  integrity sha512-zB7CSi44SJ0sqo8hUQ3BF1saE/knn7u25qEMTO1CQGofY1VAKahO8k9drZtp0cfW1DMfoYLR3uSY1/uMvbEzbg==
   dependencies:
     "@popperjs/core" "^2.11.8"
     classnames "^2.2.6"
