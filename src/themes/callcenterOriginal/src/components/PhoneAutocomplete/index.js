@@ -72,9 +72,11 @@ const PhoneAutocompleteUI = (props) => {
   const userCustomer = JSON.parse(window.localStorage.getItem('user-customer'))
   const [inputValue, setInputValue] = useState(urlPhone ?? userCustomer?.cellphone ?? '')
   const [isSavedAddress, setIsSavedAddress] = useState(false)
+  const countryPhoneCode = userCustomer?.country_phone_code ?? userCustomer?.country_code
+
   const [optSelected, setOptSelected] = useState(userCustomer ? {
     value: userCustomer.cellphone || userCustomer.phone,
-    label: `${userCustomer?.country_phone_code ? `(${userCustomer?.country_phone_code})` : ''} ${userCustomer?.phone && !userCustomer?.cellphone ? `${userCustomer?.phone}` : ''} ${userCustomer?.cellphone ? `${userCustomer.cellphone}` : ''} - {${userCustomer.name}}`,
+    label: `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${userCustomer?.phone && !userCustomer?.cellphone ? `${userCustomer?.phone}` : ''} ${userCustomer?.cellphone ? `${userCustomer.cellphone}` : ''} - {${userCustomer.name}}`,
     flag: userCustomer?.imported_address_text && userCustomer?.addresses?.length === 0,
     lastname: userCustomer.lastname
   } : null)
@@ -97,8 +99,7 @@ const PhoneAutocompleteUI = (props) => {
   const handleFindClick = () => {
     if (optSelected && !(userCustomer?.id && orderState?.options?.address?.address)) {
       onChange(optSelected)
-    }
-    else if (userCustomer?.id && orderState?.options?.address?.address) {
+    } else if (userCustomer?.id && orderState?.options?.address?.address) {
       onRedirectPage && onRedirectPage('search')
     } else {
       setAlertState({ open: true, content: t('SELECT_ADDRESS_CUSTOMER', 'Please select an address for the selected customer') })
@@ -193,9 +194,10 @@ const PhoneAutocompleteUI = (props) => {
   }
 
   const optionsToSelect = customersPhones.users.map(user => {
+    const countryPhoneCode = user?.country_phone_code ?? user?.country_code
     const obj = {}
     obj.value = user.cellphone || user.phone
-    obj.label = `${user?.country_phone_code ? `(${user?.country_phone_code})` : ''} ${user?.phone && !user?.cellphone ? `${user?.phone}` : ''} ${user?.cellphone ? `${user.cellphone}` : ''} - {${user.name}}`
+    obj.label = `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${user?.phone && !user?.cellphone ? `${user?.phone}` : ''} ${user?.cellphone ? `${user.cellphone}` : ''} - {${user.name}}`
     obj.flag = user?.imported_address_text && user?.addresses?.length === 0
     return obj
   }) || []
