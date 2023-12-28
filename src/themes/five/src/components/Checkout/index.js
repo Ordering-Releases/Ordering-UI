@@ -46,7 +46,8 @@ import {
   HeaderContent,
   AuthButtonList,
   Flag,
-  SectionTitleContainer
+  SectionTitleContainer,
+  SpinnerContainer
 } from './styles'
 
 import { Button } from '../../styles/Buttons'
@@ -68,6 +69,7 @@ import { OrderContextUI } from '../OrderContextUI'
 import { SignUpForm } from '../SignUpForm'
 import { LoginForm } from '../LoginForm'
 import { OrderDetail } from './OrderDetail'
+import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
 
 const mapConfigs = {
   mapZoom: 16,
@@ -244,17 +246,27 @@ const CheckoutUI = (props) => {
     const _requiredFields = checkoutFieldsState?.fields
       .filter((field) => (field?.order_type_id === options?.type) && field?.enabled && field?.required_with_guest &&
         !notFields.includes(field?.validation_field?.code) &&
+        field?.validation_field?.code !== 'email' &&
         userSelected && !userSelected[field?.validation_field?.code])
     const requiredFieldsCode = _requiredFields.map((item) => item?.validation_field?.code)
     const guestCheckoutCellPhone = checkoutFieldsState?.fields?.find((field) => field.order_type_id === options?.type && field?.validation_field?.code === 'mobile_phone')
+    const guestCheckoutEmail = checkoutFieldsState?.fields?.find((field) => field.order_type_id === options?.type && field?.validation_field?.code === 'email')
     if (
       userSelected &&
-      !userSelected?.cellphone &&
+      !userSelected?.guest_cellphone &&
       ((guestCheckoutCellPhone?.enabled &&
         guestCheckoutCellPhone?.required_with_guest) ||
         configs?.verification_phone_required?.value === '1')
     ) {
       requiredFieldsCode.push('cellphone')
+    }
+    if (
+      userSelected &&
+      !userSelected?.guest_email &&
+      guestCheckoutEmail?.enabled &&
+      guestCheckoutEmail?.required_with_guest
+    ) {
+      requiredFieldsCode.push('email')
     }
     setRequiredFields(requiredFieldsCode)
   }
@@ -582,24 +594,24 @@ const CheckoutUI = (props) => {
 
         {
           !!(!isMultiDriverTips && driverTipsField) &&
-          <>
-            <DriverTipContainer>
-              <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
-              <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
-              <DriverTips
-                businessId={cart?.business_id}
-                driverTipsOptions={driverTipsOptions}
-                isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
-                isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
-                driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
-                  ? cart?.driver_tip
-                  : cart?.driver_tip_rate}
-                cart={cart}
-                useOrderContext
-              />
-            </DriverTipContainer>
-            <DriverTipDivider />
-          </>
+            <>
+              <DriverTipContainer>
+                <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
+                <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
+                <DriverTips
+                  businessId={cart?.business_id}
+                  driverTipsOptions={driverTipsOptions}
+                  isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
+                  isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
+                  driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
+                    ? cart?.driver_tip
+                    : cart?.driver_tip_rate}
+                  cart={cart}
+                  useOrderContext
+                />
+              </DriverTipContainer>
+              <DriverTipDivider />
+            </>
         }
         {!cartState.loading && placeSpotsEnabled && cart?.business_id && (
           <SelectSpotContainer>
@@ -639,6 +651,11 @@ const CheckoutUI = (props) => {
               productLoading={productLoading}
               setProductLoading={setProductLoading}
             />
+            {isLoadingCheckprice && (
+              <SpinnerContainer>
+                <SpinnerLoader />
+              </SpinnerContainer>
+            )}
           </CartContainer>
         )}
         {
