@@ -3222,9 +3222,9 @@
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
-  version "20.10.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.6.tgz#a3ec84c22965802bf763da55b2394424f22bfbb5"
-  integrity sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==
+  version "20.10.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.7.tgz#40fe8faf25418a75de9fe68a8775546732a3a901"
+  integrity sha512-fRbIKb8C/Y2lXxB5eVMj4IU7xpdox0Lh8bUPEdtLysaylsml1hOOx1+STloRs/B9nf7C6kPRmmg/V7aQW7usNg==
   dependencies:
     undici-types "~5.26.4"
 
@@ -4530,9 +4530,9 @@ camelize@^1.0.0:
   integrity sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==
 
 caniuse-lite@^1.0.30001565:
-  version "1.0.30001574"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001574.tgz#fb4f1359c77f6af942510493672e1ec7ec80230c"
-  integrity sha512-BtYEK4r/iHt/txm81KBudCUcTy7t+s9emrIaHqjYurQ10x71zJ5VQ9x1dYPcz/b+pKSp4y/v1xSI67A+LzpNyg==
+  version "1.0.30001576"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001576.tgz#893be772cf8ee6056d6c1e2d07df365b9ec0a5c4"
+  integrity sha512-ff5BdakGe2P3SQsMsiqmt1Lc8221NR1VzHj5jXN5vBny9A6fpze94HiVV/n7XRosOlsShJcvMv5mdnpjOGCEgg==
 
 canvg@^3.0.6:
   version "3.0.10"
@@ -5701,9 +5701,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.601:
-  version "1.4.621"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.621.tgz#ccd523ed94373548dd913e0aa63601afac9d24f3"
-  integrity sha512-MGJM6S0MuF/wTzM9NoItWXN56J1kolrHS/vzl/KlhXAbVkogTy0wzKYliQDJgNypxSCFjxdRhHYS3bffyYUGEw==
+  version "1.4.623"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.623.tgz#0f7400114ac3425500e9244d2b0e9c3107c331cb"
+  integrity sha512-lKoz10iCYlP1WtRYdh5MvocQPWVRoI7ysp6qf18bmeBgR8abE6+I2CsfyNKztRDZvhdWc+krKT6wS7Neg8sw3A==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -9231,10 +9231,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@13.0.18:
-  version "13.0.18"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.0.18.tgz#8b4ca90b80a360b6db6327d40839cebf537fc3e5"
-  integrity sha512-OEnmVtFOqHSXjlBk+PTV6fHMNu1sJD2x9imqf1S62BV4NXBBuwu5AikI84jGIcoFtzPJNVn7h8R6SqBVQXiL6Q==
+ordering-components-external@13.0.19:
+  version "13.0.19"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.0.19.tgz#959b50d2797ce112dd5d95cec07bb637be81f72b"
+  integrity sha512-UV0PyFf1RTFXHuHhcnsqAWj+fcCTjGLEx4oXgCL7/VTyfONPrG7yzXA0aBDA9rwv/XKkUE5+F7WfIwrBNIjypg==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
