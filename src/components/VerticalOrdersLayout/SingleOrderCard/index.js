@@ -125,7 +125,7 @@ const SingleOrderCardUI = (props) => {
               className='review'
               onClick={() => setOrderSelected(order)}
             >
-              {order?.review ? t('REVIEWED', 'Reviewed') : t('REVIEW', 'Review')}
+              {!!order?.review ? t('REVIEWED', 'Reviewed') : t('REVIEW', 'Review')}
             </Button>
           )}
           {!hideReorderButton && typeof order?.id === 'number' && (
