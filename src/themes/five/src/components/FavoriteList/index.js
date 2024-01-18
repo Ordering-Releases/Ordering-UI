@@ -363,18 +363,19 @@ const FavoriteListUI = (props) => {
         <FavPopupView>
           {(favProduct?.images) && (
             <Image>
-              <img src={favProduct.images} alt={`product-${i}`} width='150px' height='150px' loading='lazy' />
+             <img src={favProduct.images} alt={`product-${i}`} width='150px' height='150px' loading='lazy' />
             </Image>
-          )}
-          <h2>
-            {favProduct?.name}
-          </h2>
-          <h2>
-            {favProduct?.businesses && favProduct?.businesses?.length > 1
+            )}
+            <h2>
+             {favProduct?.name}
+            </h2>
+            <h2>
+            { favProduct?.businesses && favProduct?.businesses?.length > 1
               ? t('AVAILABLE_BUSINESSES_FOR_PRODUCT', 'Available businesses for this product')
               : favProduct?.businesses && favProduct?.businesses?.length == 1
                 ? t('AVAILABLE_BUSINESSE_FOR_PRODUCT', 'Available business for this product')
-                : t('NOT_AVAILABLE_BUSINESSE', 'Business is not available for this product')}
+                : t('NOT_AVAILABLE_BUSINESSE', 'Business is not available for this product')
+            }
           </h2>
           <div>
             {favProduct?.businesses?.map(business => {

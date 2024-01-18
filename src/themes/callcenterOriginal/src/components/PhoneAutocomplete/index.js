@@ -4,7 +4,6 @@ import {
   PhoneAutocomplete as PhoneAutocompleteController,
   useLanguage,
   useOrder,
-  useCustomer,
   useConfig,
   useEvent
 } from 'ordering-components-external'
@@ -62,7 +61,6 @@ const PhoneAutocompleteUI = (props) => {
   const [orderState, { changeType }] = useOrder()
   const [, t] = useLanguage()
   const theme = useTheme()
-  const [, { deleteUserCustomer }] = useCustomer()
   const [configState] = useConfig()
   const [events] = useEvent()
   const [alertState, setAlertState] = useState({ open: false, content: [] })
@@ -78,7 +76,7 @@ const PhoneAutocompleteUI = (props) => {
     value: userCustomer.cellphone || userCustomer.phone,
     label: `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${userCustomer?.phone && !userCustomer?.cellphone ? `${userCustomer?.phone}` : ''} ${userCustomer?.cellphone ? `${userCustomer.cellphone}` : ''} - {${userCustomer.name}}`,
     flag: userCustomer?.imported_address_text && userCustomer?.addresses?.length === 0,
-    lastname: userCustomer.lastname
+    lastname: `${userCustomer.name} ${userCustomer.lastname}`
   } : null)
   const configTypes = configState?.configs?.order_types_allowed?.value.split('|').filter(value => (allOrderTypes.includes(Number(value)))).map(value => Number(value)) || []
   const userName = userCustomer?.lastname
@@ -99,8 +97,7 @@ const PhoneAutocompleteUI = (props) => {
   const handleFindClick = () => {
     if (optSelected && !(userCustomer?.id && orderState?.options?.address?.address)) {
       onChange(optSelected)
-    }
-    else if (userCustomer?.id && orderState?.options?.address?.address) {
+    } else if (userCustomer?.id && orderState?.options?.address?.address) {
       onRedirectPage && onRedirectPage('search')
     } else {
       setAlertState({ open: true, content: t('SELECT_ADDRESS_CUSTOMER', 'Please select an address for the selected customer') })
@@ -142,6 +139,7 @@ const PhoneAutocompleteUI = (props) => {
       setOptSelected(null)
       setCustomersPhones({ ...customersPhones, users: [] })
       setInputValue('')
+      onChangeNumber('')
       return
     }
     let user
@@ -150,7 +148,7 @@ const PhoneAutocompleteUI = (props) => {
     }
     setOptSelected({
       ...option,
-      lastname: user?.lastname ?? user?.name
+      lastname: `${user?.name} ${user?.lastname}`
     })
     setInputValue(option ? option?.value : '')
     if (!option) {
@@ -182,7 +180,6 @@ const PhoneAutocompleteUI = (props) => {
   const handleCloseAddressList = () => {
     setOpenModal({ ...openModal, customer: false })
     setCustomerState({ ...customerState, result: { error: false } })
-    deleteUserCustomer(true)
     if (isFromUrlPhone) {
       onRedirectPhoneUrlPage && onRedirectPhoneUrlPage('home')
     }
@@ -198,7 +195,7 @@ const PhoneAutocompleteUI = (props) => {
     const countryPhoneCode = user?.country_phone_code ?? user?.country_code
     const obj = {}
     obj.value = user.cellphone || user.phone
-    obj.label = `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${user?.phone && !user?.cellphone ? `${user?.phone}` : ''} ${user?.cellphone ? `${user.cellphone}` : ''} - {${user.name}}`
+    obj.label = `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${user?.phone && !user?.cellphone ? `${user?.phone}` : ''} ${user?.cellphone ? `${user.cellphone}` : ''} - {${user.name} ${user?.lastname ?? ''}}`
     obj.flag = user?.imported_address_text && user?.addresses?.length === 0
     return obj
   }) || []
@@ -329,7 +326,7 @@ const PhoneAutocompleteUI = (props) => {
                     onChange={onChange}
                     onInputChange={onInputChange}
                     isLoading={customersPhones?.loading}
-                    options={optionsToSelect}
+                    options={optionsToSelect.filter(opt => inputValue ? opt.value.toString().includes(inputValue) : opt)}
                     components={{ Option }}
                   />
                   {optSelected && (
@@ -352,7 +349,7 @@ const PhoneAutocompleteUI = (props) => {
         onClose={() => setOpenModal({ ...openModal, signup: false })}
       >
         <SignUpForm
-          externalPhoneNumber={`${localPhoneCode || countryCallingCode} ${optSelected?.value || phone}`}
+          externalPhoneNumber={`${countryCallingCode || localPhoneCode} ${optSelected?.value || phone}`}
           saveCustomerUser={saveCustomerUser}
           fieldsNotValid={props.fieldsNotValid}
           useChekoutFileds

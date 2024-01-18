@@ -136,7 +136,7 @@ const CheckoutUI = (props) => {
 
   const shouldActivateOrderDetailModal = ordering?.project?.includes('alsea')
   const cardsMethods = ['stripe', 'credomatic']
-  const stripePaymethods = ['stripe', 'stripe_direct', 'stripe_connect', 'stripe_redirect']
+  const stripePaymethods = ['stripe', 'stripe_connect', 'stripe_redirect']
   const businessConfigs = businessDetails?.business?.configs ?? []
   const isTableNumberEnabled = configs?.table_numer_enabled?.value
   const isWalletCashEnabled = businessConfigs.find(config => config.key === 'wallet_cash_enabled')?.value === '1'
@@ -594,24 +594,24 @@ const CheckoutUI = (props) => {
 
         {
           !!(!isMultiDriverTips && driverTipsField) &&
-            <>
-              <DriverTipContainer>
-                <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
-                <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
-                <DriverTips
-                  businessId={cart?.business_id}
-                  driverTipsOptions={driverTipsOptions}
-                  isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
-                  isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
-                  driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
-                    ? cart?.driver_tip
-                    : cart?.driver_tip_rate}
-                  cart={cart}
-                  useOrderContext
-                />
-              </DriverTipContainer>
-              <DriverTipDivider />
-            </>
+          <>
+            <DriverTipContainer>
+              <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
+              <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
+              <DriverTips
+                businessId={cart?.business_id}
+                driverTipsOptions={driverTipsOptions}
+                isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
+                isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
+                driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
+                  ? cart?.driver_tip
+                  : cart?.driver_tip_rate}
+                cart={cart}
+                useOrderContext
+              />
+            </DriverTipContainer>
+            <DriverTipDivider />
+          </>
         }
         {!cartState.loading && placeSpotsEnabled && cart?.business_id && (
           <SelectSpotContainer>

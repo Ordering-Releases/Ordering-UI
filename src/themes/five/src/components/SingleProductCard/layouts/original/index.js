@@ -192,7 +192,7 @@ const SingleProductCardUI = React.memo((props) => {
                         <WrapTags>
                           {product?.tags.map((tag, i) => (
                             <div key={i}>
-                              <img src={tag.image ?? ''} />
+                              <img src={tag.image ?? ''}></img>
                             </div>
                           ))}
                         </WrapTags>
