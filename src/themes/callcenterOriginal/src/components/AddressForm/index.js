@@ -17,7 +17,9 @@ import {
   GoogleMapsMap,
   useSession,
   useOrder,
-  useConfig
+  useConfig,
+  ToastType,
+  useToast
 } from 'ordering-components-external'
 import { Alert } from '../Confirm'
 import { GoogleGpsButton } from '../../../../../components/GoogleGpsButton'
@@ -62,6 +64,7 @@ const AddressFormUI = (props) => {
   const [, t] = useLanguage()
   const formMethods = useForm()
   const [{ auth }] = useSession()
+  const [, { showToast }] = useToast()
   const theme = useTheme()
 
   const [selectedFromAutocomplete, setSelectedFromAutocomplete] = useState(false)
@@ -240,9 +243,12 @@ const AddressFormUI = (props) => {
     })
   }
 
-  const handleChangeAddress = (address) => {
-    if (address?.address) {
-      getBusinessDeliveryZones(address?.location)
+  const handleChangeAddress = async (address) => {
+    if (address?.location) {
+      const result = await getBusinessDeliveryZones(address?.location)
+      if (result?.length === 0) {
+        showToast(ToastType.Error, t('NO_NEAR_DELIVERY_ZONES', 'No near delivery zones'), 3000)
+      }
     }
     setSelectedFromAutocomplete(true)
     updateChanges({
@@ -475,7 +481,6 @@ const AddressFormUI = (props) => {
                         apiKey={googleMapsApiKey}
                         location={locationChange}
                         locations={businessesList?.businesses}
-                        fixedLocation={!isEditing ? firstLocationNoEdit.value : null}
                         mapControls={googleMapsControls}
                         handleChangeAddressMap={handleChangeAddress}
                         setErrors={setMapErrors}
