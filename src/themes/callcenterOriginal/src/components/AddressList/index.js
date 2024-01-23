@@ -97,8 +97,8 @@ const AddressListUI = (props) => {
         address.zipcode === obj.zipcode &&
         address.internal_number === obj.internal_number
       )))) || []
-  const unaddresedOrderTypes = configs?.unaddressed_order_types_allowed?.value?.split?.('|')
-  const pickupSearchUnadressed = unaddresedOrderTypes?.includes?.('2') && orderState?.options?.type === 2
+  const unaddressedTypes = configs?.unaddressed_order_types_allowed?.value.split('|').map(value => Number(value)) || []
+  const isAllowUnaddressOrderType = unaddressedTypes.includes(orderState?.options?.type)
   const openAddress = (address) => {
     setCurAddress(address)
     setAddressOpen(true)
@@ -216,15 +216,15 @@ const AddressListUI = (props) => {
 
   useEffect(() => {
     const addressValidation = addressList.addresses?.length === 0 && !addressList?.loading && !addressList?.error
-    if (userCustomerSetup?.imported_address_text && addressValidation) {
+    if (userCustomerSetup?.imported_address_text && addressValidation && !isOpenUserData) {
       openAddress({
         address: userCustomerSetup?.imported_address_text
       })
     }
-    if (!userCustomerSetup?.imported_address_text && addressValidation) {
+    if (!userCustomerSetup?.imported_address_text && addressValidation && !isOpenUserData) {
       openAddress({})
     }
-  }, [userCustomerSetup?.imported_address_text, addressList.addresses, addressList?.loading, addressList?.error])
+  }, [userCustomerSetup?.imported_address_text, addressList.addresses, addressList?.loading, addressList?.error, isOpenUserData])
 
   return (
     <>
@@ -267,6 +267,7 @@ const AddressListUI = (props) => {
                   onCancel={() => handleCloseAddressForm()}
                   onSaveAddress={handleSaveAddress}
                   userCustomerSetup={userCustomerSetup}
+                  isAllowUnaddressOrderType={isAllowUnaddressOrderType}
                 />
               )
             }
@@ -283,7 +284,7 @@ const AddressListUI = (props) => {
                 <AddressListUl id='list'>
                   <AddressTitleContainer style={{ display: 'flex' }}>
                     <AddressTitle>{t('SELECT_ONE_OF_SAVED_PLACES', 'Select one of your saved places')}</AddressTitle>
-                    {pickupSearchUnadressed && (
+                    {isAllowUnaddressOrderType && (
                       <>
                         <p>{' '}{t('OR', 'or')}{' '}</p>
                         <WithoutAddressText onClick={() => events.emit('go_to_page', { page: 'search' })}>{t('CONTINUE_WITHOUT_ADDRESS', 'Continue without address')}</WithoutAddressText>
@@ -367,6 +368,7 @@ const AddressListUI = (props) => {
                   notUseCustomerInfo={notUseCustomerInfo}
                   franchiseId={franchiseId}
                   addFormRestrictions={addFormRestrictions}
+                  isAllowUnaddressOrderType={isAllowUnaddressOrderType}
                 />
               </AddressFormContainer>
             )}
@@ -431,6 +433,7 @@ const AddressListUI = (props) => {
                 onCancel={() => handleCloseAddressForm()}
                 onSaveAddress={handleSaveAddress}
                 userCustomerSetup={userCustomerSetup}
+                isAllowUnaddressOrderType={isAllowUnaddressOrderType}
               />
             </Modal>
           )

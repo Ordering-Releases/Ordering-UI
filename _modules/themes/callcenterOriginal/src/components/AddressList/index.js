@@ -36,7 +36,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var AddressListUI = function AddressListUI(props) {
-  var _addressList$addresse, _configs$unaddressed_, _configs$unaddressed_2, _unaddresedOrderTypes, _orderState$options, _props$beforeElements, _props$beforeComponen, _addressList$addresse3, _addressList$addresse4, _orderState$options7, _addressList$error$, _orderState$options8, _orderState$options9, _props$afterComponent, _props$afterElements;
+  var _addressList$addresse, _configs$unaddressed_, _orderState$options, _props$beforeElements, _props$beforeComponen, _addressList$addresse3, _addressList$addresse4, _orderState$options7, _addressList$error$, _orderState$options8, _orderState$options9, _props$afterComponent, _props$afterElements;
   var actionStatus = props.actionStatus,
     addressList = props.addressList,
     handleDelete = props.handleDelete,
@@ -98,8 +98,10 @@ var AddressListUI = function AddressListUI(props) {
       return address.address === obj.address && address.address_notes === obj.address_notes && address.zipcode === obj.zipcode && address.internal_number === obj.internal_number;
     });
   }) || [];
-  var unaddresedOrderTypes = configs === null || configs === void 0 || (_configs$unaddressed_ = configs.unaddressed_order_types_allowed) === null || _configs$unaddressed_ === void 0 || (_configs$unaddressed_ = _configs$unaddressed_.value) === null || _configs$unaddressed_ === void 0 || (_configs$unaddressed_2 = _configs$unaddressed_.split) === null || _configs$unaddressed_2 === void 0 ? void 0 : _configs$unaddressed_2.call(_configs$unaddressed_, '|');
-  var pickupSearchUnadressed = (unaddresedOrderTypes === null || unaddresedOrderTypes === void 0 || (_unaddresedOrderTypes = unaddresedOrderTypes.includes) === null || _unaddresedOrderTypes === void 0 ? void 0 : _unaddresedOrderTypes.call(unaddresedOrderTypes, '2')) && (orderState === null || orderState === void 0 || (_orderState$options = orderState.options) === null || _orderState$options === void 0 ? void 0 : _orderState$options.type) === 2;
+  var unaddressedTypes = (configs === null || configs === void 0 || (_configs$unaddressed_ = configs.unaddressed_order_types_allowed) === null || _configs$unaddressed_ === void 0 ? void 0 : _configs$unaddressed_.value.split('|').map(function (value) {
+    return Number(value);
+  })) || [];
+  var isAllowUnaddressOrderType = unaddressedTypes.includes(orderState === null || orderState === void 0 || (_orderState$options = orderState.options) === null || _orderState$options === void 0 ? void 0 : _orderState$options.type);
   var openAddress = function openAddress(address) {
     setCurAddress(address);
     setAddressOpen(true);
@@ -217,15 +219,15 @@ var AddressListUI = function AddressListUI(props) {
   (0, _react.useEffect)(function () {
     var _addressList$addresse2;
     var addressValidation = ((_addressList$addresse2 = addressList.addresses) === null || _addressList$addresse2 === void 0 ? void 0 : _addressList$addresse2.length) === 0 && !(addressList !== null && addressList !== void 0 && addressList.loading) && !(addressList !== null && addressList !== void 0 && addressList.error);
-    if (userCustomerSetup !== null && userCustomerSetup !== void 0 && userCustomerSetup.imported_address_text && addressValidation) {
+    if (userCustomerSetup !== null && userCustomerSetup !== void 0 && userCustomerSetup.imported_address_text && addressValidation && !isOpenUserData) {
       openAddress({
         address: userCustomerSetup === null || userCustomerSetup === void 0 ? void 0 : userCustomerSetup.imported_address_text
       });
     }
-    if (!(userCustomerSetup !== null && userCustomerSetup !== void 0 && userCustomerSetup.imported_address_text) && addressValidation) {
+    if (!(userCustomerSetup !== null && userCustomerSetup !== void 0 && userCustomerSetup.imported_address_text) && addressValidation && !isOpenUserData) {
       openAddress({});
     }
-  }, [userCustomerSetup === null || userCustomerSetup === void 0 ? void 0 : userCustomerSetup.imported_address_text, addressList.addresses, addressList === null || addressList === void 0 ? void 0 : addressList.loading, addressList === null || addressList === void 0 ? void 0 : addressList.error]);
+  }, [userCustomerSetup === null || userCustomerSetup === void 0 ? void 0 : userCustomerSetup.imported_address_text, addressList.addresses, addressList === null || addressList === void 0 ? void 0 : addressList.loading, addressList === null || addressList === void 0 ? void 0 : addressList.error, isOpenUserData]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {
     return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, {
       key: i
@@ -261,14 +263,15 @@ var AddressListUI = function AddressListUI(props) {
       return handleCloseAddressForm();
     },
     onSaveAddress: handleSaveAddress,
-    userCustomerSetup: userCustomerSetup
+    userCustomerSetup: userCustomerSetup,
+    isAllowUnaddressOrderType: isAllowUnaddressOrderType
   }), !addressList.loading && !actionStatus.loading && !orderState.loading && !addressList.error && (addressList === null || addressList === void 0 || (_addressList$addresse4 = addressList.addresses) === null || _addressList$addresse4 === void 0 ? void 0 : _addressList$addresse4.length) > 0 && _typeof((_orderState$options7 = orderState.options) === null || _orderState$options7 === void 0 ? void 0 : _orderState$options7.address) === 'object' && !addressOpen && (!addressOpen && isPopover || isModal) && /*#__PURE__*/_react.default.createElement(_styles.AddressListUl, {
     id: "list"
   }, /*#__PURE__*/_react.default.createElement(_styles.AddressTitleContainer, {
     style: {
       display: 'flex'
     }
-  }, /*#__PURE__*/_react.default.createElement(_styles.AddressTitle, null, t('SELECT_ONE_OF_SAVED_PLACES', 'Select one of your saved places')), pickupSearchUnadressed && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("p", null, ' ', t('OR', 'or'), ' '), /*#__PURE__*/_react.default.createElement(_styles.WithoutAddressText, {
+  }, /*#__PURE__*/_react.default.createElement(_styles.AddressTitle, null, t('SELECT_ONE_OF_SAVED_PLACES', 'Select one of your saved places')), isAllowUnaddressOrderType && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("p", null, ' ', t('OR', 'or'), ' '), /*#__PURE__*/_react.default.createElement(_styles.WithoutAddressText, {
     onClick: function onClick() {
       return events.emit('go_to_page', {
         page: 'search'
@@ -335,7 +338,8 @@ var AddressListUI = function AddressListUI(props) {
     userCustomerSetup: userCustomerSetup,
     notUseCustomerInfo: notUseCustomerInfo,
     franchiseId: franchiseId,
-    addFormRestrictions: addFormRestrictions
+    addFormRestrictions: addFormRestrictions,
+    isAllowUnaddressOrderType: isAllowUnaddressOrderType
   }))), addressOpen && !notUseCustomerInfo && /*#__PURE__*/_react.default.createElement(_styles.AddressFormContainer, {
     width: "50%",
     addFormRestrictions: addFormRestrictions
@@ -379,7 +383,8 @@ var AddressListUI = function AddressListUI(props) {
       return handleCloseAddressForm();
     },
     onSaveAddress: handleSaveAddress,
-    userCustomerSetup: userCustomerSetup
+    userCustomerSetup: userCustomerSetup,
+    isAllowUnaddressOrderType: isAllowUnaddressOrderType
   })), /*#__PURE__*/_react.default.createElement(_Confirm.Confirm, {
     title: t('SEARCH', 'Search'),
     content: confirm.content,
