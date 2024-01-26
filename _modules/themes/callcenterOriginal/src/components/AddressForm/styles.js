@@ -44,7 +44,7 @@ var WrapperMap = exports.WrapperMap = _styledComponents.default.div(_templateObj
 });
 var WrapperSkeleton = exports.WrapperSkeleton = _styledComponents.default.div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n\n  span {\n    width: 100%;\n  }\n"])));
 var AddressMarkContainer = exports.AddressMarkContainer = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background: #FFE69C;\n  border: 1px solid #FFF3CD;\n  display: flex;\n  padding: 8px;\n  justify-content: center;\n  align-items: center;\n  border-radius: 4px;\n  position: absolute;\n  top: 50px;\n  width: max-content;\n  p {\n    margin: 0;\n    color: #664D03;\n    font-size: 12px;\n  }\n"])));
-var StreetViewText = exports.StreetViewText = _styledComponents.default.span(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  position: absolute;\n  right: 35px;\n  top: 30px;\n  text-decoration: underline;\n  color: ", ";\n  z-index: 9999;\n"])), function (_ref2) {
+var StreetViewText = exports.StreetViewText = _styledComponents.default.span(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  position: absolute;\n  right: 35px;\n  top: 30px;\n  text-decoration: underline;\n  color: ", ";\n  z-index: 9999;\n  cursor: pointer;\n"])), function (_ref2) {
   var _theme$colors;
   var theme = _ref2.theme;
   return theme === null || theme === void 0 || (_theme$colors = theme.colors) === null || _theme$colors === void 0 ? void 0 : _theme$colors.primary;

@@ -5,7 +5,8 @@ import {
   useLanguage,
   useOrder,
   useConfig,
-  useEvent
+  useEvent,
+  useCustomer
 } from 'ordering-components-external'
 import { useTheme } from 'styled-components'
 import { Modal } from '../Modal'
@@ -54,7 +55,8 @@ const PhoneAutocompleteUI = (props) => {
     localPhoneCode,
     isFromUrlPhone,
     onRedirectPhoneUrlPage,
-    franchiseId
+    franchiseId,
+    getUsers
   } = props
   const allOrderTypes = [1, 2, 3, 4, 5]
   const pickupTypes = [2, 3, 4, 5]
@@ -63,6 +65,7 @@ const PhoneAutocompleteUI = (props) => {
   const theme = useTheme()
   const [configState] = useConfig()
   const [events] = useEvent()
+  const [, { deleteUserCustomer }] = useCustomer()
   const [alertState, setAlertState] = useState({ open: false, content: [] })
   const [isOpenUserData, setIsOpenUserData] = useState(false)
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false)
@@ -191,12 +194,31 @@ const PhoneAutocompleteUI = (props) => {
     setIsPickupSelected(true)
   }
 
+  const handleDeleteUser = () => {
+    deleteUserCustomer(true)
+  }
+
+  const handleOnPaste = (e) => {
+    const regex = /\D/
+    const value = parseInt(e.clipboardData.getData('text'))
+    const length = e.clipboardData.getData('text')?.length
+    if (!regex.test(value) && length >= 7 && !optSelected) {
+      getUsers(value)
+    }
+  }
+
+  const handleCloseSignupForm = () => {
+    setOpenModal({ ...openModal, signup: false })
+    onRedirectPhoneUrlPage('home')
+  }
+
   const optionsToSelect = customersPhones.users.map(user => {
     const countryPhoneCode = user?.country_phone_code ?? user?.country_code
     const obj = {}
     obj.value = user.cellphone || user.phone
     obj.label = `${countryPhoneCode ? `(${countryPhoneCode})` : ''} ${user?.phone && !user?.cellphone ? `${user?.phone}` : ''} ${user?.cellphone ? `${user.cellphone}` : ''} - {${user.name} ${user?.lastname ?? ''}}`
-    obj.flag = user?.imported_address_text && user?.addresses?.length === 0
+    obj.flag = (user?.imported_address_text && user?.addresses?.length === 0) ||
+      (user?.addresses?.length === 1 && (!user?.addresses?.[0]?.location?.lat || !user?.addresses?.[0]?.location?.lng))
     return obj
   }) || []
 
@@ -205,6 +227,23 @@ const PhoneAutocompleteUI = (props) => {
       <OptionContainer style={{ display: 'flex' }}>
         <components.Option {...props} /> {props?.data?.flag && <img src={theme?.images?.general?.bookmark} width={20} height={20} />}
       </OptionContainer>
+    )
+  }
+
+  const ClearIndicator = (props) => {
+    const clearValue = () => {
+      props.clearValue()
+      handleDeleteUser()
+    }
+    const innerProps = {
+      ...props.innerProps,
+      onMouseDown: clearValue,
+      onTouchEnd: clearValue
+    }
+    return (
+      <div style={{ display: 'flex' }}>
+        <components.ClearIndicator {...props} innerProps={innerProps} />
+      </div>
     )
   }
 
@@ -230,6 +269,14 @@ const PhoneAutocompleteUI = (props) => {
       events.emit('go_to_page', { page: 'search' })
     }
   }, [isSavedAddress, userCustomer?.id, orderState?.options?.user_id, orderState?.options?.address?.address])
+
+  useEffect(() => {
+    if (!userCustomer?.id && !orderState?.loading) {
+      setOptSelected(null)
+      setInputValue('')
+      setCustomersPhones({ ...customersPhones, users: [] })
+    }
+  }, [userCustomer?.id, orderState?.loading])
 
   const OrderTypesComponent = () => {
     return (
@@ -312,7 +359,7 @@ const PhoneAutocompleteUI = (props) => {
                     }
                   </Button>
                 </WrappBtn>
-                <SelectContainer>
+                <SelectContainer onPaste={handleOnPaste}>
                   <MdcCellphoneAndroid size={18} color={theme?.colors?.primary} />
                   <Select
                     isSearchable
@@ -327,7 +374,7 @@ const PhoneAutocompleteUI = (props) => {
                     onInputChange={onInputChange}
                     isLoading={customersPhones?.loading}
                     options={optionsToSelect.filter(opt => inputValue ? opt.value.toString().includes(inputValue) : opt)}
-                    components={{ Option }}
+                    components={{ Option, ClearIndicator }}
                   />
                   {optSelected && (
                     <ContinueButton>
@@ -346,7 +393,7 @@ const PhoneAutocompleteUI = (props) => {
       <Modal
         open={openModal.signup}
         width='80%'
-        onClose={() => setOpenModal({ ...openModal, signup: false })}
+        onClose={() => handleCloseSignupForm()}
       >
         <SignUpForm
           externalPhoneNumber={`${countryCallingCode || localPhoneCode} ${optSelected?.value || phone}`}

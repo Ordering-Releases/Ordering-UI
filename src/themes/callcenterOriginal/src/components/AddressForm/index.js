@@ -273,7 +273,9 @@ const AddressFormUI = (props) => {
   }
 
   const openStreetView = () => {
-    const url = `http://maps.google.com/maps?q=&layer=c&cbll=${formState?.changes?.location?.lat},${formState?.changes?.location?.lng}`
+    const lat = formState?.changes?.location?.lat ?? address?.location?.lat
+    const lng = formState?.changes?.location?.lng ?? address?.location?.lng
+    const url = `http://maps.google.com/maps?q=&layer=c&cbll=${lat},${lng}`
     window.open(url, '_blank')
   }
 
@@ -501,7 +503,7 @@ const AddressFormUI = (props) => {
                         fallbackIcon={theme.images?.dummies?.businessLogo}
                       />
                     )}
-                    {formState?.changes?.location?.lat && formState?.changes?.location?.lng && formState?.changes?.address && showMap && (
+                    {showMap && (
                       <StreetViewText onClick={() => openStreetView()}>
                         {t('OPEN_STREET_VIEW', 'Open Street view')}
                       </StreetViewText>
