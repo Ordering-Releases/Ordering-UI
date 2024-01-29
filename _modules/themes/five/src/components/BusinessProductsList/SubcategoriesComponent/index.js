@@ -20,7 +20,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var subcategoriesComponentPropsAreEqual = function subcategoriesComponentPropsAreEqual(prevProps, nextProps) {
   return JSON.stringify(prevProps.category) === JSON.stringify(nextProps.category) && JSON.stringify(prevProps.subcategoriesSelected) === JSON.stringify(nextProps.subcategoriesSelected);
 };
-var SubcategoriesComponent = exports.SubcategoriesComponent = /*#__PURE__*/_react.default.memo(function (props) {
+var SubcategoriesComponent = /*#__PURE__*/_react.default.memo(function (props) {
   var _category$subcategori;
   var category = props.category,
     subcategoriesSelected = props.subcategoriesSelected,
@@ -55,3 +55,4 @@ var SubcategoriesComponent = exports.SubcategoriesComponent = /*#__PURE__*/_reac
     }, subcategory === null || subcategory === void 0 ? void 0 : subcategory.name, " ", isSubcategorySelected && /*#__PURE__*/_react.default.createElement(_reactBootstrapIcons.XLg, null)));
   }))));
 }, subcategoriesComponentPropsAreEqual);
+exports.SubcategoriesComponent = SubcategoriesComponent;
