@@ -303,7 +303,7 @@ const CheckoutUI = (props) => {
         let phone = null
         phone = `+${userSelected?.country_phone_code}${userSelected?.cellphone.replace(`+${userSelected?.country_phone_code}`, '')}`
         const phoneNumber = parsePhoneNumber(phone)
-        if (!phoneNumber?.isValid()) {
+        if (parseInt(configs?.validation_phone_number_lib?.value ?? 1, 10) && !phoneNumber?.isValid()) {
           errors.push(t('VALIDATION_ERROR_MOBILE_PHONE_INVALID', 'The field Phone number is invalid.'))
         }
       } else {
@@ -594,24 +594,24 @@ const CheckoutUI = (props) => {
 
         {
           !!(!isMultiDriverTips && driverTipsField) &&
-          <>
-            <DriverTipContainer>
-              <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
-              <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
-              <DriverTips
-                businessId={cart?.business_id}
-                driverTipsOptions={driverTipsOptions}
-                isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
-                isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
-                driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
-                  ? cart?.driver_tip
-                  : cart?.driver_tip_rate}
-                cart={cart}
-                useOrderContext
-              />
-            </DriverTipContainer>
-            <DriverTipDivider />
-          </>
+            <>
+              <DriverTipContainer>
+                <h1>{t('DRIVER_TIPS', 'Driver Tips')}</h1>
+                <p>{t('100%_OF_THE_TIP_YOUR_DRIVER', '100% of the tip goes to your driver')}</p>
+                <DriverTips
+                  businessId={cart?.business_id}
+                  driverTipsOptions={driverTipsOptions}
+                  isFixedPrice={parseInt(configs?.driver_tip_type?.value, 10) === 1}
+                  isDriverTipUseCustom={!!parseInt(configs?.driver_tip_use_custom?.value, 10)}
+                  driverTip={parseInt(configs?.driver_tip_type?.value, 10) === 1
+                    ? cart?.driver_tip
+                    : cart?.driver_tip_rate}
+                  cart={cart}
+                  useOrderContext
+                />
+              </DriverTipContainer>
+              <DriverTipDivider />
+            </>
         }
         {!cartState.loading && placeSpotsEnabled && cart?.business_id && (
           <SelectSpotContainer>
