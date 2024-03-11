@@ -37,10 +37,10 @@ var AddressItem = exports.AddressItem = _styledComponents.default.li(_templateOb
 }, function (props) {
   return props.theme.colors.lightGray;
 });
-var AddressItemActions = exports.AddressItemActions = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  a {\n    display: flex;\n    cursor: pointer;\n    margin: 0px 5px;\n    font-size: 20px;\n    \n    svg {\n      color: #B1BCCC;\n    }\n  }\n  a.disabled {\n    svg {\n      color: #CCC;\n    }\n    pointer-events: none;\n  }\n"])));
+var AddressItemActions = exports.AddressItemActions = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  a {\n    display: flex;\n    cursor: pointer;\n    margin: 0px 5px;\n    font-size: 20px;\n\n    svg {\n      color: #B1BCCC;\n    }\n  }\n  a.disabled {\n    svg {\n      color: #CCC;\n    }\n    pointer-events: none;\n  }\n"])));
 var WrappNotAddresses = exports.WrappNotAddresses = _styledComponents.default.div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  width: 80%;\n  margin: 20px auto 10px;\n\n  ", "\n\n  img {\n    width: 200px;\n    height: auto;\n    aspect-ratio: attr(width) / attr(height)\n  }\n  h1 {\n    margin: 5px 0px 0px;\n    opacity: 0.5;\n    text-align: center;\n    font-size: 24px;\n  }\n"])), function (_ref4) {
   var isCustomerMode = _ref4.isCustomerMode;
-  return isCustomerMode ? (0, _styledComponents.css)(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    min-height: 200px;\n    height: 200px\n  "]))) : (0, _styledComponents.css)(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    height: 350px;\n  "])));
+  return isCustomerMode ? (0, _styledComponents.css)(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    min-height: 200px;\n    height: 200px;\n  "]))) : (0, _styledComponents.css)(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    height: 350px;\n  "])));
 });
 var FormActions = exports.FormActions = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  padding: 10px 0px;\n  display: flex;\n  justify-content: space-between;\n  width: 100%;\n  button {\n    height: 45px;\n    flex: 1;\n\n    &:last-child#second-btn {\n      margin-left: 10px;\n      ", "\n    }\n  }\n\n  @media (min-width: 769px) {\n    button {\n      &:last-child#second-btn {\n        margin-left: 25px;\n        ", "\n      }\n    }\n  }\n"])), function (props) {
   var _props$theme3;
@@ -49,29 +49,25 @@ var FormActions = exports.FormActions = _styledComponents.default.div(_templateO
   var _props$theme4;
   return ((_props$theme4 = props.theme) === null || _props$theme4 === void 0 ? void 0 : _props$theme4.rtl) && (0, _styledComponents.css)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n          margin-left: 0;\n          margin-right: 25px;\n      "])));
 });
-var ContinueButton = exports.ContinueButton = _styledComponents.default.div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  width: 100%;\n  position: sticky;\n  bottom: 1px;\n  \n  button {\n    width: 100%;\n    white-space: nowrap;\n    height: 50px;\n  }\n"])));
+var ContinueButton = exports.ContinueButton = _styledComponents.default.div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  width: 100%;\n  position: sticky;\n  bottom: 1px;\n\n  button {\n    width: 100%;\n    white-space: nowrap;\n    height: 50px;\n  }\n"])));
 var AddressTitle = exports.AddressTitle = _styledComponents.default.span(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  font-size: 16px;\n  margin-bottom: 25px;\n  text-align: left;\n  ", "\n"])), function (props) {
   var _props$theme5;
   return ((_props$theme5 = props.theme) === null || _props$theme5 === void 0 ? void 0 : _props$theme5.rtl) && (0, _styledComponents.css)(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n    text-align: right;\n  "])));
 });
 var AddressHalfContainer = exports.AddressHalfContainer = _styledComponents.default.div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  display: flex;\n  width: 100%;\n"])));
-var List = exports.List = _styledComponents.default.div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  width: ", ";\n  padding-right: 10px;\n  button { \n    width: 100%;\n  }\n"])), function (_ref5) {
+var List = exports.List = _styledComponents.default.div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  width: ", ";\n  padding-right: 10px;\n  button {\n    width: 100%;\n  }\n"])), function (_ref5) {
   var halfWidth = _ref5.halfWidth;
   return halfWidth ? '50%' : '100%';
 });
-var AddressFormContainer = exports.AddressFormContainer = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  width: 50%;\n  position: sticky;\n  right: 0;\n  top: 0;\n  margin-top: ", ";\n  height: 100%;\n  padding-left: 10px;\n"])), function (_ref6) {
-  var isCustomerMode = _ref6.isCustomerMode,
-    isOpenUserData = _ref6.isOpenUserData;
-  return isCustomerMode && !isOpenUserData ? '-190px' : '0';
-});
-var CloseIcon = exports.CloseIcon = _styledComponents.default.div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n\n  font-size: 30px;\n  cursor: pointer;\n  z-index: 2;\n  ", "\n  ", "\n  svg{\n    /* background: rgba(255,255,255,0.5); */\n    transition: all .2s ease-in;\n\n    &:hover {\n      background-color: #1507260a;\n\n      > svg {\n        color:  #151b26;\n      }\n    }\n\n    &:active {\n      background-color: ", ";\n    }\n  \n    border-radius: 50%;\n  }\n"])), function (props) {
+var AddressFormContainer = exports.AddressFormContainer = _styledComponents.default.div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  width: 50%;\n  position: sticky;\n  right: 0;\n  top: 0;\n  height: 100%;\n  padding-left: 10px;\n"])));
+var CloseIcon = exports.CloseIcon = _styledComponents.default.div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n\n  font-size: 30px;\n  cursor: pointer;\n  z-index: 2;\n  ", "\n  ", "\n  svg{\n    /* background: rgba(255,255,255,0.5); */\n    transition: all .2s ease-in;\n\n    &:hover {\n      background-color: #1507260a;\n\n      > svg {\n        color:  #151b26;\n      }\n    }\n\n    &:active {\n      background-color: ", ";\n    }\n\n    border-radius: 50%;\n  }\n"])), function (props) {
   var _props$theme6;
   return ((_props$theme6 = props.theme) === null || _props$theme6 === void 0 ? void 0 : _props$theme6.rtl) && (0, _styledComponents.css)(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n    right: 25px;\n    left: initial;\n  "])));
-}, function (_ref7) {
-  var isProductForm = _ref7.isProductForm;
+}, function (_ref6) {
+  var isProductForm = _ref6.isProductForm;
   return isProductForm && (0, _styledComponents.css)(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n    top: 18px;\n  "])));
 }, function () {
   return (0, _polished.darken)(0.07, '#CCC');
 });
-var TitleFormContainer = exports.TitleFormContainer = _styledComponents.default.div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  display: flex; \n  align-items: flex-start;\n  h1 {\n    margin: 0 auto;\n    font-size: 24px;\n  }\n"])));
+var TitleFormContainer = exports.TitleFormContainer = _styledComponents.default.div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: flex-start;\n  h1 {\n    margin: 0 auto;\n    font-size: 24px;\n  }\n"])));
 var TitleAddress = exports.TitleAddress = _styledComponents.default.h1(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  text-align: center;\n  margin: auto;\n  font-size: 24px;\n  margin-bottom: 20px;\n"])));
