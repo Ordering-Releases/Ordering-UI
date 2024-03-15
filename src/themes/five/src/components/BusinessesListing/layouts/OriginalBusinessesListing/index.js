@@ -28,7 +28,6 @@ import {
   TypesContainer,
   TypeButton,
   IconTypeButton,
-  TypesWrapper,
   AdditionalTypesContainer
 } from './styles'
 import { useWindowSize } from '../../../../../../../hooks/useWindowSize'
