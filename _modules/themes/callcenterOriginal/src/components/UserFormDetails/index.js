@@ -19,7 +19,7 @@ var _Confirm = require("../Confirm");
 var _utils = require("../../../../../utils");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -45,7 +45,11 @@ var UserFormDetailsUI = exports.UserFormDetailsUI = function UserFormDetailsUI(p
     handleButtonUpdateClick = props.handleButtonUpdateClick,
     isCheckout = props.isCheckout,
     userData = props.userData,
-    isCustomerMode = props.isCustomerMode;
+    isCustomerMode = props.isCustomerMode,
+    confirmDataLayout = props.confirmDataLayout,
+    inputsconfirmData = props.inputsconfirmData,
+    handleRequestCustomerAddress = props.handleRequestCustomerAddress,
+    setCellphoneStartZero = props.setCellphoneStartZero;
   var formMethods = (0, _reactHookForm.useForm)();
   var _useLanguage = (0, _orderingComponentsExternal.useLanguage)(),
     _useLanguage2 = _slicedToArray(_useLanguage, 2),
@@ -152,7 +156,7 @@ var UserFormDetailsUI = exports.UserFormDetailsUI = function UserFormDetailsUI(p
       handleButtonUpdateClick(changes);
     }
   };
-  var handleChangePhoneNumber = function handleChangePhoneNumber(number, isValid) {
+  var handleChangePhoneNumber = function handleChangePhoneNumber(number, isValid, rawNumber) {
     setUserPhoneNumber(number);
     var phoneNumberParser = null;
     var phoneNumber = {
@@ -186,6 +190,7 @@ var UserFormDetailsUI = exports.UserFormDetailsUI = function UserFormDetailsUI(p
         }
       };
     }
+    setCellphoneStartZero && setCellphoneStartZero(rawNumber !== null && rawNumber !== void 0 && rawNumber.number && rawNumber !== null && rawNumber !== void 0 && rawNumber.countryCallingCode ? rawNumber === null || rawNumber === void 0 ? void 0 : rawNumber.number : null);
     handleChangeInput(phoneNumber, true);
   };
   var handleChangeInputEmail = function handleChangeInputEmail(e) {
