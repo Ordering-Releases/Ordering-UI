@@ -70,6 +70,9 @@ export const UserData = styled.div`
     font-size: 14px;
     color: ${props => props.theme?.colors.darkTextColor};
   }
+  ${({ isModal }) => isModal && css`
+    margin-top: 40px;
+  `}
 `
 
 export const UserName = styled.p`
@@ -120,7 +123,6 @@ export const PhoneContainer = styled.div`
   display: flex;
   align-items: center;
   height: 30px;
-
   p {
     margin: 0;
   }

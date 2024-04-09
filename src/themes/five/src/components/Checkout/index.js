@@ -70,6 +70,7 @@ import { SignUpForm } from '../SignUpForm'
 import { LoginForm } from '../LoginForm'
 import { OrderDetail } from './OrderDetail'
 import { SpinnerLoader } from '../../../../../components/SpinnerLoader'
+import { OrderTypesSquares } from '../OrderTypesSquares'
 
 const mapConfigs = {
   mapZoom: 16,
@@ -134,6 +135,7 @@ const CheckoutUI = (props) => {
   const [productLoading, setProductLoading] = useState(false)
 
   const shouldActivateOrderDetailModal = isCustomerMode
+  const orderTypeList = [t('DELIVERY', 'Delivery'), t('PICKUP', 'Pickup'), t('EAT_IN', 'Eat in'), t('CURBSIDE', 'Curbside'), t('DRIVE_THRU', 'Drive thru')]
   const cardsMethods = ['stripe', 'credomatic']
   const stripePaymethods = ['stripe', 'stripe_connect', 'stripe_redirect']
   const businessConfigs = businessDetails?.business?.configs ?? []
@@ -273,6 +275,7 @@ const CheckoutUI = (props) => {
   const checkValidationFields = () => {
     setUserErrors([])
     const errors = []
+    const UKCodes = ['44']
     const userSelected = isCustomerMode ? customerState.user : user
     const _requiredFields = []
     Object.values(checkoutFieldsState?.fields).map(field => {
@@ -302,7 +305,15 @@ const CheckoutUI = (props) => {
         let phone = null
         phone = `+${userSelected?.country_phone_code}${userSelected?.cellphone.replace(`+${userSelected?.country_phone_code}`, '')}`
         const phoneNumber = parsePhoneNumber(phone)
-        if (parseInt(configs?.validation_phone_number_lib?.value ?? 1, 10) && !phoneNumber?.isValid()) {
+        let enableIspossibly = false
+        if (UKCodes.includes(phoneNumber?.countryCallingCode)) {
+          const inputNumber = userSelected?.cellphone
+          const validationsForUK = ['01', '02', '07', '0800', '0808', '0845', '0870', '0871', '16']
+          const result = validationsForUK.some(areaCode => inputNumber?.startsWith(areaCode))
+          enableIspossibly = result
+        }
+        const validation = enableIspossibly ? phoneNumber?.isPossible?.() : phoneNumber?.isValid?.()
+        if (parseInt(configs?.validation_phone_number_lib?.value ?? 1, 10) && !validation) {
           errors.push(t('VALIDATION_ERROR_MOBILE_PHONE_INVALID', 'The field Phone number is invalid.'))
         }
       } else {
@@ -592,7 +603,9 @@ const CheckoutUI = (props) => {
         </WrapperLeftContent>
       </WrapperLeftContainer>
       <WrapperRightContainer>
-
+        {isCustomerMode && (
+          <OrderTypesSquares />
+        )}
         {
           !!(!isMultiDriverTips && driverTipsField) &&
             <>
@@ -862,6 +875,11 @@ const CheckoutUI = (props) => {
         width='760px'
         padding='30px'
         onClose={() => setOpenModal({ ...openModal, orderDetail: false })}
+        title={(orderTypeList[options?.type - 1]) || t('DELIVERY', 'Delivery')}
+        titleStyle={{
+          color: theme?.colors?.primary,
+          fontSize: 30
+        }}
       >
         <OrderDetail
           item={cart}

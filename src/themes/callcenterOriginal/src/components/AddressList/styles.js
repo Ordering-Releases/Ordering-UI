@@ -291,8 +291,23 @@ export const AddressTitleContainer = styled.div`
   white-space: break-spaces;
 `
 
-export const WithoutAddressText = styled.p`
+export const WithoutAddressText = styled.span`
   text-decoration: underline;
   color: ${({ theme }) => theme?.colors?.primary};
   cursor: pointer;
+`
+
+export const WrapperSMS = styled.div`
+  margin-top: 20px;
+  p {
+    color: ${({ theme }) => theme?.colors?.primary}
+  }
+`
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  .sms{
+    margin-left: 20px;
+  }
 `
