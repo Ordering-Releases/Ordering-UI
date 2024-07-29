@@ -277,7 +277,7 @@ var ProductForm = exports.ProductForm = function ProductForm(props) {
    * @param {object} cart Current cart
    * @param {number} suboptionId Suboption id
    */
-  var removeRelatedOptions = function removeRelatedOptions(productCart, suboptionId) {
+  var _removeRelatedOptions = function removeRelatedOptions(productCart, suboptionId) {
     product.product.extras.forEach(function (_extra) {
       _extra.options.forEach(function (_option) {
         if (_option.respect_to === suboptionId) {
@@ -285,7 +285,7 @@ var ProductForm = exports.ProductForm = function ProductForm(props) {
           var suboptions = (_productCart$options2 = productCart.options["id:".concat(_option.id)]) === null || _productCart$options2 === void 0 ? void 0 : _productCart$options2.suboptions;
           if (suboptions) {
             Object.keys(suboptions).map(function (suboptionKey) {
-              return removeRelatedOptions(productCart, parseInt(suboptionKey.split(':')[1]));
+              return _removeRelatedOptions(productCart, parseInt(suboptionKey.split(':')[1]));
             });
           }
           if (productCart.options["id:".concat(_option.id)]) {
@@ -329,13 +329,13 @@ var ProductForm = exports.ProductForm = function ProductForm(props) {
     }
     if (!state.selected) {
       delete newProductCart.options["id:".concat(option.id)].suboptions["id:".concat(suboption.id)];
-      removeRelatedOptions(newProductCart, suboption.id);
+      _removeRelatedOptions(newProductCart, suboption.id);
     } else {
       if (option.min === option.max && option.min === 1) {
         var suboptions = newProductCart.options["id:".concat(option.id)].suboptions;
         if (suboptions) {
           Object.keys(suboptions).map(function (suboptionKey) {
-            return removeRelatedOptions(newProductCart, parseInt(suboptionKey.split(':')[1]));
+            return _removeRelatedOptions(newProductCart, parseInt(suboptionKey.split(':')[1]));
           });
         }
         if (newProductCart.options["id:".concat(option.id)]) {
@@ -375,13 +375,13 @@ var ProductForm = exports.ProductForm = function ProductForm(props) {
       }
       if (!state.selected) {
         delete newProductCart.options["id:".concat(option.id)].suboptions["id:".concat(suboption.id)];
-        removeRelatedOptions(newProductCart, suboption.id);
+        _removeRelatedOptions(newProductCart, suboption.id);
       } else {
         if (option.min === option.max && option.min === 1) {
           var suboptions = newProductCart.options["id:".concat(option.id)].suboptions;
           if (suboptions) {
             Object.keys(suboptions).map(function (suboptionKey) {
-              return removeRelatedOptions(newProductCart, parseInt(suboptionKey.split(':')[1]));
+              return _removeRelatedOptions(newProductCart, parseInt(suboptionKey.split(':')[1]));
             });
           }
           if (newProductCart.options["id:".concat(option.id)]) {
