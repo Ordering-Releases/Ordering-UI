@@ -4868,9 +4868,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.28:
-  version "1.5.40"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.40.tgz#5f6aec13751123c5c3185999ebe3e7bcaf828c2b"
-  integrity sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==
+  version "1.5.41"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.41.tgz#eae1ba6c49a1a61d84cf8263351d3513b2bcc534"
+  integrity sha512-dfdv/2xNjX0P8Vzme4cfzHqnPm5xsZXwsolTYr0eyW18IUmNyG08vL+fttvinTfhKfIKdRoqkDIC9e9iWQCNYQ==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -8459,10 +8459,10 @@ optionator@^0.8.3:
   dependencies:
     "@babel/runtime" "^7.10.4"
 
-ordering-components-external@13.2.11:
-  version "13.2.11"
-  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.2.11.tgz#e5879b23cfb878072aa01eb9efae573807949d47"
-  integrity sha512-40jQor8tLWoH4kAs88Xovnwa3yotKT9qkv24BzOLG5zRJqfh1v1N6PzxV5Q1Vz/FQFJDFc+dZW7fHZtMWvlzyA==
+ordering-components-external@13.2.12:
+  version "13.2.12"
+  resolved "https://registry.yarnpkg.com/ordering-components-external/-/ordering-components-external-13.2.12.tgz#c861cf5d245f5da27799ffbeb79e8c13b92923ed"
+  integrity sha512-XcUKkLePjjE9wmQRSqMrwFNEgAnnXhGaayWJVeskHCuIApwS3GvJUJNWelZteUXw/gXUWIzV5K3AZ68RymcJXg==
   dependencies:
     "@babel/runtime" "^7.10.4"
     "@react-native-async-storage/async-storage" "^1.13.1"
@@ -9915,9 +9915,9 @@ sass-loader@^9.0.2:
     semver "^7.3.2"
 
 sass@^1.26.10:
-  version "1.80.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.80.1.tgz#5b26cde787917e845f25585b741c0caa653d0154"
-  integrity sha512-9lBwDZ7j3y/1DKj5Ec249EVGo5CVpwnzIyIj+cqlCjKkApLnzsJ/l9SnV4YnORvW9dQwQN+gQvh/mFZ8CnDs7Q==
+  version "1.80.2"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.80.2.tgz#9d13d85a4f81bb17e09d1dc3e1c0944f7fd7315e"
+  integrity sha512-9wXY8cGBlUmoUoT+vwOZOFCiS+naiWVjqlreN9ar9PudXbGwlMTFwCR5K9kB4dFumJ6ib98wZyAObJKsWf1nAA==
   dependencies:
     "@parcel/watcher" "^2.4.1"
     chokidar "^4.0.0"
